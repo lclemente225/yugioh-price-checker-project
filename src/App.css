@@ -3,5 +3,8 @@
   padding: 0;
 }
 .App{
-  height: auto;
+  height: auto;  
+}
+body{  
+  background-color: aquamarine;
 }

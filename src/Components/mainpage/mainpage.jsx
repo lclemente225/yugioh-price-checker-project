@@ -3,19 +3,7 @@ import { useState, useEffect } from 'react';
 import { useQuery } from 'react-query';
 import "./mainpage.css";
 
-export default function MainPage(){
-    const [cardData, inputData] = useState({});
-    
-
-    const { isLoading, error, data } = useQuery('Yugioh Data', 
-    async () =>{
-        let response =  await fetch('https://db.ygoprodeck.com/api/v7/cardinfo.php')
-        let data = await response.json()   
-            return data
-            }, []);
-
-
-    /*
+  /*
         ['id'], ['name'], ['type'],['race'], ['']
          ['card_prices']-> this is an array with 1 obj vv
         {"cardmarket_price":"0.12",
@@ -26,8 +14,21 @@ export default function MainPage(){
     
         ['desc'], ['card_sets'], ['set_code'],['set_rarity'],['set_rarity_code'], ['set_price']
         */
-       // console.log("DESCRIPTION",JSON.stringify(data["data"][0]))
-        //console.log("THIS is the INFO",JSON.stringify(data["data"][0]))
+
+export default function MainPage(){
+    const [cardData, inputData] = useState({});
+    const [searchTerm, setSearchTerm] = useState("");
+    const [active, setActive] = useState(false);
+
+    const { isLoading, error, data } = useQuery('Yugioh Data', 
+    async () =>{
+        let response =  await fetch('https://db.ygoprodeck.com/api/v7/cardinfo.php')
+        let data = await response.json()   
+            return data
+            }, []);
+
+
+  
 
   if(isLoading){
     return <div>Loading...</div>
@@ -36,24 +37,19 @@ export default function MainPage(){
     return <div>error error{error}</div>
   }
 
-  
-
-
-
-
 function testMakeList(){
     const list = [];
     
   let dataArray = data['data'];
-    for(let x = 0; x<10; x++){
+    for(let x = 0; x<60; x++){
   let testArray = dataArray[x];
-  let cardName = JSON.stringify(testArray['name']).replace(/(\w?\\")/, '"');
+  let cardName = JSON.stringify(testArray['name']).replace(/(\\)/g, '').replace(/(\")/g,"");
   let cardEff = JSON.stringify(testArray['desc']);
-  let cardType = JSON.stringify(testArray['type']).replace('"',"");
-  let cardTypeofType = JSON.stringify(testArray['race']).replace('"',"");
+  let cardType = JSON.stringify(testArray['type']).replace(/"/g,"");
+  let cardTypeofType = JSON.stringify(testArray['race']).replace(/"/g,"");
   let cardPriceArray = testArray['card_prices'][0];
       list.push(
-          <div key={x} className="single-card-listing">
+          <div key={x} className={`single-card-listing ${active ? 'active-card' : 'inactive-card'}`}>
             {cardName}
             <p>{cardTypeofType + " " + cardType}</p>
             <p>TCG Player: ${cardPriceArray["tcgplayer_price"]}</p>
@@ -62,17 +58,30 @@ function testMakeList(){
           </div>
         );
           }
-          return list
+          return list.filter((card) => {
+            const cardName = card.props.children[0];
+            return cardName.toLowerCase().includes(searchTerm.toLowerCase());
+        });
   }
     
+
+  function filterCard(e){
+      console.log("filtering",e.target.value.toLowerCase())
+      setSearchTerm(e.target.value);
+  }
+
+  function handleClick(e) {
+    e.preventDefault();
+    setActive(!active);
+  }
     return (
         <div>
             <NavBar />
             <div className="main--page-container">
                 <div className="main--page-search">
                     <form className="d-flex" role="search">
-                    <input className="search-input form-control me-2" type="search" placeholder="Use the Millenium Eye" aria-label="Search"></input>
-                    <button className="main--page-search-btn btn btn-outline-success" type="submit">Search</button>
+                       <input className="search-input form-control me-2" type="search" onChange={filterCard} placeholder="Use the Millenium Eye" aria-label="Search"></input>
+                       <button onClick={handleClick} className="main--page-search-btn btn btn-outline-success" type="submit">{active ? "Hide Results" : "Search" }</button>
                     </form>
                 </div>
                 <div className="card--list-container">
