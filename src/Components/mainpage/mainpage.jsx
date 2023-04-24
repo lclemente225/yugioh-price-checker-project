@@ -22,8 +22,8 @@ export default function MainPage(){
 
     const { isLoading, error, data } = useQuery('Yugioh Data', 
     async () =>{
-        let response =  await fetch('https://db.ygoprodeck.com/api/v7/cardinfo.php')
-        let data = await response.json()   
+        let response =  await fetch( 'https://db.ygoprodeck.com/api/v7/cardinfo.php');
+        let data = await response.json();   
             return data
             }, []);
 
@@ -32,24 +32,29 @@ export default function MainPage(){
 
   if(isLoading){
     return <div>Loading...</div>
-  }
+  };
   if(error){
     return <div>error error{error}</div>
-  }
+  };
 
 function testMakeList(){
     const list = [];
     
   let dataArray = data['data'];
     for(let x = 0; x<60; x++){
-  let testArray = dataArray[x];
-  let cardName = JSON.stringify(testArray['name']).replace(/(\\)/g, '').replace(/(\")/g,"");
-  let cardEff = JSON.stringify(testArray['desc']);
-  let cardType = JSON.stringify(testArray['type']).replace(/"/g,"");
-  let cardTypeofType = JSON.stringify(testArray['race']).replace(/"/g,"");
-  let cardPriceArray = testArray['card_prices'][0];
+      let testArray = dataArray[x];
+      let cardName = JSON.stringify(testArray['name']).replace(/(\\)/g, '').replace(/(\")/g,"");
+      let cardEff = JSON.stringify(testArray['desc']);
+      let cardType = JSON.stringify(testArray['type']).replace(/"/g,"");
+      let cardTypeofType = JSON.stringify(testArray['race']).replace(/"/g,"");
+      let cardPriceArray = testArray['card_prices'][0];
+
       list.push(
-          <div key={x} className={`single-card-listing ${active ? 'active-card' : 'inactive-card'}`}>
+          <div key={x} 
+          className={
+            `single-card-listing 
+          ${active ? 'active-card' : 'inactive-card'}`
+          }>
             {cardName}
             <p>{cardTypeofType + " " + cardType}</p>
             <p>TCG Player: ${cardPriceArray["tcgplayer_price"]}</p>
@@ -58,6 +63,7 @@ function testMakeList(){
           </div>
         );
           }
+
           return list.filter((card) => {
             const cardName = card.props.children[0];
             return cardName.toLowerCase().includes(searchTerm.toLowerCase());
