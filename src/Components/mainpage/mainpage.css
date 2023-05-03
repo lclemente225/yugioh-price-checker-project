@@ -6,7 +6,6 @@
 }
 .search-input{
     margin: 20px;
-    background-color: white;
     color:black;
 }
 .main--page-search-btn{
@@ -21,6 +20,7 @@
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
+    background-color: rgb(71, 224, 224);
 }
 .single-card-listing{
     width: 15vw;
@@ -29,6 +29,7 @@
     margin: 25px;
     border-radius: 10px;
     border: 2px solid black;
+    background-color: aquamarine;
 
 }
 .main--page-search{
@@ -38,4 +39,15 @@
 .inactive-card{
     display: none;
 }
-
+.cartUpdateButton{
+    width: 30px;
+}
+.cartUpdateSubtract{
+background-color: rgb(255, 35, 35);
+}
+.cartUpdateSubtract:active, .cartUpdateAdd:active{
+    box-shadow: 0 0 3px;
+}
+.cartUpdateAdd{
+background-color: rgb(71, 172, 71);
+}

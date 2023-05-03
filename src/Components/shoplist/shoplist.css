@@ -1,0 +1,11 @@
+#shop-list-container{
+    margin: 3rem;
+    border: 2px solid red;
+}
+.shop-list-item{
+    list-style: none;
+    border: 2px solid red;
+    padding: 20px;
+    width: 200px;
+    margin: 1rem;
+}

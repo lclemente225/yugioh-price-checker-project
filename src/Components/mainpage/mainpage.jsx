@@ -16,31 +16,85 @@ import "./mainpage.css";
         */
 
 export default function MainPage(){
-    const [cardData, inputData] = useState({});
-    const [searchTerm, setSearchTerm] = useState("");
-    const [active, setActive] = useState(false);
+  const [searchTerm, setSearchTerm] = useState("");
+  const [active, setActive] = useState(false);
 
-    const { isLoading, error, data } = useQuery('Yugioh Data', 
-    async () =>{
+   const { isLoading, error, data } = useQuery('Yugioh Data', 
+  async () =>{
         let response =  await fetch( 'https://db.ygoprodeck.com/api/v7/cardinfo.php');
         let data = await response.json();   
             return data
             }, []);
-
-
-  
 
   if(isLoading){
     return <div>Loading...</div>
   };
   if(error){
     return <div>error error{error}</div>
-  };
+  }; 
+ 
 
-function testMakeList(){
-    const list = [];
+
+  function addToCart(e, name, price, index){
+    //POST REQ??
+    e.preventDefault();
+      console.log(name, price, `id${index}`)
+      //set state of name and price and send as props to cart
+      //addingToCartState([...cardCartState, {cartId: `id${index}`,name: name, price: price}])
+      fetch('http://localhost:3003/cart/add', {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({  "card_name": name, 
+                                "price":price["cardmarket_price"], 
+                                "quantity":"1",
+                                "cartId": `id${index}`
+                               })
+              })
+        .then(response => {
+          if (!response.ok) {
+            throw new Error('Failed to add item to cart');
+          }
+          return response.json();
+        }).catch(error => {
+          console.error(error);
+        });
+   }
+
+   //put req to subtract quantity
+   function subtractQuantityFromCart(){
+    console.log('subtracting 1')
+   }
+
+   function deleteFromCart(e, index) {
+    //DELETE REQ??
+    //PUT REQ??
+    e.preventDefault();
     
-  let dataArray = data['data'];
+    //1. to delete i need to fetch info from database
+    //2. place the info into a state which will be an array of objects
+    //3. put the info into 
+
+    fetch(`http://localhost:3003/cart/updateSubtractItem`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ "cartId": `id${index}` })
+              })
+        .then(response => {
+          if (!response.ok) {
+            throw new Error('Failed to reduce item from cart');
+          }else{
+            console.log("successfully reduced quantity by 1")
+          }
+          return response.json();
+        }).catch(error => {
+          console.error(error);
+        });
+  }
+
+ function testMakeList(){
+    const list = [];    
+    let dataArray = data['data'];
+    
     for(let x = 0; x<60; x++){
       let testArray = dataArray[x];
       let cardName = JSON.stringify(testArray['name']).replace(/(\\)/g, '').replace(/(\")/g,"");
@@ -57,12 +111,22 @@ function testMakeList(){
           }>
             {cardName}
             <p>{cardTypeofType + " " + cardType}</p>
-            <p>TCG Player: ${cardPriceArray["tcgplayer_price"]}</p>
+            <p>TCG Player: {cardPriceArray["tcgplayer_price"] == 0.00 ? " Not Listed":`$${cardPriceArray["tcgplayer_price"]}`}</p>
             <p>eBay: ${cardPriceArray["ebay_price"]}</p>
             <p>Amazon: ${cardPriceArray["amazon_price"]}</p>
+            <button 
+            className='cartUpdateButton cartUpdateAdd'
+            onClick={(event) => addToCart(event, cardName, cardPriceArray, x)}>+</button>
+            &nbsp;
+            <button 
+            className='cartUpdateButton cartUpdateSubtract'
+            onClick={(event) => deleteFromCart(event, x)}> - </button>
           </div>
         );
           }
+    //need to add a function to click on a card and send the info to the cart page
+    //can utilize state or props
+    //fetch post req?
 
           return list.filter((card) => {
             const cardName = card.props.children[0];
@@ -80,6 +144,8 @@ function testMakeList(){
     e.preventDefault();
     setActive(!active);
   }
+//button or function to add to list
+  
     return (
         <div>
             <NavBar />
