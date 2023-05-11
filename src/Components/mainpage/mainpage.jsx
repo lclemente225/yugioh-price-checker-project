@@ -33,15 +33,12 @@ export default function MainPage(){
     return <div>error error{error}</div>
   }; 
  
-
-
-  function addToCart(e, name, price, index){
+//maybe put it into the app.js file?
+  async function addToCart(e, name, price, index){
     //POST REQ??
     e.preventDefault();
       console.log(name, price, `id${index}`)
-      //set state of name and price and send as props to cart
-      //addingToCartState([...cardCartState, {cartId: `id${index}`,name: name, price: price}])
-      fetch('http://localhost:3003/cart/add', {
+      await fetch('http://localhost:3003/cart/add', {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({  "card_name": name, 
@@ -60,12 +57,9 @@ export default function MainPage(){
         });
    }
 
-   //put req to subtract quantity
-   function subtractQuantityFromCart(){
-    console.log('subtracting 1')
-   }
-
-   function deleteFromCart(e, index) {
+  
+   //maybe put into app.js file?
+   async function deleteFromCart(e, index) {
     //DELETE REQ??
     //PUT REQ??
     e.preventDefault();
@@ -74,7 +68,7 @@ export default function MainPage(){
     //2. place the info into a state which will be an array of objects
     //3. put the info into 
 
-    fetch(`http://localhost:3003/cart/updateSubtractItem`, {
+    await fetch(`http://localhost:3003/cart/updateSubtractItem`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ "cartId": `id${index}` })
@@ -95,7 +89,7 @@ export default function MainPage(){
     const list = [];    
     let dataArray = data['data'];
     
-    for(let x = 0; x<60; x++){
+  if(dataArray != undefined){  for(let x = 0; x<60; x++){
       let testArray = dataArray[x];
       let cardName = JSON.stringify(testArray['name']).replace(/(\\)/g, '').replace(/(\")/g,"");
       let cardEff = JSON.stringify(testArray['desc']);
@@ -124,14 +118,14 @@ export default function MainPage(){
           </div>
         );
           }
-    //need to add a function to click on a card and send the info to the cart page
-    //can utilize state or props
-    //fetch post req?
-
+  
           return list.filter((card) => {
             const cardName = card.props.children[0];
             return cardName.toLowerCase().includes(searchTerm.toLowerCase());
         });
+      }else{
+        console.error(dataArray, "error in mainpage")
+      }
   }
     
 
@@ -152,8 +146,10 @@ export default function MainPage(){
             <div className="main--page-container">
                 <div className="main--page-search">
                     <form className="d-flex" role="search">
-                       <input className="search-input form-control me-2" type="search" onChange={filterCard} placeholder="Use the Millenium Eye" aria-label="Search"></input>
-                       <button onClick={handleClick} className="main--page-search-btn btn btn-outline-success" type="submit">{active ? "Hide Results" : "Search" }</button>
+                       <input className="search-input form-control me-2" type="search" onChange={filterCard} placeholder="Use the Millenium Eye" aria-label="Search" />
+                       <button onClick={handleClick} className="main--page-search-btn btn btn-outline-success" type="submit">
+                        {active ? "Hide Results" : "Search" }
+                        </button>
                     </form>
                 </div>
                 <div className="card--list-container">

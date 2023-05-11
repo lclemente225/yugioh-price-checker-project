@@ -35,8 +35,9 @@ async () =>{
 //put this into a useEffect function
 //make it so that it will re-render when the quantity is changed
 function ListItems() {
-let cardList = data[0];
 
+let cardList = data[0];
+if(cardList != undefined){
 return cardList.map((item) => {
     console.log("ITEMS",item)
     return (
@@ -45,15 +46,25 @@ return cardList.map((item) => {
         <p>{item.card_name}</p>    
         <p>Quantity: {item.quantity}</p>
         </li>
-    </>
-)
-});
+    </>         
+        )
+    });
+}
+else{
+    return console.error(cardList,"cardlist didn't load in cart")
+}
 }
 
     
 //for each add a button to add 1x more or remove
 //either a post or delete request
 //delete request
+
+ //put req to subtract quantity
+   function subtractQuantityFromCart(){
+    console.log('subtracting 1')
+   }
+
 
 
   return (
