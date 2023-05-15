@@ -2,7 +2,8 @@ import React from 'react';
 import {Link} from "react-router-dom";
 import './shoplist.css';
 import { useQuery } from 'react-query';
-
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTrash } from '@fortawesome/free-solid-svg-icons'
 
 const Shoplist = () => {
 
@@ -92,8 +93,10 @@ let cardList = data[0];
                     onClick={(event) => subtractFromCart(event, item.cartId)}> - </button>
                     &nbsp;
                     <button 
-                    className='cartUpdateButton cartUpdateSubtract'
-                    onClick={(event) => deleteFromCart(event, item.card_name, item.cartId)}> DEL </button>
+                    className='cartUpdateButton cartUpdateDelete'
+                    onClick={(event) => deleteFromCart(event, item.card_name, item.cartId)}> 
+                        <FontAwesomeIcon icon={faTrash} />
+                    </button>
                 </li>
             </>         
                 )

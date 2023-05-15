@@ -1,6 +1,7 @@
 import NavBar from '../navbar/navbar';
 import { useState, useEffect } from 'react';
 import { useQuery } from 'react-query';
+import ReactPaginate from 'react-paginate';
 import "./mainpage.css";
 
   /*
@@ -18,7 +19,9 @@ import "./mainpage.css";
 export default function MainPage(){
   const [searchTerm, setSearchTerm] = useState("");
   const [active, setActive] = useState(false);
+  const [currentPage, setCurrentPage] = useState(0);
 
+ 
    const { isLoading, error, data } = useQuery('Yugioh Data', 
   async () =>{
         let response =  await fetch( 'https://db.ygoprodeck.com/api/v7/cardinfo.php');
@@ -85,6 +88,16 @@ export default function MainPage(){
         });
   }
 
+    /*   //pagination
+    const PER_PAGE = 10;
+    const offset = currentPage * PER_PAGE;
+    const pageCount = Math.ceil(data?.data?.length / PER_PAGE);
+
+    function handlePageClick({ selected: selectedPage }) {
+      setCurrentPage(selectedPage);
+    }
+    /////// */
+
  function testMakeList(){
     const list = [];    
     let dataArray = data['data'];
@@ -138,8 +151,10 @@ export default function MainPage(){
     e.preventDefault();
     setActive(!active);
   }
-//button or function to add to list
+
+ 
   
+
     return (
         <div>
             <NavBar />

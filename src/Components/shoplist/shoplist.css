@@ -2,7 +2,7 @@
     margin: 3rem;
 }
 .shop-list-item{
-    border: 2px solid red;
+    border: 2px solid black;
     list-style: none;
     padding: 20px;
     width: 20vw;
@@ -11,4 +11,7 @@
 }
 p.card-listing-text{
     background-color: rgb(71, 224, 224);
+}
+.cartUpdateDelete{
+    width: auto;                                     qrgb(253, 80, 80);
 }
