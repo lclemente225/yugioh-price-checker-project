@@ -5,24 +5,6 @@ import { useQuery } from 'react-query';
 
 
 const Shoplist = () => {
-//how do you go about clicking an item and adding it to the list?
-
-//need to make a button that will obtain info about the item
-//maybe put the info into a state?
-//send state as props to list?
-
-
-// fetch get req > obtain info
-
-//fetch put req > update info
-//let card-index = data.card_name.indexOf(); data[card-index].id > this is the id to be selected 
-//and placed in the fetch link 
-
-//maybe this is the get req data?
-//add state to an array
-//map over array and render
-//mock array
-//need to place info in here
 
 const { isLoading, error, data } = useQuery('Yugioh Data', 
 async () =>{
@@ -32,39 +14,94 @@ async () =>{
           }, []);
 
 
-//put this into a useEffect function
-//make it so that it will re-render when the quantity is changed
+async function addToCart(e, name, price, cartId){
+      await fetch('http://localhost:3003/cart/add', {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({  "card_name": name, 
+                                "price":price, 
+                                "quantity":"1",
+                                "cartId": cartId
+                                   })
+              })
+        .then(response => {
+          if (!response.ok) {
+            throw new Error('Failed to add item to cart');
+          }
+          return response.json();
+        }).catch(error => {
+          console.error(error);
+        });
+   }
+
+
+   async function subtractFromCart(e, cartId) {
+    await fetch(`http://localhost:3003/cart/updateSubtractItem`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ "cartId": cartId })
+              })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Failed to reduce item from cart');
+            }else{
+                console.log("successfully reduced quantity by 1")
+                return response.json();
+            }
+        }).catch(error => {
+          console.error(error);
+        });
+  }
+
+
+  async function deleteFromCart(e, card_name, cartId) {
+  await fetch(`http://localhost:3003/cart/deleteItem`, {
+        method: 'DELETE',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ "card_name": card_name,"cartId": cartId })
+              })
+        .then(response => {
+                if (!response.ok) {
+                    throw new Error('Failed to delete item from cart');
+                }else{
+                    console.log("successfully deleted item")
+                    return response.json();
+                }          
+        }).catch(error => {
+          console.error(error);
+        });
+  }
+
+
 function ListItems() {
 
 let cardList = data[0];
-if(cardList != undefined){
-return cardList.map((item) => {
-    console.log("ITEMS",item)
-    return (
-    <>
-        <li key={item.id} className='shop-list-item'>
-        <p>{item.card_name}</p>    
-        <p>Quantity: {item.quantity}</p>
-        </li>
-    </>         
-        )
-    });
+    if(cardList != undefined){
+        return cardList.map((item) => {
+            return (
+            <>
+                <li key={item.id} className='shop-list-item'>
+                <p className="card-listing-text">{item.card_name}</p>    
+                <p className="card-listing-text">Quantity: {item.quantity}</p>
+                <button 
+                    className='cartUpdateButton cartUpdateAdd'
+                    onClick={(event) => addToCart(event, item.card_name, item.price, item.cartId)}>+</button>
+                    &nbsp;
+                    <button 
+                    className='cartUpdateButton cartUpdateSubtract'
+                    onClick={(event) => subtractFromCart(event, item.cartId)}> - </button>
+                    &nbsp;
+                    <button 
+                    className='cartUpdateButton cartUpdateSubtract'
+                    onClick={(event) => deleteFromCart(event, item.card_name, item.cartId)}> DEL </button>
+                </li>
+            </>         
+                )
+            });
+    }else{
+        return console.error(cardList,"cardlist didn't load in cart")
+    }
 }
-else{
-    return console.error(cardList,"cardlist didn't load in cart")
-}
-}
-
-    
-//for each add a button to add 1x more or remove
-//either a post or delete request
-//delete request
-
- //put req to subtract quantity
-   function subtractQuantityFromCart(){
-    console.log('subtracting 1')
-   }
-
 
 
   return (

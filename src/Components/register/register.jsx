@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import {Link} from "react-router-dom";
+import "./register.css";
 
 function Register() {
   const [username, setUsername] = useState("");
@@ -7,28 +9,28 @@ function Register() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    const userData = { name, email, password };
+    const userData = { "username":username, "email":email, "password":password };
     // Send the user data to an API endpoint
     fetch("http://localhost:3003/register", {
       method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
+      headers: { "Content-Type": "application/json" },
       body: JSON.stringify(userData),
     })
       .then((response) => response.json())
       .then((data) => {
-        console.log("Success:", data);
+        console.log("Registered successfully:", data);
         // Handle any success cases, such as redirecting to a login page
       })
       .catch((error) => {
-        console.error("Error:", error);
+        console.error("Error in Registering:", error);
         // Handle any error cases
       });
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <div className="container-fluid register-container">
+      <h1>Not Kaiba Corp</h1>
+    <form onSubmit={handleSubmit} className="register-form">
       <label>
         Username:
         <input
@@ -38,7 +40,7 @@ function Register() {
         />
       </label>
       <label>
-        Email:
+        Email: 
         <input
           type="email"
           value={email}
@@ -53,8 +55,11 @@ function Register() {
           onChange={(event) => setPassword(event.target.value)}
         />
       </label>
-      <button type="submit">Register</button>
+      <Link to="/">
+      <button type="submit" className="register-button">Register</button>
+      </Link>
     </form>
+    </div>
   );
 }
 

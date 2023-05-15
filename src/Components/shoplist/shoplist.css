@@ -1,11 +1,14 @@
 #shop-list-container{
     margin: 3rem;
-    border: 2px solid red;
 }
 .shop-list-item{
-    list-style: none;
     border: 2px solid red;
+    list-style: none;
     padding: 20px;
-    width: 200px;
-    margin: 1rem;
+    width: 20vw;
+    margin: 1rem;    
+    background-color: rgb(71, 224, 224);
+}
+p.card-listing-text{
+    background-color: rgb(71, 224, 224);
 }

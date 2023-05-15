@@ -1,12 +1,11 @@
 .nav--top{
-    border: 2px solid green;
-    position: absolute;
-    top: 0;
     width: 100%;
-    display: flex;
-    justify-content: center;
-}
-#shopping-list{
-    justify-self: flex-end;
     padding: 10px;
+    margin: 2px;
+}
+.navbar{
+    height: auto;
+    background-color: aquamarine;
+    display: flex;
+    justify-content: space-between;
 }

@@ -59,7 +59,7 @@ export default function MainPage(){
 
   
    //maybe put into app.js file?
-   async function deleteFromCart(e, index) {
+   async function subtractFromCart(e, index) {
     //DELETE REQ??
     //PUT REQ??
     e.preventDefault();
@@ -104,17 +104,17 @@ export default function MainPage(){
           ${active ? 'active-card' : 'inactive-card'}`
           }>
             {cardName}
-            <p>{cardTypeofType + " " + cardType}</p>
-            <p>TCG Player: {cardPriceArray["tcgplayer_price"] == 0.00 ? " Not Listed":`$${cardPriceArray["tcgplayer_price"]}`}</p>
-            <p>eBay: ${cardPriceArray["ebay_price"]}</p>
-            <p>Amazon: ${cardPriceArray["amazon_price"]}</p>
+            <p className='mainpage-card-list-text'>{cardTypeofType + " " + cardType}</p>
+            <p className='mainpage-card-list-text'>TCG Player: {cardPriceArray["tcgplayer_price"] == 0.00 ? " Not Listed":`$${cardPriceArray["tcgplayer_price"]}`}</p>
+            <p className='mainpage-card-list-text'>eBay: ${cardPriceArray["ebay_price"]}</p>
+            <p className='mainpage-card-list-text'>Amazon: ${cardPriceArray["amazon_price"]}</p>
             <button 
             className='cartUpdateButton cartUpdateAdd'
-            onClick={(event) => addToCart(event, cardName, cardPriceArray, x)}>+</button>
+            onClick={(event) => addToCart(event,cardName, cardPriceArray, x)}>+</button>
             &nbsp;
             <button 
             className='cartUpdateButton cartUpdateSubtract'
-            onClick={(event) => deleteFromCart(event, x)}> - </button>
+            onClick={(event) => subtractFromCart(event, x)}> - </button>
           </div>
         );
           }
@@ -143,6 +143,7 @@ export default function MainPage(){
     return (
         <div>
             <NavBar />
+            <hr/>
             <div className="main--page-container">
                 <div className="main--page-search">
                     <form className="d-flex" role="search">
@@ -151,7 +152,7 @@ export default function MainPage(){
                         {active ? "Hide Results" : "Search" }
                         </button>
                     </form>
-                </div>
+                </div><hr />
                 <div className="card--list-container">
                         {testMakeList()}
                 </div>
