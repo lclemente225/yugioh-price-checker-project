@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import { useQuery } from 'react-query';
 import ReactPaginate from 'react-paginate';
 import "./mainpage.css";
+import Pagination from '../pagination/pagination';
 
   /*
         ['id'], ['name'], ['type'],['race'], ['']
@@ -18,8 +19,9 @@ import "./mainpage.css";
 
 export default function MainPage(){
   const [searchTerm, setSearchTerm] = useState("");
-  const [active, setActive] = useState(false);
-  const [currentPage, setCurrentPage] = useState(0);
+  //const [active, setActive] = useState(false);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [searchInfo, setSearchInfo] = useState({});
 
  
    const { isLoading, error, data } = useQuery('Yugioh Data', 
@@ -88,34 +90,31 @@ export default function MainPage(){
         });
   }
 
-    /*   //pagination
-    const PER_PAGE = 10;
-    const offset = currentPage * PER_PAGE;
-    const pageCount = Math.ceil(data?.data?.length / PER_PAGE);
-
-    function handlePageClick({ selected: selectedPage }) {
-      setCurrentPage(selectedPage);
-    }
-    /////// */
+ const dataArray = data['data'];
+  
+//current page is 2
+const postsPerPage = 10;
+const lastPostIndex = currentPage * postsPerPage;//2 * 10 > 3 * 10
+const firstPostIndex = lastPostIndex - postsPerPage;//10 > 20
+const currentPosts = dataArray.slice(firstPostIndex,lastPostIndex)
+//console.log(dataArray.slice(80, 90)[0])
 
  function testMakeList(){
     const list = [];    
-    let dataArray = data['data'];
-    
-  if(dataArray != undefined){  for(let x = 0; x<60; x++){
-      let testArray = dataArray[x];
+
+  if(dataArray != undefined){ 
+     for(let x = 0; x<10; x++){
+      let testArray = currentPosts[x];
       let cardName = JSON.stringify(testArray['name']).replace(/(\\)/g, '').replace(/(\")/g,"");
       let cardEff = JSON.stringify(testArray['desc']);
       let cardType = JSON.stringify(testArray['type']).replace(/"/g,"");
       let cardTypeofType = JSON.stringify(testArray['race']).replace(/"/g,"");
       let cardPriceArray = testArray['card_prices'][0];
+      
+ 
 
       list.push(
-          <div key={x} 
-          className={
-            `single-card-listing 
-          ${active ? 'active-card' : 'inactive-card'}`
-          }>
+          <div key={x} className={ `single-card-listing  active-card' ` }>
             {cardName}
             <p className='mainpage-card-list-text'>{cardTypeofType + " " + cardType}</p>
             <p className='mainpage-card-list-text'>TCG Player: {cardPriceArray["tcgplayer_price"] == 0.00 ? " Not Listed":`$${cardPriceArray["tcgplayer_price"]}`}</p>
@@ -125,35 +124,68 @@ export default function MainPage(){
             className='cartUpdateButton cartUpdateAdd'
             onClick={(event) => addToCart(event,cardName, cardPriceArray, x)}>+</button>
             &nbsp;
-            <button 
+            <button  
             className='cartUpdateButton cartUpdateSubtract'
             onClick={(event) => subtractFromCart(event, x)}> - </button>
           </div>
         );
           }
   
-          return list.filter((card) => {
-            const cardName = card.props.children[0];
-            return cardName.toLowerCase().includes(searchTerm.toLowerCase());
-        });
+          return list        
+        
       }else{
         console.error(dataArray, "error in mainpage")
       }
   }
     
+  function searchResults(e){
+    //when clicking search button
+    //1. redirect to search results page
+    //2. set info as state to send as props
+    //3. send info to the results page as props
+    e.preventDefault();
+
+    const list = [];    
+
+
+  if(dataArray != undefined){ 
+     for(let x = 0; x<100; x++){
+      let testArray = dataArray[x];
+      let cardName = JSON.stringify(testArray['name']).replace(/(\\)/g, '').replace(/(\")/g,"");
+      let cardEff = JSON.stringify(testArray['desc']);
+      let cardType = JSON.stringify(testArray['type']).replace(/"/g,"");
+      let cardTypeofType = JSON.stringify(testArray['race']).replace(/"/g,"");
+      let cardPriceArray = testArray['card_prices'][0];
+      
+      list.push({
+        cardName: cardName,
+        cardEffect: cardEff,
+        cardType: cardType,
+        specificType: cardTypeofType,
+        prices: cardPriceArray
+      })
+          }
+  
+          return list.filter((card) => {
+            
+            const cardName = card.cardName;
+            let info = cardName.toLowerCase().includes(searchTerm.toLowerCase())  
+            setSearchInfo(info);
+           return console.log("this is search info", searchInfo)
+          })     
+        
+      }else{
+        console.error(dataArray, "error in mainpage")
+      }
+      
+  }
 
   function filterCard(e){
       console.log("filtering",e.target.value.toLowerCase())
       setSearchTerm(e.target.value);
   }
-
-  function handleClick(e) {
-    e.preventDefault();
-    setActive(!active);
-  }
-
- 
   
+
 
     return (
         <div>
@@ -163,14 +195,21 @@ export default function MainPage(){
                 <div className="main--page-search">
                     <form className="d-flex" role="search">
                        <input className="search-input form-control me-2" type="search" onChange={filterCard} placeholder="Use the Millenium Eye" aria-label="Search" />
-                       <button onClick={handleClick} className="main--page-search-btn btn btn-outline-success" type="submit">
-                        {active ? "Hide Results" : "Search" }
+                       <button onClick={searchResults} className="main--page-search-btn btn btn-outline-success" type="submit">
+                           Search
                         </button>
                     </form>
                 </div><hr />
                 <div className="card--list-container">
                         {testMakeList()}
                 </div>
+                <Pagination 
+                      totalPosts={dataArray.length}
+                      postsPerPage={postsPerPage}
+                      setCurrentPage={setCurrentPage}
+                      currentPage={currentPage}
+                      
+                      />
             </div>
         </div>
     )

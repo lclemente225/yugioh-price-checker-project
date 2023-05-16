@@ -10,6 +10,7 @@ import { BrowserRouter as Router, Routes, Route} from 'react-router-dom';
 const queryClient = new QueryClient();
 
 function App() {  
+  const [isLoggedIn, LogIn] = useState(false);
 
   return (      
     <div className="App">  
