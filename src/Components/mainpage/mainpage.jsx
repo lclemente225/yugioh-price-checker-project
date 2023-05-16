@@ -62,17 +62,9 @@ export default function MainPage(){
         });
    }
 
-  
-   //maybe put into app.js file?
    async function subtractFromCart(e, index) {
-    //DELETE REQ??
-    //PUT REQ??
     e.preventDefault();
     
-    //1. to delete i need to fetch info from database
-    //2. place the info into a state which will be an array of objects
-    //3. put the info into 
-
     await fetch(`http://localhost:3003/cart/updateSubtractItem`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
@@ -92,12 +84,10 @@ export default function MainPage(){
 
  const dataArray = data['data'];
   
-//current page is 2
 const postsPerPage = 10;
-const lastPostIndex = currentPage * postsPerPage;//2 * 10 > 3 * 10
-const firstPostIndex = lastPostIndex - postsPerPage;//10 > 20
+const lastPostIndex = currentPage * postsPerPage;
+const firstPostIndex = lastPostIndex - postsPerPage;
 const currentPosts = dataArray.slice(firstPostIndex,lastPostIndex)
-//console.log(dataArray.slice(80, 90)[0])
 
  function testMakeList(){
     const list = [];    

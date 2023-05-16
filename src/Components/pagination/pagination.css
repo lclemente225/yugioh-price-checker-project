@@ -1,0 +1,15 @@
+.pagination-container{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    width: 100vw;
+    margin-top: 20px;
+}
+.page-num-list{
+    width: 40vw;
+    display: flex;
+    justify-content: space-evenly;
+}
+.page-num-button{
+    width: auto;
+}
