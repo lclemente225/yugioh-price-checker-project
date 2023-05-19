@@ -1,9 +1,9 @@
 import NavBar from '../navbar/navbar';
 import { useState, useEffect } from 'react';
 import { useQuery } from 'react-query';
-import ReactPaginate from 'react-paginate';
 import "./mainpage.css";
 import Pagination from '../pagination/pagination';
+import { Link } from "react-router-dom";
 
   /*
         ['id'], ['name'], ['type'],['race'], ['']
@@ -17,11 +17,11 @@ import Pagination from '../pagination/pagination';
         ['desc'], ['card_sets'], ['set_code'],['set_rarity'],['set_rarity_code'], ['set_price']
         */
 
-export default function MainPage(){
+export default function MainPage({searchInfo, setSearchInfo}){
   const [searchTerm, setSearchTerm] = useState("");
   //const [active, setActive] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
-  const [searchInfo, setSearchInfo] = useState({});
+  const [isSearchResultsActive, toggleActiveSearchResults] = useState(false);
 
  
    const { isLoading, error, data } = useQuery('Yugioh Data', 
@@ -101,8 +101,6 @@ const currentPosts = dataArray.slice(firstPostIndex,lastPostIndex)
       let cardTypeofType = JSON.stringify(testArray['race']).replace(/"/g,"");
       let cardPriceArray = testArray['card_prices'][0];
       
- 
-
       list.push(
           <div key={x} className={ `single-card-listing  active-card' ` }>
             {cardName}
@@ -135,8 +133,7 @@ const currentPosts = dataArray.slice(firstPostIndex,lastPostIndex)
     //3. send info to the results page as props
     e.preventDefault();
 
-    const list = [];    
-
+    const searchResultsArray = [];    
 
   if(dataArray != undefined){ 
      for(let x = 0; x<100; x++){
@@ -146,50 +143,62 @@ const currentPosts = dataArray.slice(firstPostIndex,lastPostIndex)
       let cardType = JSON.stringify(testArray['type']).replace(/"/g,"");
       let cardTypeofType = JSON.stringify(testArray['race']).replace(/"/g,"");
       let cardPriceArray = testArray['card_prices'][0];
-      
-      list.push({
-        cardName: cardName,
-        cardEffect: cardEff,
-        cardType: cardType,
-        specificType: cardTypeofType,
-        prices: cardPriceArray
-      })
+          
+          searchResultsArray.push({
+            cardName: cardName,
+            cardEffect: cardEff,
+            cardType: cardType,
+            specificType: cardTypeofType,
+            prices: cardPriceArray
+              })
           }
   
-          return list.filter((card) => {
-            
+          return searchResultsArray.filter((card) => {            
             const cardName = card.cardName;
-            let info = cardName.toLowerCase().includes(searchTerm.toLowerCase())  
-            setSearchInfo(info);
-           return console.log("this is search info", searchInfo)
+            let info = cardName.toLowerCase().includes(searchTerm.toLowerCase())             
+            if(info){
+              //toggleActiveSearchResults(true);
+              return setSearchInfo((searchData) => {
+                                      return {...searchData, searchResultsArray}
+                                      });
+               }
           })     
         
       }else{
         console.error(dataArray, "error in mainpage")
-      }
-      
+      }      
   }
 
+ 
   function filterCard(e){
       console.log("filtering",e.target.value.toLowerCase())
       setSearchTerm(e.target.value);
+  } 
+
+
+  function handleAuthentication(){
+    const jwtAuth = fetch("http://localhost:3003/checkAuth", {
+      method: GET, headers:{"access-token": localStorage.getItem("token")}
+    })
+
+    jwtAuth.then(res => console.log(res))
+    .catch(err => console.log("unable to retrieve jwt", err))
   }
-  
 
 
     return (
         <div>
             <NavBar />
-            <hr/>
-            <div className="main--page-container">
+            
+            <div className="main--page-container"><hr/>
                 <div className="main--page-search">
-                    <form className="d-flex" role="search">
+                    <form className="d-flex main--page-search-form" role="search">
                        <input className="search-input form-control me-2" type="search" onChange={filterCard} placeholder="Use the Millenium Eye" aria-label="Search" />
-                       <button onClick={searchResults} className="main--page-search-btn btn btn-outline-success" type="submit">
-                           Search
+                      <button onClick={searchResults} className="main--page-search-btn btn btn-outline-success" type="submit">
+                          <strong> Search</strong>
                         </button>
                     </form>
-                </div><hr />
+                </div><hr/>
                 <div className="card--list-container">
                         {testMakeList()}
                 </div>
@@ -197,8 +206,7 @@ const currentPosts = dataArray.slice(firstPostIndex,lastPostIndex)
                       totalPosts={dataArray.length}
                       postsPerPage={postsPerPage}
                       setCurrentPage={setCurrentPage}
-                      currentPage={currentPage}
-                      
+                      currentPage={currentPage}                      
                       />
             </div>
         </div>

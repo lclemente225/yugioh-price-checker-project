@@ -7,8 +7,6 @@ function Login() {
   const [password, setPassword] = useState("");
   const [loginError, setLoginError] = useState("");
 
- 
-
   async function handleLogin (e){
 
     try {
@@ -17,19 +15,22 @@ function Login() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ "username": username, "password":password }),
       });
-      const data = await response.json();
+      const loginData = await response.json();
 
       // check if login was successful
+      //test: qwe qaqaqa
       if (response.ok) {
-        console.log("Login successful!");
+        localStorage.setItem("token", loginData.token)
+        console.log("Login successful!", loginData.Login);
       } else {
-        setLoginError(data.message);
+        setLoginError(loginData.message);
       }
     } catch (error) {
       console.error("Error during login:", error);
     }
   };
 
+ 
   return (
     <div className="login-container">
       <h1>Not Kaiba Corp</h1>

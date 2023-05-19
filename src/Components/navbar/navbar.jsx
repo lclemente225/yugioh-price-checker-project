@@ -7,11 +7,11 @@ export default function Navbar() {
     <div className="nav--top">
       <nav className="navbar navbar-nav-scroll">   
           <div>
-              <Link to="/login"><span>login</span></Link>&nbsp;
-              <Link to="/register"><span>register</span></Link>
+              <Link to="/login"><span>Login</span></Link>&nbsp;
+              <Link to="/register"><span>Register</span></Link>
           </div>
           <Link to="/shoppinglist">
-             <button id="shopping-list">Your Shopping List</button>
+             <button id="shopping-list-button">Your Shopping List</button>
           </Link>
           <a className="navbar-brand" href="/">Not Kaiba Corp</a>
       </nav>

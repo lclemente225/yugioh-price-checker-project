@@ -9,3 +9,12 @@
     display: flex;
     justify-content: space-between;
 }
+.navbar-brand{
+    padding-right: 40px;
+}
+#shopping-list-button{
+    background-color: rgba(255, 255, 255, 0.719);
+}
+#shopping-list-button:active{
+    background-color: rgb(71, 224, 224);
+}
