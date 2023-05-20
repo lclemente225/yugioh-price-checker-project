@@ -18,3 +18,10 @@
     justify-content: space-between;
     align-items: center;
 }
+.register-form label{
+    background-color: rgb(71, 224, 224);
+}
+.register-form input{
+    margin-left: .7rem;
+    background-color: rgb(238, 238, 219);
+}

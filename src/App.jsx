@@ -19,10 +19,10 @@ function App() {
      <QueryClientProvider client={queryClient}>
      <Router>
           <Routes>
-            <Route path='/' element={<MainPage searchInfo={searchInfo} setSearchInfo={setSearchInfo}/>}/>
+            <Route path='/' element={<MainPage searchInfo={searchInfo} setSearchInfo={setSearchInfo} LogIn={LogIn} isLoggedIn={isLoggedIn}/>}/>
             <Route path='/shoppinglist' element={<ShopList />}/>
             <Route path='/search' element={<SearchResults searchInfo={searchInfo} setSearchInfo={setSearchInfo}/>}/>
-            <Route path='/login' element={<Login />}/>
+            <Route path='/login' element={<Login LogIn={LogIn} isLoggedIn={isLoggedIn}/>}/>
             <Route path='/register' element={<Register />}/>
           </Routes>
       </Router>     

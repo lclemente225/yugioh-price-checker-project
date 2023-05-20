@@ -3,7 +3,7 @@
     flex-direction: row;
     justify-content: space-evenly;
     width: 100vw;
-    margin-top: 20px;
+    margin: 20px;
 }
 .page-num-list{
     width: 40vw;
@@ -12,6 +12,7 @@
 }
 .page-num-button{
     width: auto;
+    background-color: rgba(255, 255, 255, 0.678);
 }
 .active-page{
     background-color: yellow;

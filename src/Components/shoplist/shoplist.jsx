@@ -77,8 +77,16 @@ async function addToCart(e, name, price, cartId){
 function ListItems() {
 
 let cardList = data[0];
+let jwtToken = localStorage.getItem("token");
     if(cardList != undefined){
         return cardList.map((item) => {
+            let shopListItems = {
+                "card-name":item.card_name,
+                "quantity": item.quantity
+            };
+            if(jwtToken){
+                localStorage.setItem("shopping list", JSON.stringify(shopListItems));
+            }
             return (
             <>
                 <li key={item.id} className='shop-list-item'>
@@ -111,11 +119,7 @@ let cardList = data[0];
     <div>
         <div className='container'>
             <h1>Your Shopping List</h1>
-            <Link to="/">
-                <button>
-                    Go Home
-                </button>
-            </Link>
+           <a href="/" className='shop-list-link-home'>Go Home</a>     
        </div>
     <div id="shop-list-container" className='container'>
         <ul>

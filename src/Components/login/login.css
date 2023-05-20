@@ -21,3 +21,16 @@
 h1{
     margin:auto;
 }
+.login-redirect-home{
+    position: absolute;
+    top: 0;
+    left: 0;
+    margin: 20px;
+}
+.login-form label{
+    background-color: rgb(71, 224, 224);
+}
+.login-form input{
+    margin-left: .7rem;
+    background-color: rgb(238, 238, 219);
+}

@@ -1,8 +1,10 @@
 *{
   margin: 0;
   padding: 0;
-  background-color: aquamarine;
+  background-color: grey;
+  font-family: 'Macondo', cursive;
 }
+
 .App{
   height: auto;  
 }

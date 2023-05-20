@@ -17,12 +17,13 @@ import { Link } from "react-router-dom";
         ['desc'], ['card_sets'], ['set_code'],['set_rarity'],['set_rarity_code'], ['set_price']
         */
 
-export default function MainPage({searchInfo, setSearchInfo}){
+export default function MainPage({searchInfo, setSearchInfo, LogIn, isLoggedIn}){
   const [searchTerm, setSearchTerm] = useState("");
   //const [active, setActive] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
   const [isSearchResultsActive, toggleActiveSearchResults] = useState(false);
-
+  let loginStatus = localStorage.getItem("Login Status");
+  console.log("CHECKING log status main page",loginStatus)
  
    const { isLoading, error, data } = useQuery('Yugioh Data', 
   async () =>{
@@ -32,7 +33,7 @@ export default function MainPage({searchInfo, setSearchInfo}){
             }, []);
 
   if(isLoading){
-    return <div>Loading...</div>
+    return <div className='Loading-API-Text'>Loading...</div>
   };
   if(error){
     return <div>error error{error}</div>
@@ -82,14 +83,14 @@ export default function MainPage({searchInfo, setSearchInfo}){
         });
   }
 
- const dataArray = data['data'];
+const dataArray = data['data'];
   
 const postsPerPage = 10;
 const lastPostIndex = currentPage * postsPerPage;
 const firstPostIndex = lastPostIndex - postsPerPage;
 const currentPosts = dataArray.slice(firstPostIndex,lastPostIndex)
 
- function testMakeList(){
+function testMakeList(){
     const list = [];    
 
   if(dataArray != undefined){ 
@@ -102,7 +103,7 @@ const currentPosts = dataArray.slice(firstPostIndex,lastPostIndex)
       let cardPriceArray = testArray['card_prices'][0];
       
       list.push(
-          <div key={x} className={ `single-card-listing  active-card' ` }>
+          <div key={x} className={ `single-card-listing  active-card` }>
             {cardName}
             <p className='mainpage-card-list-text'>{cardTypeofType + " " + cardType}</p>
             <p className='mainpage-card-list-text'>TCG Player: {cardPriceArray["tcgplayer_price"] == 0.00 ? " Not Listed":`$${cardPriceArray["tcgplayer_price"]}`}</p>
@@ -176,29 +177,30 @@ const currentPosts = dataArray.slice(firstPostIndex,lastPostIndex)
   } 
 
 
-  function handleAuthentication(){
+  function handleAuthentication(e){
+    e.preventDefault();
     const jwtAuth = fetch("http://localhost:3003/checkAuth", {
-      method: GET, headers:{"access-token": localStorage.getItem("token")}
+      method: 'GET', headers:{"access-token": localStorage.getItem("token")}
     })
 
-    jwtAuth.then(res => console.log(res))
+    jwtAuth.then(res => console.log("Token is here AUTHENTICATION TOKEN",res.headers.access-token))
     .catch(err => console.log("unable to retrieve jwt", err))
   }
 
 
     return (
         <div>
-            <NavBar />
+            <NavBar LogIn={LogIn} isLoggedIn={isLoggedIn}/>
             
-            <div className="main--page-container"><hr/>
+            <div className="main--page-container">
                 <div className="main--page-search">
                     <form className="d-flex main--page-search-form" role="search">
                        <input className="search-input form-control me-2" type="search" onChange={filterCard} placeholder="Use the Millenium Eye" aria-label="Search" />
-                      <button onClick={searchResults} className="main--page-search-btn btn btn-outline-success" type="submit">
+                      <button onClick={handleAuthentication} className="main--page-search-btn btn btn-outline-success" type="submit">
                           <strong> Search</strong>
                         </button>
                     </form>
-                </div><hr/>
+                </div>
                 <div className="card--list-container">
                         {testMakeList()}
                 </div>

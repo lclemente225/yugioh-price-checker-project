@@ -1,6 +1,10 @@
 #shop-list-container{
     margin: 3rem;
 }
+.shop-list-link-home{
+    background-color: grey;
+    font-size: 1rem;
+}
 .shop-list-item{
     border: 2px solid black;
     list-style: none;
