@@ -4,10 +4,10 @@ import {Link} from "react-router-dom";
 export default function Navbar({LogIn, isLoggedIn}) {
     //if LogIn = true then change the links to logout
     
-    let loginStatus = localStorage.getItem("Login Status");
+    let loginStatus = JSON.parse(localStorage.getItem("Login Status"));
     console.log("CHECKING log status navbar",loginStatus)
     function Logout(){
-     localStorage.setItem("Login Status", false)
+     localStorage.setItem("Login Status",JSON.stringify(false))
       return (
         <>
         <a href="/">Log Out</a>
@@ -35,10 +35,11 @@ export default function Navbar({LogIn, isLoggedIn}) {
           <div className="navbar-login-links">
               {<LoginLinksRendering />}
           </div>
+          <a className="navbar-brand" href="/">Not Kaiba Corp</a>
           <Link to="/shoppinglist">
              <button id="shopping-list-button">Your Shopping List</button>
           </Link>
-          <a className="navbar-brand" href="/">Not Kaiba Corp</a>
+         
       </nav>
     </div>
   )

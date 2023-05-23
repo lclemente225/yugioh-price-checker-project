@@ -85,7 +85,7 @@ let jwtToken = localStorage.getItem("token");
                 "quantity": item.quantity
             };
             if(jwtToken){
-                localStorage.setItem("shopping list", JSON.stringify(shopListItems));
+                console.log("jwt token is present")
             }
             return (
             <>

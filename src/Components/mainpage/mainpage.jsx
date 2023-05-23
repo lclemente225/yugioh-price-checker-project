@@ -22,8 +22,6 @@ export default function MainPage({searchInfo, setSearchInfo, LogIn, isLoggedIn})
   //const [active, setActive] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
   const [isSearchResultsActive, toggleActiveSearchResults] = useState(false);
-  let loginStatus = localStorage.getItem("Login Status");
-  console.log("CHECKING log status main page",loginStatus)
  
    const { isLoading, error, data } = useQuery('Yugioh Data', 
   async () =>{
@@ -93,7 +91,7 @@ const currentPosts = dataArray.slice(firstPostIndex,lastPostIndex)
 function testMakeList(){
     const list = [];    
 
-  if(dataArray != undefined){ 
+  if(dataArray != undefined ){ 
      for(let x = 0; x<10; x++){
       let testArray = currentPosts[x];
       let cardName = JSON.stringify(testArray['name']).replace(/(\\)/g, '').replace(/(\")/g,"");
@@ -112,8 +110,7 @@ function testMakeList(){
             <button 
             className='cartUpdateButton cartUpdateAdd'
             onClick={(event) => addToCart(event,cardName, cardPriceArray, x)}>+</button>
-            &nbsp;
-            <button  
+           <button  
             className='cartUpdateButton cartUpdateSubtract'
             onClick={(event) => subtractFromCart(event, x)}> - </button>
           </div>
@@ -127,15 +124,9 @@ function testMakeList(){
       }
   }
     
-  function searchResults(e){
-    //when clicking search button
-    //1. redirect to search results page
-    //2. set info as state to send as props
-    //3. send info to the results page as props
-    e.preventDefault();
-
-    const searchResultsArray = [];    
-
+  function searchResults(){
+    const searchResultsArray = []; 
+    console.log("current posts",currentPosts)   
   if(dataArray != undefined){ 
      for(let x = 0; x<100; x++){
       let testArray = dataArray[x];
@@ -145,36 +136,45 @@ function testMakeList(){
       let cardTypeofType = JSON.stringify(testArray['race']).replace(/"/g,"");
       let cardPriceArray = testArray['card_prices'][0];
           
-          searchResultsArray.push({
-            cardName: cardName,
-            cardEffect: cardEff,
-            cardType: cardType,
-            specificType: cardTypeofType,
-            prices: cardPriceArray
-              })
+          searchResultsArray.push( 
+          <div key={x} className={ `single-card-listing  active-card` }>
+          {cardName}
+          <p className='mainpage-card-list-text'>{cardTypeofType + " " + cardType}</p>
+          <p className='mainpage-card-list-text'>TCG Player: {cardPriceArray["tcgplayer_price"] == 0.00 ? " Not Listed":`$${cardPriceArray["tcgplayer_price"]}`}</p>
+          <p className='mainpage-card-list-text'>eBay: ${cardPriceArray["ebay_price"]}</p>
+          <p className='mainpage-card-list-text'>Amazon: ${cardPriceArray["amazon_price"]}</p>
+         
+          <button 
+          className='cartUpdateButton cartUpdateAdd'
+          onClick={(event) => addToCart(event,cardName, cardPriceArray, x)}>+</button>
+         
+          <button  
+          className='cartUpdateButton cartUpdateSubtract'
+          onClick={(event) => subtractFromCart(event, x)}> - </button>
+        </div>
+              )
           }
   
-          return searchResultsArray.filter((card) => {            
-            const cardName = card.cardName;
-            let info = cardName.toLowerCase().includes(searchTerm.toLowerCase())             
-            if(info){
-              //toggleActiveSearchResults(true);
-              return setSearchInfo((searchData) => {
-                                      return {...searchData, searchResultsArray}
-                                      });
-               }
+          return searchResultsArray.filter((card) => { 
+            const cardName = card.props.children[0];
+            return cardName.toLowerCase().includes(searchTerm.toLowerCase()) 
           })     
-        
       }else{
-        console.error(dataArray, "error in mainpage")
+        console.error(searchResultsArray, "error in mainpage")
       }      
   }
 
- 
+ function searchToggle(){    
+ isSearchResultsActive ? toggleActiveSearchResults(false) : toggleActiveSearchResults(true)
+ }
   function filterCard(e){
       console.log("filtering",e.target.value.toLowerCase())
       setSearchTerm(e.target.value);
-  } 
+      //use search term to trigger a function
+      //function will obtain info of searched data
+      //insert searched data into an array
+      //use the array to render
+  }   
 
 
   function handleAuthentication(e){
@@ -188,21 +188,22 @@ function testMakeList(){
   }
 
 
+
     return (
         <div>
             <NavBar LogIn={LogIn} isLoggedIn={isLoggedIn}/>
-            
             <div className="main--page-container">
-                <div className="main--page-search">
-                    <form className="d-flex main--page-search-form" role="search">
-                       <input className="search-input form-control me-2" type="search" onChange={filterCard} placeholder="Use the Millenium Eye" aria-label="Search" />
-                      <button onClick={handleAuthentication} className="main--page-search-btn btn btn-outline-success" type="submit">
-                          <strong> Search</strong>
+                <div className="main--page-search ">
+                    <div className='main--page-search-form'>
+                       <input className="search-input form-control me-2" type="search" onChange={filterCard} placeholder="Use the Millenium Eye to find cards" aria-label="Search" />
+                      <button onClick={searchToggle} className="main--page-search-btn" type="submit">
+                      <img src="src/assets/images/millenium-eye.png" alt="millenium eye" className='millenium-eye-image'/> 
+
                         </button>
-                    </form>
+                        </div>
                 </div>
                 <div className="card--list-container">
-                        {testMakeList()}
+                        {isSearchResultsActive ? searchResults () : testMakeList()}
                 </div>
                 <Pagination 
                       totalPosts={dataArray.length}

@@ -29,7 +29,7 @@ function Register() {
 
   return (
     <div className="container-fluid register-container">
-      <h1>Not Kaiba Corp</h1>
+      <h1 className="form-company-name">Not Kaiba Corp</h1>
     <form onSubmit={handleSubmit} className="register-form">
       <label>
         Username:

@@ -21,10 +21,9 @@ function Login({LogIn, isLoggedIn}) {
       // check if login was successful
       //test: USER:qwe PASS:qaqaqa
       if (response.ok) {
-        localStorage.setItem("Login Status", true);
-        localStorage.setItem("token", loginData.token)
-        console.log("Login successful!", loginData.Login, loginData.token);
-        console.log("CHECK LOG IN STATUS LOGIN PAGE",isLoggedIn)
+        localStorage.setItem("Login Status", JSON.stringify(true));
+        localStorage.setItem("token", JSON.stringify(loginData.accessToken))
+        console.log("Login successful!", loginData.Login, loginData.accessToken);
       } else {
         setLoginError(loginData.message);
       }
@@ -37,8 +36,8 @@ function Login({LogIn, isLoggedIn}) {
   return (
     <div className="login-container">
       <a className="login-redirect-home" href="/">Home</a>
-      <h1>Not Kaiba Corp</h1>
-      <h1>Login</h1>
+      <h1 className="form-company-name">Not Kaiba Corp</h1>
+      <h1 className="form-company-name">Login</h1>
       <form  className="login-form">
         <label>
           Username:
