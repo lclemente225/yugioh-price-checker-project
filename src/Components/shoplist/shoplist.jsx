@@ -36,7 +36,7 @@ async function addToCart(e, name, price, cartId){
    }
 
 
-   async function subtractFromCart(e, cartId) {
+async function subtractFromCart(e, cartId) {
     await fetch(`http://localhost:3003/cart/updateSubtractItem`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
@@ -55,7 +55,7 @@ async function addToCart(e, name, price, cartId){
   }
 
 
-  async function deleteFromCart(e, card_name, cartId) {
+async function deleteFromCart(e, card_name, cartId) {
   await fetch(`http://localhost:3003/cart/deleteItem`, {
         method: 'DELETE',
         headers: { 'Content-Type': 'application/json' },

@@ -21,9 +21,11 @@ function Login({LogIn, isLoggedIn}) {
       // check if login was successful
       //test: USER:qwe PASS:qaqaqa
       if (response.ok) {
+        //use local storage instead of prop to store values so that 
+        //they won't be refreshed when page is refreshed
         localStorage.setItem("Login Status", JSON.stringify(true));
         localStorage.setItem("token", JSON.stringify(loginData.accessToken))
-        console.log("Login successful!", loginData.Login, loginData.accessToken);
+        console.log("Login successful! Showing Login Data", loginData.Login, loginData.accessToken);
       } else {
         setLoginError(loginData.message);
       }
@@ -47,7 +49,7 @@ function Login({LogIn, isLoggedIn}) {
             onChange={(e) => setUsername(e.target.value)}
           />
         </label>
-        <br />
+        <br/>
         <label>
           Password:
           <input
@@ -56,7 +58,7 @@ function Login({LogIn, isLoggedIn}) {
             onChange={(e) => setPassword(e.target.value)}
           />
         </label>
-        <br />
+        <br/>
         <button type="submit" onClick={handleLogin}>Login</button>
       </form>
       {loginError && <p>{loginError}</p>}

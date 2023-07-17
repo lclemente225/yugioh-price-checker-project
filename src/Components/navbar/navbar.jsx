@@ -1,11 +1,11 @@
 import "./navbar.css";
 import {Link} from "react-router-dom";
 
-export default function Navbar({LogIn, isLoggedIn}) {
-    //if LogIn = true then change the links to logout
+export default function Navbar() {
     
     let loginStatus = JSON.parse(localStorage.getItem("Login Status"));
     console.log("CHECKING log status navbar",loginStatus)
+
     function Logout(){
      localStorage.setItem("Login Status",JSON.stringify(false))
       return (
@@ -16,12 +16,14 @@ export default function Navbar({LogIn, isLoggedIn}) {
     }
 
     function LoginLinks(){
-      return (<>
+      return (
+          <>
               <a href="/login">Login</a>&nbsp;
               <a href="/register">Register</a>
-              </>
+          </>
       )
     }
+
     function LoginLinksRendering() {
       if (loginStatus === true) {
         return <Logout />;
@@ -31,16 +33,17 @@ export default function Navbar({LogIn, isLoggedIn}) {
     }
   return (
     <div className="nav--top">
-      <nav className="navbar navbar-nav-scroll">   
+      <nav className="navbar navbar-nav-scroll">         
           <div className="navbar-login-links">
               {<LoginLinksRendering />}
           </div>
+
           <a className="navbar-brand" href="/">Not Kaiba Corp</a>
+
           <Link to="/shoppinglist">
              <button id="shopping-list-button">Your Shopping List</button>
           </Link>
-         
-      </nav>
+     </nav>
     </div>
   )
 }

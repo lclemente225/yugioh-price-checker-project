@@ -19,11 +19,11 @@ import { Link } from "react-router-dom";
 
 export default function MainPage({searchInfo, setSearchInfo, LogIn, isLoggedIn}){
   const [searchTerm, setSearchTerm] = useState("");
-  //const [active, setActive] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
   const [isSearchResultsActive, toggleActiveSearchResults] = useState(false);
  
-   const { isLoading, error, data } = useQuery('Yugioh Data', 
+  //obtain data from yugioh api
+  const { isLoading, error, data } = useQuery('Yugioh Data', 
   async () =>{
         let response =  await fetch( 'https://db.ygoprodeck.com/api/v7/cardinfo.php');
         let data = await response.json();   
@@ -36,12 +36,10 @@ export default function MainPage({searchInfo, setSearchInfo, LogIn, isLoggedIn})
   if(error){
     return <div>error error{error}</div>
   }; 
- 
-//maybe put it into the app.js file?
-  async function addToCart(e, name, price, index){
-    //POST REQ??
+
+  async function addToCart(e, name, price, index, userId){
     e.preventDefault();
-      console.log(name, price, `id${index}`)
+      console.log(`name, price, id:${index}, target:${targetClass}, event:${e}`)
       await fetch('http://localhost:3003/cart/add', {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
@@ -61,7 +59,7 @@ export default function MainPage({searchInfo, setSearchInfo, LogIn, isLoggedIn})
         });
    }
 
-   async function subtractFromCart(e, index) {
+   async function subtractFromCart(e, index, userId) {
     e.preventDefault();
     
     await fetch(`http://localhost:3003/cart/updateSubtractItem`, {
@@ -88,7 +86,7 @@ const lastPostIndex = currentPage * postsPerPage;
 const firstPostIndex = lastPostIndex - postsPerPage;
 const currentPosts = dataArray.slice(firstPostIndex,lastPostIndex)
 
-function testMakeList(){
+function MakeList(){
     const list = [];    
 
   if(dataArray != undefined ){ 
@@ -102,17 +100,34 @@ function testMakeList(){
       
       list.push(
           <div key={x} className={ `single-card-listing  active-card` }>
-            {cardName}
-            <p className='mainpage-card-list-text'>{cardTypeofType + " " + cardType}</p>
-            <p className='mainpage-card-list-text'>TCG Player: {cardPriceArray["tcgplayer_price"] == 0.00 ? " Not Listed":`$${cardPriceArray["tcgplayer_price"]}`}</p>
-            <p className='mainpage-card-list-text'>eBay: ${cardPriceArray["ebay_price"]}</p>
-            <p className='mainpage-card-list-text'>Amazon: ${cardPriceArray["amazon_price"]}</p>
-            <button 
-            className='cartUpdateButton cartUpdateAdd'
-            onClick={(event) => addToCart(event,cardName, cardPriceArray, x)}>+</button>
-           <button  
-            className='cartUpdateButton cartUpdateSubtract'
-            onClick={(event) => subtractFromCart(event, x)}> - </button>
+                  {cardName}
+              <p className='mainpage-card-list-text'>
+                  {cardTypeofType + " " + cardType}
+              </p>
+
+              <p className='mainpage-card-list-text'>
+                  TCG Player: {cardPriceArray["tcgplayer_price"] == 0.00 ? " Not Listed":`$${cardPriceArray["tcgplayer_price"]}`}
+              </p>
+
+              <p className='mainpage-card-list-text'>
+                  eBay: ${cardPriceArray["ebay_price"]}
+              </p>
+
+              <p className='mainpage-card-list-text'>
+                  Amazon: ${cardPriceArray["amazon_price"]}
+              </p>
+
+              <button 
+              className='cartUpdateButton cartUpdateAdd'
+              onClick={(event) => addToCart(event,cardName, cardPriceArray, x, userId)}>
+                +
+              </button>
+
+              <button  
+                className='cartUpdateButton cartUpdateSubtract'
+                onClick={(event) => subtractFromCart(event, x, userId)}>
+                  - 
+              </button>
           </div>
         );
           }
@@ -128,7 +143,7 @@ function testMakeList(){
     const searchResultsArray = []; 
     console.log("current posts",currentPosts)   
   if(dataArray != undefined){ 
-     for(let x = 0; x<100; x++){
+     for(let x = 0; x<10; x++){
       let testArray = dataArray[x];
       let cardName = JSON.stringify(testArray['name']).replace(/(\\)/g, '').replace(/(\")/g,"");
       let cardEff = JSON.stringify(testArray['desc']);
@@ -164,30 +179,23 @@ function testMakeList(){
       }      
   }
 
+
  function searchToggle(){    
  isSearchResultsActive ? toggleActiveSearchResults(false) : toggleActiveSearchResults(true)
  }
   function filterCard(e){
       console.log("filtering",e.target.value.toLowerCase())
       setSearchTerm(e.target.value);
-      //use search term to trigger a function
-      //function will obtain info of searched data
-      //insert searched data into an array
-      //use the array to render
   }   
 
+  //add a function that grabs from my mysql database
+ //AKA API CALL
 
-  function handleAuthentication(e){
-    e.preventDefault();
-    const jwtAuth = fetch("http://localhost:3003/checkAuth", {
-      method: 'GET', headers:{"access-token": localStorage.getItem("token")}
-    })
-
-    jwtAuth.then(res => console.log("Token is here AUTHENTICATION TOKEN",res.headers.access-token))
-    .catch(err => console.log("unable to retrieve jwt", err))
-  }
-
-
+  //add a function that checks for a user id and a jwt authorization
+  //if authorized then obtain info from  the table WHERE userid = userid
+  //else obtain info from table WHERE userid=007 -> refers to no id and anybody can use it
+  //after 15 min then delete the info of cart data WHERE userid = userid
+  
 
     return (
         <div>
@@ -200,10 +208,10 @@ function testMakeList(){
                       <img src="src/assets/images/millenium-eye.png" alt="millenium eye" className='millenium-eye-image'/> 
 
                         </button>
-                        </div>
+                    </div>
                 </div>
                 <div className="card--list-container">
-                        {isSearchResultsActive ? searchResults () : testMakeList()}
+                        {isSearchResultsActive ? searchResults () : MakeList()}
                 </div>
                 <Pagination 
                       totalPosts={dataArray.length}
