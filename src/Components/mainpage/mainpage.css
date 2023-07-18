@@ -55,7 +55,7 @@
     background-color: rgb(37, 37, 37);   
 }
 .mainpage-card-list-text{
-    background-color: rgb(60, 60, 60)
+    background-color: rgb(57, 142, 148);
 }
 .single-card-listing{
     width: 15vw;
@@ -64,7 +64,7 @@
     color: gold;
     border-radius: 10px;
     border: 2px solid rgba(44, 44, 44, 0.514);
-    background-color: rgb(60, 60, 60)
+    background-color: rgb(57, 142, 148);
 }
 .inactive-card{
     display: none;

@@ -1,5 +1,5 @@
 import './App.css';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import MainPage from './Components/mainpage/mainpage';
 import ShopList from './Components/shoplist/shoplist';
@@ -13,6 +13,24 @@ const queryClient = new QueryClient();
 function App() {  
   const [isLoggedIn, LogIn] = useState(false);  
   const [searchInfo, setSearchInfo] = useState({});
+  const [givenUserId, setUserId] = useState("");
+  
+  
+  let localStorageUserId = localStorage.getItem("Login UserId");
+
+
+ useEffect(() => {
+  setUserId(() => {
+    if(localStorageUserId){
+      return localStorageUserId
+    }else{
+      return 0
+    }
+  })
+ },[])
+ 
+ console.log("USERID",givenUserId);
+
 
   
   function handleAuthentication(e){
@@ -37,10 +55,27 @@ function App() {
      <QueryClientProvider client={queryClient}>
      <Router>
           <Routes>
-            <Route path='/' element={<MainPage searchInfo={searchInfo} setSearchInfo={setSearchInfo} LogIn={LogIn} isLoggedIn={isLoggedIn}/>}/>
-            <Route path='/shoppinglist' element={<ShopList />}/>
-            <Route path='/search' element={<SearchResults searchInfo={searchInfo} setSearchInfo={setSearchInfo}/>}/>
-            <Route path='/login' element={<Login LogIn={LogIn} isLoggedIn={isLoggedIn}/>}/>
+            <Route path='/' element={
+                                  <MainPage 
+                                        searchInfo={searchInfo} 
+                                        setSearchInfo={setSearchInfo}
+                                        LogIn={LogIn} 
+                                        isLoggedIn={isLoggedIn} 
+                                        givenUserId={givenUserId}/>
+                                        }/>
+            <Route path='/shoppinglist' element={<ShopList givenUserId={givenUserId}/>}/>
+            <Route path='/search' element={
+                                          <SearchResults 
+                                                    searchInfo={searchInfo} 
+                                                    setSearchInfo={setSearchInfo} 
+                                                    givenUserId={givenUserId} 
+                                                    setUserId={setUserId}/>}/>
+            <Route path='/login' element={<Login 
+                                              LogIn={LogIn} 
+                                              isLoggedIn={isLoggedIn} 
+                                              givenUserId={givenUserId} 
+                                              setUserId={setUserId}/>
+                                              }/>
             <Route path='/register' element={<Register />}/>
           </Routes>
       </Router>     

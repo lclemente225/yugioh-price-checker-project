@@ -17,10 +17,11 @@ import { Link } from "react-router-dom";
         ['desc'], ['card_sets'], ['set_code'],['set_rarity'],['set_rarity_code'], ['set_price']
         */
 
-export default function MainPage({searchInfo, setSearchInfo, LogIn, isLoggedIn}){
+export default function MainPage({searchInfo, setSearchInfo, LogIn, isLoggedIn, givenUserId}){
   const [searchTerm, setSearchTerm] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
   const [isSearchResultsActive, toggleActiveSearchResults] = useState(false);
+ 
  
   //obtain data from yugioh api
   const { isLoading, error, data } = useQuery('Yugioh Data', 
@@ -39,14 +40,15 @@ export default function MainPage({searchInfo, setSearchInfo, LogIn, isLoggedIn})
 
   async function addToCart(e, name, price, index, userId){
     e.preventDefault();
-      console.log(`name, price, id:${index}, target:${targetClass}, event:${e}`)
+      console.log(`name, price, id:${index},  event:${e}`)
       await fetch('http://localhost:3003/cart/add', {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({  "card_name": name, 
                                 "price":price["cardmarket_price"], 
                                 "quantity":"1",
-                                "cartId": `id${index}`
+                                "cartId": `id${index}`,
+                                "userId": userId
                                })
               })
         .then(response => {
@@ -65,7 +67,10 @@ export default function MainPage({searchInfo, setSearchInfo, LogIn, isLoggedIn})
     await fetch(`http://localhost:3003/cart/updateSubtractItem`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ "cartId": `id${index}` })
+        body: JSON.stringify({ 
+                          "cartId": `id${index}`,
+                          "userId": userId 
+                            })
               })
         .then(response => {
           if (!response.ok) {
@@ -119,13 +124,13 @@ function MakeList(){
 
               <button 
               className='cartUpdateButton cartUpdateAdd'
-              onClick={(event) => addToCart(event,cardName, cardPriceArray, x, userId)}>
+              onClick={(event) => addToCart(event,cardName, cardPriceArray, x, givenUserId)}>
                 +
               </button>
 
               <button  
                 className='cartUpdateButton cartUpdateSubtract'
-                onClick={(event) => subtractFromCart(event, x, userId)}>
+                onClick={(event) => subtractFromCart(event, x, givenUserId)}>
                   - 
               </button>
           </div>

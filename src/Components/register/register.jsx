@@ -1,15 +1,23 @@
 import React, { useState } from "react";
 import {Link} from "react-router-dom";
 import "./register.css";
+import { useQuery } from 'react-query';
 
 function Register() {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
+
+
   const handleSubmit = (event) => {
     event.preventDefault();
-    const userData = { "username":username, "email":email, "password":password };
+    //randomly generate user id here?
+    const userData = { 
+                    "username":username, 
+                    "email":email, 
+                    "password":password
+                  };
     // Send the user data to an API endpoint
     fetch("http://localhost:3003/register", {
       method: "POST",
@@ -26,6 +34,7 @@ function Register() {
         // Handle any error cases
       });
   };
+
 
   return (
     <div className="container-fluid register-container">
@@ -55,9 +64,7 @@ function Register() {
           onChange={(event) => setPassword(event.target.value)}
         />
       </label>
-      <Link to="/">
       <button type="submit" className="register-button">Register</button>
-      </Link>
     </form>
     </div>
   );

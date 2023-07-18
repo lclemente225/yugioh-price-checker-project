@@ -6,11 +6,17 @@ export default function Navbar() {
     let loginStatus = JSON.parse(localStorage.getItem("Login Status"));
     console.log("CHECKING log status navbar",loginStatus)
 
+    function handleClick(){
+      localStorage.removeItem("Login Email");
+      localStorage.removeItem("Login UserId");
+      localStorage.setItem("Login Status", false)
+    }
+
     function Logout(){
-     localStorage.setItem("Login Status",JSON.stringify(false))
+    
       return (
         <>
-        <a href="/">Log Out</a>
+        <a href="/" onClick={handleClick}>Log Out</a>
         </>
       )
     }
@@ -24,18 +30,12 @@ export default function Navbar() {
       )
     }
 
-    function LoginLinksRendering() {
-      if (loginStatus === true) {
-        return <Logout />;
-      } else {
-        return <LoginLinks />;
-      }
-    }
+   
   return (
     <div className="nav--top">
       <nav className="navbar navbar-nav-scroll">         
           <div className="navbar-login-links">
-              {<LoginLinksRendering />}
+              {loginStatus ? <Logout/> : <LoginLinks/>}
           </div>
 
           <a className="navbar-brand" href="/">Not Kaiba Corp</a>

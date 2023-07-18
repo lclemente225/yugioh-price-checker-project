@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import "./login.css"
 import { faHandshakeAngle } from "@fortawesome/free-solid-svg-icons";
 
-function Login({LogIn, isLoggedIn}) {
+function Login({LogIn, isLoggedIn,givenUserId, setUserId}) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [loginError, setLoginError] = useState("");
@@ -24,8 +24,15 @@ function Login({LogIn, isLoggedIn}) {
         //use local storage instead of prop to store values so that 
         //they won't be refreshed when page is refreshed
         localStorage.setItem("Login Status", JSON.stringify(true));
-        localStorage.setItem("token", JSON.stringify(loginData.accessToken))
-        console.log("Login successful! Showing Login Data", loginData.Login, loginData.accessToken);
+        localStorage.setItem("Login Email", JSON.stringify(loginData.email));
+        localStorage.setItem("Login UserId", JSON.stringify(loginData.userId));
+        localStorage.setItem("token", JSON.stringify(loginData.accessToken));
+        console.log("Login successful! Showing Login Data", 
+        loginData.Login,
+         loginData.accessToken,
+         loginData.email
+         );
+         
       } else {
         setLoginError(loginData.message);
       }
@@ -33,6 +40,7 @@ function Login({LogIn, isLoggedIn}) {
       console.error("Error during login:", error);
     }
   };
+
 
  
   return (
