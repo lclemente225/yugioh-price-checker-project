@@ -6,7 +6,9 @@ import ShopList from './Components/shoplist/shoplist';
 import Login from './Components/login/login';
 import Register from './Components/register/register';
 import SearchResults from './Components/searchResults/searchResults';
+import Profile from './Components/profile/profile';
 import { BrowserRouter as Router, Routes, Route} from 'react-router-dom';
+
 
 const queryClient = new QueryClient();
 
@@ -77,6 +79,7 @@ function App() {
                                               setUserId={setUserId}/>
                                               }/>
             <Route path='/register' element={<Register />}/>
+            <Route path='/profile' element={<Profile />}/>
           </Routes>
       </Router>     
       </QueryClientProvider>

@@ -17,6 +17,9 @@ export default function Navbar() {
       return (
         <>
         <a href="/" onClick={handleClick}>Log Out</a>
+        <Link to="/profile">
+            Profile
+        </Link>
         </>
       )
     }
