@@ -11,7 +11,7 @@
     border: 2px solid gray;
     background-color: rgb(71, 224, 224);
     height: 35vh;
-    width: 50%;
+    width: 500px;
     padding: 50px;
     display: flex;
     flex-direction: column;
@@ -19,16 +19,25 @@
     align-items: center;
 }
 h1{
-    margin:auto;
+    margin:0;
+    font-family: 'Press Start 2P', cursive;
 }
 .login-redirect-home{
     position: absolute;
-    top: 0;
-    left: 0;
+    top: 20px;
+    left: 20px;
     margin: 20px;
 }
-.login-form label{
-    background-color: rgb(71, 224, 224);
+.login-redirect-home a{
+    text-decoration: none;
+}
+.login-redirect-home p:hover{
+    color:rgb(255, 230, 0);
+}
+.login-redirect-home p{
+    font-family: 'Press Start 2P', cursive;
+    font-size:25px;
+    color:black;
 }
 .login-form input{
     margin-left: .7rem;

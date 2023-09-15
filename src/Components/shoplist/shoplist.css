@@ -1,12 +1,29 @@
+.shop-list-whole-container{
+    height: 100vh;
+    width:100%;
+    background-color: grey;
+}
+.shop-list-heading{
+    background-color: grey;
+    border-bottom:2px solid black;
+    text-align: center;
+    padding: 40px 0;
+}
 #shop-list-container{
-    margin: 3rem;
+    width:100%;
+    height: 800px; 
+}
+#shop-list-container ul{
+    height:100%;
+    display: flex;
+    flex-direction: column;
+    overflow-y:scroll;
 }
 .shop-list-link-home{
     background-color: grey;
     font-size: 1rem;
 }
 .shop-list-item{
-    border: 2px solid black;
     list-style: none;
     padding: 20px;
     width: 20vw;

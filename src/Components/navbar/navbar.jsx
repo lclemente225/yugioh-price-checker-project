@@ -4,7 +4,6 @@ import {Link} from "react-router-dom";
 export default function Navbar() {
     
     let loginStatus = JSON.parse(localStorage.getItem("Login Status"));
-    console.log("CHECKING log status navbar",loginStatus)
 
     function handleClick(){
       localStorage.removeItem("Login Email");
@@ -16,10 +15,21 @@ export default function Navbar() {
     
       return (
         <>
-        <a href="/" onClick={handleClick}>Log Out</a>
-        <Link to="/profile">
-            Profile
-        </Link>
+        <div className="navbar-button">
+          <Link to="/" onClick={handleClick}>
+             <p>
+              Log Out 
+             </p>
+          </Link>
+        </div>
+        <div className="navbar-button">
+          <Link to="/profile">
+            <p className="navbar-profile">
+                Profile
+            </p>
+          </Link>
+        </div>
+      
         </>
       )
     }
@@ -27,8 +37,20 @@ export default function Navbar() {
     function LoginLinks(){
       return (
           <>
-              <a href="/login">Login</a>&nbsp;
-              <a href="/register">Register</a>
+            <div className="navbar-button">
+              <Link to="/login" >
+                <p>
+                  Login
+                </p>
+              </Link>
+            </div>
+            <div className="navbar-button">
+              <Link to="/register" >
+                <p>
+                  Register 
+                </p>
+              </Link>
+            </div>
           </>
       )
     }
@@ -41,7 +63,11 @@ export default function Navbar() {
               {loginStatus ? <Logout/> : <LoginLinks/>}
           </div>
 
-          <a className="navbar-brand" href="/">Not Kaiba Corp</a>
+          <a className="navbar-brand" href="/">
+            <h1>
+            Not Kaiba Corp
+            </h1>
+          </a>
 
           <Link to="/shoppinglist">
              <button id="shopping-list-button">Your Shopping List</button>

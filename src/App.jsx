@@ -5,7 +5,6 @@ import MainPage from './Components/mainpage/mainpage';
 import ShopList from './Components/shoplist/shoplist';
 import Login from './Components/login/login';
 import Register from './Components/register/register';
-import SearchResults from './Components/searchResults/searchResults';
 import Profile from './Components/profile/profile';
 import { BrowserRouter as Router, Routes, Route} from 'react-router-dom';
 
@@ -26,7 +25,7 @@ function App() {
     if(localStorageUserId){
       return localStorageUserId
     }else{
-      return 0
+      return '0'
     }
   })
  },[])
@@ -34,7 +33,7 @@ function App() {
  console.log("USERID",givenUserId);
 
 
-  
+  //honestly i dont know how to block routes with this token
   function handleAuthentication(e){
     e.preventDefault();
     const jwtAuth = fetch("http://localhost:3003/checkAuth", {
@@ -66,12 +65,7 @@ function App() {
                                         givenUserId={givenUserId}/>
                                         }/>
             <Route path='/shoppinglist' element={<ShopList givenUserId={givenUserId}/>}/>
-            <Route path='/search' element={
-                                          <SearchResults 
-                                                    searchInfo={searchInfo} 
-                                                    setSearchInfo={setSearchInfo} 
-                                                    givenUserId={givenUserId} 
-                                                    setUserId={setUserId}/>}/>
+          
             <Route path='/login' element={<Login 
                                               LogIn={LogIn} 
                                               isLoggedIn={isLoggedIn} 

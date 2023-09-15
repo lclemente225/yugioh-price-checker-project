@@ -1,24 +1,47 @@
 .nav--top{
     width: 100%;
-    padding: 30px;
+    padding: 50px;
 }
 .navbar{
     height: auto;
     display: flex;
     justify-content: space-between;
 }
-a.navbar-brand{
-    font-size: .8rem;
-    color: white;
+.navbar-brand h1{
+    font-size: 1.5rem;
+    color: black;
+}
+.navbar-brand h1:hover{
+    color: rgb(61, 61, 61);
+}
+.navbar-login-links{
+    display:flex;
+    justify-content: space-around;
+    width:300px;
+}
+.nav--top a, .navbar-profile, .navbar-brand h1, .nav--top p{
+    font-family: 'Press Start 2P', cursive;
 }
 .navbar-login-links, a, .nav--top, .navbar{
-    background-color: rgb(71, 224, 224);
-    font-family: 'Press Start 2P', cursive;
-    font-size: .5rem;
+    background-color: var(--tertiary-color);
+    font-size: 1rem;
 }
 #shopping-list-button{
     background-color: rgba(255, 255, 255, 0.719);
+    padding: 10px 20px;
 }
 #shopping-list-button:hover{
     background-color: rgba(255, 255, 255, 0.6);
 }   
+.navbar-profile{
+    margin-left:30px;
+}
+.navbar-button a{
+    text-decoration: none;
+}
+.navbar-button p{
+    color:black;
+}
+.navbar-button p:hover{
+    color:rgb(255, 230, 0);
+}

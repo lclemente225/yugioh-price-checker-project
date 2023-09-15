@@ -45,9 +45,17 @@ function Login({LogIn, isLoggedIn,givenUserId, setUserId}) {
  
   return (
     <div className="login-container">
-      <a className="login-redirect-home" href="/">Home</a>
-      <h1 className="form-company-name">Not Kaiba Corp</h1>
-      <h1 className="form-company-name">Login</h1>
+      <div className="login-redirect-home">
+        <Link to="/">
+          <p>Home</p>
+        </Link>
+      </div>
+      <h1 className="form-company-name">
+        Not Kaiba Corp
+      </h1>
+      <h1 className="form-company-name">
+        Login
+      </h1>
       <form  className="login-form">
         <label>
           Username:

@@ -7,6 +7,8 @@ import { faTrash } from '@fortawesome/free-solid-svg-icons'
 
 const Shoplist = ({givenUserId}) => {
 
+const [count, setCount] = React.useState(0);
+console.log("this is COUNT",count)
 
 const { isLoading, error, data } = useQuery('Yugioh Data', 
 async () =>{
@@ -33,6 +35,7 @@ async function addToCart(e, name, price, cartId, userId){
           if (!response.ok) {
             throw new Error('Failed to add item to cart');
           }
+          setCount(x => x+1)
           return response.json();
         }).catch(error => {
           console.error(error);
@@ -51,6 +54,7 @@ async function subtractFromCart(e, cartId, userId) {
                 throw new Error('Failed to reduce item from cart');
             }else{
                 console.log("successfully reduced quantity by 1")
+                setCount(x => x-1)
                 return response.json();
             }
         }).catch(error => {
@@ -74,6 +78,7 @@ async function deleteFromCart(e, card_name, cartId, userId) {
                     throw new Error('Failed to delete item from cart');
                 }else{
                     console.log("successfully deleted item")
+                    setCount(x => x-1)
                     return response.json();
                 }          
         }).catch(error => {
@@ -132,12 +137,12 @@ console.log("data: ",data)
 
 
   return (
-    <div>
-        <div className='container'>
+    <div className='shop-list-whole-container'>
+        <div className='shop-list-heading'>
             <h1>Your Shopping List</h1>
            <a href="/" className='shop-list-link-home'>Go Home</a>     
        </div>
-    <div id="shop-list-container" className='container'>
+    <div id="shop-list-container" >
         <ul>
         {isLoading ? <div>Loading...</div> : error ? <div>Error: {error}</div> : <ListItems />}
         </ul>

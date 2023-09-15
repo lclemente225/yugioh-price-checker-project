@@ -5,13 +5,16 @@ function Pagination ({totalPosts, postsPerPage, setCurrentPage, currentPage}){
     const [pageSet, changePageSet] = React.useState(1);
 
     const pages = [];
+    
     for (let i = 1; i<= Math.ceil(totalPosts/postsPerPage); i++){
         pages.push(i)
     }
+
     function changePage(number){
         let pageNum = parseInt(number.target.innerText);
         setCurrentPage(pageNum)
     }
+
     const pageQuantity = 10;
     const lastPageIndex = pageSet * pageQuantity;
     const firstPageIndex = lastPageIndex - pageQuantity;

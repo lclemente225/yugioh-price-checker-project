@@ -38,7 +38,11 @@ function Register() {
 
   return (
     <div className="container-fluid register-container">
-      <h1 className="form-company-name">Not Kaiba Corp</h1>
+      <Link to='/' style={{textDecoration:'none'}}>
+          <h1 className="form-company-name" style={{textDecoration:'none'}}>
+            Not Kaiba Corp
+          </h1>
+      </Link>
     <form onSubmit={handleSubmit} className="register-form">
       <label>
         Username:
