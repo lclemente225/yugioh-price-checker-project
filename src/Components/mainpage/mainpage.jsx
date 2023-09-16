@@ -127,11 +127,11 @@ export default function MainPage({LogIn, isLoggedIn, givenUserId}){
                   </p>
 
                   <p className='mainpage-card-list-text'>
-                      eBay: ${cardPriceArray["ebay_price"]}
+                      eBay: {cardPriceArray["ebay_price"]  == 0.00 ? " Not Listed":`$${cardPriceArray["ebay_price"]}`}
                   </p>
 
                   <p className='mainpage-card-list-text'>
-                      Amazon: ${cardPriceArray["amazon_price"]}
+                      Amazon: {cardPriceArray["amazon_price"] == 0.00 ? " Not Listed":`$${cardPriceArray["amazon_price"]}`}
                   </p>
 
                   <button 
