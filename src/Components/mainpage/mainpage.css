@@ -11,7 +11,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-  background-color: grey;
+  background-color: var(--secondary-color);
 }
 .search-input{
     margin: 0 20px;
@@ -74,10 +74,10 @@
     grid-template-rows: repeat(2, 5fr);
     column-gap: 10px;
     row-gap: 15px;
-    background-color: var(--tertiary-color);   
+    background-color: var(--primary-color);   
 }
 .mainpage-card-list-text{
-    background-color: var(--primary-color);
+    background-color: var(--tertiary-color);
 }
 .single-card-listing{
     width: 15vw;
@@ -87,7 +87,7 @@
     color: var(--dark-text-color);
     border-radius: 10px;
     border: 2px solid rgba(44, 44, 44, 0.514);
-    background-color: var(--primary-color);
+    background-color: var(--tertiary-color);
 }
 .inactive-card{
     display: none;
@@ -117,11 +117,11 @@ background-color: rgb(71, 172, 71);
   }
   
   body::-webkit-scrollbar-track {
-    background: rgb(248, 230, 149);        /* color of the tracking area */
+    background: var(--tertiary-color);        /* color of the tracking area */
   }
   
   body::-webkit-scrollbar-thumb {
-    background-color: blue;    /* color of the scroll thumb */
+    background-color: var(--dark-text-color);    /* color of the scroll thumb */
     border-radius: 20px;       /* roundness of the scroll thumb */
-    border: 3px solid rgb(71, 224, 224);  /* creates padding around scroll thumb */
+    border: 1px solid var(--primary-color);  /* creates padding around scroll thumb */
   }

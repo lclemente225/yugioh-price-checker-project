@@ -43,7 +43,7 @@ export default function MainPage({LogIn, isLoggedIn, givenUserId}){
   async function addToCart(e, name, price, index, userId){
     e.preventDefault();
       console.log(`name, price, id:${index},  event:${e}`)
-      await fetch('http://localhost:3003/cart/add', {
+      await fetch('https://shy-rose-apron.cyclic.cloud/cart/add', {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({  "card_name": name, 
@@ -67,7 +67,7 @@ export default function MainPage({LogIn, isLoggedIn, givenUserId}){
    async function subtractFromCart(e, index, userId) {
     e.preventDefault();
     
-    await fetch(`http://localhost:3003/cart/updateSubtractItem`, {
+    await fetch(`https://shy-rose-apron.cyclic.cloud/cart/updateSubtractItem`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ 
@@ -251,7 +251,7 @@ function searchResults(){
     return (
         <div>
             <NavBar LogIn={LogIn} isLoggedIn={isLoggedIn}/>
-            <div classNamez="main--page-container">
+            <div className="main--page-container">
                 <div className="main--page-search ">
                     <div className='main--page-search-form'>
                        <input className="search-input form-control me-2" type="search" 
@@ -259,7 +259,7 @@ function searchResults(){
                        aria-label="Search" />
 
                       <button onClick={searchToggle} className="main--page-search-btn" type="submit">
-                          <img src="src/assets/images/millenium-eye.png" alt="millenium eye" 
+                          <img src="../../assets/images/millenium-eye.png" alt="millenium eye" 
                           className='millenium-eye-image'/> 
                       </button>
                     </div>

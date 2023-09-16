@@ -12,7 +12,7 @@ console.log("this is COUNT",count)
 
 const { isLoading, error, data } = useQuery('Yugioh Data', 
 async () =>{
-      let response =  await fetch( 'http://localhost:3003/cart/list');
+      let response =  await fetch( 'https://shy-rose-apron.cyclic.cloud/cart/list');
       let data = await response.json();   
           return data
           }, []);
@@ -21,7 +21,7 @@ if(isLoading){
   return <div className='Loading-API-Text'>Loading...</div>
 }
 async function addToCart(e, name, price, cartId, userId){
-      await fetch('http://localhost:3003/cart/add', {
+      await fetch('https://shy-rose-apron.cyclic.cloud/cart/add', {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({  "card_name": name, 
@@ -44,7 +44,7 @@ async function addToCart(e, name, price, cartId, userId){
 
 
 async function subtractFromCart(e, cartId, userId) {
-    await fetch(`http://localhost:3003/cart/updateSubtractItem`, {
+    await fetch(`https://shy-rose-apron.cyclic.cloud/cart/updateSubtractItem`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ "cartId": cartId, "userId": userId })
@@ -64,7 +64,7 @@ async function subtractFromCart(e, cartId, userId) {
 
 
 async function deleteFromCart(e, card_name, cartId, userId) {
-  await fetch(`http://localhost:3003/cart/deleteItem`, {
+  await fetch(`https://shy-rose-apron.cyclic.cloud/cart/deleteItem`, {
         method: 'DELETE',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ 

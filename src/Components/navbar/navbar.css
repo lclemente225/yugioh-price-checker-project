@@ -12,7 +12,7 @@
     color: black;
 }
 .navbar-brand h1:hover{
-    color: rgb(61, 61, 61);
+    color: rgb(255, 230, 0);
 }
 .navbar-login-links{
     display:flex;
@@ -23,7 +23,7 @@
     font-family: 'Press Start 2P', cursive;
 }
 .navbar-login-links, a, .nav--top, .navbar{
-    background-color: var(--tertiary-color);
+    background-color: var(--primary-color);
     font-size: 1rem;
 }
 #shopping-list-button{
@@ -31,6 +31,8 @@
     padding: 10px 20px;
 }
 #shopping-list-button:hover{
+    color: rgb(255, 230, 0);
+    text-shadow: 0 0 4px black;
     background-color: rgba(255, 255, 255, 0.6);
 }   
 .navbar-profile{

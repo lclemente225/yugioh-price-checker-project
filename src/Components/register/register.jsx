@@ -19,7 +19,7 @@ function Register() {
                     "password":password
                   };
     // Send the user data to an API endpoint
-    fetch("http://localhost:3003/register", {
+    fetch("https://shy-rose-apron.cyclic.cloud/register", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(userData),
