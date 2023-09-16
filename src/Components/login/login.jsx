@@ -19,7 +19,7 @@ function Login({LogIn, isLoggedIn,givenUserId, setUserId}) {
       const loginData = await response.json();
 
       // check if login was successful
-      //test: USER:qwe PASS:qaqaqa
+      //test: USER:test1 PASS:test1
       if (response.ok) {
         //use local storage instead of prop to store values so that 
         //they won't be refreshed when page is refreshed
@@ -27,8 +27,9 @@ function Login({LogIn, isLoggedIn,givenUserId, setUserId}) {
         localStorage.setItem("Login Email", JSON.stringify(loginData.email));
         localStorage.setItem("Login UserId", JSON.stringify(loginData.userId));
         localStorage.setItem("token", JSON.stringify(loginData.accessToken));
+        
         console.log("Login successful! Showing Login Data", 
-        loginData.Login,
+         loginData.Login,
          loginData.accessToken,
          loginData.email
          );

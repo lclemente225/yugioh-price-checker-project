@@ -239,9 +239,6 @@ function searchResults(){
       setSearchTerm(e.target.value);
   }   
 
-  //add a function that grabs from my mysql database
- //AKA API CALL
-
   //add a function that checks for a user id and a jwt authorization
   //if authorized then obtain info from  the table WHERE userid = userid
   //else obtain info from table WHERE userid=007 -> refers to no id and anybody can use it
@@ -259,8 +256,8 @@ function searchResults(){
                        aria-label="Search" />
 
                       <button onClick={searchToggle} className="main--page-search-btn" type="submit">
-                          <img src="src\assets\images\millenium-eye.png" alt="millenium eye" 
-                          className='millenium-eye-image'/> 
+                      <img src="../../../public/assets/millenium-eye.png" alt="millenium eye" 
+                          className='millenium-eye-image'></img> 
                       </button>
                     </div>
                 </div>
