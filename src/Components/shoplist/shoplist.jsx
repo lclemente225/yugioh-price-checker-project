@@ -12,7 +12,7 @@ console.log("this is COUNT",count)
 
 const { isLoading, error, data } = useQuery('Yugioh Data', 
 async () =>{
-      let response =  await fetch( 'https://shy-rose-apron.cyclic.cloud/cart/list');
+      let response =  await fetch('https://shy-rose-apron.cyclic.cloud/cart/list');
       let data = await response.json();   
           return data
           }, []);

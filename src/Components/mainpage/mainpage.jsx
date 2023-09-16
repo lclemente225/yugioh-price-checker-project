@@ -259,7 +259,7 @@ function searchResults(){
                        aria-label="Search" />
 
                       <button onClick={searchToggle} className="main--page-search-btn" type="submit">
-                          <img src="../../assets/images/millenium-eye.png" alt="millenium eye" 
+                          <img src="src\assets\images\millenium-eye.png" alt="millenium eye" 
                           className='millenium-eye-image'/> 
                       </button>
                     </div>
