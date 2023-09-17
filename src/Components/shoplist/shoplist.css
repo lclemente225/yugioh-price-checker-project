@@ -1,11 +1,11 @@
 .shop-list-whole-container{
     height: 100vh;
-    width:100%;
+    width: 100%;
     background-color: grey;
 }
 .shop-list-heading{
     background-color: grey;
-    border-bottom:2px solid black;
+    border-bottom: 2px solid black;
     text-align: center;
     padding: 40px 0;
 }
@@ -21,7 +21,8 @@
 }
 .shop-list-link-home{
     background-color: grey;
-    font-size: 1rem;
+    font-size: 1.3rem;
+    font-style: none;
 }
 .shop-list-item{
     list-style: none;
@@ -29,6 +30,8 @@
     width: 20vw;
     margin: 1rem;    
     background-color: rgb(71, 224, 224);
+    border: 2px solid black;
+    box-shadow: 0 0 10px 1px black;
 }
 p.card-listing-text{
     background-color: rgb(71, 224, 224);

@@ -5,6 +5,7 @@ import "./mainpage.css";
 import Pagination from '../pagination/pagination';
 import { Link } from "react-router-dom";
 import {SearchResults as SearchResults} from '../searchResults/searchResults';
+import {Pagination as SearchPagination} from '../searchpagination/searchPagination';
 
   /*
         ['id'], ['name'], ['type'],['race'], ['']
@@ -21,13 +22,14 @@ import {SearchResults as SearchResults} from '../searchResults/searchResults';
 export default function MainPage({LogIn, isLoggedIn, givenUserId}){
   const [searchTerm, setSearchTerm] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
+  const [searchCurrentPage, setSearchCurrentPage] = useState(1);
   const [isSearchResultsActive, toggleActiveSearchResults] = useState(false);
  
  
   //obtain data from yugioh api
   const { isLoading, error, data } = useQuery('Yugioh Data', 
   async () =>{
-        let response =  await fetch( 'https://db.ygoprodeck.com/api/v7/cardinfo.php');
+        let response =  await fetch('https://db.ygoprodeck.com/api/v7/cardinfo.php');
         let data = await response.json();   
             return data
             }, []);
@@ -98,6 +100,11 @@ export default function MainPage({LogIn, isLoggedIn, givenUserId}){
     const firstPostIndex = lastPostIndex - postsPerPage;
     const currentPosts = dataArray.slice(firstPostIndex,lastPostIndex)
 
+    const searchLastPostIndex = searchCurrentPage * postsPerPage;
+    //firstpostindex = 11 - 10
+    const searchFirstPostIndex = searchLastPostIndex - postsPerPage;
+    let searchCurrentPosts;
+
 //start organizing JSON data
 //clean JSON data
     function MakeList(){
@@ -167,67 +174,6 @@ make a function that will
 KEEP IN MIND
 1. ensure that rendered data is going to work with pagination
 
-
-function searchResults(){
-    const list = [];    
-
-      if(dataArray != undefined ){ 
-        for(let x = 0; x<10; x++){
-          
-          **change testArray from (currentPosts) dataArray.slice(firstPostIndex,lastPostIndex) 
-            to dataArray
-
-          let testArray = currentPosts[x];
-          let cardName = JSON.stringify(testArray['name']).replace(/(\\)/g, '').replace(/(\")/g,"");
-          let cardEff = JSON.stringify(testArray['desc']);
-          let cardType = JSON.stringify(testArray['type']).replace(/"/g,"");
-          let cardTypeofType = JSON.stringify(testArray['race']).replace(/"/g,"");
-          let cardPriceArray = testArray['card_prices'][0];
-          
-          list.push(
-              <div key={x} className={ `single-card-listing  active-card` }>
-                      {cardName}
-                  <p className='mainpage-card-list-text'>
-                      {cardTypeofType + " " + cardType}
-                  </p>
-
-                  <p className='mainpage-card-list-text'>
-                      TCG Player: {cardPriceArray["tcgplayer_price"] == 0.00 ? " Not Listed":`$${cardPriceArray["tcgplayer_price"]}`}
-                  </p>
-
-                  <p className='mainpage-card-list-text'>
-                      eBay: ${cardPriceArray["ebay_price"]}
-                  </p>
-
-                  <p className='mainpage-card-list-text'>
-                      Amazon: ${cardPriceArray["amazon_price"]}
-                  </p>
-
-                  <button 
-                  className='cartUpdateButton cartUpdateAdd'
-                  onClick={(event) => addToCart(event,cardName, cardPriceArray, x, givenUserId)}>
-                    +
-                  </button>
-
-                  <button  
-                    className='cartUpdateButton cartUpdateSubtract'
-                    onClick={(event) => subtractFromCart(event, x, givenUserId)}>
-                      - 
-                  </button>
-              </div>
-            );
-              }
-            return list.filter((card) => { 
-                const cardName = card.props.children[0];
-                let searchedWord = searchTerm.toLowerCase();
-
-                return cardName.toLowerCase().includes(searchedWord)
-                
-              })
-            }else{
-              console.log("error in loading search")
-            }   
-}
 */
 
  function searchToggle(){  
@@ -264,16 +210,33 @@ function searchResults(){
                 <div className="card--list-container">
                        {
                        isSearchResultsActive ? 
-                       <SearchResults searchTerm={searchTerm}/> : 
+                       <SearchResults 
+                              searchTerm={searchTerm}
+                              searchCurrentPage={searchCurrentPage} 
+                              setSearchCurrentPage={setSearchCurrentPage}
+                              searchFirstPostIndex={searchFirstPostIndex}
+                              searchLastPostIndex={searchLastPostIndex}
+                              postsPerPage={postsPerPage}
+                              searchCurrentPosts={searchCurrentPosts}
+                              /> : 
                        <MakeList />
                        }
                 </div>
-                <Pagination 
+                {
+                  isSearchResultsActive ?
+                  <SearchPagination 
+                    searchTotalPosts={searchResultsArray.length}
+                    searchPostsPerPage={searchPostsPerPage}
+                    searchCurrentPage={searchCurrentPage} 
+                    setSearchCurrentPage={setSearchCurrentPage}   
+                    />
+                   : 
+                   <Pagination 
                       totalPosts={dataArray.length}
                       postsPerPage={postsPerPage}
                       setCurrentPage={setCurrentPage}
                       currentPage={currentPage}                      
-                      />
+                      />}
             </div>
         </div>
     )

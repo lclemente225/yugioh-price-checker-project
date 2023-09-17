@@ -1,5 +1,5 @@
 import "./navbar.css";
-import {Link} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 
 export default function Navbar() {
     
@@ -9,6 +9,7 @@ export default function Navbar() {
       localStorage.removeItem("Login Email");
       localStorage.removeItem("Login UserId");
       localStorage.setItem("Login Status", false)
+      useNavigate('/');
     }
 
     function Logout(){

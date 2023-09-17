@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "./login.css"
 import { faHandshakeAngle } from "@fortawesome/free-solid-svg-icons";
 
@@ -7,6 +7,7 @@ function Login({LogIn, isLoggedIn,givenUserId, setUserId}) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [loginError, setLoginError] = useState("");
+  const navigate = useNavigate();
 
   async function handleLogin (e){
       e.preventDefault();
@@ -27,7 +28,7 @@ function Login({LogIn, isLoggedIn,givenUserId, setUserId}) {
         localStorage.setItem("Login Email", JSON.stringify(loginData.email));
         localStorage.setItem("Login UserId", JSON.stringify(loginData.userId));
         localStorage.setItem("token", JSON.stringify(loginData.accessToken));
-        
+        navigate('/');
         console.log("Login successful! Showing Login Data", 
          loginData.Login,
          loginData.accessToken,

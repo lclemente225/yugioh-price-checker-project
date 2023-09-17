@@ -1,6 +1,6 @@
 import React from 'react';
-import {Link} from "react-router-dom";
 import './shoplist.css';
+import { useNavigate } from 'react-router-dom';
 import { useQuery } from 'react-query';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrash } from '@fortawesome/free-solid-svg-icons'
@@ -8,14 +8,14 @@ import { faTrash } from '@fortawesome/free-solid-svg-icons'
 const Shoplist = ({givenUserId}) => {
 
 const [count, setCount] = React.useState(0);
-console.log("this is COUNT",count)
+const navigate = useNavigate();
 
 const { isLoading, error, data } = useQuery('Yugioh Data', 
 async () =>{
       let response =  await fetch('https://shy-rose-apron.cyclic.cloud/cart/list');
       let data = await response.json();   
           return data
-          }, []);
+          }, [count]);
           
 if(isLoading){
   return <div className='Loading-API-Text'>Loading...</div>
@@ -91,8 +91,8 @@ function ListItems() {
 
 let cardList = data[0];
 let jwtToken = localStorage.getItem("token");
-console.log("cardList: ",cardList)
-console.log("data: ",data)
+//console.log("cardList: ",cardList)
+//console.log("data: ",data)
     if(cardList != undefined){
         return cardList.map((item) => {
             let shopListItems = {
