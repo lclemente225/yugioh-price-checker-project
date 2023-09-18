@@ -22,8 +22,11 @@ import {Pagination as SearchPagination} from '../searchpagination/searchPaginati
 export default function MainPage({LogIn, isLoggedIn, givenUserId}){
   const [searchTerm, setSearchTerm] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
-  const [searchCurrentPage, setSearchCurrentPage] = useState(1);
+  const [currentSearchPage, setSearchCurrentPage] = useState(1);
   const [isSearchResultsActive, toggleActiveSearchResults] = useState(false);
+  const [currentSearchPostsLength, setSearchPostLength] = useState(10);
+
+  
  
  
   //obtain data from yugioh api
@@ -98,12 +101,14 @@ export default function MainPage({LogIn, isLoggedIn, givenUserId}){
     const lastPostIndex = currentPage * postsPerPage;
     //firstpostindex = 11 - 10
     const firstPostIndex = lastPostIndex - postsPerPage;
-    const currentPosts = dataArray.slice(firstPostIndex,lastPostIndex)
+    const currentPosts = dataArray.slice(firstPostIndex,lastPostIndex);
 
-    const searchLastPostIndex = searchCurrentPage * postsPerPage;
+    //Search Page pagination
+    
+    const searchPostsPerPage = 10;
+    const searchLastPostIndex = currentSearchPage * postsPerPage;
     //firstpostindex = 11 - 10
     const searchFirstPostIndex = searchLastPostIndex - postsPerPage;
-    let searchCurrentPosts;
 
 //start organizing JSON data
 //clean JSON data
@@ -121,6 +126,7 @@ export default function MainPage({LogIn, isLoggedIn, givenUserId}){
           let cardTypeofType = JSON.stringify(testArray['race']).replace(/"/g,"");
           let cardPriceArray = testArray['card_prices'][0];
           
+          console.log("index of card in main", x, 'cardname:', cardName)
           //each array contains html code for one card
           list.push(
               <div key={x} className={ `single-card-listing  active-card` }>
@@ -157,7 +163,7 @@ export default function MainPage({LogIn, isLoggedIn, givenUserId}){
               }
               return list
           }else{
-            console.error(dataArray, "error in mainpage")
+            console.error("error in mainpage")
           }
   }
     
@@ -206,18 +212,23 @@ KEEP IN MIND
                           className='millenium-eye-image'></img> 
                       </button>
                     </div>
+                    
+                  {isSearchResultsActive ? 
+                  <h4>Your Search Results</h4>:
+                  <h4>You are now viewing All cards</h4> }
                 </div>
                 <div className="card--list-container">
                        {
                        isSearchResultsActive ? 
                        <SearchResults 
                               searchTerm={searchTerm}
-                              searchCurrentPage={searchCurrentPage} 
+                              currentSearchPage={currentSearchPage} 
+                              setSearchPostLength={setSearchPostLength}
                               setSearchCurrentPage={setSearchCurrentPage}
-                              searchFirstPostIndex={searchFirstPostIndex}
-                              searchLastPostIndex={searchLastPostIndex}
-                              postsPerPage={postsPerPage}
-                              searchCurrentPosts={searchCurrentPosts}
+                              searchPostsPerPage={searchPostsPerPage}
+                              addToCart={addToCart}
+                              subtractFromCart={subtractFromCart}
+                              givenUserId={givenUserId}
                               /> : 
                        <MakeList />
                        }
@@ -225,9 +236,9 @@ KEEP IN MIND
                 {
                   isSearchResultsActive ?
                   <SearchPagination 
-                    searchTotalPosts={searchResultsArray.length}
-                    searchPostsPerPage={searchPostsPerPage}
-                    searchCurrentPage={searchCurrentPage} 
+                    currentSearchPostsLength={currentSearchPostsLength}
+                    searchPostsPerPage={searchPostsPerPage}   
+                    currentSearchPage={currentSearchPage} 
                     setSearchCurrentPage={setSearchCurrentPage}   
                     />
                    : 
@@ -235,7 +246,7 @@ KEEP IN MIND
                       totalPosts={dataArray.length}
                       postsPerPage={postsPerPage}
                       setCurrentPage={setCurrentPage}
-                      currentPage={currentPage}                      
+                      currentPage={currentPage}                 
                       />}
             </div>
         </div>

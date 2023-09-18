@@ -38,7 +38,9 @@ function Pagination ({totalPosts, postsPerPage, setCurrentPage, currentPage}){
   return (
     <div className='pagination-container'>
        
-        <button className="pagination-button" onClick={(e) => prevPageSet(e)}>{pageSet === 1 ? "No more" : "Last 10"}</button>
+        <button className="pagination-button" onClick={(e) => prevPageSet(e)}>
+            {pageSet === 1 ? "No more" : "Last 10"}
+        </button>
 
         <div className='page-num-list'>
         {

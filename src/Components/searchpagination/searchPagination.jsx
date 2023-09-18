@@ -1,14 +1,20 @@
 import React from 'react';
 import './searchPagination.css';
 
-export function Pagination ({searchTotalPosts, searchPostsPerPage, setSearchCurrentPage, searchCurrentPage}){
+export function Pagination ({
+                            currentSearchPostsLength, 
+                            searchPostsPerPage,
+                            setSearchCurrentPage, 
+                            currentSearchPage
+                        }){
     const [pageSet, changePageSet] = React.useState(1);
 
     const pages = [];
     
-    for (let i = 1; i<= Math.ceil(searchTotalPosts/searchPostsPerPage); i++){
+    for (let i = 1; i<= Math.ceil(currentSearchPostsLength/searchPostsPerPage); i++){
         pages.push(i)
     }
+    
 
     function changePage(number){
         let pageNum = parseInt(number.target.innerText);
@@ -18,14 +24,15 @@ export function Pagination ({searchTotalPosts, searchPostsPerPage, setSearchCurr
     const pageQuantity = 10;
     const searchLastPageIndex = pageSet * pageQuantity;
     const searchFirstPageIndex = searchLastPageIndex - pageQuantity;
-    const currentSearchPageSet = pages.slice(searchFirstPageIndex,searchLastPageIndex)
+    const currentSearchPageSet = pages.slice(searchFirstPageIndex,searchLastPageIndex);
 
+    //these two functions set the numbers correctly 
     function prevPageSet(e){
        
         if(pageSet > 1){
         changePageSet((num) => num - 1)
         setSearchCurrentPage((num) => num - 10)
-        console.log(pageSet)
+        console.log("SEARCH pageset",pageSet)
                }else return
     }
     function nextPageSet(e){
@@ -44,9 +51,9 @@ export function Pagination ({searchTotalPosts, searchPostsPerPage, setSearchCurr
 
         <div className='page-num-list'>
         {
-        currentPageSet.map((page, index) => {
+        currentSearchPageSet.map((page, index) => {
             return <button key={index}
-            className={`page-num-button ${currentPage === page ? "active-page" : " "}`}
+            className={`page-num-button ${currentSearchPage === page ? "active-page" : " "}`}
              onClick={(e) => changePage(e)}>{page}</button>
                  })
         }

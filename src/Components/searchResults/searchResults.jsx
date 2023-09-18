@@ -1,12 +1,17 @@
 import React from 'react';
 import { useQuery } from 'react-query';
-import { Link } from "react-router-dom";
 import './searchResults.css';
 
-export function SearchResults({searchTerm, searchLastPostIndex, searchCurrentPage, searchFirstPostIndex}) {
+export function SearchResults({
+                                searchTerm, 
+                                searchPostsPerPage, 
+                                setSearchPostLength,  
+                                currentSearchPage, 
+                                addToCart,
+                                subtractFromCart,
+                                givenUserId
+                              }) {
     
-//maybe make an api call to all the data
-  //obtain data from yugioh api
   const { isLoading, error, data } = useQuery('Yugioh Data', 
   async () =>{
         let response =  await fetch( 'https://db.ygoprodeck.com/api/v7/cardinfo.php');
@@ -21,35 +26,39 @@ export function SearchResults({searchTerm, searchLastPostIndex, searchCurrentPag
     return <div>error error{error}</div>
   }; 
 
-//filter out data
 const dataArray = data['data'];
-//maybe have 2 arrays
-//1st array has all cards ----> filter out searchword and push to 2nd array
-//2nd array has cards that will be rendered
+const searchedCardIndex = dataArray.map((x) => {
+  return dataArray.indexOf(x)
+})
 
-
-const searchPostsPerPage = 10;
 //LASTPOSTINDEX = 1 * 10
-const searchLastPostIndex = searchCurrentPage * searchPostsPerPage;
+const searchLastPostIndex = currentSearchPage * searchPostsPerPage;
 //firstpostindex = 11 - 10
 const searchFirstPostIndex = searchLastPostIndex - searchPostsPerPage;
-/* c
-const currentPosts = filteredArray.slice(firstPostIndex,lastPostIndex)
 
-for(let x = 0; x < 10; x++){
-  const renderedSearchResults = currentPosts[x];
-  return renderedSearchResults
-}
+/*
+How does FilterSearchCards work?
+1. list array will obtain data from the base data array and 
+---------> make it an object for easy referencing
+2. filteredArray will look through the list array for the searched word 
+---------> result is a smaller array of objects
+3. currentPosts is a sliced array of filteredArray
+** The slices are determined by the page number
+
+-First post index and Last post index are influenced by currentSearchPage
+which can be any number from 0 - 12500
+
+4. Add the sliced FilteredArray (aka currentPosts) to another array(renderedArray)
+5. map through the renderedArray and VOILA the results are there!
+    
 */
-
-
 function FilterSearchCards(){
   const list = [];    
 
-  if(dataArray != undefined ){ 
+  if(dataArray != undefined && searchTerm != "" ){ 
     for(let x = 0; x<dataArray.length; x++){
             let testArray = dataArray[x];
-        
+
             //clean JSON data using regex
             let cardName = JSON.stringify(testArray['name']).replace(/(\\)/g, '').replace(/(\")/g,"");
             let cardType = JSON.stringify(testArray['type']).replace(/"/g,"");
@@ -58,6 +67,8 @@ function FilterSearchCards(){
             
 
             let object = {
+              index: x,
+              key:`indexOfCard${x}`,
               cardName: cardName,
               cardType: cardType,
               cardTypeofType: cardTypeofType,
@@ -65,10 +76,17 @@ function FilterSearchCards(){
             }
             list.push(object)
           }
+      }else{
+        return (
+          <>
+          <h1 className='no-search-results'>
+            No search results 
+          </h1>
+          </>
+        )
       }
 
 
-  //console.log("this is list", list)
   //sift through array of objects 
   //filtered array works 9/17/23
   const filteredArray = list.filter((array) => { 
@@ -81,71 +99,69 @@ function FilterSearchCards(){
             }
     })
     
-//maybe change to a loop to limit to 10
-   filteredArray.map((array) => {
-      const index = filteredArray.indexOf(array);
-      const cardName = array.cardName;
-      const cardType = array.cardType;
-      const cardTypeofType = array.cardTypeofType;
-      const cardPriceArray = array.cardPriceArray;
+    //currentPosts contains cards that are in the slice
+    //render the length of currentposts to render only its content
+    const currentPosts = filteredArray.slice(searchFirstPostIndex,searchLastPostIndex)
+    setSearchPostLength(filteredArray.length)
 
-
-      return (
-              <div key={`index${index}`} className={ `single-card-listing  active-card` }>
-                  {cardName}
-                        <p className='mainpage-card-list-text'>
-                            {cardTypeofType + " " + cardType}
-                        </p>
-
-                        <p className='mainpage-card-list-text'>
-                            TCG Player: {cardPriceArray["tcgplayer_price"] == 0.00 ? " Not Listed":`$${cardPriceArray["tcgplayer_price"]}`}
-                        </p>
-
-                        <p className='mainpage-card-list-text'>
-                            eBay: ${cardPriceArray["ebay_price"]}
-                        </p>
-
-                        <p className='mainpage-card-list-text'>
-                            Amazon: ${cardPriceArray["amazon_price"]}
-                        </p>
-
-                        <button 
-                        className='cartUpdateButton cartUpdateAdd'
-                        onClick={(event) => addToCart(event,cardName, cardPriceArray, x, givenUserId)}>
-                          +
-                        </button>
-
-                        <button  
-                          className='cartUpdateButton cartUpdateSubtract'
-                          onClick={(event) => subtractFromCart(event, x, givenUserId)}>
-                            - 
-                        </button>
-                </div>
-      )
-    })
-
-    const currentPosts = filteredArray.slice(firstPostIndex,lastPostIndex)
-
-    for(let x = 0; x < 10; x++){
-      const renderedSearchResults = currentPosts[x];
-      return renderedSearchResults
+    
+    let renderedSearchResults = [];
+    for(let x = 0; x < currentPosts.length; x++){
+      renderedSearchResults.push(currentPosts[x]);
     }
+
+
+    return renderedSearchResults.map((array) => {
+    const index = array.index;
+    const key = array.key
+    const filteredCardName = array.cardName;
+    const cardType = array.cardType;
+    const cardTypeofType = array.cardTypeofType;
+    const cardPriceArray = array.cardPriceArray;
+    console.log('index of card in sesarch', index, 'cardName:', filteredCardName)
+  
+    return (
+            <>
+            <div key={key} className={ `single-card-listing  active-card` }>
+                {filteredCardName}
+                      <p className='mainpage-card-list-text'>
+                          {cardTypeofType + " " + cardType}
+                      </p>
+  
+                      <p className='mainpage-card-list-text'>
+                          TCG Player: {cardPriceArray["tcgplayer_price"] == 0.00 ? " Not Listed":`$${cardPriceArray["tcgplayer_price"]}`}
+                      </p>
+  
+                      <p className='mainpage-card-list-text'>
+                          eBay: ${cardPriceArray["ebay_price"]}
+                      </p>
+  
+                      <p className='mainpage-card-list-text'>
+                          Amazon: ${cardPriceArray["amazon_price"]}
+                      </p>
+  
+                      <button 
+                      className='cartUpdateButton cartUpdateAdd'
+                      onClick={(event) => addToCart(event,filteredCardName, cardPriceArray, index, givenUserId)}>
+                        +
+                      </button>
+  
+                      <button  
+                        className='cartUpdateButton cartUpdateSubtract'
+                        onClick={(event) => subtractFromCart(event, index, givenUserId)}>
+                          - 
+                      </button>
+              </div>
+            </>
+    )
+  })
+
 
 }
 
-React.useEffect(() => {
-  console.log("list of search results",FilterSearchCards())
-},[])
 
-//can i make it into an object instead of an array
-//props
-//1. searchResultsArray aka filteredSearchresults
-//2. searchposts per page
-//3. search current page
-//4. search current page set
   return (
     <>
-    <h1>dude</h1>
       <FilterSearchCards/>
     </>
   )
