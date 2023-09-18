@@ -158,7 +158,6 @@ export default function MainPage({LogIn, isLoggedIn, givenUserId}){
       //console.log("filtering",e.target.value.toLowerCase())
       setSearchTerm(e.target.value);
   }   
-
   //add a function that checks for a user id and a jwt authorization
   //if authorized then obtain info from  the table WHERE userid = userid
   //else obtain info from table WHERE userid=007 -> refers to no id and anybody can use it

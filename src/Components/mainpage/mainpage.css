@@ -155,6 +155,10 @@ background-color: rgb(71, 172, 71);
         display: flex;
         justify-content: space-between;
     }
+    .millenium-eye-image{
+        width: 30%;
+        align-self: center;
+    }
   }
   @media screen and (max-width: 850px) {
     .card--list-container{

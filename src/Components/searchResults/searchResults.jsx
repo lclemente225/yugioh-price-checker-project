@@ -66,7 +66,7 @@ function FilterSearchCards(){
 
             let object = {
               index: x,
-              key:`id${x}`,
+              key:`cardId${x}`,
               cardName: cardName,
               cardType: cardType,
               cardTypeofType: cardTypeofType,
@@ -75,7 +75,7 @@ function FilterSearchCards(){
             list.push(object)
           }
       }else{
-        changeSearchResultQuantity(0)
+        
         return (
           <>
           <h1 className='no-search-results'>
@@ -115,7 +115,7 @@ function FilterSearchCards(){
 
     return renderedSearchResults.map((array) => {
     const index = array.index;
-    const key = array.key
+    const key = array.key;
     const filteredCardName = array.cardName;
     const cardType = array.cardType;
     const cardTypeofType = array.cardTypeofType;
@@ -123,7 +123,7 @@ function FilterSearchCards(){
 
     return (
             <>
-            <div key={key} className={ `single-card-listing  active-card` }>
+            <div key={key} id={key} className={ `single-card-listing  active-card` }>
                 {filteredCardName}
                       <p className='mainpage-card-list-text'>
                           {cardTypeofType + " " + cardType}
