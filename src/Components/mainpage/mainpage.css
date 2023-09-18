@@ -40,6 +40,9 @@
     grid-column-start: 2;
     grid-column-end: 5;
     text-align: center;
+    border: 2px solid black;
+    padding: 20px;
+    background-color: white;
 }
 .millenium-eye-image{
     grid-row-start: 2;
@@ -88,7 +91,8 @@
     grid-template-rows: repeat(2, 5fr);
     column-gap: 10px;
     row-gap: 15px;
-    background-color: var(--primary-color);   
+    background-color: var(--primary-color); 
+    overflow-y: auto;  
 }
 .mainpage-card-list-text{
     background-color: var(--tertiary-color);
@@ -171,6 +175,29 @@ background-color: rgb(71, 172, 71);
     .single-card-listing{
         width: 97%;
         height: 90px;
+        display: flex;
+        justify-content: space-between;
+    }
+  }
+  @media screen and (max-width: 650px) {
+    .main--page-search{
+        border: 2px solid pink;
+        width: 100%;
+    }
+    .main--page-search-form{
+        border: 2px solid red;
+        width: 100%;
+    }
+    .card--list-container{
+        width: 100%;
+        height: 1000px;
+        padding: 30px 0 30px 20px;
+        display: flex;
+        flex-direction: column; 
+    }
+    .single-card-listing{
+        width: 97%;
+        height: 250px;
         display: flex;
         justify-content: space-between;
     }
