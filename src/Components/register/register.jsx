@@ -6,12 +6,14 @@ import { useQuery } from 'react-query';
 function Register() {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
+  const [checkEmail, setCheckEmail] = useState("");
   const [password, setPassword] = useState("");
 
 
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    confirmEmail();
     //randomly generate user id here?
     const userData = { 
                     "username":username, 
@@ -34,15 +36,29 @@ function Register() {
         // Handle any error cases
       });
   };
-
+ 
+  function confirmEmail(){
+    console.log("CHECKING EMAIL")
+    if(checkEmail === email){
+      console.log("email checks out")
+    } else {
+      alert("Bro check your email")
+    }
+  }
 
   return (
     <div className="container-fluid register-container">
-      <Link to='/' style={{textDecoration:'none'}}>
-          <h1 className="form-company-name" style={{textDecoration:'none'}}>
+        <div className="login-redirect-home">
+          <Link to="/">
+            <p>Home</p>
+          </Link>
+        </div>
+        <h1 className="form-company-name">
             Not Kaiba Corp
-          </h1>
-      </Link>
+        </h1>
+        <h1 className="form-company-name">
+        Register
+      </h1>
     <form onSubmit={handleSubmit} className="register-form">
       <label>
         Username:
@@ -50,6 +66,7 @@ function Register() {
           type="text"
           value={username}
           onChange={(event) => setUsername(event.target.value)}
+          required
         />
       </label>
       <label>
@@ -58,6 +75,16 @@ function Register() {
           type="email"
           value={email}
           onChange={(event) => setEmail(event.target.value)}
+          required
+        />
+      </label>
+      <label>
+        Confirm Email: 
+        <input
+          type="email"
+          value={checkEmail}
+          onChange={(event) => setCheckEmail(event.target.value)}
+          required
         />
       </label>
       <label>
@@ -66,6 +93,7 @@ function Register() {
           type="password"
           value={password}
           onChange={(event) => setPassword(event.target.value)}
+          required
         />
       </label>
       <button type="submit" className="register-button">Register</button>

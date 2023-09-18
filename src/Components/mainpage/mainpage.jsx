@@ -27,11 +27,15 @@ export default function MainPage({LogIn, isLoggedIn, givenUserId}){
   const [showSearchResultQuantity, changeSearchResultQuantity] = useState(0);
   const [isCartShowing, showCart] = useState(false);
   const [cardQuantityChangeResult, performingAddingorSubtracting] = useState({
-                                                      action:"",
-                                                      addCardName:"",
-                                                      quantity: 0
-                                                    })
-
+                                                                          action:"",
+                                                                          addCardName:"",
+                                                                          quantity: 0
+                                                                        });
+  const [showCardListQuantity, updateCardListQuantity] = useState({
+                                                                cardName: "",
+                                                                cardId: "",
+                                                                cardQuantity: 0
+                                                              });
   
  
  
