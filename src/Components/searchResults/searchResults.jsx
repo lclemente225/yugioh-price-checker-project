@@ -104,8 +104,12 @@ function FilterSearchCards(){
     //currentPosts contains cards that are in the slice
     //render the length of currentposts to render only its content
     const currentPosts = filteredArray.slice(searchFirstPostIndex,searchLastPostIndex)
-    setSearchPostLength(filteredArray.length)
-    changeSearchResultQuantity(filteredArray.length)
+    function changeSearchNumber(){
+          
+      setSearchPostLength(() => filteredArray.length)
+      changeSearchResultQuantity(() => filteredArray.length)
+      
+    }
     
     let renderedSearchResults = [];
     for(let x = 0; x < currentPosts.length; x++){
