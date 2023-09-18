@@ -82,7 +82,7 @@ function FilterSearchCards(){
             Type in the search box to see my wares... Yugi Boy
           </h1>
           
-          <img src="./assets/millenium-eye.png" alt="millenium eye" 
+          <img src="./assets/pegasus-image-portrait-removebg.png" alt="millenium eye" 
                   className='millenium-eye-image'/> 
           </>
         )
@@ -111,7 +111,7 @@ function FilterSearchCards(){
       
     }
     setTimeout(changeSearchNumber, 800)
-    
+
     let renderedSearchResults = [];
     for(let x = 0; x < currentPosts.length; x++){
       renderedSearchResults.push(currentPosts[x]);
