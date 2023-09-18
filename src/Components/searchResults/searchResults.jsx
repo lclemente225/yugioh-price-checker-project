@@ -78,7 +78,7 @@ function FilterSearchCards(){
         
         return (
           <>
-          <h1 className='no-search-results'>
+          <h1 key="NoFindText" className='no-search-results'>
             Type in the search box to see my wares... Yugi Boy
           </h1>
           
@@ -110,6 +110,7 @@ function FilterSearchCards(){
       changeSearchResultQuantity(() => filteredArray.length)
       
     }
+    setTimeout(changeSearchNumber, 800)
     
     let renderedSearchResults = [];
     for(let x = 0; x < currentPosts.length; x++){
