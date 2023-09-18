@@ -50,6 +50,7 @@
     width: 900px;
     height: auto;
     padding: 0px;
+    margin: 0;
     border-radius: 30px;
 }
 .millenium-eye-image:hover{  
@@ -115,14 +116,14 @@
     width: 30px;
 }
 .cartUpdateSubtract{
-background-color: rgba(233, 48, 48, 0.856);
-margin-left: 4px;
+    background-color: rgba(233, 48, 48, 0.856);
+    margin-left: 4px;
 }
 .cartUpdateSubtract:active, .cartUpdateAdd:active{
     box-shadow: 0 0 3px;
 }
 .cartUpdateAdd{
-background-color: rgb(71, 172, 71);
+    background-color: rgb(71, 172, 71);
 }
 .Loading-API-Text{
     height:100vh;
@@ -144,6 +145,27 @@ background-color: rgb(71, 172, 71);
     border-radius: 20px;       /* roundness of the scroll thumb */
     border: 1px solid var(--primary-color);  /* creates padding around scroll thumb */
   }
+  #homepage-footer{
+    height: 250px;
+    font-size: 12px;
+    background-color: var(--tertiary-color);
+    color: var(--footer-color);
+    display: flex; 
+    justify-content: space-around;
+    align-items: center;
+    }
+    .footer-links{
+        margin-right: 10px;
+    }
+    .footer-links>i{
+        margin-right: 2px;
+    }
+    .footer-links:hover{
+        color: white;
+    }
+    .vite-logo-footer{
+        width: 15px;
+    }
 
   @media screen and (max-width: 1240px) {
     .card--list-container{

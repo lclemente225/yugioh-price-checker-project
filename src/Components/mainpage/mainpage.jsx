@@ -4,6 +4,7 @@ import { useQuery } from 'react-query';
 import "./mainpage.css";
 import Pagination from '../pagination/pagination';
 import { Link } from "react-router-dom";
+import { HomepageFooter } from './footer';
 import {SearchResults as SearchResults} from '../searchResults/searchResults';
 import {Pagination as SearchPagination} from '../searchpagination/searchPagination';
 
@@ -214,6 +215,9 @@ export default function MainPage({LogIn, isLoggedIn, givenUserId}){
               <div className='add-or-sub-popup'>
                 {cardQuantityChangeResult.action} {cardQuantityChangeResult.quantity} {cardQuantityChangeResult.addCardName}
             </div>}
+            <div id="homepage-footer">
+              <HomepageFooter/>
+            </div>
         </div>
     )
 }   
