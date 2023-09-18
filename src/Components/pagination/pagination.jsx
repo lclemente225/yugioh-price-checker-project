@@ -23,15 +23,15 @@ function Pagination ({totalPosts, postsPerPage, setCurrentPage, currentPage}){
     function prevPageSet(e){
        
         if(pageSet > 1){
-        changePageSet((num) => num - 1)
-        setCurrentPage((num) => num - 10)
+        /* changePageSet((num) => num - 1)
+        setCurrentPage((num) => num - 10) */
         console.log(pageSet)
                }else return
     }
     function nextPageSet(e){
         if(pageSet < pages.length){       
-        changePageSet((num) => num + 1)
-        setCurrentPage((num) => num + 10)
+        /* changePageSet((num) => num + 1)
+        setCurrentPage((num) => num + 10) */
         }
     }
 

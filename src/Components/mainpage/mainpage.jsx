@@ -23,8 +23,19 @@ export default function MainPage({LogIn, isLoggedIn, givenUserId}){
   const [searchTerm, setSearchTerm] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
   const [currentSearchPage, setSearchCurrentPage] = useState(1);
-  const [isSearchResultsActive, toggleActiveSearchResults] = useState(false);
   const [currentSearchPostsLength, setSearchPostLength] = useState(10);
+  const [showSearchResultQuantity, changeSearchResultQuantity] = useState(0);
+  const [isCartShowing, showCart] = useState(false);
+  const [addingCardResult, performingAdding] = useState({
+                                                      action:"",
+                                                      addCardName:"",
+                                                      quantity: 0
+                                                    })
+  const [subtractingCardResult, performingSubtracting] = useState({
+                                                      action:"",
+                                                      addCardName:"",
+                                                      quantity: 0
+                                                    })
 
   
  
@@ -47,145 +58,92 @@ export default function MainPage({LogIn, isLoggedIn, givenUserId}){
   ///////////////////////////////////////////////////////////////
   async function addToCart(e, name, price, index, userId){
     e.preventDefault();
-      console.log(`name, price, id:${index},  event:${e}`)
-      await fetch('https://shy-rose-apron.cyclic.cloud/cart/add', {
+    try{
+         //console.log(`name, price, id:${index},  event:${e}`)
+      const response = await fetch('https://shy-rose-apron.cyclic.cloud/cart/add', {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({  "card_name": name, 
+        body: JSON.stringify({  
+                                "card_name": name, 
                                 "price":price["cardmarket_price"], 
                                 "quantity":"1",
                                 "cartId": `id${index}`,
                                 "userId": userId
                                })
               })
-        .then(response => {
+       
           if (!response.ok) {
             throw new Error('Failed to add item to cart');
           }
-          return response.json();
-        }).catch(error => {
+          showCart(true);
+
+          performingAdding({
+              action: "added",
+              addCardName: name,
+              quantity: 1
+            })
+
+          
+            setTimeout(() => {
+              showCart(false)
+            }, 3000);
+        
+      }catch (error) {
           console.error(error);
-        });
-   }
+        }
+     
+  }
+        
 
 /////////////////////////////////////////////////////////////////
-   async function subtractFromCart(e, index, userId) {
+   async function subtractFromCart(e, index, userId, name) {
+    console.log("SUBTRACTINGgggg", name)
     e.preventDefault();
-    
-    await fetch(`https://shy-rose-apron.cyclic.cloud/cart/updateSubtractItem`, {
+    try{
+      const response = await fetch(`https://shy-rose-apron.cyclic.cloud/cart/updateSubtractItem`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ 
                           "cartId": `id${index}`,
-                          "userId": userId 
+                          "userId": userId,
+                          "card_name": name 
                             })
               })
-        .then(response => {
+        
           if (!response.ok) {
+            console.log("there's nothing to subtract")
             throw new Error('Failed to reduce item from cart');
           }else{
+
+            showCart(true);
+            console.log("SUBTRACTING",name)
+            performingSubtracting({
+                action: "subtracted",
+                addCardName: name,
+                quantity: 1
+              })
+
+          setTimeout(() => {
+                showCart(false)
+              }, 3000);
+        
             console.log("successfully reduced quantity by 1")
           }
-          return response.json();
-        }).catch(error => {
-          console.error(error);
-        });
+          
+          
+    }catch(error){
+      console.error(error)
+    }
+    
   }
-///////////////////////////////////////////////////////////////////////////
-
-    const dataArray = data['data'];
-
 //set up for pagination
     const postsPerPage = 10;
-    //LASTPOSTINDEX = 1 * 10
-    const lastPostIndex = currentPage * postsPerPage;
-    //firstpostindex = 11 - 10
-    const firstPostIndex = lastPostIndex - postsPerPage;
-    const currentPosts = dataArray.slice(firstPostIndex,lastPostIndex);
 
     //Search Page pagination
     
     const searchPostsPerPage = 10;
-    const searchLastPostIndex = currentSearchPage * postsPerPage;
-    //firstpostindex = 11 - 10
-    const searchFirstPostIndex = searchLastPostIndex - postsPerPage;
 
-//start organizing JSON data
-//clean JSON data
-    function MakeList(){
-        const list = [];    
-
-      if(dataArray != undefined ){ 
-        for(let x = 0; x<10; x++){
-          let testArray = currentPosts[x];
-
-          //clean JSON data using regex
-          let cardName = JSON.stringify(testArray['name']).replace(/(\\)/g, '').replace(/(\")/g,"");
-          let cardEff = JSON.stringify(testArray['desc']);
-          let cardType = JSON.stringify(testArray['type']).replace(/"/g,"");
-          let cardTypeofType = JSON.stringify(testArray['race']).replace(/"/g,"");
-          let cardPriceArray = testArray['card_prices'][0];
-          
-          console.log("index of card in main", x, 'cardname:', cardName)
-          //each array contains html code for one card
-          list.push(
-              <div key={x} className={ `single-card-listing  active-card` }>
-                      {cardName}
-                  <p className='mainpage-card-list-text'>
-                      {cardTypeofType + " " + cardType}
-                  </p>
-
-                  <p className='mainpage-card-list-text'>
-                      TCG Player: {cardPriceArray["tcgplayer_price"] == 0.00 ? " Not Listed":`$${cardPriceArray["tcgplayer_price"]}`}
-                  </p>
-
-                  <p className='mainpage-card-list-text'>
-                      eBay: {cardPriceArray["ebay_price"]  == 0.00 ? " Not Listed":`$${cardPriceArray["ebay_price"]}`}
-                  </p>
-
-                  <p className='mainpage-card-list-text'>
-                      Amazon: {cardPriceArray["amazon_price"] == 0.00 ? " Not Listed":`$${cardPriceArray["amazon_price"]}`}
-                  </p>
-
-                  <button 
-                  className='cartUpdateButton cartUpdateAdd'
-                  onClick={(event) => addToCart(event,cardName, cardPriceArray, x, givenUserId)}>
-                    +
-                  </button>
-
-                  <button  
-                    className='cartUpdateButton cartUpdateSubtract'
-                    onClick={(event) => subtractFromCart(event, x, givenUserId)}>
-                      - 
-                  </button>
-              </div>
-            );
-              }
-              return list
-          }else{
-            console.error("error in mainpage")
-          }
-  }
     
-/*
-Search issue is that 
---I cannot search through the whole json 
-
-make a function that will 
-1. take all card info from api
-2. filter out all the info
-3. push all the info into the list
-4. render the list
-
-KEEP IN MIND
-1. ensure that rendered data is going to work with pagination
-
-*/
-
- function searchToggle(){  
-  console.log("Is search results active??",isSearchResultsActive)  
- toggleActiveSearchResults(x => !x)
- }
   function filterCard(e){
       console.log("filtering",e.target.value.toLowerCase())
       setSearchTerm(e.target.value);
@@ -196,9 +154,10 @@ KEEP IN MIND
   //else obtain info from table WHERE userid=007 -> refers to no id and anybody can use it
   //after 15 min then delete the info of cart data WHERE userid = userid
   
+ 
 
     return (
-        <div>
+        <div className='page-container'>
             <NavBar LogIn={LogIn} isLoggedIn={isLoggedIn}/>
             <div className="main--page-container">
                 <div className="main--page-search ">
@@ -206,20 +165,14 @@ KEEP IN MIND
                        <input className="search-input form-control me-2" type="search" 
                        onChange={filterCard} placeholder="Use the Millenium Eye to find cards" 
                        aria-label="Search" />
-
-                      <button onClick={searchToggle} className="main--page-search-btn" type="submit">
-                      <img src="./assets/millenium-eye.png" alt="millenium eye" 
-                          className='millenium-eye-image'></img> 
-                      </button>
                     </div>
                     
-                  {isSearchResultsActive ? 
-                  <h4>Your Search Results</h4>:
-                  <h4>You are now viewing All cards</h4> }
+                  {searchTerm ? 
+                  <h4>Your Search resulted in {showSearchResultQuantity} cards</h4>:
+                  <h4>We have no pathetic cards</h4> }
                 </div>
                 <div className="card--list-container">
-                       {
-                       isSearchResultsActive ? 
+                       
                        <SearchResults 
                               searchTerm={searchTerm}
                               currentSearchPage={currentSearchPage} 
@@ -229,12 +182,11 @@ KEEP IN MIND
                               addToCart={addToCart}
                               subtractFromCart={subtractFromCart}
                               givenUserId={givenUserId}
-                              /> : 
-                       <MakeList />
-                       }
+                              changeSearchResultQuantity={changeSearchResultQuantity}
+                              /> 
                 </div>
                 {
-                  isSearchResultsActive ?
+                  searchTerm ?
                   <SearchPagination 
                     currentSearchPostsLength={currentSearchPostsLength}
                     searchPostsPerPage={searchPostsPerPage}   
@@ -243,12 +195,16 @@ KEEP IN MIND
                     />
                    : 
                    <Pagination 
-                      totalPosts={dataArray.length}
+                      totalPosts={1}
                       postsPerPage={postsPerPage}
                       setCurrentPage={setCurrentPage}
                       currentPage={currentPage}                 
                       />}
             </div>
+              {isCartShowing && 
+              <div className='add-or-sub-popup'>
+                You just {addingCardResult.action} {addingCardResult.quantity} {addingCardResult.addCardName}
+            </div>}
         </div>
     )
 }   

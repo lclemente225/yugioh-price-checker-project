@@ -9,7 +9,8 @@ export function SearchResults({
                                 currentSearchPage, 
                                 addToCart,
                                 subtractFromCart,
-                                givenUserId
+                                givenUserId,
+                                changeSearchResultQuantity
                               }) {
     
   const { isLoading, error, data } = useQuery('Yugioh Data', 
@@ -20,16 +21,13 @@ export function SearchResults({
             }, []);
 
   if(isLoading){
-    return <div className='Loading-API-Text'>Loading...</div>
+    return <h1 className='Loading-API-search-Text'>Loading...</h1>
   };
   if(error){
     return <div>error error{error}</div>
   }; 
 
 const dataArray = data['data'];
-const searchedCardIndex = dataArray.map((x) => {
-  return dataArray.indexOf(x)
-})
 
 //LASTPOSTINDEX = 1 * 10
 const searchLastPostIndex = currentSearchPage * searchPostsPerPage;
@@ -68,7 +66,7 @@ function FilterSearchCards(){
 
             let object = {
               index: x,
-              key:`indexOfCard${x}`,
+              key:`id${x}`,
               cardName: cardName,
               cardType: cardType,
               cardTypeofType: cardTypeofType,
@@ -77,11 +75,15 @@ function FilterSearchCards(){
             list.push(object)
           }
       }else{
+        changeSearchResultQuantity(0)
         return (
           <>
           <h1 className='no-search-results'>
-            No search results 
+            Type in the search box to see my wares... Yugi Boy
           </h1>
+          
+          <img src="./assets/millenium-eye.png" alt="millenium eye" 
+                  className='millenium-eye-image'/> 
           </>
         )
       }
@@ -90,9 +92,9 @@ function FilterSearchCards(){
   //sift through array of objects 
   //filtered array works 9/17/23
   const filteredArray = list.filter((array) => { 
-            const cardName = array.cardName;
+            const cardName = array.cardName.replace(/[^a-zA-Z ]/g, '').replace(/\s+/g, "\\s*");
             const cardPriceArray = array.cardPriceArray;
-            let searchedWord = searchTerm.toLowerCase(); 
+            let searchedWord = searchTerm.toLowerCase().replace(/[^a-zA-Z ]/g, '').replace(/\s+/g, "\\s*"); 
 
             if(cardName.toLowerCase().includes(searchedWord) && searchedWord){
             return array
@@ -103,7 +105,7 @@ function FilterSearchCards(){
     //render the length of currentposts to render only its content
     const currentPosts = filteredArray.slice(searchFirstPostIndex,searchLastPostIndex)
     setSearchPostLength(filteredArray.length)
-
+    changeSearchResultQuantity(filteredArray.length)
     
     let renderedSearchResults = [];
     for(let x = 0; x < currentPosts.length; x++){
@@ -118,8 +120,7 @@ function FilterSearchCards(){
     const cardType = array.cardType;
     const cardTypeofType = array.cardTypeofType;
     const cardPriceArray = array.cardPriceArray;
-    console.log('index of card in sesarch', index, 'cardName:', filteredCardName)
-  
+
     return (
             <>
             <div key={key} className={ `single-card-listing  active-card` }>
@@ -130,7 +131,7 @@ function FilterSearchCards(){
   
                       <p className='mainpage-card-list-text'>
                           TCG Player: {cardPriceArray["tcgplayer_price"] == 0.00 ? " Not Listed":`$${cardPriceArray["tcgplayer_price"]}`}
-                      </p>
+                        </p>
   
                       <p className='mainpage-card-list-text'>
                           eBay: ${cardPriceArray["ebay_price"]}
@@ -142,13 +143,13 @@ function FilterSearchCards(){
   
                       <button 
                       className='cartUpdateButton cartUpdateAdd'
-                      onClick={(event) => addToCart(event,filteredCardName, cardPriceArray, index, givenUserId)}>
+                      onClick={(event) => addToCart(event, filteredCardName, cardPriceArray, index, givenUserId)}>
                         +
                       </button>
   
                       <button  
                         className='cartUpdateButton cartUpdateSubtract'
-                        onClick={(event) => subtractFromCart(event, index, givenUserId)}>
+                        onClick={(event) => subtractFromCart(event, index, givenUserId, filteredCardName)}>
                           - 
                       </button>
               </div>

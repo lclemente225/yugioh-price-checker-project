@@ -1,0 +1,54 @@
+function MakeList(){
+        const list = [];    
+
+      if(dataArray != undefined ){ 
+        for(let x = 0; x<10; x++){
+          let testArray = currentPosts[x];
+
+          //clean JSON data using regex
+          let cardName = JSON.stringify(testArray['name']).replace(/(\\)/g, '').replace(/(\")/g,"");
+          let cardEff = JSON.stringify(testArray['desc']);
+          let cardType = JSON.stringify(testArray['type']).replace(/"/g,"");
+          let cardTypeofType = JSON.stringify(testArray['race']).replace(/"/g,"");
+          let cardPriceArray = testArray['card_prices'][0];
+          
+          console.log("index of card in main", x, 'cardname:', cardName)
+          //each array contains html code for one card
+          list.push(
+              <div key={x} className={ `single-card-listing  active-card` }>
+                      {cardName}
+                  <p className='mainpage-card-list-text'>
+                      {cardTypeofType + " " + cardType}
+                  </p>
+
+                  <p className='mainpage-card-list-text'>
+                      TCG Player: {cardPriceArray["tcgplayer_price"] == 0.00 ? " Not Listed":`$${cardPriceArray["tcgplayer_price"]}`}
+                  </p>
+
+                  <p className='mainpage-card-list-text'>
+                      eBay: {cardPriceArray["ebay_price"]  == 0.00 ? " Not Listed":`$${cardPriceArray["ebay_price"]}`}
+                  </p>
+
+                  <p className='mainpage-card-list-text'>
+                      Amazon: {cardPriceArray["amazon_price"] == 0.00 ? " Not Listed":`$${cardPriceArray["amazon_price"]}`}
+                  </p>
+
+                  <button 
+                  className='cartUpdateButton cartUpdateAdd'
+                  onClick={(event) => addToCart(event,cardName, cardPriceArray, x, givenUserId)}>
+                    +
+                  </button>
+
+                  <button  
+                    className='cartUpdateButton cartUpdateSubtract'
+                    onClick={(event) => subtractFromCart(event, x, givenUserId)}>
+                      - 
+                  </button>
+              </div>
+            );
+              }
+              return list
+          }else{
+            console.error("error in mainpage")
+          }
+  }
