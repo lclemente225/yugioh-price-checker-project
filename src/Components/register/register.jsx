@@ -14,7 +14,7 @@ function Register() {
   const handleSubmit = (event) => {
     event.preventDefault();
     confirmEmail();
-    //randomly generate user id here?
+    
     const userData = { 
                     "username":username, 
                     "email":email, 

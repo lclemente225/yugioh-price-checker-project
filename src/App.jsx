@@ -36,7 +36,7 @@ function App() {
   })
  },[isLoggedIn])
  
- console.log("USERID",givenUserId);
+ //console.log("USERID",givenUserId);
 
 
   //honestly i dont know how to block routes with this token
