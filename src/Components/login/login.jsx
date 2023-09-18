@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import "./login.css"
-import { faHandshakeAngle } from "@fortawesome/free-solid-svg-icons";
+import "./login.css";
 
 function Login({LogIn, isLoggedIn,givenUserId, setUserId}) {
   const [username, setUsername] = useState("");

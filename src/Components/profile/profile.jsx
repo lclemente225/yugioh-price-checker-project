@@ -12,7 +12,7 @@ const Profile = () => {
           <p>Home</p>
         </Link>
       </div>
-      <h1>
+      <h1 style={{marginTop: '200px'}}>
         You are a cool cat
       </h1>
     </div>

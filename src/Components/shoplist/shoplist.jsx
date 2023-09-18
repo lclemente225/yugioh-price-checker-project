@@ -139,13 +139,13 @@ console.log("data: ",data)
     <div className='shop-list-whole-container'>
         <div className='shop-list-heading'>
             <h1>Your Shopping List</h1>
-           <a href="/" className='shop-list-link-home'>Go Home</a>     
-       </div>
-    <div id="shop-list-container" >
-        <ul>
-        {isLoading ? <div>Loading...</div> : error ? <div>Error: {error}</div> : <ListItems />}
-        </ul>
-    </div>
+            <a href="/" className='shop-list-link-home'>Go Home</a>     
+        </div>
+        <div id="shop-list-container" >
+            <ul>
+            {isLoading ? <div>Loading...</div> : error ? <div>Error: {error}</div> : <ListItems />}
+            </ul>
+        </div>
 
     </div>
   )
