@@ -73,7 +73,7 @@ export default function MainPage({LogIn, isLoggedIn, givenUserId}){
           showCart(true);
 
           performingAddingorSubtracting({
-              action: "added",
+              action: "You just added",
               addCardName: name,
               quantity: 1
             })
@@ -107,13 +107,24 @@ export default function MainPage({LogIn, isLoggedIn, givenUserId}){
         
           if (!response.ok) {
             console.log("there's nothing to subtract")
+            showCart(true);
+            
+            performingAddingorSubtracting({
+                action: "Your cart has",
+                addCardName: name,
+                quantity: 0
+              })
+
+          setTimeout(() => {
+                showCart(false)
+              }, 3000);
             throw new Error('Failed to reduce item from cart');
           }else{
 
             showCart(true);
             
             performingAddingorSubtracting({
-                action: "subtracted",
+                action: "You just subtracted",
                 addCardName: name,
                 quantity: 1
               })
@@ -198,7 +209,7 @@ export default function MainPage({LogIn, isLoggedIn, givenUserId}){
             </div>
               {isCartShowing && 
               <div className='add-or-sub-popup'>
-                You just {cardQuantityChangeResult.action} {cardQuantityChangeResult.quantity} {cardQuantityChangeResult.addCardName}
+                {cardQuantityChangeResult.action} {cardQuantityChangeResult.quantity} {cardQuantityChangeResult.addCardName}
             </div>}
         </div>
     )
