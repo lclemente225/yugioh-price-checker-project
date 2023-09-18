@@ -40,24 +40,18 @@
     grid-column-start: 2;
     grid-column-end: 5;
     text-align: center;
+    padding-top: 20px;
     border: 2px solid black;
-    padding: 20px;
     background-color: white;
 }
 .millenium-eye-image{
     grid-row-start: 2;
     grid-column-start: 3;
-    width: 900px;
+    width: 850px;
     height: auto;
     padding: 0px;
     margin: 0;
     border-radius: 30px;
-}
-.millenium-eye-image:hover{  
-    filter: drop-shadow(0 10px 20px rgb(201, 171, 0))
-    drop-shadow(0 -10px 20px rgb(201, 171, 0))
-    drop-shadow(10px 0 20px rgb(201, 171, 0))
-    drop-shadow(-10px 0 20px rgb(201, 171, 0));
 }
 
 .main--page-search{
