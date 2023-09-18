@@ -156,6 +156,7 @@
     }
     .footer-links{
         margin-right: 10px;
+        background-color: var(--tertiary-color);
     }
     .footer-links>i{
         margin-right: 2px;

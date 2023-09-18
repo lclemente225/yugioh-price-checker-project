@@ -34,7 +34,7 @@ export const HomepageFooter = () => {
             </div>
             <p className='created-by-react-footer'>
                 This project was created with <i className="fa-brands fa-react" /> React + 
-                <img src="/public/vite.svg" alt="vite logo" className='vite-logo-footer'/>Vite
+                <img src="/vite.svg" alt="vite logo" className='vite-logo-footer'/>Vite
             </p>
     </>
   )
