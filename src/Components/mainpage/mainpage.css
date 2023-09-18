@@ -9,7 +9,7 @@
     position: relative;
 }
 .add-or-sub-popup{
-    position: absolute;
+    position: fixed;
     top: 100px;
     right: 10px;
     width: 200px;
@@ -17,6 +17,7 @@
     background-color: var(--tertiary-color);
     border-radius: 30px;
     border: 2px solid black;
+    box-shadow: 0 0 10px black;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -35,7 +36,14 @@
     border: 2px solid red;
     color:black;
 }
+.no-search-results{
+    grid-column-start: 2;
+    grid-column-end: 5;
+    text-align: center;
+}
 .millenium-eye-image{
+    grid-row-start: 2;
+    grid-column-start: 3;
     width: 100%;
     height: auto;
     padding: 0px;

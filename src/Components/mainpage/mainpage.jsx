@@ -26,12 +26,7 @@ export default function MainPage({LogIn, isLoggedIn, givenUserId}){
   const [currentSearchPostsLength, setSearchPostLength] = useState(10);
   const [showSearchResultQuantity, changeSearchResultQuantity] = useState(0);
   const [isCartShowing, showCart] = useState(false);
-  const [addingCardResult, performingAdding] = useState({
-                                                      action:"",
-                                                      addCardName:"",
-                                                      quantity: 0
-                                                    })
-  const [subtractingCardResult, performingSubtracting] = useState({
+  const [cardQuantityChangeResult, performingAddingorSubtracting] = useState({
                                                       action:"",
                                                       addCardName:"",
                                                       quantity: 0
@@ -77,7 +72,7 @@ export default function MainPage({LogIn, isLoggedIn, givenUserId}){
           }
           showCart(true);
 
-          performingAdding({
+          performingAddingorSubtracting({
               action: "added",
               addCardName: name,
               quantity: 1
@@ -97,7 +92,7 @@ export default function MainPage({LogIn, isLoggedIn, givenUserId}){
 
 /////////////////////////////////////////////////////////////////
    async function subtractFromCart(e, index, userId, name) {
-    console.log("SUBTRACTINGgggg", name)
+    
     e.preventDefault();
     try{
       const response = await fetch(`https://shy-rose-apron.cyclic.cloud/cart/updateSubtractItem`, {
@@ -116,8 +111,8 @@ export default function MainPage({LogIn, isLoggedIn, givenUserId}){
           }else{
 
             showCart(true);
-            console.log("SUBTRACTING",name)
-            performingSubtracting({
+            
+            performingAddingorSubtracting({
                 action: "subtracted",
                 addCardName: name,
                 quantity: 1
@@ -127,7 +122,7 @@ export default function MainPage({LogIn, isLoggedIn, givenUserId}){
                 showCart(false)
               }, 3000);
         
-            console.log("successfully reduced quantity by 1")
+            //console.log("successfully reduced quantity by 1")
           }
           
           
@@ -145,7 +140,7 @@ export default function MainPage({LogIn, isLoggedIn, givenUserId}){
 
     
   function filterCard(e){
-      console.log("filtering",e.target.value.toLowerCase())
+      //console.log("filtering",e.target.value.toLowerCase())
       setSearchTerm(e.target.value);
   }   
 
@@ -203,7 +198,7 @@ export default function MainPage({LogIn, isLoggedIn, givenUserId}){
             </div>
               {isCartShowing && 
               <div className='add-or-sub-popup'>
-                You just {addingCardResult.action} {addingCardResult.quantity} {addingCardResult.addCardName}
+                You just {cardQuantityChangeResult.action} {cardQuantityChangeResult.quantity} {cardQuantityChangeResult.addCardName}
             </div>}
         </div>
     )
