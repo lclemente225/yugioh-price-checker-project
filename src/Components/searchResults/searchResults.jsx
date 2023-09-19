@@ -129,8 +129,8 @@ function FilterSearchCards(){
     return (
             <>
             <div key={key} id={key} className={ `single-card-listing  active-card` }>
-                {filteredCardName}
-                      <p className='mainpage-card-list-text'>
+                      <p className='list-card-name'>{filteredCardName}</p>
+                      <p className='mainpage-card-list-text typeoftypetext'>
                           {cardTypeofType + " " + cardType}
                       </p>
   

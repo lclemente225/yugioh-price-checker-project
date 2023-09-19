@@ -24,3 +24,16 @@
 .pagination-button{
     background-color: rgba(255, 255, 255, 0.678);
 }
+@media screen and (max-width: 600px){
+    .pagination-container{
+        height: 190px;
+        flex-direction: column;
+    }
+    .page-num-list{
+        width: 100%;
+        height: 50px;
+    }
+    .page-num-button{
+        width: 30px;
+    }
+}
