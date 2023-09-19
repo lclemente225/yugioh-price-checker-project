@@ -39,7 +39,7 @@ export default function MainPage({LogIn, isLoggedIn, givenUserId}){
                                                               });
   
  
- 
+ console.log("WINDOW", window.innerWidth)
   //obtain data from yugioh api
   const { isLoading, error, data } = useQuery('Yugioh Data', 
   async () =>{
@@ -163,10 +163,17 @@ export default function MainPage({LogIn, isLoggedIn, givenUserId}){
   //if authorized then obtain info from  the table WHERE userid = userid
   //else obtain info from table WHERE userid=007 -> refers to no id and anybody can use it
   //after 15 min then delete the info of cart data WHERE userid = userid
-  const cardListContainerStyle = {   
-                              height: searchTerm ? '900px' : '500px'
-                                  }
  
+  const cardListContainerStyle = {   
+                              height: ""
+                                  }
+  if(window.innerWidth < 650){
+    cardListContainerStyle.height = searchTerm ? '900px' : '400px'
+  }else if(window.innerWidth > 650 && window.innerWidth < 1240){
+    cardListContainerStyle.height = searchTerm ? '1000px' : '700px'
+  }else if(window.innerWidth > 1240){
+    cardListContainerStyle.height = searchTerm ? '800px' : '800px'
+  }
 
     return (
         <div className='page-container'>
