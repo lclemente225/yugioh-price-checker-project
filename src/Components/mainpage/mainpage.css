@@ -40,18 +40,22 @@
     grid-column-start: 2;
     grid-column-end: 5;
     text-align: center;
-    padding-top: 20px;
-    border: 2px solid black;
+    padding: 30px 20px;
+    border: 5px solid black;
     background-color: white;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
 }
 .millenium-eye-image{
-    grid-row-start: 2;
+    grid-row-start: 1;
     grid-column-start: 3;
-    width: 850px;
+    width: 100%;
     height: auto;
     padding: 0px;
     margin: 0;
     border-radius: 30px;
+    align-self: center;
 }
 
 .main--page-search{
@@ -148,21 +152,21 @@
     justify-content: space-around;
     align-items: center;
     }
-    .footer-links{
-        margin-right: 10px;
-        background-color: var(--tertiary-color);
-    }
-    .footer-links>i{
-        margin-right: 2px;
-    }
-    .footer-links:hover{
-        color: white;
-    }
-    .vite-logo-footer{
-        width: 15px;
-    }
+ .footer-links{
+     margin-right: 10px;
+     background-color: var(--tertiary-color);
+ }
+ .footer-links>i{
+     margin-right: 2px;
+ }
+ .footer-links:hover{
+     color: white;
+ }
+ .vite-logo-footer{
+     width: 15px;
+ }
 
-  @media screen and (max-width: 1240px) {
+  @media screen and (min-width: 900px) and (max-width: 1240px) {
     .card--list-container{
         width: 100%;
         height: 1000px;
@@ -177,11 +181,17 @@
         justify-content: space-between;
     }
     .millenium-eye-image{
-        width: 800px;
-        align-self: center;
+        width: 450px;
     }
+    .no-search-results{
+        align-self: center;
+        margin-right: 20px;
+        font-size: 1.6rem;
+        width: 90%;
+    }
+
   }
-  @media screen and (max-width: 900px) {
+  @media screen and (min-width: 650px) and (max-width: 900px) {
     .card--list-container{
         width: 100%;
         height: 1000px;
@@ -202,6 +212,15 @@
         margin-right: 4px;
         padding: 0 1px;
     }
+    .millenium-eye-image{
+        width: 50%;
+    }
+    .no-search-results{
+        align-self: center;
+        margin-right: 20px;
+        font-size: 1.6rem;
+        width: 90%;
+    }
   }
   @media screen and (max-width: 650px) {
     .main--page-search{
@@ -215,6 +234,7 @@
         align-self: center;
         margin-left: -20px;
         font-size: 1.2rem;
+        width: 90%;
     }
     .card--list-container{
         width: 100vw;
@@ -230,9 +250,6 @@
         display: flex;
         justify-content: space-between;
         
-    }
-    .millenium-eye-image{
-        width: 80%;
     }
     .cartUpdateButton{
         position: absolute;
@@ -251,5 +268,8 @@
     }
     .typeoftypetext{
         display: none;
+    } 
+    .millenium-eye-image{
+        width: 90%;
     }
   }

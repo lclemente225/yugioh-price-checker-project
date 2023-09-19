@@ -77,13 +77,13 @@ function FilterSearchCards(){
       }else{
         
         return (
-          <>
+          <> <img src="./assets/pegasus-image-portrait-removebg.png" alt="millenium eye" 
+                  className='millenium-eye-image'/> 
           <h1 key="NoFindText" className='no-search-results'>
             Type in the search box to see my wares... Yugi Boy
           </h1>
           
-          <img src="./assets/pegasus-image-portrait-removebg.png" alt="millenium eye" 
-                  className='millenium-eye-image'/> 
+         
           </>
         )
       }
