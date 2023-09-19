@@ -168,7 +168,7 @@ export default function MainPage({LogIn, isLoggedIn, givenUserId}){
                               height: ""
                                   }
   if(window.innerWidth < 650){
-    cardListContainerStyle.height = searchTerm ? '900px' : '400px'
+    cardListContainerStyle.height = searchTerm ? '400px' : '900px'
   }else if(window.innerWidth > 650 && window.innerWidth < 1240){
     cardListContainerStyle.height = searchTerm ? '1000px' : '700px'
   }else if(window.innerWidth > 1240){
