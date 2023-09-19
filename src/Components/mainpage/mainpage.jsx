@@ -163,7 +163,9 @@ export default function MainPage({LogIn, isLoggedIn, givenUserId}){
   //if authorized then obtain info from  the table WHERE userid = userid
   //else obtain info from table WHERE userid=007 -> refers to no id and anybody can use it
   //after 15 min then delete the info of cart data WHERE userid = userid
-  
+  const cardListContainerStyle = {   
+                              height: searchTerm ? '900px' : '500px'
+                                  }
  
 
     return (
@@ -181,7 +183,7 @@ export default function MainPage({LogIn, isLoggedIn, givenUserId}){
                   <h4>Your Search resulted in {showSearchResultQuantity} cards</h4>:
                   <h4>We have no pathetic cards</h4> }
                 </div>
-                <div className="card--list-container">
+                <div className="card--list-container" style={cardListContainerStyle}>
                        
                        <SearchResults 
                               searchTerm={searchTerm}
