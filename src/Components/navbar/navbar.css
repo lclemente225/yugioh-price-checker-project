@@ -66,5 +66,19 @@
     }
     #shopping-list-button{
         font-size: 12px;
+        word-spacing: 1;
+    }
+}
+@media screen and (max-width: 300px) {
+    .navbar-brand h1{
+        font-size: 1rem;
+        color: black;
+    }
+    #shopping-list-button{
+        font-size: 9px;
+        word-spacing: 1;
+    }
+    .navbar-login-links{
+        width: 100%;
     }
 }
