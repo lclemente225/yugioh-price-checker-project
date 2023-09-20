@@ -56,6 +56,7 @@
     margin: 0;
     border-radius: 30px;
     align-self: center;
+    filter: drop-shadow(0 0 8px black);
 }
 
 .main--page-search{
@@ -77,7 +78,7 @@
     margin: 30px;
     padding: 10px;
     border: 0;
-    box-shadow: 0px 0px 5px gold, 0 0 10px gold , 0 0 20px 10px gold;
+    box-shadow:  0 0 4px gold , 0 0 20px 10px gold;
     border-radius: 10px;
 }
 
@@ -92,6 +93,9 @@
     row-gap: 15px;
     background-color: var(--primary-color); 
     overflow-y: auto;  
+    background-position-y: -210px !important;
+    background-size:cover !important;
+    background-repeat: no-repeat !important;
 }
 .mainpage-card-list-text{
     background-color: var(--tertiary-color);
@@ -165,7 +169,14 @@
  .vite-logo-footer{
      width: 15px;
  }
-
+ @media screen and (max-width: 1620px) {
+    .no-search-results{
+        height: 200px;
+    }
+    .card--list-container{
+        background-position-y: 0px !important;
+    }
+ }
   @media screen and (min-width: 900px) and (max-width: 1240px) {
     .card--list-container{
         width: 100%;
@@ -173,6 +184,7 @@
         padding: 30px 0 30px 20px;
         display: flex;
         flex-direction: column; 
+        background-position-y: 0px !important;
     }
     .single-card-listing{
         width: 97%;
@@ -224,7 +236,6 @@
   }
   @media screen and (max-width: 650px) {
     .main--page-search{
-        border: 2px solid pink;
         width: 100%;
     }
     .main--page-search-form{
@@ -237,7 +248,7 @@
         width: 90%;
     }
     .card--list-container{
-        width: 100vw;
+        width: 100%;
         height: 900px;
         padding: 30px 0 30px 20px;
         display: flex;

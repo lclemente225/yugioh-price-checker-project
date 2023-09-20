@@ -39,7 +39,6 @@ export default function MainPage({LogIn, isLoggedIn, givenUserId}){
                                                               });
   
  
- console.log("WINDOW", window.innerWidth)
   //obtain data from yugioh api
   const { isLoading, error, data } = useQuery('Yugioh Data', 
   async () =>{
@@ -165,7 +164,8 @@ export default function MainPage({LogIn, isLoggedIn, givenUserId}){
   //after 15 min then delete the info of cart data WHERE userid = userid
  
   const cardListContainerStyle = {   
-                              height: ""
+                              height: "",
+                              background: searchTerm ? "" : 'url("/assets/city-bay-skyline.jpg")'
                                   }
   if(window.innerWidth < 650){
     cardListContainerStyle.height = searchTerm ? '900px' : 'auto'
