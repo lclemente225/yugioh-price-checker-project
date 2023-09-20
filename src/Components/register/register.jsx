@@ -60,42 +60,45 @@ function Register() {
         Register
       </h1>
     <form onSubmit={handleSubmit} className="register-form">
-      <label>
-        Username:
-        <input
-          type="text"
-          value={username}
-          onChange={(event) => setUsername(event.target.value)}
-          required
-        />
-      </label>
-      <label>
-        Email: 
-        <input
-          type="email"
-          value={email}
-          onChange={(event) => setEmail(event.target.value)}
-          required
-        />
-      </label>
-      <label>
-        Confirm Email: 
-        <input
-          type="email"
-          value={checkEmail}
-          onChange={(event) => setCheckEmail(event.target.value)}
-          required
-        />
-      </label>
-      <label>
-        Password:
-        <input
-          type="password"
-          value={password}
-          onChange={(event) => setPassword(event.target.value)}
-          required
-        />
-      </label>
+      <div className="register-form-container">
+          <label>
+            Username:
+            <input
+              type="text"
+              value={username}
+              onChange={(event) => setUsername(event.target.value)}
+              required
+            />
+          </label>
+          <label>
+            Email: 
+            <input
+              type="email"
+              value={email}
+              onChange={(event) => setEmail(event.target.value)}
+              required
+            />
+          </label>
+          <label>
+            Confirm Email: 
+            <input
+              type="email"
+              value={checkEmail}
+              onChange={(event) => setCheckEmail(event.target.value)}
+              required
+            />
+          </label>
+          <label>
+            Password:
+            <input
+              type="password"
+              value={password}
+              onChange={(event) => setPassword(event.target.value)}
+              required
+            />
+          </label>
+      </div>
+      
       <button type="submit" className="register-button">Register</button>
     </form>
     </div>
