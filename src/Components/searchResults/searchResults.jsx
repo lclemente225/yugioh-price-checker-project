@@ -92,7 +92,7 @@ function FilterSearchCards(){
   //sift through array of objects 
   //filtered array works 9/17/23
   const filteredArray = list.filter((array) => { 
-            const cardName = array.cardName.replace(/[^a-zA-Z ]/g, '').replace(/\s+/g, "\\s*");
+            const cardName = array.cardName.replace(/[^a-zA-Z ]/g, ' ').replace(/\s+/g, "\\s*");
             const cardPriceArray = array.cardPriceArray;
             let searchedWord = searchTerm.toLowerCase().replace(/[^a-zA-Z ]/g, '').replace(/\s+/g, "\\s*"); 
 
