@@ -61,12 +61,13 @@
 
 .search-input{
     width: 30%;
-    border: 2px solid red;
     color:black;
+    cursor: pointer;
 }
 .below-search-text{
     color: white;
-    text-shadow: 0 0 5px black;
+    text-shadow: 0 0 10px black;
+    filter: drop-shadow(2px 5px 1px black);
     font-weight: 500;
     font-size: 1.7rem;
     width: 90%;
@@ -298,5 +299,8 @@
     } 
     .millenium-eye-image{
         width: 90%;
+    }
+    #homepage-footer{
+        flex-direction: column;
     }
   }

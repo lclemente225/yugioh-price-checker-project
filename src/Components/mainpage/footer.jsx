@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 export const HomepageFooter = () => {
   return (
     <>
-      <div className=''>
+      <div className='footer-info'>
                 <h3>
                     Lawrence Clemente
                 </h3>
@@ -31,7 +31,7 @@ export const HomepageFooter = () => {
                         My Portfolio
                     </span>
                 </Link>
-            </div>
+        </div>
             <p className='created-by-react-footer'>
                 This project was created with <i className="fa-brands fa-react" /> React + 
                 <img src="/vite.svg" alt="vite logo" className='vite-logo-footer'/>Vite
