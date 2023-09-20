@@ -51,6 +51,7 @@ async function addToCart(e, name, price, cartId, userId){
           if (!response.ok) {
             throw new Error('Failed to add item to cart');
           }
+          console.log("added 1 successfully")
           return response.json();
         }).catch(error => {
           console.error(error);
@@ -126,8 +127,6 @@ console.log("rendering list")
            
             if(givenUserId === item.userId){
               return (
-            <>
-
                 <li key={item.id} className='shop-list-item'>
                 <p className="card-listing-text">{item.card_name}</p>    
                 <p className="card-listing-text">Quantity: {item.quantity}</p>
@@ -153,7 +152,6 @@ console.log("rendering list")
                         <FontAwesomeIcon icon={faTrash} />
                     </button>
                 </li>
-            </>         
                 )
             }
             
