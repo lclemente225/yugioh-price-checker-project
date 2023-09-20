@@ -58,6 +58,11 @@ function Login({LogIn, isLoggedIn,givenUserId, setUserId}) {
         Login
       </h1>
       <form  className="login-form">
+        <div id="demo-login">
+          <p>Demo Account</p>
+          <p>User: test1</p>
+          <p>Pass: test1</p>
+        </div>
         <label>
           Username:
           <input
