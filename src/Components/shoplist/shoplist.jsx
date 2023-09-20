@@ -4,6 +4,23 @@ import { useQuery } from 'react-query';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrash } from '@fortawesome/free-solid-svg-icons'
 
+/**
+ * 
+ SAVING AN OBJECT INTO LOCAL STORAGE
+ // creating an object
+const myCountryInfo = {
+  country: 'India',
+  capital: 'New Delhi'
+}
+
+// stringifying the myCountryInfo object and 
+// storing it in the localStorage
+localStorage.setItem('myCountryInfo', JSON.stringify(myCountryInfo))
+
+let test = JSON.parse(localStorage.getItem("myCountryInfo"));
+// retrieving localStorage data in HTML
+document.getElementById("content").innerHTML = test.country;
+ */
 const Shoplist = ({givenUserId}) => {
 
 const [count, setCount] = React.useState(0);
@@ -19,6 +36,7 @@ if(isLoading){
   return <div className='Loading-API-Text'>Loading...</div>
 }
 async function addToCart(e, name, price, cartId, userId){
+      setCount(x => x+1)
       await fetch('https://shy-rose-apron.cyclic.cloud/cart/add', {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
@@ -33,7 +51,6 @@ async function addToCart(e, name, price, cartId, userId){
           if (!response.ok) {
             throw new Error('Failed to add item to cart');
           }
-          setCount(x => x+1)
           return response.json();
         }).catch(error => {
           console.error(error);
@@ -84,11 +101,18 @@ async function deleteFromCart(e, card_name, cartId, userId) {
         });
   }
 
+  function checkJWT(){
+      let jwtToken = localStorage.getItem("token");
+      if(jwtToken){
+          console.log("jwt token is present", jwtToken)
+      }else{
+        console.log("jwt token is absent")
+      }
+  }
 
 function ListItems() {
 
 let cardList = data[0];
-let jwtToken = localStorage.getItem("token");
 console.log("cardList: ",cardList)
 console.log("data: ",data)
     if(cardList != undefined){
@@ -98,11 +122,9 @@ console.log("data: ",data)
                 "card-name":item.card_name,
                 "quantity": item.quantity
             };
-            if(jwtToken){
-                //console.log("jwt token is present")
-            }else{
-              console.log("jwt token is absent")
-            }
+
+           //if(givenUserId === 0) localStorage.setItem("No User Shop List", JSON.stringify(shopListItems))
+           
             if(givenUserId === item.userId){
               return (
             <>
@@ -112,15 +134,26 @@ console.log("data: ",data)
                 <p className="card-listing-text">Quantity: {item.quantity}</p>
                 <button 
                     className='cartUpdateButton cartUpdateAdd'
-                    onClick={(event) => addToCart(event, item.card_name, item.price, item.cartId, givenUserId)}>+</button>
+                    onClick={(event) => { 
+                                      setTimeout( () => window.location.reload(false), 700 )
+                                      addToCart(event, item.card_name, item.price, item.cartId, givenUserId) 
+                                    }}>
+                      +</button>
                     &nbsp;
                     <button 
                     className='cartUpdateButton cartUpdateSubtract'
-                    onClick={(event) => subtractFromCart(event, item.cartId, givenUserId)}> - </button>
+                    onClick={(event) => { 
+                                     setTimeout( () => window.location.reload(false), 700 )
+                                      subtractFromCart(event, item.cartId, givenUserId) 
+                                      }}> 
+                      - </button>
                     &nbsp;
                     <button 
                     className='cartUpdateButton cartUpdateDelete'
-                    onClick={(event) => deleteFromCart(event, item.card_name, item.cartId, givenUserId)}> 
+                    onClick={(event) => {
+                                      setTimeout( () => window.location.reload(false), 700 )
+                                      deleteFromCart(event, item.card_name, item.cartId, givenUserId)
+                                      }}> 
                         <FontAwesomeIcon icon={faTrash} />
                     </button>
                 </li>
