@@ -34,6 +34,9 @@ async () =>{
 if(isLoading){
   return <div className='Loading-API-Text'>Loading...</div>
 }
+if(error){
+  console.log("SOMETHING WENT WRONG LOADING CART", error)
+}
 
 
 async function addToCart(e, name, price, cartId, userId){
