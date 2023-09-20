@@ -170,6 +170,9 @@ console.log("data: ",data)
 
   return (
     <div className='shop-list-whole-container'>
+      <div id="shop-list-demo">
+        Play around with adding, subtracting and deleting items
+      </div>
         <div className='shop-list-heading'>
             <h1>Your Shopping List</h1>
             <a href="/" className='shop-list-link-home'>Go Home</a>     
