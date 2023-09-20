@@ -166,7 +166,7 @@ export default function MainPage({LogIn, isLoggedIn, givenUserId}){
   const cardListContainerStyle = {   
                               height: "",
                               background: searchTerm ? "" : 'url("/assets/city-bay-skyline.jpg")'
-                                  }
+                                  };
   if(window.innerWidth < 650){
     cardListContainerStyle.height = searchTerm ? '900px' : 'auto'
   }else if(window.innerWidth > 650 && window.innerWidth < 1240){
@@ -187,8 +187,8 @@ export default function MainPage({LogIn, isLoggedIn, givenUserId}){
                     </div>
                     
                   {searchTerm ? 
-                  <h4>Your Search resulted in {showSearchResultQuantity} cards</h4>:
-                  <h4>We have no pathetic cards</h4> }
+                  <h4 className='below-search-text'>Your Search resulted in {showSearchResultQuantity} cards</h4>:
+                  <h4 className='below-search-text'>We have no pathetic cards</h4> }
                 </div>
                 <div className="card--list-container" style={cardListContainerStyle}>
                        

@@ -30,6 +30,10 @@
     justify-content: center;
     align-items: center;
     background-color: var(--tertiary-color);
+    background: url("/assets/blue-wires-bg.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position-y: -700px;
 }
 
 .main--page-search{
@@ -39,7 +43,6 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-color: var(--tertiary-color);
 }
 .main--page-search-form{ 
     background-color: var(--secondary-color);
@@ -52,7 +55,7 @@
     margin: 30px;
     padding: 10px;
     border: 0;
-    box-shadow:  0 0 4px gold , 0 0 10px 2px black;
+    box-shadow:  0 0 4px 3px gold , 0 0 10px 2px black;
     border-radius: 10px;
 }
 
@@ -60,6 +63,14 @@
     width: 30%;
     border: 2px solid red;
     color:black;
+}
+.below-search-text{
+    color: white;
+    text-shadow: 0 0 5px black;
+    font-weight: 500;
+    font-size: 1.7rem;
+    width: 90%;
+    text-align: center;
 }
 .no-search-results{
     grid-column-start: 2;
