@@ -182,7 +182,8 @@ export default function MainPage({LogIn, isLoggedIn, givenUserId}){
                 <div className="main--page-search ">
                     <div className='main--page-search-form'>
                        <input className="search-input form-control me-2" type="search" 
-                       onChange={filterCard} placeholder="Use the Millenium Eye to find cards" 
+                       onChange={filterCard} 
+                       placeholder="Use the Millenium Eye to find cards                            Try(blue eyes or dark magician...)" 
                        aria-label="Search" />
                     </div>
                     
