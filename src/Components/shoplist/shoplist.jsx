@@ -37,7 +37,6 @@ if(isLoading){
 
 
 async function addToCart(e, name, price, cartId, userId){
-      setCount(x => x+1)
       await fetch('https://shy-rose-apron.cyclic.cloud/cart/add', {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
