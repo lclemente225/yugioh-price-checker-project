@@ -33,12 +33,12 @@
     background: url("/assets/blue-wires-bg.jpg");
     background-repeat: no-repeat;
     background-size: cover;
-    background-position-y: -400px;
+    background-position-y: -450px;
 }
 
 .main--page-search{
     padding:20px 0;
-    height: 30vh;
+    height: 20vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -49,7 +49,6 @@
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    height: 150px;
     width: 80vw;
     margin: 30px;
     padding: 10px;
