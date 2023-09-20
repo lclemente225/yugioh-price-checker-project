@@ -137,7 +137,6 @@ console.log("data: ",data)
                 <button 
                     className='cartUpdateButton cartUpdateAdd'
                     onClick={(event) => { 
-                                      setTimeout( () => window.location.reload(), 700 )
                                       addToCart(event, item.card_name, item.price, item.cartId, givenUserId) 
                                     }}>
                       +</button>
@@ -145,7 +144,6 @@ console.log("data: ",data)
                     <button 
                     className='cartUpdateButton cartUpdateSubtract'
                     onClick={(event) => { 
-                                     setTimeout( () => window.location.reload(), 700 )
                                       subtractFromCart(event, item.cartId, givenUserId) 
                                       }}> 
                       - </button>
@@ -153,7 +151,6 @@ console.log("data: ",data)
                     <button 
                     className='cartUpdateButton cartUpdateDelete'
                     onClick={(event) => {
-                                      setTimeout( () => window.location.reload(), 700 )
                                       deleteFromCart(event, item.card_name, item.cartId, givenUserId)
                                       }}> 
                         <FontAwesomeIcon icon={faTrash} />
