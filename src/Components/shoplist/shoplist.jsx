@@ -23,14 +23,13 @@ document.getElementById("content").innerHTML = test.country;
  */
 const Shoplist = ({givenUserId}) => {
 
-const [count, setCount] = React.useState(0);
 
 const { isLoading, error, data } = useQuery('Yugioh Cart Data', 
 async () =>{
       let response =  await fetch('https://shy-rose-apron.cyclic.cloud/cart/list');
       let data = await response.json();   
           return data
-          }, [count]);
+          }, []);
           
 if(isLoading){
   return <div className='Loading-API-Text'>Loading...</div>
@@ -71,7 +70,6 @@ async function subtractFromCart(e, cartId, userId) {
                 throw new Error('Failed to reduce item from cart');
             }else{
                 console.log("successfully reduced quantity by 1")
-                setCount(x => x-1)
                 return response.json();
             }
         }).catch(error => {
@@ -95,7 +93,6 @@ async function deleteFromCart(e, card_name, cartId, userId) {
                     throw new Error('Failed to delete item from cart');
                 }else{
                     console.log("successfully deleted item")
-                    setCount(x => x-1)
                     return response.json();
                 }          
         }).catch(error => {
@@ -115,8 +112,9 @@ async function deleteFromCart(e, card_name, cartId, userId) {
 function ListItems() {
 
 let cardList = data[0];
-console.log("cardList: ",cardList)
-console.log("data: ",data)
+console.log("rendering list")
+//console.log("cardList: ",cardList)
+//console.log("data: ",data)
     if(cardList != undefined){
         return cardList.map((item) => {
           
