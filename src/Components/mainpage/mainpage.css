@@ -210,6 +210,7 @@
         padding: 30px 0 30px 20px;
         display: flex;
         flex-direction: column; 
+        background-position-x: -300px !important;
     }
     .single-card-listing{
         width: 97%;
@@ -253,6 +254,9 @@
         padding: 30px 0 30px 20px;
         display: flex;
         flex-direction: column;
+        background-position-x: -450px !important;
+        background-position-y: -200px !important;
+        background-size: 500% !important;
     }
     .single-card-listing{
         position: relative;
