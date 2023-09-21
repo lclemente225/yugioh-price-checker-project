@@ -3,6 +3,6 @@
   [headers.values]  
     Permissions-Policy = ["run-ad-auction=(https://main--ygo-pricechecker.netlify.app http://localhost:5173 https://ygo-pricechecker.netlify.app)", 
     "join-ad-interest-group=(https://main--ygo-pricechecker.netlify.app http://localhost:5173 https://ygo-pricechecker.netlify.app)", 
-    "browsing-topics=(https://main--ygo-pricechecker.netlify.app http://localhost:5173 https://ygo-pricechecker.netlify.app)", 
+    "browsing-topics=(https://main--ygo-pricechecker.netlify.app http://localhost:5173 https://ygo-pricechecker.netlify.app https://shy-rose-apron.cyclic.cloud)", 
     "idle-detection=(https://main--ygo-pricechecker.netlify.app http://localhost:5173 https://ygo-pricechecker.netlify.app)"
     ]
