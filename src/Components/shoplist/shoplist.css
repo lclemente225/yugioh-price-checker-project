@@ -90,8 +90,6 @@
     }
 }
 @media screen and (max-width: 650px) {
-    .shop-list-whole-container{
-    }
     #shop-list-container{
         height: 100vh;
     }
