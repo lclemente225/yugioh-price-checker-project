@@ -10,6 +10,6 @@
 
 [[redirects]]
   from = "/shoppinglist"
-  to = "/shoppinglist"
+  to = "/"
   status = 404
   force = true
