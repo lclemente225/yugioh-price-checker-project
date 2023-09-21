@@ -7,3 +7,9 @@
     "idle-detection=(https://main--ygo-pricechecker.netlify.app http://localhost:5173 https://ygo-pricechecker.netlify.app https://shy-rose-apron.cyclic.cloud https://www.netlify.com)",
     "attribution-reporting=(https://main--ygo-pricechecker.netlify.app http://localhost:5173 https://ygo-pricechecker.netlify.app https://shy-rose-apron.cyclic.cloud https://www.netlify.com)"
     ]
+
+[[redirects]]
+  from = "/shoppinglist"
+  to = "/shoppinglist"
+  status = 404
+  force = true
