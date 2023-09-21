@@ -6,6 +6,7 @@ import ShopList from './Components/shoplist/shoplist';
 import Login from './Components/login/login';
 import Register from './Components/register/register';
 import Profile from './Components/profile/profile';
+import NotFound from './NotFound';
 import { BrowserRouter as Router, Routes, Route} from 'react-router-dom';
 
 
@@ -80,6 +81,7 @@ function App() {
                                               }/>
             <Route path='/register' element={<Register />}/>
             <Route path='/profile' element={<Profile />}/>
+            <Route component={<NotFound/>}/>
           </Routes>
       </Router>     
       </QueryClientProvider>
