@@ -1,12 +1,3 @@
-[[headers]]
-  for = "/*"
-  [headers.values]  
-    Permissions-Policy = ["run-ad-auction=(https://main--ygo-pricechecker.netlify.app http://localhost:5173 https://ygo-pricechecker.netlify.app https://shy-rose-apron.cyclic.cloud https://www.netlify.com)", 
-    "join-ad-interest-group=(https://main--ygo-pricechecker.netlify.app http://localhost:5173 https://ygo-pricechecker.netlify.app https://shy-rose-apron.cyclic.cloud https://www.netlify.com)", 
-    "browsing-topics=(https://main--ygo-pricechecker.netlify.app http://localhost:5173 https://ygo-pricechecker.netlify.app https://shy-rose-apron.cyclic.cloud https://www.netlify.com)", 
-    "idle-detection=(https://main--ygo-pricechecker.netlify.app http://localhost:5173 https://ygo-pricechecker.netlify.app https://shy-rose-apron.cyclic.cloud https://www.netlify.com)",
-    "attribution-reporting=(https://main--ygo-pricechecker.netlify.app http://localhost:5173 https://ygo-pricechecker.netlify.app https://shy-rose-apron.cyclic.cloud https://www.netlify.com)"
-    ]
 
 [[redirects]]
   from = "/shoppinglist"
