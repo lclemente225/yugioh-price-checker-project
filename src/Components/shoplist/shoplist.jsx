@@ -109,7 +109,7 @@ async function deleteFromCart(e, card_name, cartId, userId) {
   function checkJWT(){
       let jwtToken = localStorage.getItem("token");
       if(jwtToken){
-          console.log("jwt token is present", jwtToken)
+          console.log("jwt token is present")
       }else{
         console.log("jwt token is absent")
       }
