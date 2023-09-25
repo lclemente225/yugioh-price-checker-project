@@ -24,12 +24,14 @@ document.getElementById("content").innerHTML = test.country;
 const Shoplist = ({givenUserId}) => {
 
 
-const { isLoading, error, data } = useQuery('Yugioh Cart Data', 
+const { isLoading, error, data, refetch } = useQuery('Yugioh Cart Data', 
 async () =>{
       let response =  await fetch('https://shy-rose-apron.cyclic.cloud/cart/list');
       let data = await response.json();   
           return data
-          }, []);
+          },{
+            refetchOnWindowFocus:false
+          } ,[]);
           
 if(isLoading){
   return <div className='Loading-API-Text'>Loading...</div>
@@ -40,6 +42,7 @@ if(error){
 
 
 async function addToCart(e, name, price, cartId, userId){
+  
       await fetch('https://shy-rose-apron.cyclic.cloud/cart/add', {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
@@ -54,8 +57,9 @@ async function addToCart(e, name, price, cartId, userId){
           if (!response.ok) {
             throw new Error('Failed to add item to cart');
           }
-          console.log("added 1 successfully")
-          location.reload();
+          //console.log("added 1 successfully")
+          //location.reload(); 
+          refetch();
           return response.json();
         }).catch(error => {
           console.error(error);
@@ -73,8 +77,9 @@ async function subtractFromCart(e, cartId, userId) {
             if (!response.ok) {
                 throw new Error('Failed to reduce item from cart');
             }else{
-                console.log("successfully reduced quantity by 1")
-                location.reload();
+                //console.log("successfully reduced quantity by 1")
+                //location.reload();
+                refetch();
                 return response.json();
             }
         }).catch(error => {
@@ -97,8 +102,9 @@ async function deleteFromCart(e, card_name, cartId, userId) {
                 if (!response.ok) {
                     throw new Error('Failed to delete item from cart');
                 }else{
-                    console.log("successfully deleted item")
-                    location.reload();
+                    //console.log("successfully deleted item")
+                    //location.reload();
+                    refetch();
                     return response.json();
                 }          
         }).catch(error => {
