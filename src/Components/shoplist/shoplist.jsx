@@ -30,7 +30,7 @@ async () =>{
       let data = await response.json();   
           return data
           },{
-            refetchOnWindowFocus:false
+            refetchOnWindowFocus: true
           });
           
 if(isLoading){
