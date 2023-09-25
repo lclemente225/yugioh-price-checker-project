@@ -31,7 +31,7 @@ async () =>{
           return data
           },{
             refetchOnWindowFocus:false
-          } ,[]);
+          });
           
 if(isLoading){
   return <div className='Loading-API-Text'>Loading...</div>
@@ -42,7 +42,6 @@ if(error){
 
 
 async function addToCart(e, name, price, cartId, userId){
-  
       await fetch('https://shy-rose-apron.cyclic.cloud/cart/add', {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
@@ -59,7 +58,7 @@ async function addToCart(e, name, price, cartId, userId){
           }
           //console.log("added 1 successfully")
           //location.reload(); 
-          refetch();
+          refetch(["Yugioh Cart Data"])
           return response.json();
         }).catch(error => {
           console.error(error);
@@ -79,11 +78,11 @@ async function subtractFromCart(e, cartId, userId) {
             }else{
                 //console.log("successfully reduced quantity by 1")
                 //location.reload();
-                refetch();
+                refetch(["Yugioh Cart Data"])
                 return response.json();
             }
         }).catch(error => {
-          console.error(error);
+          console.error("ERROR IN SUBTRACTING",error);
         });
   }
 
@@ -104,7 +103,7 @@ async function deleteFromCart(e, card_name, cartId, userId) {
                 }else{
                     //console.log("successfully deleted item")
                     //location.reload();
-                    refetch();
+                    refetch(["Yugioh Cart Data"])
                     return response.json();
                 }          
         }).catch(error => {
@@ -124,7 +123,7 @@ async function deleteFromCart(e, card_name, cartId, userId) {
 function ListItems() {
 
 let cardList = data[0];
-console.log("rendering list")
+//console.log("rendering list")
 //console.log("cardList: ",cardList)
 //console.log("data: ",data)
     if(cardList != undefined){
