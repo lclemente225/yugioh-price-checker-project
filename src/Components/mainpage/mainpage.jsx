@@ -184,9 +184,18 @@ export default function MainPage({LogIn, isLoggedIn, givenUserId}){
                 textAlign:"center",
                 margin: 0,
                 padding: 0,
-                animation: 'marquee 10s linear infinite',
+                overflow: 'hidden',
+                whiteSpace: 'nowrap',
                 }}>
-            Sorry, the cart isn't working at the moment. The API is at its limit and I am working on a backup plan.
+              <div style={{
+                backgroundColor: "var(--secondary-color)", 
+                textAlign:"center",
+                margin: 0,
+                padding: 0,
+                animation: 'marquee 20s linear infinite',
+                }}>
+              Sorry, the cart isn't working at the moment. The API is at its limit and I am working on a backup plan.
+              </div>
           </div>
             <NavBar LogIn={LogIn} isLoggedIn={isLoggedIn}/>
             <div className="main--page-container">
