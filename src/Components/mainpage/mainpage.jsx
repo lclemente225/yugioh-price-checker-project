@@ -18,7 +18,9 @@ import {Pagination as SearchPagination} from '../searchpagination/searchPaginati
         "coolstuffinc_price":"0.49"}
     
         ['desc'], ['card_sets'], ['set_code'],['set_rarity'],['set_rarity_code'], ['set_price']
+
         */
+const firstAPISite = import.meta.env.API_SITE_1;
 
 export default function MainPage({LogIn, isLoggedIn, givenUserId}){
   const [searchTerm, setSearchTerm] = useState("");
@@ -59,7 +61,7 @@ export default function MainPage({LogIn, isLoggedIn, givenUserId}){
     e.preventDefault();
     try{
          //console.log(`name, price, id:${index},  event:${e}`)
-      const response = await fetch('https://shy-rose-apron.cyclic.cloud/cart/add', {
+      const response = await fetch(`${firstAPISite}/cart/add`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({  
@@ -85,7 +87,7 @@ export default function MainPage({LogIn, isLoggedIn, givenUserId}){
           
             setTimeout(() => {
               showCart(false)
-            }, 3000);
+            }, 1500);
         
       }catch (error) {
           console.error(error);
@@ -99,7 +101,7 @@ export default function MainPage({LogIn, isLoggedIn, givenUserId}){
     
     e.preventDefault();
     try{
-      const response = await fetch(`https://shy-rose-apron.cyclic.cloud/cart/updateSubtractItem`, {
+      const response = await fetch(`${firstAPISite}/cart/updateSubtractItem`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ 
@@ -121,7 +123,7 @@ export default function MainPage({LogIn, isLoggedIn, givenUserId}){
 
           setTimeout(() => {
                 showCart(false)
-              }, 3000);
+              }, 1500);
             throw new Error('Failed to reduce item from cart');
           }else{
 
@@ -135,7 +137,7 @@ export default function MainPage({LogIn, isLoggedIn, givenUserId}){
 
           setTimeout(() => {
                 showCart(false)
-              }, 3000);
+              }, 1500);
         
             //console.log("successfully reduced quantity by 1")
           }
@@ -177,6 +179,15 @@ export default function MainPage({LogIn, isLoggedIn, givenUserId}){
 
     return (
         <div className='page-container'>
+          <div style={{
+                backgroundColor: "var(--secondary-color)", 
+                textAlign:"center",
+                margin: 0,
+                padding: 0,
+                animation: 'marquee 10s linear infinite',
+                }}>
+            Sorry, the cart isn't working at the moment. The API is at its limit and I am working on a backup plan.
+          </div>
             <NavBar LogIn={LogIn} isLoggedIn={isLoggedIn}/>
             <div className="main--page-container">
                 <div className="main--page-search ">

@@ -21,17 +21,18 @@ let test = JSON.parse(localStorage.getItem("myCountryInfo"));
 // retrieving localStorage data in HTML
 document.getElementById("content").innerHTML = test.country;
  */
+
+const firstAPISite = import.meta.env.API_SITE_1;
+
 const Shoplist = ({givenUserId}) => {
 
 
 const { isLoading, error, data, refetch } = useQuery('Yugioh Cart Data', 
 async () =>{
-      let response =  await fetch('https://shy-rose-apron.cyclic.cloud/cart/list');
+      let response =  await fetch(`${firstAPISite}/cart/list`);
       let data = await response.json();   
           return data
-          },{
-            refetchOnWindowFocus: true
-          });
+          },{refetchOnWindowFocus: false},[]);
           
 if(isLoading){
   return <div className='Loading-API-Text'>Loading...</div>
@@ -41,8 +42,8 @@ if(error){
 }
 
 
-async function addToCart(e, name, price, cartId, userId){
-      await fetch('https://shy-rose-apron.cyclic.cloud/cart/add', {
+async function addToCartinCart(e, name, price, cartId, userId){
+      await fetch(`${firstAPISite}/cart/add`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({  "card_name": name, 
@@ -58,7 +59,7 @@ async function addToCart(e, name, price, cartId, userId){
           }
           //console.log("added 1 successfully")
           //location.reload(); 
-          refetch(["Yugioh Cart Data"])
+          setTimeout(refetch(["Yugioh Cart Data"]),1000)
           return response.json();
         }).catch(error => {
           console.error(error);
@@ -66,8 +67,8 @@ async function addToCart(e, name, price, cartId, userId){
    }
 
 
-async function subtractFromCart(e, cartId, userId) {
-    await fetch(`https://shy-rose-apron.cyclic.cloud/cart/updateSubtractItem`, {
+async function subtractFromCartinCart(e, cartId, userId) {
+    await fetch(`${firstAPISite}/cart/updateSubtractItem`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ "cartId": cartId, "userId": userId })
@@ -78,7 +79,7 @@ async function subtractFromCart(e, cartId, userId) {
             }else{
                 //console.log("successfully reduced quantity by 1")
                 //location.reload();
-                refetch(["Yugioh Cart Data"])
+                setTimeout(refetch(["Yugioh Cart Data"]),1000)
                 return response.json();
             }
         }).catch(error => {
@@ -87,8 +88,8 @@ async function subtractFromCart(e, cartId, userId) {
   }
 
 
-async function deleteFromCart(e, card_name, cartId, userId) {
-  await fetch(`https://shy-rose-apron.cyclic.cloud/cart/deleteItem`, {
+async function deleteFromCartinCart(e, card_name, cartId, userId) {
+  await fetch(`${firstAPISite}/cart/deleteItem`, {
         method: 'DELETE',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ 
@@ -103,7 +104,7 @@ async function deleteFromCart(e, card_name, cartId, userId) {
                 }else{
                     //console.log("successfully deleted item")
                     //location.reload();
-                    refetch(["Yugioh Cart Data"])
+                    setTimeout(refetch(["Yugioh Cart Data"]),1000)
                     return response.json();
                 }          
         }).catch(error => {
@@ -144,21 +145,21 @@ let cardList = data[0];
                 <button 
                     className='cartUpdateButton cartUpdateAdd'
                     onClick={(event) => { 
-                                      addToCart(event, item.card_name, item.price, item.cartId, givenUserId) 
+                                      addToCartinCart(event, item.card_name, item.price, item.cartId, givenUserId) 
                                     }}>
                       +</button>
                     &nbsp;
                     <button 
                     className='cartUpdateButton cartUpdateSubtract'
                     onClick={(event) => { 
-                                      subtractFromCart(event, item.cartId, givenUserId) 
+                                      subtractFromCartinCart(event, item.cartId, givenUserId) 
                                       }}> 
                       - </button>
                     &nbsp;
                     <button 
                     className='cartUpdateButton cartUpdateDelete'
                     onClick={(event) => {
-                                      deleteFromCart(event, item.card_name, item.cartId, givenUserId)
+                                      deleteFromCartinCart(event, item.card_name, item.cartId, givenUserId)
                                       }}> 
                         <FontAwesomeIcon icon={faTrash} />
                     </button>
