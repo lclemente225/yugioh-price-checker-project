@@ -181,20 +181,26 @@ export default function MainPage({LogIn, isLoggedIn, givenUserId}){
         <div className='page-container'>
           <div style={{
                 backgroundColor: "var(--secondary-color)", 
-                textAlign:"center",
-                margin: 0,
-                padding: 0,
-                overflow: 'hidden',
+                overflow:'hidden',
                 whiteSpace: 'nowrap',
                 }}>
               <div style={{
-                backgroundColor: "var(--secondary-color)", 
-                textAlign:"center",
+                display: 'inline-block',
+                width:'45%',
                 margin: 0,
-                padding: 0,
+                padding: '5px',
                 animation: 'marquee 20s linear infinite',
                 }}>
-              Sorry, the cart isn't working at the moment. The API is at its limit and I am working on a backup plan.
+              <span>Sorry, the cart isn't working at the moment. The API is at its limit and I am working on a backup plan.</span>
+              </div>
+              <div style={{
+                display: 'inline-block',
+                width: '45%',
+                marginLeft: '90%',
+                padding: '5px',
+                animation: 'marquee 20s linear infinite',
+                }}>
+              <span>Sorry, the cart isn't working at the moment. The API is at its limit and I am working on a backup plan.</span>
               </div>
           </div>
             <NavBar LogIn={LogIn} isLoggedIn={isLoggedIn}/>
