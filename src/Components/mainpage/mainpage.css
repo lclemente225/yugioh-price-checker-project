@@ -30,10 +30,10 @@
     justify-content: center;
     align-items: center;
     background-color: var(--tertiary-color);
-    background: url("/assets/blue-wires-bg.jpg");
+    background: url("/assets/stacked-peaks-haikei.svg");
     background-repeat: no-repeat;
     background-size: cover;
-    background-position-y: -450px;
+    background-position-y: -150px;
 }
 
 .main--page-search{
@@ -185,6 +185,7 @@
  .vite-logo-footer{
      width: 15px;
  }
+ /*marquee for error banner*/
  @keyframes marquee{
     0% {
         transform: translateX(100%);
