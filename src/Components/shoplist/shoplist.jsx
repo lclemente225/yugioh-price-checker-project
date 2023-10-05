@@ -29,7 +29,7 @@ const Shoplist = ({givenUserId}) => {
 
 const { isLoading, error, data, refetch } = useQuery('Yugioh Cart Data', 
 async () =>{
-      let response =  await fetch(`/.netlify/functions/functions/cart/list`);
+      let response =  await fetch(`${firstAPISite}/cart/list`);
       let data = await response.json();   
           return data
           },{refetchOnWindowFocus: false},[]);
