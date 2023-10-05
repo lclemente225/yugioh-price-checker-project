@@ -29,7 +29,7 @@ router.use(
                 await next();
                 req.db.release();
             } catch (err) {
-            // If anything downstream throw an error, we must release the connection allocated for the request
+            // If anything downstream throw an error, we must r elease the connection allocated for the request
             
             console.log(err)
             if (req.db) req.db.release();

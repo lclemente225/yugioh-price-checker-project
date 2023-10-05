@@ -69,7 +69,7 @@ async function addToCartinCart(e, name, price, cartId, userId){
 
 
 async function subtractFromCartinCart(e, cartId, userId) {
-    await fetch(`${firstAPISite}/cart/updateSubtractItem`, {
+    await fetch(`/.netlify/functions/functions/cart/updateSubtractItem`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ "cartId": cartId, "userId": userId })
@@ -90,7 +90,7 @@ async function subtractFromCartinCart(e, cartId, userId) {
 
 
 async function deleteFromCartinCart(e, card_name, cartId, userId) {
-  await fetch(`${firstAPISite}/cart/deleteItem`, {
+  await fetch(`/.netlify/functions/functions/cart/deleteItem`, {
         method: 'DELETE',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ 
