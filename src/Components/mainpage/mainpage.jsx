@@ -87,7 +87,7 @@ export default function MainPage({LogIn, isLoggedIn, givenUserId}){
           
             setTimeout(() => {
               showCart(false)
-            }, 1500);
+            }, 1200);
         
       }catch (error) {
           console.error(error);
@@ -123,7 +123,7 @@ export default function MainPage({LogIn, isLoggedIn, givenUserId}){
 
           setTimeout(() => {
                 showCart(false)
-              }, 1500);
+              }, 1200);
             throw new Error('Failed to reduce item from cart');
           }else{
 
@@ -247,10 +247,12 @@ export default function MainPage({LogIn, isLoggedIn, givenUserId}){
                       currentPage={currentPage}                 
                       />}
             </div>
-              {isCartShowing && 
-              <div className='add-or-sub-popup'>
-                {cardQuantityChangeResult.action} {cardQuantityChangeResult.quantity} {cardQuantityChangeResult.addCardName}
-            </div>}
+              {
+                isCartShowing && 
+                <div className='add-or-sub-popup'>
+                    {cardQuantityChangeResult.action} {cardQuantityChangeResult.quantity} {cardQuantityChangeResult.addCardName}
+                </div>
+              }
             <div id="homepage-footer">
               <HomepageFooter/>
             </div>

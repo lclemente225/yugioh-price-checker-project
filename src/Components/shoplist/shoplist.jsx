@@ -125,7 +125,7 @@ function ListItems() {
 
 let cardList = data[0];
 //console.log("rendering list")
-//console.log("cardList: ",cardList)
+console.log("cardList: ",cardList)
 //console.log("data: ",data)
     if(cardList != undefined){
         return cardList.map((item) => {
