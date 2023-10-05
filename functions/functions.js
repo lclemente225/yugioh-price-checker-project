@@ -3,13 +3,15 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const app = express();
 
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
 const allowedOrigins = [
     'https://main--ygo-pricechecker.netlify.app', 
     'http://localhost:5173', 
     'https://ygo-pricechecker.netlify.app'
   ];
+
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+
 const corsOptions = {
     origin: function (origin, callback) {
                 if (allowedOrigins.includes(origin) || !origin) {
@@ -24,7 +26,7 @@ const corsOptions = {
 app.use(cors(corsOptions));
 
 
-const cartFunctions = require("./cart-functions/cart-functions");
+const cartFunctions = require("./cart-functions");
 
 app.use("/cart", cartFunctions);
 

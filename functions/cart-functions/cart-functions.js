@@ -1,10 +1,8 @@
 
-import serverless from 'serverless-http';
-import express, {Router} from 'express';
+import {Router} from 'express';
 
 
 const mysql = require('mysql2/promise');
-const app = express();
 const router = Router();
 
 //sql setup
@@ -16,7 +14,7 @@ const pool = mysql.createPool({
 });
 
 
-app.use(
+router.use(
     async function mysqlConnection(req, res, next) {
             try {
                 req.db = await pool.getConnection();
