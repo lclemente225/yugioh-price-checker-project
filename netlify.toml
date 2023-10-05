@@ -1,8 +1,11 @@
 
-[[functions]]
-path = "functions/functions.js"
+[functions]
 external_node_modules = ["express"]
 node_bundler = "esbuild"
+
+[[functions]]
+path = "functions/functions.js"
+
 
 [[redirects]]
   from = "/shoppinglist"
