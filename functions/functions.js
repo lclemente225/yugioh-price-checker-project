@@ -1,9 +1,6 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-const dotenv = require('dotenv');
 const cors = require('cors');
-const jwt = require('jsonwebtoken');
-const bcrypt = require('bcryptjs');
 const app = express();
 
 app.use(bodyParser.json());

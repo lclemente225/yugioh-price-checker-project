@@ -4,7 +4,6 @@ import express, {Router} from 'express';
 
 
 const mysql = require('mysql2/promise');
-const express = require('express');
 const app = express();
 const router = Router();
 
@@ -17,7 +16,7 @@ const pool = mysql.createPool({
 });
 
 
-router.use(
+app.use(
     async function mysqlConnection(req, res, next) {
             try {
                 req.db = await pool.getConnection();
