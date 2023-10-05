@@ -26,7 +26,7 @@ const corsOptions = {
 app.use(cors(corsOptions));
 
 
-const cartFunctions = require("./cart-functions");
+const cartFunctions = require("./cart-functions/cart-functions");
 
 app.use("/cart", cartFunctions);
 
