@@ -22,7 +22,7 @@ let test = JSON.parse(localStorage.getItem("myCountryInfo"));
 document.getElementById("content").innerHTML = test.country;
  */
 
-const firstAPISite = import.meta.env.API_SITE_1;
+const firstAPISite = import.meta.env.API_SITE_2;
 
 const Shoplist = ({givenUserId}) => {
 
