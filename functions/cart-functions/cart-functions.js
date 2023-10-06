@@ -1,5 +1,5 @@
 
-const {Router} = require('express');
+import {Router} from 'express';
 
 
 const mysql = require('mysql2/promise');
