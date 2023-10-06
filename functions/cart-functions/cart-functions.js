@@ -1,5 +1,5 @@
 
-const Router = require('express');
+const {Router} = require('express');
 
 
 const mysql = require('mysql2/promise');
@@ -12,11 +12,6 @@ const pool = mysql.createPool({
     password: process.env.DATABASE_PW,
     database: process.env.DATABASE_USER
 });
-
-router.get('/dude', (req, res) => {
-    console.log("works")
-    return res.send("inner route is working")
-})
 
 router.use(
     async function mysqlConnection(req, res, next) {
@@ -45,6 +40,12 @@ router.use(
             }
     }
 );
+
+
+router.get('/dude', (req, res) => {
+    console.log("works")
+    return res.send("inner route is working")
+})
 
 
 // "/.netlify/functions/cart-functions/"
