@@ -23,4 +23,4 @@ const cartFunctions = require("./cart-functions/cart-functions");
 app.use("/cart", cartFunctions);
 app.use('/.netlify/functions/functions', router); 
 
-module.exports.handler = serverless(app);
+export const handler = serverless(app);
