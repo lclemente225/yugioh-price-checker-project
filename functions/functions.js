@@ -4,9 +4,9 @@ const cors = require('cors');
 const app = express();
 
 const allowedOrigins = [
-    'https://main--ygo-pricechecker.netlify.app', 
-    'http://localhost:5173', 
-    'https://ygo-pricechecker.netlify.app'
+        'https://main--ygo-pricechecker.netlify.app', 
+        'http://localhost:5173', 
+        'https://ygo-pricechecker.netlify.app'
   ];
 
 app.use(bodyParser.json());
@@ -28,9 +28,7 @@ app.use(cors(corsOptions));
 // https://ygo-pricechecker.netlify.app/.netlify/functions/functions/dude
 app.get('/dude', (req, res) => {
     console.log("works")
-    return res.json({
-        message: "This is workjing"
-    })
+    return res.send("This is workjing")
 })
 
 const cartFunctions = require("./cart-functions/cart-functions");
