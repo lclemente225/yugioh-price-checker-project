@@ -1,5 +1,5 @@
 [build]
-  functions = "functions"
+  functions = "functions/functions.js"
 
 [functions]
 external_node_modules = ["express"]
