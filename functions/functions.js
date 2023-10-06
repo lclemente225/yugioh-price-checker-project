@@ -1,4 +1,4 @@
-const serverless from 'serverless-http';
+const serverless = require('serverless-http');
 
 const express = require('express');
 const bodyParser = require('body-parser');
