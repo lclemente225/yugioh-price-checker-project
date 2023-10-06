@@ -1,4 +1,4 @@
-import serverless from 'serverless-http';
+const serverless from 'serverless-http';
 
 const express = require('express');
 const bodyParser = require('body-parser');
@@ -23,4 +23,4 @@ const cartFunctions = require("/.netlify/functions/cart-functions/cart-functions
 app.use("/cart", cartFunctions);
 app.use('/.netlify/functions/functions', router); 
 
-export const handler = serverless(app);
+module.exports.handler = serverless(app);
