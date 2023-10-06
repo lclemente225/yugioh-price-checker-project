@@ -18,7 +18,7 @@ router.get('/dude', (req, res) => {
     return res.send("This is workjing")
 })
 
-const cartFunctions = require("/.netlify/functions/cart-functions/cart-functions");
+const cartFunctions = require("./cart-functions/cart-functions");
 
 app.use("/cart", cartFunctions);
 app.use('/.netlify/functions/functions', router); 
