@@ -25,6 +25,9 @@ const corsOptions = {
 // Use the CORS middleware with the specified options
 app.use(cors(corsOptions));
 
+app.get('/dude', (req, res) => {
+    return res.send('dude')
+})
 
 const cartFunctions = require("./cart-functions/cart-functions");
 
