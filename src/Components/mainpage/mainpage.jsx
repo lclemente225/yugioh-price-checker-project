@@ -61,7 +61,7 @@ export default function MainPage({LogIn, isLoggedIn, givenUserId}){
     e.preventDefault();
     try{
          //console.log(`name, price, id:${index},  event:${e}`)
-      const response = await fetch(`${firstAPISite}/cart/add`, {
+      const response = await fetch(`/.netlify/functions/functions/cart/add`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({  
@@ -101,7 +101,7 @@ export default function MainPage({LogIn, isLoggedIn, givenUserId}){
     
     e.preventDefault();
     try{
-      const response = await fetch(`${firstAPISite}/cart/updateSubtractItem`, {
+      const response = await fetch(`/.netlify/functions/functions/cart/updateSubtractItem`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ 
