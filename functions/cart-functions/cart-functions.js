@@ -1,6 +1,6 @@
 
 import {Router} from 'express';
-
+import {handler} from '../functions'
 
 const mysql = require('mysql2/promise');
 const router = Router();
@@ -220,4 +220,5 @@ router.get('/dude', (req, res) => {
          } 
  })
 
-export default router;
+export {router};
+export {handler};
