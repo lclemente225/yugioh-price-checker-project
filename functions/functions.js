@@ -35,5 +35,6 @@ app.get('/dude', (req, res) => {
 const cartFunctions = require("./cart-functions/cart-functions");
 
 app.use("/cart", cartFunctions);
+app.use('/.functions/functions/', router);
 
 export const handler = serverless(app);
