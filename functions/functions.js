@@ -27,7 +27,9 @@ app.use(cors(corsOptions));
 
 // https://ygo-pricechecker.netlify.app/.netlify/functions/functions/dude
 app.get('/dude', (req, res) => {
-    return res.send(<h1>dude</h1>)
+    return res.json({
+        message: "This is workjing"
+    })
 })
 
 const cartFunctions = require("./cart-functions/cart-functions");
