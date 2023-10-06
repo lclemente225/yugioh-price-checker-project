@@ -14,7 +14,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 
 // https://ygo-pricechecker.netlify.app/.netlify/functions/functions/dude
-router.get('/dude', (req, res) => {
+app.get('/dude', (req, res) => {
     console.log("works")
     return res.send("This is workjing")
 })
