@@ -1,5 +1,6 @@
-const serverless = require('serverless-http');
+import cartFunctions from "./cart-functions/cart-functions.js";
 
+const serverless = require('serverless-http');
 const express = require('express');
 const bodyParser = require('body-parser');
 const app = express();
@@ -18,7 +19,6 @@ router.get('/dude', (req, res) => {
     return res.send("This is workjing")
 })
 
-const cartFunctions = require("./cart-functions/cart-functions.js");
 
 app.use("/cart", cartFunctions);
 app.use('/.netlify/functions/functions', router); 
