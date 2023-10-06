@@ -13,6 +13,10 @@ const pool = mysql.createPool({
     database: process.env.DATABASE_USER
 });
 
+router.get('/dude', (req, res) => {
+    console.log("works")
+    return res.send("inner route is working")
+})
 
 router.use(
     async function mysqlConnection(req, res, next) {
