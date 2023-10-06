@@ -25,8 +25,9 @@ const corsOptions = {
 // Use the CORS middleware with the specified options
 app.use(cors(corsOptions));
 
+// https://ygo-pricechecker.netlify.app/.netlify/functions/functions/dude
 app.get('/dude', (req, res) => {
-    return res.send('dude')
+    return res.send(<h1>dude</h1>)
 })
 
 const cartFunctions = require("./cart-functions/cart-functions");
