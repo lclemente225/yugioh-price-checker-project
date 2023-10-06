@@ -1,8 +1,9 @@
 
-import {Router} from 'express';
+
+const express = require('express');
 
 const mysql = require('mysql2/promise');
-const router = Router();
+const router = express.Router();
 
 //sql setup
 const pool = mysql.createPool({
