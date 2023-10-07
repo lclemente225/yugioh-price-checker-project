@@ -179,7 +179,7 @@ export default function MainPage({LogIn, isLoggedIn, givenUserId}){
 
     return (
         <div className='page-container'>
-          <div style={{
+        {/*   <div style={{
                 backgroundColor: "var(--secondary-color)", 
                 overflow:'hidden',
                 whiteSpace: 'nowrap',
@@ -202,7 +202,7 @@ export default function MainPage({LogIn, isLoggedIn, givenUserId}){
                 }}>
               <span>Sorry, the cart isn't working at the moment. The API is at its limit and I am working on a backup plan.</span>
               </div>
-          </div>
+          </div> */}
             <NavBar LogIn={LogIn} isLoggedIn={isLoggedIn}/>
             <div className="main--page-container">
                 <div className="main--page-search ">
