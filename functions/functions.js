@@ -1,4 +1,5 @@
-import {router as cartFunctions} from "./cart-functions/cart-functions.js";
+import {router as cartFunctions} from "./cart-functions/cart-functions";
+import (router as loginFunctions) from "./login-functions/login-functions";
 
 const serverless = require('serverless-http');
 const express = require('express');
