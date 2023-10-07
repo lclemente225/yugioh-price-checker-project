@@ -25,7 +25,6 @@ document.getElementById("content").innerHTML = test.country;
 
 const Shoplist = ({givenUserId}) => {
 
-
 const firstAPISite = process.env.API_SITE_2;
 const { isLoading, error, data, refetch } = useQuery('Yugioh Cart Data', 
 async () =>{
@@ -44,7 +43,7 @@ if(error){
 
 
 async function addToCartinCart(e, name, price, cartId, userId){
-      await fetch(`${firstAPISite}/cart/add`, {
+      await fetch(`/.netlify/functions/functions/cart/add`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({  "card_name": name, 
