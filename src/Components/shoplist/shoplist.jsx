@@ -22,11 +22,11 @@ let test = JSON.parse(localStorage.getItem("myCountryInfo"));
 document.getElementById("content").innerHTML = test.country;
  */
 
-const firstAPISite = process.env.API_SITE_2;
 
 const Shoplist = ({givenUserId}) => {
 
 
+const firstAPISite = process.env.API_SITE_2;
 const { isLoading, error, data, refetch } = useQuery('Yugioh Cart Data', 
 async () =>{
       let response =  await fetch(`/.netlify/functions/functions/cart/list`);
