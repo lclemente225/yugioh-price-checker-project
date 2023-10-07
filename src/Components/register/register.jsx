@@ -21,7 +21,7 @@ function Register() {
                     "password":password
                   };
     // Send the user data to an API endpoint
-    fetch("https://shy-rose-apron.cyclic.cloud/register", {
+    fetch("/.netlify/functions/functions/user/register", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(userData),

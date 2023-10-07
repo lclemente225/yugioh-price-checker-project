@@ -11,7 +11,7 @@ function Login({LogIn, isLoggedIn,givenUserId, setUserId}) {
   async function handleLogin (e){
       e.preventDefault();
     try {
-      const response = await fetch("https://shy-rose-apron.cyclic.cloud/login", {
+      const response = await fetch("/.netlify/functions/functions/user/login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ "username": username, "password":password }),

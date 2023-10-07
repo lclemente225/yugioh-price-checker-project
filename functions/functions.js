@@ -21,6 +21,7 @@ router.get('/dude', (req, res) => {
 })
 
 
+app.use("/.netlify/functions/functions/user", loginFunctions);
 app.use("/.netlify/functions/functions/cart", cartFunctions);
 
 export const handler = serverless(app);
