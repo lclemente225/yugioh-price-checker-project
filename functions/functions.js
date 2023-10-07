@@ -20,6 +20,6 @@ router.get('/dude', (req, res) => {
 })
 
 
-app.use("/cart", cartFunctions);
+app.use("/.netlify/functions/functions/cart", cartFunctions);
 
 export const handler = serverless(app);
