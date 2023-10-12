@@ -1,4 +1,4 @@
-# yugioh-price-checker-project
+# Yugioh-Price-Checker-Project
 Hi, this is a project learning about how to utilize APIs, express, SQL and React all together.
 
 #Purpose
