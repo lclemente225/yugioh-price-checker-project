@@ -13,4 +13,9 @@ Yugioh has been an impactful recreational activity for me. A large part of the e
 
 # Concerns
 1. I know that the API that I obtained all the card and price info isn't actively updated. For now, I am content with this because the main purpose of this project was to learn full-stack web development. The API provided data for the search results.
-2. The website might look at bit sketchy. I'm not a designer, but im trying to make changes to it to make it look more towards the theme I'm going for. 
+2. The website might look at bit sketchy. I'm not a designer, but im trying to make changes to it to make it look more towards the theme I'm going for.
+
+# Contact Me
+Let me know any ways to improve my code. I'm still learning everything, so I'd gladly take code reviews. 
+LawrenceClemente3@gmail.com
+
