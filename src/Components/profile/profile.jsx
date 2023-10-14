@@ -1,20 +1,50 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { Link } from "react-router-dom";
+import './profile.css';
+
 
 const Profile = () => {
-    //edit email
-    //delete profile
-    //change password
+  const [selectedProfileForm, selectProfileForm] = useState({})
+
+    function ProfileNavbar(){
+      return (
+        <div className="profile-nav--top">
+          <nav className="profile-navbar">  
+              <a className="navbar-brand" href="/">
+                <h1>
+                Not Kaiba Corp
+                </h1>
+              </a>
+          </nav>
+        </div>
+      )
+    }
+
   return (
     <div>
-      <div className="login-redirect-home">
-        <Link to="/">
-          <p>Home</p>
-        </Link>
-      </div>
-      <h1 style={{marginTop: '200px'}}>
-        You are a cool cat
-      </h1>
+        <ProfileNavbar/>
+        <div className="profile-body">
+          <div>
+              <h1 className='profile-title'>Profile Settings</h1>
+          </div>
+              <div className='profile-navigation'>
+                  <div>
+                      <h3>Edit Email</h3>
+                  </div>
+                  <div>
+                      <h3>Edit Username</h3>
+                  </div>
+                  <div>
+                      <h3>Edit Password</h3>
+                  </div>
+                  <div>
+                    <h3>Delete Account</h3>
+                  </div>
+              </div>
+            <form className='profile-form'>
+                
+            </form>
+        </div>
     </div>
   )
 }
