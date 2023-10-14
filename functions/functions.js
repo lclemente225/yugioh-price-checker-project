@@ -1,5 +1,6 @@
 import {router as cartFunctions} from "./cart-functions/cart-functions";
 import {router as loginFunctions} from "./login-functions/login-functions";
+import {router as profileFunctions} from "./profile-functions/profile-functions"
 
 const serverless = require('serverless-http');
 const express = require('express');
@@ -23,5 +24,6 @@ router.get('/dude', (req, res) => {
 
 app.use("/.netlify/functions/functions/user", loginFunctions);
 app.use("/.netlify/functions/functions/cart", cartFunctions);
+app.use("/.netlify/functions/functions/profile", profileFunctions);
 
 export const handler = serverless(app);
