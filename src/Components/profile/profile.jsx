@@ -1,10 +1,12 @@
 import React, {useState} from 'react';
 import { Link } from "react-router-dom";
 import './profile.css';
+import {EditUser, EditEmail, EditPW} from "./profile-components";
 
 
 const Profile = () => {
-  const [selectedProfileForm, selectProfileForm] = useState({})
+  const [selectedProfileForm, selectProfileForm] = useState({});
+  const [profileForm, handleProfileForm] = useState({});
 
     function ProfileNavbar(){
       return (
@@ -42,7 +44,7 @@ const Profile = () => {
                   </div>
               </div>
             <form className='profile-form'>
-                
+                <EditUser/>
             </form>
         </div>
     </div>

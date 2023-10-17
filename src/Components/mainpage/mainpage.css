@@ -38,7 +38,7 @@
 
 .main--page-search{
     padding:20px 0;
-    height: 20vh;
+    height: 22vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -263,6 +263,7 @@
   @media screen and (max-width: 650px) {
     .main--page-search{
         width: 100%;
+        height: 27vh;
     }
     .main--page-search-form{
         width: 100%;
