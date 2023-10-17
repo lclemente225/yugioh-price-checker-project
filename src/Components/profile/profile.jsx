@@ -6,7 +6,7 @@ import {EditUser, EditEmail, EditPW} from "./profile-components";
 
 const Profile = () => {
   const [selectedProfileForm, selectProfileForm] = useState({});
-  const [profileFormData, handleProfileForm] = useState({
+  const [profileFormData, setProfileFormData] = useState({
     username: "",
     newUserName: "",
     email: "",
@@ -15,6 +15,15 @@ const Profile = () => {
     newPassword: ""
   });
 
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+    setProfileFormData((prevFormData) => ({ ...prevFormData, [name]: value }));
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    //fetch put
+};
     function ProfileNavbar(){
       return (
         <div className="profile-nav--top">
@@ -50,8 +59,8 @@ const Profile = () => {
                     <h3>Delete Account</h3>
                   </div>
               </div>
-            <form className='profile-form'>
-                <EditUser profileFormData={profileFormData}/>
+            <form className='profile-form' onSubmit={handleSubmit}>
+                <EditUser profileFormData={profileFormData} handleChange={handleChange}/>
             </form>
         </div>
     </div>
