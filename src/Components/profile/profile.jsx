@@ -6,7 +6,14 @@ import {EditUser, EditEmail, EditPW} from "./profile-components";
 
 const Profile = () => {
   const [selectedProfileForm, selectProfileForm] = useState({});
-  const [profileForm, handleProfileForm] = useState({});
+  const [profileFormData, handleProfileForm] = useState({
+    username: "",
+    newUserName: "",
+    email: "",
+    newEmail: "",
+    password: "",
+    newPassword: ""
+  });
 
     function ProfileNavbar(){
       return (
@@ -44,7 +51,7 @@ const Profile = () => {
                   </div>
               </div>
             <form className='profile-form'>
-                <EditUser/>
+                <EditUser profileFormData={profileFormData}/>
             </form>
         </div>
     </div>

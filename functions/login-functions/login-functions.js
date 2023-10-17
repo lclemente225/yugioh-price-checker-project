@@ -43,7 +43,7 @@ router.use(
 );
 
 //put end points here
-router.post('/register', async (req, res) => {wwwwwwwwwwwwww
+router.post('/register', async (req, res) => {
 
     const checkEmail = await req.db.query(
         `SELECT email FROM yugioh_price_checker_users  
@@ -132,7 +132,7 @@ router.post('/login', async (req, res) => {
         const userId = userInfo[0][0].userId;
         const token = jwt.sign({id}, "jwtsecretkey", {expiresIn: 300})
         
-        return res.json({Login:true, "accessToken":token, "email":email, "userId":userId}).redirect('/')
+        return res.json({Login:true, "accessToken":token, "email":email, "userId":userId}).redirect('https://ygo-pricechecker.netlify.app/')
     }else{
         return res.status(401).json({message:"Wrong user or PASSWORD"})
     }
