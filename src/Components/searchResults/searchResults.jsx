@@ -54,7 +54,7 @@ function FilterSearchCards(){
   const list = [];    
 
   if(dataArray != undefined && searchTerm != "" ){ 
-    for(let x = 0; x<dataArray.length; x++){
+    for(let x = 0; x < dataArray.length; x++){
             let testArray = dataArray[x];
 
             //clean JSON data using regex
@@ -77,11 +77,16 @@ function FilterSearchCards(){
       }else{
         
         return (
-          <> <img src="./assets/pegasus-image-portrait-removebg.png" alt="millenium eye" 
+          <> 
+            <img src="./assets/pegasus-image-portrait-removebg.png" alt="millenium eye" 
                   className='millenium-eye-image'/> 
-          <h1 key="NoFindText" className='no-search-results'>
-            Type in the search box to see my wares... Yugi Boy
-          </h1>
+            <div className='no-search-results'>
+                  <h2>[Pegasus]</h2>
+                  <h1 key="NoFindText">
+                    Type in the search box to see my wares... Yugi Boy
+                  </h1>
+            </div>
+          
           
          
           </>
