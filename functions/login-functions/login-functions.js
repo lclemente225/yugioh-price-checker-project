@@ -132,8 +132,7 @@ router.post('/login', async (req, res) => {
         const userId = userInfo[0][0].userId;
         const token = jwt.sign({id}, "jwtsecretkey", {expiresIn: 300})
         
-        res.json({Login:true, "accessToken":token, "email":email, "userId":userId})
-        return res.redirect('/')
+        return res.json({Login:true, "accessToken":token, "email":email, "userId":userId}).redirect(200, '/')
     }else{
         return res.status(401).json({message:"Wrong user or PASSWORD"})
     }
