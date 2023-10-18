@@ -43,9 +43,30 @@ const Profile = () => {
       )
     }
 
+    function DeleteConfirm(){
+      return (
+        <div className='delete-confirm-module'>
+          <div className='delete-confirmation'>
+            <div id="delete-modal-close" onClick={() => toggleDeleteAccountConfirm(false)}>
+              X
+            </div>
+            <div>
+              <h1>
+                Are you sure?
+              </h1>
+            </div>
+            <div className='delete-account-button'>
+              Delete Account
+            </div>
+          </div>
+        </div>
+      )
+    }
+
   return (
     <div>
         <ProfileNavbar/>
+        {deleteAccountConfirm && <DeleteConfirm/>}
         <div className="profile-body">
           <div className='profile-welcome-title'>
               <h1>Hello User!</h1>
@@ -66,7 +87,7 @@ const Profile = () => {
                 className={`${selectedProfileForm.editPassword && 'selectedProfile'} profile-selection`}>
                   <h3>Edit Password</h3>
               </div>
-              <div className='profile-selection'>
+              <div className='profile-selection' onClick={() => toggleDeleteAccountConfirm(true)}>
                 <h3>Delete Account</h3>
               </div>
           </div>
