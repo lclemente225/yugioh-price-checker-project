@@ -47,7 +47,7 @@ const Profile = () => {
   return (
     <div>
         <ProfileNavbar/>
-        {deleteAccountConfirm && <DeleteConfirm/>}
+        {deleteAccountConfirm && <DeleteConfirm toggleDeleteAccountConfirm={toggleDeleteAccountConfirm}/>}
         <div className="profile-body">
           <div className='profile-welcome-title'>
               <h1>Hello User!</h1>
