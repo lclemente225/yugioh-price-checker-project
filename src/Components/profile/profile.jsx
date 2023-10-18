@@ -32,7 +32,8 @@ const Profile = () => {
     email: "",
     newEmail: "",
     password: "",
-    newPassword: ""
+    newPassword: "",
+    passwordConfirm:""
   });
 
   const handleChange = (event) => {
@@ -43,7 +44,7 @@ const Profile = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
     /*
-    body in fetch req
+    body in fetch put req
     {
       username: profileFormData.username,
       newUserName: profileFormData.newUserName,
@@ -59,13 +60,13 @@ const Profile = () => {
   return (
     <div>
         <ProfileNavbar/>
-        {deleteAccountConfirm && <DeleteConfirm toggleDeleteAccountConfirm={toggleDeleteAccountConfirm}/>}
+        {deleteAccountConfirm && <DeleteConfirm toggleDeleteAccountConfirm={toggleDeleteAccountConfirm} profileFormData={profileFormData} handleChange={handleChange}/>}
         <div className="profile-body">
           <div className='profile-welcome-title'>
               <h1>Hello User!</h1>
           </div>
           <div className='profile-title'>
-              <h1>Profile Settings</h1>
+              <h1 style={{fontSize: "1.3rem"}}>Profile Settings</h1>
           </div>
           <div className='profile-navigation'>
               <div onClick={() => selectProfileForm(() => ({profileInfo: true, editEmail: false, editUser: false, editPassword: false}))}
