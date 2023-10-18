@@ -5,7 +5,12 @@ import {EditUser, EditEmail, EditPW} from "./profile-components";
 
 
 const Profile = () => {
-  const [selectedProfileForm, selectProfileForm] = useState({});
+  const [selectedProfileForm, selectProfileForm] = useState({
+    editEmail: false,
+    editUser: true,
+    editPassword: false
+  });
+  const [deleteAccountConfirm, toggleDeleteAccountConfirm] = useState(false);
   const [profileFormData, setProfileFormData] = useState({
     username: "",
     newUserName: "",
@@ -23,7 +28,7 @@ const Profile = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
     //fetch put
-};
+  };
     function ProfileNavbar(){
       return (
         <div className="profile-nav--top">
@@ -42,26 +47,34 @@ const Profile = () => {
     <div>
         <ProfileNavbar/>
         <div className="profile-body">
-          <div>
-              <h1 className='profile-title'>Profile Settings</h1>
+          <div className='profile-welcome-title'>
+              <h1>Hello User!</h1>
           </div>
-              <div className='profile-navigation'>
-                  <div>
-                      <h3>Edit Email</h3>
-                  </div>
-                  <div>
-                      <h3>Edit Username</h3>
-                  </div>
-                  <div>
-                      <h3>Edit Password</h3>
-                  </div>
-                  <div>
-                    <h3>Delete Account</h3>
-                  </div>
+          <div className='profile-title'>
+              <h1>Profile Settings</h1>
+          </div>
+          <div className='profile-navigation'>
+              <div onClick={() => selectProfileForm(() => ({editEmail: true, editUser: false, editPassword: false}))}
+                className={`${selectedProfileForm.editEmail && 'selectedProfile'} profile-selection`}>
+                  <h3>Edit Email</h3>
               </div>
-            <form className='profile-form' onSubmit={handleSubmit}>
-                <EditUser profileFormData={profileFormData} handleChange={handleChange}/>
-            </form>
+              <div onClick={() => selectProfileForm(() => ({editEmail: false, editUser: true, editPassword: false}))}
+                className={`${selectedProfileForm.editUser && 'selectedProfile'} profile-selection`}>
+                  <h3>Edit Username</h3>
+              </div>
+              <div onClick={() => selectProfileForm(() => ({editEmail: false, editUser: false, editPassword: true}))}
+                className={`${selectedProfileForm.editPassword && 'selectedProfile'} profile-selection`}>
+                  <h3>Edit Password</h3>
+              </div>
+              <div className='profile-selection'>
+                <h3>Delete Account</h3>
+              </div>
+          </div>
+          <form className='profile-form' onSubmit={handleSubmit}>
+              {selectedProfileForm.editUser && <EditUser profileFormData={profileFormData} handleChange={handleChange}/>}
+              {selectedProfileForm.editEmail && <EditEmail profileFormData={profileFormData} handleChange={handleChange}/>}
+              {selectedProfileForm.editPassword && <EditPW profileFormData={profileFormData} handleChange={handleChange}/>}
+          </form>
         </div>
     </div>
   )

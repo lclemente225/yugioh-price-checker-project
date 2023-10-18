@@ -11,6 +11,8 @@
     display: flex;
     align-items: center;
     padding-left: 2vw;
+    box-shadow: 0 15px 15px black;
+    z-index: 1000 !important;
 }
 .profile-body{
     position: relative;
@@ -20,20 +22,46 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    border: 2px solid red;
+    justify-content: center;
+}
+.profile-welcome-title{
+    position: absolute;
+    width: 100%;
+    text-align: center;
+    top: 5vh;
 }
 .profile-title{
-    justify-self: flex-start;
-    border: 2px solid red;
+    font-size: 12px !important;
+    margin: -5vh 0 5vh;
 }
 .profile-form{
-    justify-self: center;
-    border: 2px solid red;
+    width: 25%;
+    height: 20vh;
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
+}
+.profile-form-input{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+.profile-form-input input{
+    justify-self: flex-end;
+    width: 60%;
 }
 .profile-navigation{
     position: absolute;
-    top: 5vh;
+    top: 15vh;
     left: 2vw;
+}
+.profile-selection{
+    cursor: pointer;
+}
+.profile-selection:hover{
+    text-shadow: 0 0 2px var(--primary-color);
+}
+.selectedProfile{
+    color: var(--primary-color);
+    text-shadow: 0 0 2px black;
 }
