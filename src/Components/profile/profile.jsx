@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import { Link } from "react-router-dom";
 import './profile.css';
-import {EditUser, EditEmail, EditPW} from "./profile-components";
+import {EditUser, EditEmail, EditPW, DeleteConfirm} from "./profile-components";
 
 
 const Profile = () => {
@@ -43,25 +43,6 @@ const Profile = () => {
       )
     }
 
-    function DeleteConfirm(){
-      return (
-        <div className='delete-confirm-module'>
-          <div className='delete-confirmation'>
-            <div id="delete-modal-close" onClick={() => toggleDeleteAccountConfirm(false)}>
-              X
-            </div>
-            <div>
-              <h1>
-                Are you sure?
-              </h1>
-            </div>
-            <div className='delete-account-button'>
-              Delete Account
-            </div>
-          </div>
-        </div>
-      )
-    }
 
   return (
     <div>
