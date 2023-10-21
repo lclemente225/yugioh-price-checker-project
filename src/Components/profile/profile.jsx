@@ -60,7 +60,9 @@ let editUserfn = async () => {
 
 let editEmailfn = async () => {
   await axios.put('/.netlify/functions/functions/profile/update-email',
-    profileFormData, 
+    {email:profileFormData.email,
+      newEmail: profileFormData.newEmail,
+    password: profileFormData.password}, 
     {
       headers:{
         'Content-Type': 'application/json'
