@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import axios from 'axios';
 import './profile.css';
 import {EditUser, EditEmail, EditPW, DeleteConfirm, ProfileInfo} from "./profile-components";
-
+const axios = require('axios');
 
 function ProfileNavbar(){
   return (
@@ -20,6 +20,7 @@ function ProfileNavbar(){
 }
 
 const Profile = () => {
+
   const userId = JSON.parse(localStorage.getItem("Login UserId"));
   const [selectedProfileForm, selectProfileForm] = useState({
     editEmail: false,
@@ -44,13 +45,12 @@ const Profile = () => {
 
   
 let editUserfn = async () => {
-  await fetch('/.netlify/functions/functions/profile/update-user',
+  await axios.put('/.netlify/functions/functions/profile/update-user',
+    profileFormData, 
     {
-      method: "PUT",
       headers:{
         'Content-Type': 'application/json'
-      },
-      body: profileFormData
+      }
     }).then((res) => {
       console.log("Successfully Edited Username")
     }).catch((error) => {
@@ -59,18 +59,17 @@ let editUserfn = async () => {
 }
 
 let editEmailfn = async () => {
-  await fetch('/.netlify/functions/functions/profile/update-email',
-  {
-    method: "PUT",
-    headers:{
-      'Content-Type': 'application/json'
-    },
-    body: profileFormData
-  }).then((res) => {
-    console.log("Successfully Edited Email")
-  }).catch((error) => {
-    console.log("Error Editing Email:", error) 
-  })
+  await axios.put('/.netlify/functions/functions/profile/update-email',
+    profileFormData, 
+    {
+      headers:{
+        'Content-Type': 'application/json'
+      }
+    }).then((res) => {
+      console.log("Successfully Edited Email");
+    }).catch((error) => {
+      console.log("Error Editing Email:", error) 
+    })
 }
 
   async function getInfo(userId){

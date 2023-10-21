@@ -31,6 +31,7 @@ function deleteProfileSubmit(e){
   e.preventDefault();
   if(profileFormData.password === profileFormData.passwordConfirm){
     alert("Deleted Account")
+    //redirect to home 
   }else{
     alert("Passwords don't match")
   }
