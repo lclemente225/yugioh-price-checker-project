@@ -40,7 +40,7 @@ router.use(
     }
 );
 
-router.get(`/user/:userId`, async(req,res) => {
+router.get(`/:userId`, async(req,res) => {
     //get userId from front end
 
     //use userId to obtain username and email info

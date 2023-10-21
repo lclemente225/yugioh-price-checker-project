@@ -6,23 +6,23 @@ const ProfileInfo = () => {
     username: "Yugi Mutou"
   })
 
+  const userId = localStorage.getItem("Login UserId");
   
-  async function getInfo(){
+  async function getInfo(userId){
     
-    const userId = localStorage.getItem("Login UserId");
 
     try{
-      const fetchInfo = await fetch(`/.netlify/functions/functions/profile/user/${userId}`,{
-        method: "GET",
-        headers: {"Content-Type": "application/json"}
-      })
+        const fetchInfo = await fetch(`/.netlify/functions/functions/profile/${userId}`,{
+          method: "GET",
+          headers: {"Content-Type": "application/json"}
+        })
 
-      const profileInfo = await fetchInfo.json();
+        const profileInfo = await fetchInfo.json();
 
-      setUserInfo({
-        email: profileInfo.email,
-        username: profileInfo.username
-      })
+        setUserInfo({
+          email: profileInfo.email,
+          username: profileInfo.username
+        })
       
     }catch(error){
       console.log("no user detected")
@@ -30,7 +30,7 @@ const ProfileInfo = () => {
 }
 
   useEffect(() => {
-    getInfo();
+    getInfo(userId);
     () => {
       console.log("stoppewd effect")
     }
