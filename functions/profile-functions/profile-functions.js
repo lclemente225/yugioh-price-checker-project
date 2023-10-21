@@ -40,22 +40,6 @@ router.use(
     }
 );
 
-router.get(`/:userId`, async(req,res) => {
-
-  let profileInfo = await req.db.query(
-        `SELECT email, username FROM yugioh_price_checker_users 
-        WHERE userId = :userId `, 
-        {userId: req.params.userId} 
-      );
-  const profileEmail = profileInfo[0][0].email;
-  const profileUser = profileInfo[0][0].username;
-
-  return res.status(200).json({
-    "email": profileEmail,
-    "username": profileUser
-  })
-})
-
 //takes email, newUserName, username, password
 router.put('/update-user', async(req,res) => {
   const insertedNewUsername = req.body.newUserName;
@@ -218,5 +202,23 @@ router.delete('/delete', async(req, res) => {
       }
 
 })
+
+
+router.get(`/:userId`, async(req,res) => {
+
+  let profileInfo = await req.db.query(
+        `SELECT email, username FROM yugioh_price_checker_users 
+        WHERE userId = :userId `, 
+        {userId: req.params.userId} 
+      );
+  const profileEmail = profileInfo[0][0].email;
+  const profileUser = profileInfo[0][0].username;
+
+  return res.status(200).json({
+    "email": profileEmail,
+    "username": profileUser
+  })
+})
+
  
 export {router}
