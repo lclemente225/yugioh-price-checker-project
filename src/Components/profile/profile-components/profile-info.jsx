@@ -6,7 +6,7 @@ const ProfileInfo = () => {
     username: "Yugi Mutou"
   })
 
-  const userId = localStorage.getItem("Login UserId");
+  const userId = JSON.parse(localStorage.getItem("Login UserId"));
   console.log(userId)
   async function getInfo(userId){
     
