@@ -120,7 +120,7 @@ let editEmailfn = async () => {
         {deleteAccountConfirm && <DeleteConfirm toggleDeleteAccountConfirm={toggleDeleteAccountConfirm} profileFormData={profileFormData} handleChange={handleChange}/>}
         <div className="profile-body">
           <div className='profile-welcome-title'>
-              <h1>Hello User!</h1>
+              <h1>Hello {UserInfo.username}</h1>
           </div>
           <div className='profile-title'>
               <h1 style={{fontSize: "1.3rem"}}>Profile Settings</h1>
