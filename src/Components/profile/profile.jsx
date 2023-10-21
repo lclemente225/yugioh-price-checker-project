@@ -127,12 +127,12 @@ const Profile = () => {
               </div>
           </div>
             {selectedProfileForm.profileInfo && <ProfileInfo />}
-          <form className='profile-form' onSubmit={() => handleSubmit()}>
+          <form className='profile-form' onSubmit={handleSubmit}>
               {selectedProfileForm.editUser && <EditUser profileFormData={profileFormData} handleChange={handleChange}/>}
               {selectedProfileForm.editEmail && <EditEmail profileFormData={profileFormData} handleChange={handleChange}/>}
               {selectedProfileForm.editPassword && <EditPW profileFormData={profileFormData} handleChange={handleChange}/>}
               
-            {<button type="submit" form="edit-user-form" value="Submit">
+            {<button type="submit" form="edit-profile-form" value="Submit">
               {selectedProfileForm.editUser && 'Edit User'}
               {selectedProfileForm.editEmail && 'Edit Email'}
               {selectedProfileForm.editPassword && 'Change Password'}
