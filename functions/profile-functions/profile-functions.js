@@ -88,14 +88,6 @@ router.put('/update-email', async(req,res) => {
     const infoCheck = await req.db.query(
       `SELECT email FROM yugioh_price_checker_users`
         );
-
-    infoCheck[0].forEach((emails) => {
-        console.log("this is emails:",emails)
-        if(emails.email === insertedNewEmail){
-          return res.status(500).json({error: "This email is already in use."})
-        }
-    })
-    
     const passwordCheck = await req.db.query(
       `SELECT password, email FROM yugioh_price_checker_users 
       WHERE email = :email AND username = :username`, 
@@ -105,7 +97,14 @@ router.put('/update-email', async(req,res) => {
       });
     const hashPW = passwordCheck[0][0].password; 
     const matchPassword = await bcrypt.compare(req.body.password, hashPW);
-
+    
+    infoCheck[0].forEach((emails) => {
+        console.log("this is emails:",emails)
+        if(emails.email === insertedNewEmail){
+          return res.status(500).json({error: "This email is already in use."})
+        }
+    })
+    
     if(matchPassword){
           await req.db.query(
                 `UPDATE yugioh_price_checker_users 

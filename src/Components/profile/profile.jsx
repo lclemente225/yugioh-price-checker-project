@@ -105,9 +105,11 @@ let editEmailfn = async () => {
     console.log("submitting")
     try{
     if(selectedProfileForm.editUser){
-       return editUserfn()
+       editUserfn()
+       return console.log("submit edit user")
       }else if(selectedProfileForm.editEmail){
-         return editEmailfn()
+        editEmailfn()
+        return console.log("submit edit email")
         }else{
           return alert("nothing to submit");
         }
