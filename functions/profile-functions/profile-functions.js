@@ -73,7 +73,6 @@ router.put('/update-user', async(req,res) => {
               }
         ); 
 
-      console.log('user changed to ', insertedNewUsername)
          return res.json({message:"username changed"})
     }else{
       return res.status(500).json({ 
@@ -97,9 +96,9 @@ router.put('/update-email', async(req,res) => {
       });
     const hashPW = passwordCheck[0][0].password; 
     const matchPassword = await bcrypt.compare(req.body.password, hashPW);
-    
+
     infoCheck[0].forEach((emails) => {
-        console.log("this is emails:",emails)
+        //console.log("this is emails:",emails)
         if(emails.email === insertedNewEmail){
           return res.status(500).json({error: "This email is already in use."})
         }
@@ -146,7 +145,7 @@ router.put('/update-pw', async(req,res) => {
 //hash new pw and replace it in db
   if(matchPassword){
         let hashedNewPassword = await bcrypt.hash(req.body.newPassword, salt);
-        const selectedProfile = await req.db.query(
+        await req.db.query(
               `UPDATE yugioh_price_checker_users 
               SET password = :newPassword
               WHERE email = :email`,
@@ -156,7 +155,6 @@ router.put('/update-pw', async(req,res) => {
               }
             ); 
 
-          console.log('PASSWORD CHANGED SUCCESS')
           return res.status(200).json({message: "changed password successful"})
 
     }else{
