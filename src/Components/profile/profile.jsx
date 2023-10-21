@@ -5,7 +5,6 @@ import './profile.css';
 import {EditUser, EditEmail, EditPW, DeleteConfirm, ProfileInfo} from "./profile-components";
 
 
-
 function ProfileNavbar(){
   return (
     <div className="profile-nav--top">
@@ -52,8 +51,7 @@ let editUserfn = async () => {
         'Content-Type': 'application/json'
       }
     }).then((res) => {
-      console.log("Response Data:", res.data);
-      console.log("profileFormData:", profileFormData);
+      console.log("Successfully Edited Username")
     })
 }
 
@@ -65,8 +63,7 @@ let editEmailfn = async () => {
         'Content-Type': 'application/json'
       }
     }).then((res) => {
-      console.log("Response Data:", res.data);
-      console.log("profileFormData:", profileFormData);
+      console.log("Successfully Edited Email");
     })
 }
 
@@ -91,7 +88,7 @@ let editEmailfn = async () => {
     () => {
       return console.log("dunzo")
     }
-}, []);
+  }, []);
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -103,9 +100,9 @@ let editEmailfn = async () => {
     console.log("submitting")
     try{
     if(selectedProfileForm.editUser){
-       return editUserfn
+       return editUserfn()
       }else if(selectedProfileForm.editEmail){
-         return editEmailfn
+         return editEmailfn()
         }else{
           return alert("nothing to submit");
         }
