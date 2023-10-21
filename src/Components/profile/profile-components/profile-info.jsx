@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 
 const ProfileInfo = () => {
   const [UserInfo, setUserInfo] = useState({
@@ -6,29 +6,35 @@ const ProfileInfo = () => {
     username: "Yugi Mutou"
   })
 
-
+  
   async function getInfo(){
     
-  const userId = localStorage.getItem("Login UserId");
+    const userId = localStorage.getItem("Login UserId");
 
-  try{
-    const fetchInfo = await fetch(`/.netlify/functions/functions/user/${userId}`,{
-      method: "GET",
-      headers: {"Content-Type": "application/json"}
-    })
+    try{
+      const fetchInfo = await fetch(`/.netlify/functions/functions/user/${userId}`,{
+        method: "GET",
+        headers: {"Content-Type": "application/json"}
+      })
 
-    const profileInfo = await fetchInfo.json();
+      const profileInfo = await fetchInfo.json();
 
-    setUserInfo({
-      email: profileInfo.email,
-      username: profileInfo.username
-    })
-    
-  }catch(error){
-    console.log("no user detected")
-  }
+      setUserInfo({
+        email: profileInfo.email,
+        username: profileInfo.username
+      })
+      
+    }catch(error){
+      console.log("no user detected")
+    }
+}
 
-  }
+  useEffect(() => {
+    getInfo();
+    () => {
+      console.log("stoppewd effect")
+    }
+  }, [])
 
   return (
     <div style={{
