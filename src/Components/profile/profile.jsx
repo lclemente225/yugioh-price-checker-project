@@ -79,11 +79,13 @@ let editEmailfn = async () => {
   }
   React.useEffect(() => {
     const profileInfo = getInfo(userId);
-    setUserInfo((obj) => ({...obj, username: profileInfo.username}));
-    console.log("finished loading userinfo");
-  () => {
-    return console.log("dunzo")
-  }
+    if(profileInfo){
+      setUserInfo({email: profileInfo.email, username: profileInfo.username});
+      console.log("finished loading userinfo");
+    () => {
+      return console.log("dunzo")
+    }
+    }
 }, []);
 
   const handleChange = (event) => {
