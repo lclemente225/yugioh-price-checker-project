@@ -7,27 +7,27 @@ const ProfileInfo = () => {
   })
 
   const userId = JSON.parse(localStorage.getItem("Login UserId"));
-  
+
   async function getInfo(userId){
     
 
     try{
-        const fetchInfo = await fetch(`/.netlify/functions/functions/profile/${userId}`,{
-          method: "GET",
-          headers: {"Content-Type": "application/json"}
-        })
+          const fetchInfo = await fetch(`/.netlify/functions/functions/profile/${userId}`,{
+            method: "GET",
+            headers: {"Content-Type": "application/json"}
+          })
 
-        const profileInfo = await fetchInfo.json();
+          const profileInfo = await fetchInfo.json();
 
-        setUserInfo({
-          email: profileInfo.email,
-          username: profileInfo.username
-        })
+          setUserInfo({
+            email: profileInfo.email,
+            username: profileInfo.username
+          })
       
     }catch(error){
-      console.log("no user detected")
+        console.log("no user detected")
     }
-}
+  }
 
   useEffect(() => {
     getInfo(userId);

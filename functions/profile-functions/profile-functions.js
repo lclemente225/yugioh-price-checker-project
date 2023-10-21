@@ -52,7 +52,7 @@ router.get(`/:userId`, async(req,res) => {
   const profileEmail = profileInfo[0][0].email;
   const profileUser = profileInfo[0][0].username;
 
-  return res.json({
+  return res.status(200).json({
     "email": profileEmail,
     "username": profileUser
   })
