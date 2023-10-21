@@ -99,6 +99,7 @@ let editEmailfn = async () => {
   };
 
   const handleSubmit = (event) => {
+    event.preventDefault();
     console.log("submitting")
     try{
     if(selectedProfileForm.editUser){
