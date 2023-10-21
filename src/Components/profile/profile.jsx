@@ -5,27 +5,6 @@ import './profile.css';
 import {EditUser, EditEmail, EditPW, DeleteConfirm, ProfileInfo} from "./profile-components";
 
 
-let editUserfn = async () => {
-  await axios.put('/.netlify/functions/functions/profile/update-user',
-    {
-    profileFormData
-    }, 
-    {
-      headers:{
-        'Content-Type': 'application/json'
-      }
-    })
-}
-
-let editEmailfn = async () => {
-  await axios.put('/.netlify/functions/functions/profile/update-email',
-    profileFormData, 
-    {
-      headers:{
-        'Content-Type': 'application/json'
-      }
-    })
-}
 
 function ProfileNavbar(){
   return (
@@ -58,6 +37,47 @@ const Profile = () => {
     newPassword: "",
     passwordConfirm:""
   });
+  const [UserInfo, setUserInfo] = useState({
+    email: "No email Set", 
+    username: "Yugi Mutou"
+  })
+
+  
+let editUserfn = async () => {
+  await axios.put('/.netlify/functions/functions/profile/update-user',
+    profileFormData, 
+    {
+      headers:{
+        'Content-Type': 'application/json'
+      }
+    })
+}
+
+let editEmailfn = async () => {
+  await axios.put('/.netlify/functions/functions/profile/update-email',
+    profileFormData, 
+    {
+      headers:{
+        'Content-Type': 'application/json'
+      }
+    })
+}
+
+  async function getInfo(userId){
+
+    try{
+          const fetchInfo = await fetch(`/.netlify/functions/functions/profile/${userId}`,{
+            method: "GET",
+            headers: {"Content-Type": "application/json"}
+          })
+          let profileInfo = fetchInfo.json();
+          setUserInfo((obj) => ({...obj, username: profileInfo.username}))
+          return await fetchInfo.json();
+
+    }catch(error){
+        console.log("no user detected")
+    }
+  }
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -67,8 +87,13 @@ const Profile = () => {
   const handleSubmit = (event) => {
     console.log("submitting")
     try{
-    if(selectedProfileForm.editUser) return editUserfn
-    if(selectedProfileForm.editEmail) return editEmailfn
+    if(selectedProfileForm.editUser){
+       return editUserfn
+      }else if(selectedProfileForm.editEmail){
+         return editEmailfn
+        }else{
+          return alert("nothing to submit");
+        }
   }catch(error){
     console.log("Error:", error)
   }
@@ -124,7 +149,7 @@ const Profile = () => {
                 <h3>Delete Account</h3>
               </div>
           </div>
-            {selectedProfileForm.profileInfo && <ProfileInfo />}
+            {selectedProfileForm.profileInfo && <ProfileInfo getInfo={getInfo} UserInfo={UserInfo} setUserInfo={setUserInfo} />}
           <form className='profile-form' onSubmit={handleSubmit}>
               {selectedProfileForm.editUser && <EditUser profileFormData={profileFormData} handleChange={handleChange}/>}
               {selectedProfileForm.editEmail && <EditEmail profileFormData={profileFormData} handleChange={handleChange}/>}

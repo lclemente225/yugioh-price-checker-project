@@ -1,36 +1,18 @@
 import React, {useState, useEffect} from 'react'
 
-const ProfileInfo = () => {
-  const [UserInfo, setUserInfo] = useState({
-    email: "No email Set", 
-    username: "Yugi Mutou"
-  })
+const ProfileInfo = ({getInfo, UserInfo, setUserInfo}) => {
 
   const userId = JSON.parse(localStorage.getItem("Login UserId"));
 
-  async function getInfo(userId){
-    
-
-    try{
-          const fetchInfo = await fetch(`/.netlify/functions/functions/profile/${userId}`,{
-            method: "GET",
-            headers: {"Content-Type": "application/json"}
-          })
-
-          const profileInfo = await fetchInfo.json();
-
-          setUserInfo({
-            email: profileInfo.email,
-            username: profileInfo.username
-          })
-      
-    }catch(error){
-        console.log("no user detected")
-    }
-  }
+ 
 
   useEffect(() => {
-    getInfo(userId);
+    const profileInfo = getInfo(userId); 
+    setUserInfo({
+      email: profileInfo.email,
+      username: profileInfo.username
+    });
+
     () => {
       console.log("stoppewd effect")
     }
