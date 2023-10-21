@@ -1,6 +1,19 @@
-import React from 'react'
+import React from 'react';
+import axios from 'axios';
+
 
 const EditUsername = ({profileFormData, handleChange}) => {
+
+  axios.put('/.netlify/functions/functions/profile/update-user',
+      {
+      profileFormData
+      }, 
+      {
+        headers:{
+          'Content-Type': 'application/json'
+        }
+      })
+
   return (
     <>
       <div className='profile-form-input'>
