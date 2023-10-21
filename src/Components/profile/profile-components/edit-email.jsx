@@ -17,6 +17,10 @@ const EditEmail = ({profileFormData, handleChange}) => {
         <label for="edit-name">Password:</label>
         <input type="text" onChange={handleChange} className="password" name="password" value={profileFormData.password}/>
       </div>
+       
+      <button type="submit" form="edit-user-form" value="Submit">
+        Edit Email
+      </button>
     </>
   )
 }

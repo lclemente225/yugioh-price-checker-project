@@ -1,8 +1,33 @@
 import React, {useState} from 'react';
 import { Link } from "react-router-dom";
+import axios from 'axios';
 import './profile.css';
 import {EditUser, EditEmail, EditPW, DeleteConfirm, ProfileInfo} from "./profile-components";
 
+
+let editUserfn = async () => {
+  await axios.put('/.netlify/functions/functions/profile/update-user',
+    {
+    profileFormData
+    }, 
+    {
+      headers:{
+        'Content-Type': 'application/json'
+      }
+    })
+}
+
+let editEmailfn = async () => {
+  await axios.put('/.netlify/functions/functions/profile/update-email',
+    {
+    profileFormData
+    }, 
+    {
+      headers:{
+        'Content-Type': 'application/json'
+      }
+    })
+}
 
 function ProfileNavbar(){
   return (
@@ -43,6 +68,8 @@ const Profile = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    if(selectedProfileForm.editUser) return editUserfn
+    if(selectedProfileForm.editEmail) return editEmailfn
     /*
     body in fetch put req
     {
@@ -55,6 +82,7 @@ const Profile = () => {
     }
     */
     //fetch put
+    //if editUser then execute this function
   };
 
   return (

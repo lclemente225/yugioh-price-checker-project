@@ -1,18 +1,9 @@
 import React from 'react';
-import axios from 'axios';
 
 
 const EditUsername = ({profileFormData, handleChange}) => {
 
-  axios.put('/.netlify/functions/functions/profile/update-user',
-      {
-      profileFormData
-      }, 
-      {
-        headers:{
-          'Content-Type': 'application/json'
-        }
-      })
+    
 
   return (
     <>
@@ -35,6 +26,9 @@ const EditUsername = ({profileFormData, handleChange}) => {
         <label for="edit-name">Password:</label>
         <input type="text" onChange={handleChange} className="password" name="password" value={profileFormData.password}/>
       </div>  
+      <button type="submit" form="edit-user-form" value="Submit">
+        Edit User
+      </button>
     </>
   )
 }
