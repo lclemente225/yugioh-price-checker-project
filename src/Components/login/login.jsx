@@ -26,7 +26,7 @@ function Login({LogIn, isLoggedIn,givenUserId, setUserId}) {
         localStorage.setItem("Login Status", JSON.stringify(true));
         localStorage.setItem("Login Email", JSON.stringify(loginData.email));
         localStorage.setItem("Login UserId", JSON.stringify(loginData.userId));
-       // localStorage.setItem("token", JSON.stringify(loginData.accessToken));
+        localStorage.setItem("token", JSON.stringify(loginData.accessToken));
         navigate('/');
         console.log("Login successful! Showing Login Data", 
          loginData.Login,

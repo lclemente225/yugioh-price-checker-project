@@ -5,11 +5,12 @@ export default function Navbar() {
     
     let loginStatus = JSON.parse(localStorage.getItem("Login Status"));
 
-    function handleClick(){
+    function handleLogOut(){
       localStorage.removeItem("Login Email");
       localStorage.removeItem("Login UserId");
-      localStorage.setItem("Login Status", false)
-      useNavigate('/');
+      localStorage.removeItem("token");
+      localStorage.setItem("Login Status", false);
+      useNavigate('/login');
     }
 
     function Logout(){
@@ -17,7 +18,7 @@ export default function Navbar() {
       return (
         <>
         <div className="navbar-button">
-          <Link to="/" onClick={handleClick}>
+          <Link to="/" onClick={handleLogOut}>
              <p>
               Log Out 
              </p>

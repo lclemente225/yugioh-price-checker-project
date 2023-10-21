@@ -1,6 +1,35 @@
-import React from 'react'
+import React, {useState} from 'react'
 
 const ProfileInfo = () => {
+  const [UserInfo, setUserInfo] = useState({
+    email: "No email Set", 
+    username: "Yugi Mutou"
+  })
+
+
+  async function getInfo(){
+    
+  const userId = localStorage.getItem("Login UserId");
+
+  try{
+    const fetchInfo = await fetch(`/.netlify/functions/functions/user/${userId}`,{
+      method: "GET",
+      headers: {"Content-Type": "application/json"}
+    })
+
+    const profileInfo = await fetchInfo.json();
+
+    setUserInfo({
+      email: profileInfo.email,
+      username: profileInfo.username
+    })
+    
+  }catch(error){
+    console.log("no user detected")
+  }
+
+  }
+
   return (
     <div style={{
         height: "150px", 
@@ -9,11 +38,11 @@ const ProfileInfo = () => {
         justifyContent: "space-between"
         }}>
       <div className='profile-form-input'>
-        <h2>Username: User</h2>
+        <h2>Username: {UserInfo.username}</h2>
       </div>
 
       <div className='profile-form-input'>
-        <h2>Email: Email</h2>
+        <h2>Email: {UserInfo.email}</h2>
       </div>
     </div>
   )
