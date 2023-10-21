@@ -26,7 +26,7 @@ document.getElementById("content").innerHTML = test.country;
 const Shoplist = ({givenUserId}) => {
 
 const firstAPISite = process.env.API_SITE_2;
-const { isLoading, error, data, refetch } = useQuery('Yugioh Cart Data', 
+const { isLoading, error, data, refetch, isStale } = useQuery('Yugioh Cart Data', 
       async () =>{
                 let response =  await fetch(`/.netlify/functions/functions/cart/list`);
                 let data = await response.json();   
@@ -42,9 +42,9 @@ if(isLoading){
   return <div className='Loading-API-Text'>Loading...</div>
 }
 if(error){
-  console.log("SOMETHING WENT WRONG LOADING CART", error)
+  return <div className='Loading-API-Text'>Something went wrong loading cart...</div>
 }
-
+if(isStale) refetch(["Yugioh Cart Data"]);
 
 async function addToCartinCart(e, name, price, cartId, userId){
       await fetch(`/.netlify/functions/functions/cart/add`, {
