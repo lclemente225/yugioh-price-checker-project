@@ -7,7 +7,7 @@ const ProfileInfo = () => {
   })
 
   const userId = localStorage.getItem("Login UserId");
-  
+  console.log(userId)
   async function getInfo(userId){
     
 
