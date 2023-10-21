@@ -85,7 +85,7 @@ let editEmailfn = async () => {
     () => {
       return console.log("dunzo")
     }
-}, [UserInfo]);
+}, []);
 
   const handleChange = (event) => {
     const { name, value } = event.target;
