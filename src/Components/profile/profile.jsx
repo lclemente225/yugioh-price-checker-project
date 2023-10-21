@@ -67,9 +67,14 @@ const Profile = () => {
   };
 
   const handleSubmit = (event) => {
-    event.preventDefault();
+    console.log("submitting")
+    try{
     if(selectedProfileForm.editUser) return editUserfn
     if(selectedProfileForm.editEmail) return editEmailfn
+  }catch(error){
+    console.log("Error:", error)
+  }
+
     /*
     body in fetch put req
     {
