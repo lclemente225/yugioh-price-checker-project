@@ -11,3 +11,10 @@ node_bundler = "esbuild"
   to = "/"
   status = 404
   force = true
+
+  
+[[redirects]]
+  from = "/profile"
+  to = "/"
+  status = 404
+  force = true
