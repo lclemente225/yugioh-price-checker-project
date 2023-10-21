@@ -51,6 +51,9 @@ let editUserfn = async () => {
       headers:{
         'Content-Type': 'application/json'
       }
+    }).then((res) => {
+      console.log("Response Data:", res.data);
+      console.log("profileFormData:", profileFormData);
     })
 }
 
@@ -61,6 +64,9 @@ let editEmailfn = async () => {
       headers:{
         'Content-Type': 'application/json'
       }
+    }).then((res) => {
+      console.log("Response Data:", res.data);
+      console.log("profileFormData:", profileFormData);
     })
 }
 
