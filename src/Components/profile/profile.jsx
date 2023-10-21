@@ -132,7 +132,8 @@ const Profile = () => {
               {selectedProfileForm.editEmail && <EditEmail profileFormData={profileFormData} handleChange={handleChange}/>}
               {selectedProfileForm.editPassword && <EditPW profileFormData={profileFormData} handleChange={handleChange}/>}
               
-            {<button type="submit" form="edit-profile-form" value="Submit">
+            { !selectedProfileForm.profileInfo &&
+              <button type="submit">
               {selectedProfileForm.editUser && 'Edit User'}
               {selectedProfileForm.editEmail && 'Edit Email'}
               {selectedProfileForm.editPassword && 'Change Password'}
