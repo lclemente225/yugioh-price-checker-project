@@ -1,21 +1,6 @@
 import React, {useState, useEffect} from 'react'
 
-const ProfileInfo = ({getInfo, UserInfo, setUserInfo, userId}) => {
-
-
- 
-
-  useEffect(() => {
-    const profileInfo = getInfo(userId); 
-    setUserInfo({
-      email: profileInfo.email,
-      username: profileInfo.username
-    });
-
-    () => {
-      console.log("stoppewd effect")
-    }
-  }, [])
+const ProfileInfo = ({UserInfo}) => {
 
   return (
     <div style={{

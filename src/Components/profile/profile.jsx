@@ -71,22 +71,21 @@ let editEmailfn = async () => {
             method: "GET",
             headers: {"Content-Type": "application/json"}
           })
-          return await fetchInfo.json();
+          const profileInfo = await fetchInfo.json();
+          
+          setUserInfo({email: profileInfo.email, username: profileInfo.username});
 
     }catch(error){
         console.log("no user detected")
     }
   }
   React.useEffect(() => {
-    const profileInfo = getInfo(userId);
-    if(profileInfo){
-      setUserInfo({email: profileInfo.email, username: profileInfo.username});
+      getInfo(userId);
       console.log("finished loading userinfo");
     () => {
       return console.log("dunzo")
     }
-    }
-}, []);
+}, [UserInfo]);
 
   const handleChange = (event) => {
     const { name, value } = event.target;
