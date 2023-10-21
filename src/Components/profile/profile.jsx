@@ -77,11 +77,14 @@ let editEmailfn = async () => {
         console.log("no user detected")
     }
   }
-  setTimeout(() => {
-    const profileInfo = getInfo(userId)
-    setUserInfo((obj) => ({...obj, username: profileInfo.username}))
-  return console.log("finished loading userinfo")
-}, 1000);
+  React.useEffect(() => {
+    const profileInfo = getInfo(userId);
+    setUserInfo((obj) => ({...obj, username: profileInfo.username}));
+    console.log("finished loading userinfo");
+  () => {
+    return console.log("dunzo")
+  }
+}, []);
 
   const handleChange = (event) => {
     const { name, value } = event.target;
