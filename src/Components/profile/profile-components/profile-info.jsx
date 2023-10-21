@@ -12,7 +12,7 @@ const ProfileInfo = () => {
     const userId = localStorage.getItem("Login UserId");
 
     try{
-      const fetchInfo = await fetch(`/.netlify/functions/functions/user/${userId}`,{
+      const fetchInfo = await fetch(`/.netlify/functions/functions/profile/user/${userId}`,{
         method: "GET",
         headers: {"Content-Type": "application/json"}
       })
