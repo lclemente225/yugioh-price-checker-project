@@ -27,12 +27,16 @@ const Shoplist = ({givenUserId}) => {
 
 const firstAPISite = process.env.API_SITE_2;
 const { isLoading, error, data, refetch } = useQuery('Yugioh Cart Data', 
-async () =>{
-      let response =  await fetch(`/.netlify/functions/functions/cart/list`);
-      let data = await response.json();   
-      console.log("trying to load cart")
-          return data
-          },{refetchOnWindowFocus: false},[]);
+      async () =>{
+                let response =  await fetch(`/.netlify/functions/functions/cart/list`);
+                let data = await response.json();   
+                console.log("trying to load cart")
+                return data
+          },{
+            refetchOnWindowFocus: false,
+            refetchOnReconnect: 'always'
+          },
+          []);
           
 if(isLoading){
   return <div className='Loading-API-Text'>Loading...</div>
@@ -112,14 +116,6 @@ async function deleteFromCartinCart(e, card_name, cartId, userId) {
         });
   }
 
-  function checkJWT(){
-      let jwtToken = localStorage.getItem("token");
-      if(jwtToken){
-          console.log("jwt token is present")
-      }else{
-        console.log("jwt token is absent")
-      }
-  }
 
 function ListItems() {
 

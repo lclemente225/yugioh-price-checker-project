@@ -41,14 +41,12 @@ router.use(
 );
 
 router.get(`/:userId`, async(req,res) => {
-    //get userId from front end
 
-    //use userId to obtain username and email info
-    let profileInfo = await req.db.query(
-      `SELECT email, username FROM yugioh_price_checker_users 
-      WHERE userId = :userId `, 
-      {userId: req.params.userId} 
-  );
+  let profileInfo = await req.db.query(
+        `SELECT email, username FROM yugioh_price_checker_users 
+        WHERE userId = :userId `, 
+        {userId: req.params.userId} 
+      );
   const profileEmail = profileInfo[0][0].email;
   const profileUser = profileInfo[0][0].username;
 
@@ -56,7 +54,6 @@ router.get(`/:userId`, async(req,res) => {
     "email": profileEmail,
     "username": profileUser
   })
-    //return json of username and email
 })
 
 //takes email, newUserName, username, password
