@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import axios from 'axios';
 import './profile.css';
 import {EditUser, EditEmail, EditPW, DeleteConfirm, ProfileInfo} from "./profile-components";
-const axios = require('axios');
+
 
 function ProfileNavbar(){
   return (
