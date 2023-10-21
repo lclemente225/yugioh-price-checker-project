@@ -52,6 +52,8 @@ let editUserfn = async () => {
       }
     }).then((res) => {
       console.log("Successfully Edited Username")
+    }).catch((error) => {
+      console.log("Error Editing USer:", error) 
     })
 }
 
@@ -64,6 +66,8 @@ let editEmailfn = async () => {
       }
     }).then((res) => {
       console.log("Successfully Edited Email");
+    }).catch((error) => {
+      console.log("Error Editing Email:", error) 
     })
 }
 
