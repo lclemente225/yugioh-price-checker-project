@@ -21,6 +21,7 @@ function ProfileNavbar(){
 }
 
 const Profile = () => {
+  const userId = JSON.parse(localStorage.getItem("Login UserId"));
   const [selectedProfileForm, selectProfileForm] = useState({
     editEmail: false,
     editUser: false,
@@ -78,7 +79,7 @@ let editEmailfn = async () => {
         console.log("no user detected")
     }
   }
-  setTimeout(() => getInfo, 1000);
+  setTimeout(() => getInfo(userId), 1000);
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -150,7 +151,7 @@ let editEmailfn = async () => {
                 <h3>Delete Account</h3>
               </div>
           </div>
-            {selectedProfileForm.profileInfo && <ProfileInfo getInfo={getInfo} UserInfo={UserInfo} setUserInfo={setUserInfo} />}
+            {selectedProfileForm.profileInfo && <ProfileInfo userId={userId} getInfo={getInfo} UserInfo={UserInfo} setUserInfo={setUserInfo} />}
           <form className='profile-form' onSubmit={handleSubmit}>
               {selectedProfileForm.editUser && <EditUser profileFormData={profileFormData} handleChange={handleChange}/>}
               {selectedProfileForm.editEmail && <EditEmail profileFormData={profileFormData} handleChange={handleChange}/>}

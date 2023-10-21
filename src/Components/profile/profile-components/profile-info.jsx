@@ -1,8 +1,7 @@
 import React, {useState, useEffect} from 'react'
 
-const ProfileInfo = ({getInfo, UserInfo, setUserInfo}) => {
+const ProfileInfo = ({getInfo, UserInfo, setUserInfo, userId}) => {
 
-  const userId = JSON.parse(localStorage.getItem("Login UserId"));
 
  
 
