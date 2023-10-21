@@ -78,6 +78,7 @@ let editEmailfn = async () => {
         console.log("no user detected")
     }
   }
+  setTimeout(() => getInfo, 1000);
 
   const handleChange = (event) => {
     const { name, value } = event.target;
