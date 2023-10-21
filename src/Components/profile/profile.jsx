@@ -71,15 +71,17 @@ let editEmailfn = async () => {
             method: "GET",
             headers: {"Content-Type": "application/json"}
           })
-          let profileInfo = fetchInfo.json();
-          setUserInfo((obj) => ({...obj, username: profileInfo.username}))
           return await fetchInfo.json();
 
     }catch(error){
         console.log("no user detected")
     }
   }
-  setTimeout(() => getInfo(userId), 1000);
+  setTimeout(() => {
+    const profileInfo = getInfo(userId)
+    setUserInfo((obj) => ({...obj, username: profileInfo.username}))
+  return console.log("finished loading userinfo")
+}, 1000);
 
   const handleChange = (event) => {
     const { name, value } = event.target;
