@@ -7,7 +7,7 @@ const ProfileInfo = () => {
   })
 
   const userId = JSON.parse(localStorage.getItem("Login UserId"));
-  console.log(userId)
+  
   async function getInfo(userId){
     
 
@@ -39,7 +39,7 @@ const ProfileInfo = () => {
   return (
     <div style={{
         height: "150px", 
-        display: "flex",
+        display: "flex",  
         flexDirection: "column",
         justifyContent: "space-between"
         }}>
