@@ -50,7 +50,7 @@ router.get(`/:userId`, async(req,res) => {
       {userId: req.params.userId} 
   );
   const profileEmail = profileInfo[0][0].email;
-  const profileUser = profileInfo[0][0].user;
+  const profileUser = profileInfo[0][0].username;
 
   return res.json({
     "email": profileEmail,
