@@ -44,11 +44,11 @@ const ProfileInfo = () => {
         justifyContent: "space-between"
         }}>
       <div className='profile-form-input'>
-        <h2>Username: {UserInfo.username}</h2>
+        <h2>Your Username: {UserInfo.username}</h2>
       </div>
 
       <div className='profile-form-input'>
-        <h2>Email: {UserInfo.email}</h2>
+        <h2>Your Email: {UserInfo.email}</h2>
       </div>
     </div>
   )
