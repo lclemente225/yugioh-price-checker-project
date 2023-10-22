@@ -86,11 +86,12 @@ let editEmailfn = async () => {
           })
           const profileInfo = await fetchInfo.json();
           setProfileInfo(profileInfo);
+          
+          if(profileInfo) setUserInfo({email: profileInfo.email, username: profileInfo.username});
 
     }catch(error){
         console.log("no user detected")
     }
-    setUserInfo({email: profileInfo.email, username: profileInfo.username});
   }
 
   React.useEffect(() => {
