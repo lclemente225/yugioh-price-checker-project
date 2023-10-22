@@ -45,6 +45,7 @@ const Profile = () => {
 
   
 let editUserfn = async () => {
+  console.log("profile formd ata:", profileFormData)
   await fetch('/.netlify/functions/functions/profile/update-user',
     {
       method:"PUT",
