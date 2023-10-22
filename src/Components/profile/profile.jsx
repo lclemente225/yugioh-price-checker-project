@@ -42,7 +42,6 @@ const Profile = () => {
     email: "No email Set", 
     username: "Yugi Mutou"
   })
-  const [profileInfo, setProfileInfo] = useState({});
 
   
 let editUserfn = async () => {
@@ -85,7 +84,6 @@ let editEmailfn = async () => {
             headers: {"Content-Type": "application/json"}
           })
           const profileInfo = await fetchInfo.json();
-          setProfileInfo(profileInfo);
           
           if(profileInfo) setUserInfo({email: profileInfo.email, username: profileInfo.username});
 
