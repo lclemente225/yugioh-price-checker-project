@@ -52,13 +52,15 @@ function deleteProfileSubmit(e){
               <form id="delete-form" onSubmit={(e) => deleteProfileSubmit(e)}>
                   <h1>Enter your info</h1>
                   <div className='delete-form-input'>
-                    <label htmlFor="email">Email:</label>
-                    <input type="email" onChange={handleChange}  name="email" value={profileFormData.email}/>
+                    <label htmlFor="email">Email:
+                      <input type="email" onChange={handleChange}  name="email" value={profileFormData.email}/>
+                    </label>
                   </div>
 
                   <div className='delete-form-input'>
-                    <label htmlFor="password">Password:</label>
-                    <input type="text" onChange={handleChange}  name="password" value={profileFormData.password}/>
+                    <label htmlFor="password">Password:
+                      <input type="text" onChange={handleChange}  name="password" value={profileFormData.password}/>
+                    </label>
                   </div>
 
                   {/* <div className='delete-form-input'>
@@ -66,8 +68,9 @@ function deleteProfileSubmit(e){
                     <input type="text" onChange={handleChange}  name="password-confirm" value={profileFormData.passwordConfirm}/>
                   </div>  */}
                    <div className='delete-form-input'>
-          <label for="password">Username:</label>
-          <input type="text" onChange={handleChange} className="edit-name" name="username" value={profileFormData.username}/>
+          <label for="password">Username:
+            <input type="text" onChange={handleChange} className="edit-name" name="username" value={profileFormData.username}/>
+          </label>
         </div>
               </form> 
               <button type="submit" form="delete-form" value="Submit">
