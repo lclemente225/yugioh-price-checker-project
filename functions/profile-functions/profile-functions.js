@@ -115,7 +115,7 @@ router.put('/update-email', async(req,res) => {
                 } 
               );
             //console.log('email changed to ', req.body.newEmail)
-          return res.status(500).json({message: "email is successfully changed"})
+          return res.status(200).json({message: "email is successfully changed"})
     }else{
         return res.status(500).json({error: 'Failed to change the email'});
     }
