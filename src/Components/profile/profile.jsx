@@ -85,6 +85,8 @@ let editEmailfn = async () => {
             headers: {"Content-Type": "application/json"}
           })
           setProfileInfo(fetchInfo.json());
+          if(profileInfo) setUserInfo({email: profileInfo.email, username: profileInfo.username});
+          return
 
     }catch(error){
         console.log("no user detected")
@@ -94,9 +96,7 @@ let editEmailfn = async () => {
   }
   React.useEffect(() => {
       getInfo(userId);
-      console.log("finished loading userinfo");
-      if(profileInfo) setUserInfo({email: profileInfo.email, username: profileInfo.username});
-      return console.log("dunzo")
+      return console.log("finished loading userinfo");
   }, []);
 
   const handleChange = (event) => {
