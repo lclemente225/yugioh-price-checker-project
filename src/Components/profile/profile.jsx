@@ -45,12 +45,13 @@ const Profile = () => {
 
   
 let editUserfn = async () => {
-  await axios.put('/.netlify/functions/functions/profile/update-user',
-    profileFormData, 
+  await fetch('/.netlify/functions/functions/profile/update-user',
     {
+      method:"PUT",
       headers:{
         'Content-Type': 'application/json'
-      }
+      },
+      body: profileFormData
     }).then((res) => {
       console.log("Successfully Edited Username")
     }).catch((error) => {
@@ -61,12 +62,13 @@ let editUserfn = async () => {
 let editEmailfn = async () => {
 
   console.log("profile formd ata:", profileFormData)
-  await axios.put('/.netlify/functions/functions/profile/update-email',
-    profileFormData, 
+  await fetch('/.netlify/functions/functions/profile/update-email',
     {
+      method: "PUT",
       headers:{
         'Content-Type': 'application/json'
-      }
+      },
+      body: profileFormData
     }).then((res) => {
       console.log("Successfully Edited Email");
     }).catch((error) => {
