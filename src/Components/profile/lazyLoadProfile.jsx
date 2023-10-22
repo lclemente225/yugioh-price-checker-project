@@ -7,7 +7,7 @@ export default function LazyLoad (path, namedExport) {
             return promise
         } else {
             return promise.then(module => {
-                return { default: module[importName] }
+                return { default: module[namedExport] }
             })
         }
     })
