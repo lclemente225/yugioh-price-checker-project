@@ -86,7 +86,7 @@ let editEmailfn = async () => {
           })
           setProfileInfo(fetchInfo.json());
           if(profileInfo) setUserInfo({email: profileInfo.email, username: profileInfo.username});
-          return
+          
 
     }catch(error){
         console.log("no user detected")
