@@ -85,7 +85,7 @@ let editEmailfn = async () => {
             headers: {"Content-Type": "application/json"}
           })
         setProfileInfo(fetchInfo.json());
-        return console.log("finished setting profileInfo state")
+        return console.log("finished setting profileInfo state", profileInfo)
 
     }catch(error){
         console.log("no user detected")
