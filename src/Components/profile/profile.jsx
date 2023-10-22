@@ -42,6 +42,7 @@ const Profile = () => {
     email: "No email Set", 
     username: "Yugi Mutou"
   })
+  const [profileInfo, setProfileInfo] = useState({})
 
   
 let editUserfn = async () => {
@@ -83,9 +84,7 @@ let editEmailfn = async () => {
             method: "GET",
             headers: {"Content-Type": "application/json"}
           })
-          const profileInfo = await fetchInfo.json();
-          
-          setUserInfo({email: profileInfo.email, username: profileInfo.username});
+        return setProfileInfo(fetchInfo.json());
 
     }catch(error){
         console.log("no user detected")
@@ -94,6 +93,7 @@ let editEmailfn = async () => {
   React.useEffect(() => {
       getInfo(userId);
       console.log("finished loading userinfo");
+      setUserInfo({email: profileInfo.email, username: profileInfo.username});
       return console.log("dunzo")
   }, []);
 
