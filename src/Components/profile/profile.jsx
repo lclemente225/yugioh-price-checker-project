@@ -84,7 +84,7 @@ let editEmailfn = async () => {
             method: "GET",
             headers: {"Content-Type": "application/json"}
           })
-        setProfileInfo((x) => x = fetchInfo.json());
+        setProfileInfo(fetchInfo.json());
         return console.log("finished setting profileInfo state")
 
     }catch(error){
