@@ -30,4 +30,4 @@ const EditUsername = ({profileFormData, handleChange}) => {
   )
 }
 
-export default EditUsername
+export {EditUsername}
