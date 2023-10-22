@@ -21,7 +21,7 @@ function ProfileNavbar(){
 
 const Profile = () => {
 
-  const userId = localStorage.getItem("Login UserId");
+  const userId = JSON.parse(localStorage.getItem("Login UserId"));
   const [selectedProfileForm, selectProfileForm] = useState({
     editEmail: false,
     editUser: false,
