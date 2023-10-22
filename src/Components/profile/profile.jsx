@@ -70,7 +70,7 @@ let editEmailfn = async () => {
       },
       body: profileFormData
     }).then((res) => {
-      console.log("Successfully Edited Email");
+      console.log("Successfully Edited Email", res.json());
     }).catch((error) => {
       console.log("Error Editing Email:", error) 
     })
