@@ -46,38 +46,38 @@ const Profile = () => {
   const [isPending, startTransition] = useTransition();
   const EditUser = LazyLoad('./profile-components', EditUser)
   
-let editUserfn = async () => {
-  console.log("profile formd ata:", profileFormData)
-  await fetch('/.netlify/functions/functions/profile/update-user',
-    {
-      method:"PUT",
-      headers:{
-        'Content-Type': 'application/json'
-      }, 
-      body: JSON.stringify(profileFormData)
-    }).then((res) => {
-      console.log("Successfully Edited Username")
-    }).catch((error) => {
-      console.log("Error Editing USer:", error) 
-    })
-}
+  let editUserfn = async () => {
+    console.log("profile formd ata:", profileFormData)
+    await fetch('/.netlify/functions/functions/profile/update-user',
+      {
+        method:"PUT",
+        headers:{
+          'Content-Type': 'application/json'
+        }, 
+        body: JSON.stringify(profileFormData)
+      }).then((res) => {
+        console.log("Successfully Edited Username")
+      }).catch((error) => {
+        console.log("Error Editing USer:", error) 
+      })
+  }
 
-let editEmailfn = async () => {
+  let editEmailfn = async () => {
 
-  console.log("profile formd ata:", profileFormData)
-  await fetch('/.netlify/functions/functions/profile/update-email',
-    {
-      method: "PUT",
-      headers:{
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(profileFormData)
-    }).then((res) => {
-      console.log("Successfully Edited Email", res.json());
-    }).catch((error) => {
-      console.log("Error Editing Email:", error) 
-    })
-}
+    console.log("profile formd ata:", profileFormData)
+    await fetch('/.netlify/functions/functions/profile/update-email',
+      {
+        method: "PUT",
+        headers:{
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(profileFormData)
+      }).then((res) => {
+        console.log("Successfully Edited Email", res.json());
+      }).catch((error) => {
+        console.log("Error Editing Email:", error) 
+      })
+  }
 
   async function getInfo(userId){
 
@@ -143,7 +143,7 @@ let editEmailfn = async () => {
         {deleteAccountConfirm && <DeleteConfirm toggleDeleteAccountConfirm={toggleDeleteAccountConfirm} profileFormData={profileFormData} handleChange={handleChange}/>}
         <div className="profile-body">
           <div className='profile-welcome-title'>
-              <h1>Hello {startTransition(() => UserInfo.username)}{isPending && "Yugi Mutou"}</h1>
+              <h1>Hello {UserInfo.username}</h1>
           </div>
           <div className='profile-title'>
               <h1 style={{fontSize: "1.3rem"}}>Profile Settings</h1>
@@ -173,7 +173,7 @@ let editEmailfn = async () => {
                 <h3>Delete Account</h3>
               </div>
           </div>
-          <Suspense>
+          <Suspense fallback={<h1>Loading</h1>}> 
             {selectedProfileForm.profileInfo && <ProfileInfo userId={userId} getInfo={getInfo} UserInfo={UserInfo} setUserInfo={setUserInfo} />}
           
           <form className='profile-form' onSubmit={handleSubmit}>
