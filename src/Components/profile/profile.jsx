@@ -51,7 +51,7 @@ let editUserfn = async () => {
       headers:{
         'Content-Type': 'application/json'
       },
-      body: profileFormData
+      body: JSON.stringify(profileFormData)
     }).then((res) => {
       console.log("Successfully Edited Username")
     }).catch((error) => {
