@@ -4,6 +4,11 @@ const EditEmail = ({profileFormData, handleChange}) => {
   return (
     <>
       <div className='profile-form-input'>
+        <label for="password">Username:</label>
+        <input type="text" onChange={handleChange} className="edit-name" name="username" value={profileFormData.username}/>
+      </div>
+
+      <div className='profile-form-input'>
         <label for="edit-name">Email:</label>
         <input type="text" onChange={handleChange} className="new-user" name="email" value={profileFormData.email}/>
       </div>
