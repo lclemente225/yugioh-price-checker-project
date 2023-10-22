@@ -73,7 +73,7 @@ router.put('/update-user', async(req,res) => {
               }
         ); 
 
-         return res.json({message:"username changed"})
+         return res.status(200).json({message:"username changed"})
     }else{
       return res.status(500).json({ 
                               error: 'Failed to change the username' 
