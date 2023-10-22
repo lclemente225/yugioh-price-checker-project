@@ -68,7 +68,7 @@ let editEmailfn = async () => {
       headers:{
         'Content-Type': 'application/json'
       },
-      body: profileFormData
+      body: JSON.parse(profileFormData)
     }).then((res) => {
       console.log("Successfully Edited Email", res.json());
     }).catch((error) => {
