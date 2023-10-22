@@ -92,7 +92,8 @@ let editEmailfn = async () => {
   }
   React.useEffect(() => {
       getInfo(userId);
-    () => {return console.log("finished loading userinfo");}
+    let x = () => {return console.log("finished loading userinfo");}
+    x();
   }, []);
 
   const handleChange = (event) => {
