@@ -90,7 +90,7 @@ let editEmailfn = async () => {
     }catch(error){
         console.log("no user detected")
     }
-    if(profileInfo) setUserInfo({email: profileInfo.email, username: profileInfo.username});
+    setUserInfo({email: profileInfo.email, username: profileInfo.username});
   }
 
   React.useEffect(() => {
