@@ -83,7 +83,7 @@ let editEmailfn = async () => {
             method: "GET",
             headers: {"Content-Type": "application/json"}
           })
-          const profileInfo = fetchInfo.json();
+          const profileInfo = await fetchInfo.json();
           setUserInfo({email: profileInfo.email, username: profileInfo.username});
 
     }catch(error){
