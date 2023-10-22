@@ -1,8 +1,9 @@
-import React, {useState} from 'react';
+import React, {useState, Suspense, useTransition} from 'react';
 import { Link } from "react-router-dom";
 import axios from 'axios';
 import './profile.css';
-import {EditUser, EditEmail, EditPW, DeleteConfirm, ProfileInfo} from "./profile-components";
+import { EditEmail, EditPW, DeleteConfirm, ProfileInfo} from "./profile-components";
+import LazyLoad from './lazyLoadProfile';
 
 
 function ProfileNavbar(){
@@ -20,7 +21,7 @@ function ProfileNavbar(){
 }
 
 const Profile = () => {
-
+  
   const userId = JSON.parse(localStorage.getItem("Login UserId"));
   const [selectedProfileForm, selectProfileForm] = useState({
     editEmail: false,
@@ -42,7 +43,8 @@ const Profile = () => {
     email: "No email Set", 
     username: "Yugi Mutou"
   })
-
+  const [isPending, startTransition] = useTransition();
+  const EditUser = LazyLoad('./profile-components', EditUser)
   
 let editUserfn = async () => {
   console.log("profile formd ata:", profileFormData)
@@ -141,7 +143,7 @@ let editEmailfn = async () => {
         {deleteAccountConfirm && <DeleteConfirm toggleDeleteAccountConfirm={toggleDeleteAccountConfirm} profileFormData={profileFormData} handleChange={handleChange}/>}
         <div className="profile-body">
           <div className='profile-welcome-title'>
-              <h1>Hello {UserInfo.username}</h1>
+              <h1>Hello {startTransition(() => UserInfo.username)}</h1>
           </div>
           <div className='profile-title'>
               <h1 style={{fontSize: "1.3rem"}}>Profile Settings</h1>
@@ -171,7 +173,9 @@ let editEmailfn = async () => {
                 <h3>Delete Account</h3>
               </div>
           </div>
+          <Suspense>
             {selectedProfileForm.profileInfo && <ProfileInfo userId={userId} getInfo={getInfo} UserInfo={UserInfo} setUserInfo={setUserInfo} />}
+          
           <form className='profile-form' onSubmit={handleSubmit}>
               {selectedProfileForm.editUser && <EditUser profileFormData={profileFormData} handleChange={handleChange}/>}
               {selectedProfileForm.editEmail && <EditEmail profileFormData={profileFormData} handleChange={handleChange}/>}
@@ -184,6 +188,7 @@ let editEmailfn = async () => {
               {selectedProfileForm.editPassword && 'Change Password'}
             </button>}
           </form>
+          </Suspense>
         </div>
     </div>
   )
