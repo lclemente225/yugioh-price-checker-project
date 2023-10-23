@@ -44,7 +44,7 @@ const Profile = () => {
     username: "Yugi Mutou"
   })
   const [isPending, startTransition] = useTransition();
-  const EditUser = LazyLoad('./profile-components/index.js', 'EditUser')
+  const EditUser = LazyLoad('./profile-components/edit-username.jsx', 'EditUsername')
   
   let editUserfn = async () => {
     console.log("profile formd ata:", profileFormData)
