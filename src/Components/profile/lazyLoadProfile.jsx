@@ -1,7 +1,8 @@
 import { lazy } from "react";
 
 export default function LazyLoad (path, namedExport) {
-    return lazy(() => {
+    try{
+        return lazy(() => {
         const promise = import(path);
         if(namedExport == null){
             return promise
@@ -11,4 +12,7 @@ export default function LazyLoad (path, namedExport) {
             })
         }
     })
+    }catch(error){
+        console.log("didn't lazy load correctly", error)
+    }
 };
