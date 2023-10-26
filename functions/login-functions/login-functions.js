@@ -10,7 +10,7 @@ const salt = bcrypt.genSaltSync(6);
 //sql setup
 const pool = db.pool;
 
-router.use(db.mysqlConnection);
+router.use(db.mysqlConnection());
 
 //put end points here
 router.post('/register', async (req, res) => {
