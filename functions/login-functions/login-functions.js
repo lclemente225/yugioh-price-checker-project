@@ -8,7 +8,6 @@ const db = require('../helper/db');
 
 const salt = bcrypt.genSaltSync(6);
 //sql setup
-const sqlDBConnect = db.mysqlConnection;
 
 router.use(db.mysqlConnection);
 
