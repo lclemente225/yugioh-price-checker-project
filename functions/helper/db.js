@@ -17,7 +17,6 @@ async function mysqlConnection(req, res, next) {
             await req.db.query('SET SESSION sql_mode = "TRADITIONAL"');
             await req.db.query(`SET time_zone = '-8:00'`);
 
-        
             await next();
             req.db.release();
             
