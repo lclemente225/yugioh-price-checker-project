@@ -43,8 +43,6 @@ if(isLoading){
 if(error){
   return <div className='Loading-API-Text'>Something went wrong loading cart...</div>
 }
-if(isStale) refetch(["Yugioh Cart Data"]);
-
 async function addToCartinCart(e, name, price, cartId, userId){
       await fetch(`/.netlify/functions/functions/cart/add`, {
         method: 'PUT',
