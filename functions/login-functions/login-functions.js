@@ -8,9 +8,9 @@ const db = require('../helper/db');
 
 const salt = bcrypt.genSaltSync(6);
 //sql setup
-const pool = db.pool;
+const sqlDBConnect = db.mysqlConnection;
 
-router.use(db.mysqlConnection());
+router.use(sqlDBConnect);
 
 //put end points here
 router.post('/register', async (req, res) => {
