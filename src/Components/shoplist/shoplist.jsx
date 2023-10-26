@@ -2,7 +2,8 @@ import React from 'react';
 import './shoplist.css';
 import { useQuery } from 'react-query';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTrash } from '@fortawesome/free-solid-svg-icons'
+import { faTrash } from '@fortawesome/free-solid-svg-icons';
+import { isLoading, error, data, refetch } from '../action-functions/action-functions';
 
 /**
  * 
@@ -26,16 +27,7 @@ document.getElementById("content").innerHTML = test.country;
 const Shoplist = ({givenUserId}) => {
 
 const firstAPISite = process.env.API_SITE_2;
-const { isLoading, error, data, refetch, isStale } = useQuery('Yugioh Cart Data', 
-      async () =>{
-                let response =  await fetch(`/.netlify/functions/functions/cart/list`);
-                let data = await response.json();   
-                console.log("trying to load cart")
-                return data
-          },{
-            refetchOnWindowFocus: false
-          },
-          []);
+
           
 if(isLoading){
   return <div className='Loading-API-Text'>Loading...</div>
