@@ -33,8 +33,7 @@ const { isLoading, error, data, refetch, isStale } = useQuery('Yugioh Cart Data'
                 console.log("trying to load cart")
                 return data
           },{
-            refetchOnWindowFocus: false,
-            refetchOnReconnect: 'always'
+            refetchOnWindowFocus: false
           },
           []);
           
