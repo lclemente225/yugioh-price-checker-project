@@ -2,7 +2,7 @@ import React, {useState, Suspense, useTransition} from 'react';
 import { Link } from "react-router-dom";
 import axios from 'axios';
 import './profile.css';
-import { EditEmail, EditPW, DeleteConfirm, ProfileInfo} from "./profile-components";
+import { EditUser,EditEmail, EditPW, DeleteConfirm, ProfileInfo} from "./profile-components";
 import LazyLoad from './lazyLoadProfile';
 
 
@@ -44,7 +44,7 @@ const Profile = () => {
     username: "Yugi Mutou"
   })
   const [isPending, startTransition] = useTransition();
-  const EditUser = LazyLoad('./profile-components/edit-username', 'EditUsername')
+  //const EditUser = LazyLoad('./profile-components/edit-username', 'EditUsername')
   
   let editUserfn = async () => {
     console.log("profile formd ata:", profileFormData)
@@ -173,7 +173,7 @@ const Profile = () => {
                 <h3>Delete Account</h3>
               </div>
           </div>
-          <Suspense fallback={<h1>Loading</h1>}> 
+          {/* <Suspense fallback={<h1>Loading</h1>}> */} 
             {selectedProfileForm.profileInfo && <ProfileInfo userId={userId} getInfo={getInfo} UserInfo={UserInfo} setUserInfo={setUserInfo} />}
           
           <form className='profile-form' onSubmit={handleSubmit}>
@@ -188,7 +188,7 @@ const Profile = () => {
               {selectedProfileForm.editPassword && 'Change Password'}
             </button>}
           </form>
-          </Suspense>
+          {/* </Suspense> */}
         </div>
     </div>
   )

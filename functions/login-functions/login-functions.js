@@ -4,15 +4,11 @@ const router = express.Router();
 const bcrypt = require('bcryptjs');
 const { v4: uuidv4 } = require('uuid');//generate random id
 const jwt = require('jsonwebtoken');
+const db = require('../helper/db');
 
 const salt = bcrypt.genSaltSync(6);
 //sql setup
-const pool = mysql.createPool({
-    host: process.env.DATABASE_HOST_URL,
-    user: process.env.DATABASE_USER,
-    password: process.env.DATABASE_PW,
-    database: process.env.DATABASE_USER
-});
+const pool = db.pool;
 
 router.use(
     async function mysqlConnection(req, res, next) {
