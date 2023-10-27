@@ -34,7 +34,8 @@ const { isLoading, error, data, refetch, isStale } = useQuery('Yugioh Cart Data'
                 console.log("trying to load cart")
                 return data
           },{
-            refetchOnWindowFocus: false
+            refetchOnWindowFocus: false,
+            retry: 1
           },
           []);
           
@@ -67,7 +68,7 @@ function ListItems() {
                 <li key={item.id} className='shop-list-item'>
                 <p className="card-listing-text">{item.card_name}</p>    
                 <p className="card-listing-text">Quantity: {item.quantity}</p>
-                <button 
+                    <button 
                     className='cartUpdateButton cartUpdateAdd'
                     onClick={(event) => { 
                                       addToCartinCart(event, item.card_name, item.price, item.cartId, givenUserId);

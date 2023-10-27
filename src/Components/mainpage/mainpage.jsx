@@ -150,9 +150,7 @@ export default function MainPage({LogIn, isLoggedIn, givenUserId}){
   }
 //set up for pagination
     const postsPerPage = 10;
-
     //Search Page pagination
-    
     const searchPostsPerPage = 10;
 
     

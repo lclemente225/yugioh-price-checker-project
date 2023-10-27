@@ -46,16 +46,19 @@ function App() {
   function handleAuthentication(e){
     e.preventDefault();
     const jwtAuth = fetch("https://shy-rose-apron.cyclic.cloud/checkAuth", {
-      method: 'GET', headers:{"access-token": localStorage.getItem("token")}
+      method: 'GET', 
+      headers:{
+        "access-token": localStorage.getItem("token")
+      }
     })
 
     jwtAuth.then(res => {
       //console.log("Token is here AUTHENTICATION TOKEN",res.headers.access-token)
       let token = res.headers.access-token;
       if(token){
-        JWTStatus(true);
+        return JWTStatus(true);
       }else{
-        JWTStatus(false)
+        return JWTStatus(false)
       }
       //if token exists
       //make an obj prop that has auth token or user
