@@ -68,6 +68,7 @@ function App() {
   return (      
     <div className="App">  
      <QueryClientProvider client={queryClient}>
+
      <Router>
           <Routes>
             <Route path='/' element={

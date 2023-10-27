@@ -2,8 +2,8 @@ import React from 'react';
 import './shoplist.css';
 import { useQuery } from 'react-query';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTrash } from '@fortawesome/free-solid-svg-icons';
-import { isLoading, error, data, refetch } from '../action-functions/action-functions';
+import { faTrash } from '@fortawesome/free-solid-svg-icons'
+import { addToCartinCart } from '../action-functions/action-functions';
 
 /**
  * 
@@ -27,7 +27,16 @@ document.getElementById("content").innerHTML = test.country;
 const Shoplist = ({givenUserId}) => {
 
 const firstAPISite = process.env.API_SITE_2;
-
+const { isLoading, error, data, refetch, isStale } = useQuery('Yugioh Cart Data', 
+      async () =>{
+                let response =  await fetch(`/.netlify/functions/functions/cart/list`);
+                let data = await response.json();   
+                console.log("trying to load cart")
+                return data
+          },{
+            refetchOnWindowFocus: false
+          },
+          []);
           
 if(isLoading){
   return <div className='Loading-API-Text'>Loading...</div>
@@ -35,29 +44,7 @@ if(isLoading){
 if(error){
   return <div className='Loading-API-Text'>Something went wrong loading cart...</div>
 }
-async function addToCartinCart(e, name, price, cartId, userId){
-      await fetch(`/.netlify/functions/functions/cart/add`, {
-        method: 'PUT',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({  "card_name": name, 
-                                "price":price, 
-                                "quantity":"1",
-                                "cartId": cartId,
-                                "userId":userId
-                                   })
-              })
-        .then(response => {
-          if (!response.ok) {
-            throw new Error('Failed to add item to cart');
-          }
-          //console.log("added 1 successfully")
-          //location.reload(); 
-          setTimeout(refetch(["Yugioh Cart Data"]),1000)
-          return response.json();
-        }).catch(error => {
-          console.error(error);
-        });
-   }
+
 
 
 async function subtractFromCartinCart(e, cartId, userId) {
@@ -130,7 +117,8 @@ console.log("cardList: ",cardList)
                 <button 
                     className='cartUpdateButton cartUpdateAdd'
                     onClick={(event) => { 
-                                      addToCartinCart(event, item.card_name, item.price, item.cartId, givenUserId) 
+                                      addToCartinCart(event, item.card_name, item.price, item.cartId, givenUserId);
+                                      setTimeout(refetch(["Yugioh Cart Data"]),1000) 
                                     }}>
                       +</button>
                     &nbsp;
