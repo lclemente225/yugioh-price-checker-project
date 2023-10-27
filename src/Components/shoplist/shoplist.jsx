@@ -3,7 +3,7 @@ import './shoplist.css';
 import { useQuery } from 'react-query';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrash } from '@fortawesome/free-solid-svg-icons'
-import { addToCartinCart } from '../action-functions/action-functions';
+import { addToCartinCart, subtractFromCartinCart, deleteFromCartinCart } from '../action-functions/action-functions';
 
 /**
  * 
@@ -46,59 +46,12 @@ if(error){
 }
 
 
-
-async function subtractFromCartinCart(e, cartId, userId) {
-    await fetch(`/.netlify/functions/functions/cart/updateSubtractItem`, {
-        method: 'PUT',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ "cartId": cartId, "userId": userId })
-              })
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Failed to reduce item from cart');
-            }else{
-                //console.log("successfully reduced quantity by 1")
-                //location.reload();
-                setTimeout(refetch(["Yugioh Cart Data"]),1000)
-                return response.json();
-            }
-        }).catch(error => {
-          console.error("ERROR IN SUBTRACTING",error);
-        });
-  }
-
-
-async function deleteFromCartinCart(e, card_name, cartId, userId) {
-  await fetch(`/.netlify/functions/functions/cart/deleteItem`, {
-        method: 'DELETE',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ 
-                            "card_name": card_name,
-                            "cartId": cartId,
-                            "userId": userId 
-                          })
-              })
-        .then(response => {
-                if (!response.ok) {
-                    throw new Error('Failed to delete item from cart');
-                }else{
-                    //console.log("successfully deleted item")
-                    //location.reload();
-                    setTimeout(refetch(["Yugioh Cart Data"]),1000)
-                    return response.json();
-                }          
-        }).catch(error => {
-          console.error(error);
-        });
-  }
-
-
 function ListItems() {
 
-let cardList = data[0];
-//console.log("rendering list")
-console.log("cardList: ",cardList)
-//console.log("data: ",data)
+    let cardList = data[0];
+    //console.log("rendering list")
+    console.log("cardList: ",cardList)
+    //console.log("data: ",data)
     if(cardList != undefined){
         return cardList.map((item) => {
           
@@ -126,6 +79,7 @@ console.log("cardList: ",cardList)
                     className='cartUpdateButton cartUpdateSubtract'
                     onClick={(event) => { 
                                       subtractFromCartinCart(event, item.cartId, givenUserId) 
+                                      setTimeout(refetch(["Yugioh Cart Data"]),1000)
                                       }}> 
                       - </button>
                     &nbsp;
@@ -133,6 +87,7 @@ console.log("cardList: ",cardList)
                     className='cartUpdateButton cartUpdateDelete'
                     onClick={(event) => {
                                       deleteFromCartinCart(event, item.card_name, item.cartId, givenUserId)
+                                      setTimeout(refetch(["Yugioh Cart Data"]),1000)
                                       }}> 
                         <FontAwesomeIcon icon={faTrash} />
                     </button>
