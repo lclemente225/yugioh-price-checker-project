@@ -29,7 +29,7 @@ const Shoplist = ({givenUserId}) => {
 const firstAPISite = process.env.API_SITE_2;
 const { isLoading, error, data, refetch, isStale } = useQuery('Yugioh Cart Data', 
       async () =>{
-                let response =  await fetch(`/.netlify/functions/functions/cart/list`);
+                let response =  await fetch(`${firstAPISite}/cart/list`);
                 let data = await response.json();   
                 console.log("trying to load cart")
                 return data
