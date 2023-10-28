@@ -19,3 +19,9 @@ Yugioh has been an impactful recreational activity for me. A large part of the e
 Let me know any ways to improve my code. I'm still learning everything, so I'd gladly take code reviews. 
 LawrenceClemente3@gmail.com
 
+# Future Features
+1. Add prices in shoplist
+2. Add quantities in searched cards
+3. Hamburger menu for mobile view for navbar on home page
+4. localstorage save all cart info if not logged in
+
