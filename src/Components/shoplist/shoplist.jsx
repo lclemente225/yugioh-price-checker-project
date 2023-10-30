@@ -43,7 +43,12 @@ if(isLoading){
   return <div className='Loading-API-Text'>Loading...</div>
 }
 if(error){
-  return <div className='Loading-API-Text'>Something went wrong loading cart...</div>
+  return (
+        <div className='Loading-API-Text'>
+          Something went wrong loading cart...
+          <a href="/"><h3>Go Home</h3></a>
+        </div>
+        )
 }
 
 
