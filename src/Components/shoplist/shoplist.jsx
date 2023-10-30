@@ -36,6 +36,7 @@ const queryCache = new QueryCache({
     console.log("settled cache", data)
   }
 })
+queryCache.clear(['Yugioh Cart Data'])
 const { isLoading, error, data, refetch } = useQuery('Yugioh Cart Data', 
       async () =>{
                 let response =  await fetch(`/.netlify/functions/functions/cart/list`);
@@ -49,7 +50,6 @@ const { isLoading, error, data, refetch } = useQuery('Yugioh Cart Data',
           []);
           
 if(isLoading){
-  queryCache.clear(['Yugioh Cart Data'])
   return <div className='Loading-API-Text'>Loading...</div>
 }
 if(error){
