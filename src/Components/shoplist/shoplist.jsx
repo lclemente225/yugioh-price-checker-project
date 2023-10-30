@@ -1,6 +1,6 @@
 import React from 'react';
 import './shoplist.css';
-import { useQuery } from 'react-query';
+import { useQuery, QueryCache } from 'react-query';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrash } from '@fortawesome/free-solid-svg-icons'
 import { addToCartinCart, subtractFromCartinCart, deleteFromCartinCart } from '../action-functions/action-functions';
@@ -27,9 +27,16 @@ document.getElementById("content").innerHTML = test.country;
 const Shoplist = ({givenUserId}) => {
 
 const firstAPISite = process.env.REACT_APP_API_SITE_2;
-console.log("firstyapisite", firstAPISite);
-console.log("databaseport", process.env.DATABASE_PORT)
-const { isLoading, error, data, refetch, isStale } = useQuery('Yugioh Cart Data', 
+const queryCache = new QueryCache({
+  onSuccess: (data) => {
+    console.log("accessed query", data)
+  },
+  onSettled: (data, error) => {
+    if(error) console.log(error)
+    console.log("settled cache", data)
+  }
+})
+const { isLoading, error, data, refetch } = useQuery('Yugioh Cart Data', 
       async () =>{
                 let response =  await fetch(`/.netlify/functions/functions/cart/list`);
                 let data = await response.json();   
