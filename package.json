@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "build": "vite build --env.API_SITE_2 = '/.netlify/functions/functions'",
     "preview": "vite preview",
     "start": "npm run dev"
   },
