@@ -60,7 +60,7 @@ if(error){
         )
 }
 
-console.log("finding cache", queryCache.findAll(['Yugioh Cart Data']))
+console.log("finding cache", queryCache.find(['Yugioh Cart Data']))
 
 function ListItems() {
 
