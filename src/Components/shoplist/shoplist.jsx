@@ -47,6 +47,7 @@ const { isLoading, error, data, refetch } = useQuery('Yugioh Cart Data',
             retry: 1
           },
           []);
+          queryCache.find(['Yugioh Cart Data'])
           
 if(isLoading){
   return <div className='Loading-API-Text'>Loading...</div>
