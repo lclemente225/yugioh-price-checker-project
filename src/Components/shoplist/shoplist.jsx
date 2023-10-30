@@ -26,7 +26,7 @@ document.getElementById("content").innerHTML = test.country;
 
 const Shoplist = ({givenUserId}) => {
 
-const firstAPISite = process.env.API_SITE_2;
+const firstAPISite = process.env.REACT_APP_API_SITE_2;
 console.log("firstyapisite", firstAPISite);
 console.log("databaseport", process.env.DATABASE_PORT)
 const { isLoading, error, data, refetch, isStale } = useQuery('Yugioh Cart Data', 
