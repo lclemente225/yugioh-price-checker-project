@@ -36,7 +36,7 @@ const queryCache = new QueryCache({
     console.log("settled cache", data)
   }
 })
-queryCache.finaAll(['Yugioh Cart Data'])
+queryCache.findAll(['Yugioh Cart Data'])
 const { isLoading, error, data, refetch } = useQuery('Yugioh Cart Data', 
       async () =>{
                 let response =  await fetch(`/.netlify/functions/functions/cart/list`);
