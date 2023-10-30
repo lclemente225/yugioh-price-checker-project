@@ -44,7 +44,8 @@ const { isLoading, error, data, refetch } = useQuery('Yugioh Cart Data',
                 return data
           },{
             refetchOnWindowFocus: false,
-            retry: 1
+            retry: 1,
+            cacheTime: 1
           },
           []);
           
