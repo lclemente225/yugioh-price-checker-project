@@ -71,9 +71,9 @@ export default function Navbar() {
             </h1>
           </a>
 
-          <Link to="/shoppinglist">
+          <a href="/shoppinglist">
              <button id="shopping-list-button">Your Shopping List</button>
-          </Link>
+          </a>
      </nav>
     </div>
   )
