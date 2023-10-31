@@ -47,7 +47,7 @@ const Profile = () => {
   //const EditUser = LazyLoad('./profile-components/edit-username', 'EditUsername')
   
   let editUserfn = async () => {
-    console.log("profile formd ata:", profileFormData)
+    console.log("profile form data:", profileFormData)
     await fetch('/.netlify/functions/functions/profile/update-user',
       {
         method:"PUT",
@@ -64,7 +64,7 @@ const Profile = () => {
 
   let editEmailfn = async () => {
 
-    console.log("profile formd ata:", profileFormData)
+    console.log("profile form data:", profileFormData)
     await fetch('/.netlify/functions/functions/profile/update-email',
       {
         method: "PUT",

@@ -1,7 +1,7 @@
 import React from 'react';
 
 
-export default EditUsername = ({profileFormData, handleChange}) => {
+export default function EditUser ({profileFormData, handleChange}) {
 
     
 
