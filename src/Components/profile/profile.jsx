@@ -73,7 +73,8 @@ const Profile = () => {
         },
         body: JSON.stringify(profileFormData)
       }).then((res) => {
-        console.log("Successfully Edited Email", res.json()[0]);
+        let response = res.json();
+        console.log("Successfully Edited Email", response.message);
       }).catch((error) => {
         console.log("Error Editing Email:", error) 
       })
