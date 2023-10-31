@@ -44,7 +44,8 @@ const { isLoading, error, data, refetch } = useQuery('Yugioh Cart Data',
                 return data
           },{
             refetchOnWindowFocus: false,
-            notifyOnChangeProps: ['Yugioh Cart Data']
+            notifyOnChangeProps: ['data', 'error'],
+            cacheTime: 0.1
           },
           []);
           
