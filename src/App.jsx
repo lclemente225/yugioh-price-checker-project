@@ -45,7 +45,7 @@ function App() {
   //honestly i dont know how to block routes with this token
   function handleAuthentication(e){
     e.preventDefault();
-    const jwtAuth = fetch("https://shy-rose-apron.cyclic.cloud/checkAuth", {
+    const jwtAuth = fetch("/.netlify/functions/functions/checkAuth", {
       method: 'GET', 
       headers:{
         "access-token": localStorage.getItem("token")
