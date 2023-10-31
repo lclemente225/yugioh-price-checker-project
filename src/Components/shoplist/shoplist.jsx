@@ -65,6 +65,7 @@ if(error){
 
 function ListItems() {
 
+  setshopData(data[0]);
     //console.log("rendering list")
     console.log("cardList: ",cardList)
     //console.log("data: ",data)
