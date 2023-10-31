@@ -1,7 +1,7 @@
 import React from 'react';
 
 
-const EditUsername = ({profileFormData, handleChange}) => {
+export default EditUsername = ({profileFormData, handleChange}) => {
 
     
 
@@ -30,4 +30,3 @@ const EditUsername = ({profileFormData, handleChange}) => {
   )
 }
 
-export {EditUsername}
