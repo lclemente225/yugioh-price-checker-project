@@ -36,7 +36,7 @@ const queryCache = new QueryCache({
     console.log("settled cache", data)
   }
 })
-const { isLoading, error, data, refetch } = useQuery('Yugioh Cart Data', 
+const { isLoading, error, data, refetch, onSuccess } = useQuery('Yugioh Cart Data', 
       async () =>{
                 let response =  await fetch(`/.netlify/functions/functions/cart/list`);
                 let data = await response.json();   
@@ -44,9 +44,7 @@ const { isLoading, error, data, refetch } = useQuery('Yugioh Cart Data',
                 return data
           },{
             refetchOnWindowFocus: false,
-            notifyOnChangeProps: ['data', 'error'],
-            cacheTime: 0.1,
-            keepPreviousData: false
+            notifyOnChangeProps: ['data', 'error']
           },
           []);
           
@@ -61,13 +59,13 @@ if(error){
         </div>
         )
 }
-
+if(onSuccess){
+  setshopData(data[0]);
+}
 
 function ListItems() {
 
-  setshopData(data[0]);
-    //console.log("rendering list")
-    console.log("cardList: ",cardList)
+    //console.log("cardList: ",cardList)
     //console.log("data: ",data)
     if(cardList != undefined){
         return cardList.map((item) => {
