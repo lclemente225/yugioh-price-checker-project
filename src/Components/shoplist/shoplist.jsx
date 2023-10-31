@@ -45,7 +45,8 @@ const { isLoading, error, data, refetch } = useQuery('Yugioh Cart Data',
           },{
             refetchOnWindowFocus: false,
             notifyOnChangeProps: ['data', 'error'],
-            cacheTime: 0.1
+            cacheTime: 0.1,
+            keepPreviousData: false
           },
           []);
           
@@ -64,7 +65,6 @@ if(error){
 
 function ListItems() {
 
-    setshopData(data[0]);
     //console.log("rendering list")
     console.log("cardList: ",cardList)
     //console.log("data: ",data)
