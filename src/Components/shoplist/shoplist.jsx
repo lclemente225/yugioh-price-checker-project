@@ -25,7 +25,7 @@ document.getElementById("content").innerHTML = test.country;
 
 
 const Shoplist = ({givenUserId}) => {
-
+const [cardList, setshopData] = React.useState([])
 const firstAPISite = process.env.REACT_APP_API_SITE_2;
 const queryCache = new QueryCache({
   onSuccess: (data) => {
@@ -64,7 +64,7 @@ if(error){
 
 function ListItems() {
 
-    let cardList = data[0];
+    setshopData(data[0]);
     //console.log("rendering list")
     console.log("cardList: ",cardList)
     //console.log("data: ",data)
