@@ -25,8 +25,7 @@ document.getElementById("content").innerHTML = test.country;
 
 
 const Shoplist = ({givenUserId}) => {
-const [cardList, setshopData] = React.useState([])
-const firstAPISite = process.env.REACT_APP_API_SITE_2;
+const [cardList, setshopData] = React.useState([]);
 
 const { isLoading, error, data, refetch, onSuccess } = useQuery('Yugioh Cart Data', 
       async () =>{
@@ -35,8 +34,7 @@ const { isLoading, error, data, refetch, onSuccess } = useQuery('Yugioh Cart Dat
                 console.log("trying to load cart")
                 return data
           },{
-            refetchOnWindowFocus: false,
-            notifyOnChangeProps: ['data', 'error']
+            refetchOnWindowFocus: false
           },
           []);
           
