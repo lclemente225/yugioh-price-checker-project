@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './shoplist.css';
 import PriceSelections from './price-selections';
-import { useQuery, QueryCache } from 'react-query';
+import { useQuery } from 'react-query';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrash } from '@fortawesome/free-solid-svg-icons'
 import { addToCartinCart, subtractFromCartinCart, deleteFromCartinCart } from '../action-functions/action-functions';
@@ -27,16 +27,24 @@ document.getElementById("content").innerHTML = test.country;
 
 const Shoplist = ({givenUserId}) => {
 
-const { isLoading, error, data, refetch } = useQuery('Yugioh Cart Data', 
-      async () =>{
-                let response =  await fetch(`/.netlify/functions/functions/cart/list`);
-                let data = await response.json();   
-                console.log("trying to load cart", data)
-                return data
-          },{
-            refetchOnWindowFocus: false
-          },
-          []);
+    const [selectedPrice, choosePriceSelection] = useState({
+      amazon_price: false, 
+      cardmarket_price: false, 
+      coolstuffinc_price: false, 
+      ebay_price: false,
+      tcgplayer_price: false
+    })
+
+    const { isLoading, error, data, refetch } = useQuery('Yugioh Cart Data', 
+          async () =>{
+                    let response =  await fetch(`/.netlify/functions/functions/cart/list`);
+                    let data = await response.json();   
+                    console.log("trying to load cart", data)
+                    return data
+              },{
+                refetchOnWindowFocus: false
+              },
+              []);
           
 if(isLoading){
   return <div className='Loading-API-Text'>Loading...</div>
@@ -133,7 +141,7 @@ function ListItems() {
             <a href="/" className='shop-list-link-home'>Go Home</a>     
         </div>
         <div id="shop-list-container" >
-            <PriceSelections />
+            <PriceSelections selectedPrice={selectedPrice} choosePriceSelection={choosePriceSelection} />
             <ul>
             {isLoading ? <div>Loading...</div> : error ? <div>Error: {error}</div> : <ListItems />}
             </ul>
