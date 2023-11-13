@@ -56,7 +56,7 @@ router.get('/dude', (req, res) => {
          console.log("updated quantity", req.body.card_name, req.body.cartId);
          const updatedCartList = await req.db.query(
          `UPDATE yugioh_cart_list 
-         SET quantity = quantity + 1,   
+         SET quantity = quantity + 1   
          WHERE 
          card_name = :card_name AND 
          cartId = :cartId AND 
