@@ -65,6 +65,7 @@ export default function MainPage({LogIn, isLoggedIn, givenUserId}){
         body: JSON.stringify({  
                                 "card_name": name, 
                                 "cardmarket_price":price["cardmarket_price"], 
+                                "tcgplayer_price": 1,
                                 "quantity":"1",
                                 "cartId": `id${index}`,
                                 "userId": userId
@@ -75,7 +76,7 @@ export default function MainPage({LogIn, isLoggedIn, givenUserId}){
             throw new Error('Failed to add item to cart');
           }
           showCart(true);
-          
+
           performingAddingorSubtracting({
               action: "You just added",
               addCardName: name,
