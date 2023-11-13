@@ -59,6 +59,7 @@ function ListItems() {
         return cardList.map((item) => {
           
           console.log("ITEMS", item)
+          //maybe sort?
             let pricesArray = {
                   amazon_price: item.amazon_price, 
                   cardmarket_price: item.cardmarket_price, 
@@ -79,7 +80,8 @@ function ListItems() {
                     className='cartUpdateButton cartUpdateAdd'
                     onClick={(event) => { 
                                       addToCartinCart(event, item.card_name, item.cartId, givenUserId);
-                                      setTimeout(refetch(["Yugioh Cart Data"]),1000) 
+                                      //setTimeout(refetch(["Yugioh Cart Data"]),1000) 
+                                      location.reload();
                                     }}>
                       +</button>
                     &nbsp;
@@ -87,7 +89,8 @@ function ListItems() {
                     className='cartUpdateButton cartUpdateSubtract'
                     onClick={(event) => { 
                                       subtractFromCartinCart(event, item.cartId, givenUserId) 
-                                      setTimeout(refetch(["Yugioh Cart Data"]),1000)
+                                      //setTimeout(refetch(["Yugioh Cart Data"]),1000)
+                                      location.reload();
                                       }}> 
                       - </button>
                     &nbsp;
@@ -95,7 +98,8 @@ function ListItems() {
                     className='cartUpdateButton cartUpdateDelete'
                     onClick={(event) => {
                                       deleteFromCartinCart(event, item.card_name, item.cartId, givenUserId)
-                                      setTimeout(refetch(["Yugioh Cart Data"]),1000)
+                                      //setTimeout(refetch(["Yugioh Cart Data"]),1000)
+                                      location.reload();
                                       }}> 
                         <FontAwesomeIcon icon={faTrash} />
                     </button>
