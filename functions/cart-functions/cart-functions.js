@@ -95,7 +95,7 @@ router.get('/dude', (req, res) => {
      }
      } catch (err) {
      console.log('post err card not added', err);
-     res.status(500).json({ error: 'Failed to add card to cart' });
+     res.status(500).json({ error: 'Failed to add card to cart', message: err });
      }
  });
  
