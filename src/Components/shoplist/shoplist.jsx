@@ -64,13 +64,11 @@ function ListItems() {
             let pricesArray = {
                   amazon_price: item.amazon_price, 
                   cardmarket_price: item.cardmarket_price, 
-                  coolstuff_inc_price: item.coolstuffinc_price, 
+                  coolstuffinc_price: item.coolstuffinc_price, 
                   ebay_price: item.ebay_price,
                   tcgplayer_price: item.tcgplayer_price
                 };
 
-            pricesArray.sort((a, b) => a - b);
-            console.log("PRICES OF ", item.card_name, " ", pricesArray)
             
            //if(givenUserId === 0) localStorage.setItem("No User Shop List", JSON.stringify(shopListItems))
            
@@ -79,7 +77,14 @@ function ListItems() {
                 <li key={item.id} className='shop-list-item'>
                 <p className="card-listing-text">{item.card_name}</p>    
                 <p className="card-listing-text">Quantity: {item.quantity}</p>
-                <p className="card-listing-text">CardMarket Price: {pricesArray[0]}</p>
+                <div className='card-listing-price-container'>
+                  <p className="card-listing-price">CardMarket Price: {pricesArray["cardmarket_price"]}</p>
+                  <p className="card-listing-price">Coolstuffinc Price: {pricesArray["coolstuffinc_price"]}</p>
+                  <p className="card-listing-price">Ebay Price: {pricesArray["ebay_price"]}</p>
+                  <p className="card-listing-price">Amazon Price: {pricesArray["amazon_price"]}</p>
+                  <p className="card-listing-price">Tcgplayer Price: {pricesArray["tcgplayer_price"]}</p>
+
+                </div>
                     <button 
                     className='cartUpdateButton cartUpdateAdd'
                     onClick={(event) => { 
