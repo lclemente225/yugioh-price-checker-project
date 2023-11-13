@@ -18,9 +18,13 @@ router.get('/dude', (req, res) => {
      //this is the data that comes from react when clicking on the + button
      try{
      const cartList = await req.db.query(`SELECT * FROM yugioh_cart_list`);
-     const {cart_name, cartId, id, tcgplayer_price,amazon_price, cardmarket_price, coolstuffinc_price, ebay_price} = cartList;
+     const {card_name, cartId, id, userId, quantity, tcgplayer_price,amazon_price, cardmarket_price, coolstuffinc_price, ebay_price} = cartList;
      return res.json({
-        ...cartList,
+        card_name, 
+        cartId, 
+        id, 
+        userId, 
+        quantity,
         price:{
             amazon_price, 
             cardmarket_price, 
