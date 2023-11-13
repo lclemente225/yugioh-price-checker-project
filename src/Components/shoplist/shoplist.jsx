@@ -66,7 +66,8 @@ function ListItems() {
                 "card-name":item.card_name,
                 "quantity": item.quantity
             };
-            console.log("ITEMS", item)
+            console.log("ITEMS", item);
+            console.log("PRICES", item.price)
            //if(givenUserId === 0) localStorage.setItem("No User Shop List", JSON.stringify(shopListItems))
            
             if(givenUserId === item.userId){
