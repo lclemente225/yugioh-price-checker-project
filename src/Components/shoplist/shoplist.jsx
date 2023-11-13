@@ -51,11 +51,12 @@ if(error){
         )
 }
 if(onSuccess){
-  setshopData(data[0]);
+  console.log("successfully got cart list")
 }
 
 function ListItems() {
 
+  setshopData(data[0]);
     //console.log("cardList: ",cardList)
     //console.log("data: ",data)
     if(cardList != undefined){
