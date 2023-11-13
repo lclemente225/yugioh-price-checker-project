@@ -1,6 +1,6 @@
 
 
-export async function addToCartinCart(e, name, cartId, userId){
+export async function addToCartinCart(e, name, cartId, userId, refetch){
     await fetch(`/.netlify/functions/functions/cart/add`, {
       method: 'PUT',
       headers: { 'Content-Type': 'application/json' },
@@ -15,6 +15,7 @@ export async function addToCartinCart(e, name, cartId, userId){
         }
         //console.log("added 1 successfully")
         //location.reload(); 
+        setTimeout(refetch(["Yugioh Cart Data"]),1000)
         return response.json();
       }).catch(error => {
         console.error(error);
@@ -22,7 +23,7 @@ export async function addToCartinCart(e, name, cartId, userId){
  }
 
  
-export async function subtractFromCartinCart(e, cartId, userId) {
+export async function subtractFromCartinCart(e, cartId, userId, refetch) {
     await fetch(`/.netlify/functions/functions/cart/updateSubtractItem`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
@@ -34,6 +35,7 @@ export async function subtractFromCartinCart(e, cartId, userId) {
             }else{
                 //console.log("successfully reduced quantity by 1")
                 //location.reload();
+                setTimeout(refetch(["Yugioh Cart Data"]),1000)
                 return response.json();
             }
         }).catch(error => {
@@ -42,7 +44,7 @@ export async function subtractFromCartinCart(e, cartId, userId) {
   }
 
   
-  export async function deleteFromCartinCart(e, card_name, cartId, userId) {
+  export async function deleteFromCartinCart(e, card_name, cartId, userId, refetch) {
     await fetch(`/.netlify/functions/functions/cart/deleteItem`, {
           method: 'DELETE',
           headers: { 'Content-Type': 'application/json' },
@@ -58,6 +60,7 @@ export async function subtractFromCartinCart(e, cartId, userId) {
                   }else{
                       //console.log("successfully deleted item")
                       //location.reload();
+                      setTimeout(refetch(["Yugioh Cart Data"]),1000)
                       return response.json();
                   }          
           }).catch(error => {

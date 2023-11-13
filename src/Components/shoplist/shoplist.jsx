@@ -82,8 +82,8 @@ function ListItems() {
                     <button 
                     className='cartUpdateButton cartUpdateAdd'
                     onClick={(event) => { 
-                                      addToCartinCart(event, item.card_name, item.cartId, givenUserId);
-                                      setTimeout(refetch(["Yugioh Cart Data"]),1000) 
+                                      addToCartinCart(event, item.card_name, item.cartId, givenUserId, refetch);
+                                      
                                       //location.reload();
                                     }}>
                       +</button>
@@ -91,8 +91,8 @@ function ListItems() {
                     <button 
                     className='cartUpdateButton cartUpdateSubtract'
                     onClick={(event) => { 
-                                      subtractFromCartinCart(event, item.cartId, givenUserId) 
-                                      setTimeout(refetch(["Yugioh Cart Data"]),1000)
+                                      subtractFromCartinCart(event, item.cartId, givenUserId, refetch) 
+                                      
                                       //location.reload();
                                       }}> 
                       - </button>
@@ -100,8 +100,8 @@ function ListItems() {
                     <button 
                     className='cartUpdateButton cartUpdateDelete'
                     onClick={(event) => {
-                                      deleteFromCartinCart(event, item.card_name, item.cartId, givenUserId)
-                                      setTimeout(refetch(["Yugioh Cart Data"]),1000)
+                                      deleteFromCartinCart(event, item.card_name, item.cartId, givenUserId, refetch)
+                                      
                                       //location.reload();
                                       }}> 
                         <FontAwesomeIcon icon={faTrash} />
