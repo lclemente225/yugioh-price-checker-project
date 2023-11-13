@@ -1,9 +1,8 @@
 import NavBar from '../navbar/navbar';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { useQuery } from 'react-query';
 import "./mainpage.css";
 import Pagination from '../pagination/pagination';
-import { Link } from "react-router-dom";
 import { HomepageFooter } from './footer';
 import {SearchResults as SearchResults} from '../searchResults/searchResults';
 import {Pagination as SearchPagination} from '../searchpagination/searchPagination';
@@ -20,7 +19,6 @@ import {Pagination as SearchPagination} from '../searchpagination/searchPaginati
         ['desc'], ['card_sets'], ['set_code'],['set_rarity'],['set_rarity_code'], ['set_price']
 
         */
-const firstAPISite = import.meta.env.API_SITE_1;
 
 export default function MainPage({LogIn, isLoggedIn, givenUserId}){
   const [searchTerm, setSearchTerm] = useState("");

@@ -52,6 +52,7 @@ if(isLoading){
   return <div className='Loading-API-Text'>Loading...</div>
 }
 if(error){
+  console.log(error)
   return (
         <div className='Loading-API-Text'>
           <h2> Something went wrong loading cart... </h2>
