@@ -39,7 +39,10 @@ router.get('/dude', (req, res) => {
      // Check if card already exists in cart list
      const existingCard = await req.db.query(
          `SELECT quantity FROM yugioh_cart_list 
-         WHERE card_name = :card_name AND cartId = :cartId AND userId = :userId`,
+         WHERE 
+         card_name = :card_name AND 
+         cartId = :cartId AND 
+         userId = :userId`,
          {
             card_name: req.body.card_name,
             cartId: req.body.cartId,
