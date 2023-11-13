@@ -84,7 +84,7 @@ function ListItems() {
                     onClick={(event) => { 
                                       addToCartinCart(event, item.card_name, item.cartId, givenUserId);
                                       setTimeout(refetch(["Yugioh Cart Data"]),1000) 
-                                      location.reload();
+                                      //location.reload();
                                     }}>
                       +</button>
                     &nbsp;
@@ -93,7 +93,7 @@ function ListItems() {
                     onClick={(event) => { 
                                       subtractFromCartinCart(event, item.cartId, givenUserId) 
                                       setTimeout(refetch(["Yugioh Cart Data"]),1000)
-                                      location.reload();
+                                      //location.reload();
                                       }}> 
                       - </button>
                     &nbsp;
@@ -102,7 +102,7 @@ function ListItems() {
                     onClick={(event) => {
                                       deleteFromCartinCart(event, item.card_name, item.cartId, givenUserId)
                                       setTimeout(refetch(["Yugioh Cart Data"]),1000)
-                                      location.reload();
+                                      //location.reload();
                                       }}> 
                         <FontAwesomeIcon icon={faTrash} />
                     </button>
