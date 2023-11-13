@@ -62,12 +62,14 @@ function ListItems() {
     if(cardList != undefined){
         return cardList.map((item) => {
           
-            let shopListItems = {
-                "card-name":item.card_name,
-                "quantity": item.quantity
+            let pricesArray = {
+                  amazon_price: item.amazon_price, 
+                  cardmarket_price: item.cardmarket_price, 
+                  coolstuffinc_price: item.coolstuffinc_price, 
+                  ebay_price: item.ebay_price,
+                  tcgplayer_price: item.tcgplayer_price
             };
-            console.log("ITEMS", item);
-            console.log("PRICES", item.price)
+            
            //if(givenUserId === 0) localStorage.setItem("No User Shop List", JSON.stringify(shopListItems))
            
             if(givenUserId === item.userId){
@@ -79,7 +81,7 @@ function ListItems() {
                     <button 
                     className='cartUpdateButton cartUpdateAdd'
                     onClick={(event) => { 
-                                      addToCartinCart(event, item.card_name, item.price, item.cartId, givenUserId);
+                                      addToCartinCart(event, item.card_name, pricesArray, item.cartId, givenUserId);
                                       setTimeout(refetch(["Yugioh Cart Data"]),1000) 
                                     }}>
                       +</button>
