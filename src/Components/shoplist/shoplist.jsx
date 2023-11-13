@@ -25,14 +25,12 @@ document.getElementById("content").innerHTML = test.country;
 
 
 const Shoplist = ({givenUserId}) => {
-const [cardList, setshopData] = React.useState([]);
 
 const { isLoading, error, data, refetch } = useQuery('Yugioh Cart Data', 
       async () =>{
                 let response =  await fetch(`/.netlify/functions/functions/cart/list`);
                 let data = await response.json();   
                 console.log("trying to load cart")
-                setshopData(data[0]);
                 return data
           },{
             refetchOnWindowFocus: false
@@ -54,7 +52,7 @@ if(error){
 
 
 function ListItems() {
-
+    let cardList = data[0];
     //console.log("cardList: ",cardList)
     //console.log("data: ",data)
     if(cardList != undefined){
