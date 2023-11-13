@@ -130,6 +130,7 @@ function FilterSearchCards(){
     const cardType = array.cardType;
     const cardTypeofType = array.cardTypeofType;
     const cardPriceArray = array.cardPriceArray;
+    const pricesString = JSON.stringify(cardPriceArray);
 
     return (
             <>
@@ -153,7 +154,7 @@ function FilterSearchCards(){
   
                       <button 
                       className='cartUpdateButton cartUpdateAdd'
-                      onClick={(event) => addToCart(event, filteredCardName, cardPriceArray, index, givenUserId)}>
+                      onClick={(event) => addToCart(event, filteredCardName, pricesString, index, givenUserId)}>
                         +
                       </button>
   
