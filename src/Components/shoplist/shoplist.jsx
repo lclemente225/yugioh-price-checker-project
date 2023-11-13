@@ -74,6 +74,8 @@ function ListItems() {
                 <li key={item.id} className='shop-list-item'>
                 <p className="card-listing-text">{item.card_name}</p>    
                 <p className="card-listing-text">Quantity: {item.quantity}</p>
+                
+                <p className="card-listing-text">Total: {item.price}</p>
                     <button 
                     className='cartUpdateButton cartUpdateAdd'
                     onClick={(event) => { 
