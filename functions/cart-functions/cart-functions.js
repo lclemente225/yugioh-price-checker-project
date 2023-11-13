@@ -55,7 +55,10 @@ router.get('/dude', (req, res) => {
          `UPDATE yugioh_cart_list 
          SET quantity = quantity + 1, 
          cardmarket_price = :cardmarket_price * quantity  
-         WHERE card_name = :card_name AND cartId = :cartId AND userId = :userId`,
+         WHERE 
+         card_name = :card_name AND 
+         cartId = :cartId AND 
+         userId = :userId`,
          {
              card_name: req.body.card_name,
              cartId: req.body.cartId,
@@ -95,7 +98,7 @@ router.get('/dude', (req, res) => {
      }
      } catch (err) {
      console.log('post err card not added', err);
-     res.status(500).json({ error: 'Failed to add card to cart', message: err });
+     res.status(500).send({ error: 'Failed to add card to cart', message: err });
      }
  });
  

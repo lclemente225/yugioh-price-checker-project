@@ -75,7 +75,7 @@ export default function MainPage({LogIn, isLoggedIn, givenUserId}){
             throw new Error('Failed to add item to cart');
           }
           showCart(true);
-
+          
           performingAddingorSubtracting({
               action: "You just added",
               addCardName: name,
