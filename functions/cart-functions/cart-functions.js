@@ -23,7 +23,7 @@ router.get('/dude', (req, res) => {
  
      }catch(error){
      
-     res.status(500).json({ error: 'Failed to find yoru cart' });
+     return res.status(500).send({ error: 'Failed to find yoru cart' });
      }
  }); 
  
