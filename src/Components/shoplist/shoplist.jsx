@@ -60,6 +60,7 @@ function ListItems() {
     if(cardList != undefined){
         return cardList.map((item) => {
           
+          console.log("ITEMS", item)
             let pricesArray = {
                   amazon_price: item.amazon_price, 
                   cardmarket_price: item.cardmarket_price, 
