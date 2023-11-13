@@ -71,20 +71,20 @@ router.get('/dude', (req, res) => {
          const addCartList = await req.db.query(
          `INSERT INTO yugioh_cart_list (
              card_name, 
-             price,
+             cardmarket_price,
              quantity,
              cartId,
              userId
          ) VALUES (
              :card_name,
-             :price,
+             :cardmarket_price,
              :quantity,
              :cartId,
              :userId
          )`,
          {
              card_name: req.body.card_name,
-             price: req.body.price,
+             cardmarket_price: req.body.cardmarket_price,
              quantity: req.body.quantity,
              cartId: req.body.cartId,
              userId: userIdFromClientSide
