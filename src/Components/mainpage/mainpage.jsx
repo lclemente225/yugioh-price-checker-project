@@ -58,7 +58,7 @@ export default function MainPage({LogIn, isLoggedIn, givenUserId}){
   async function addToCart(e, name, price, index, userId){
     e.preventDefault();
     try{
-         console.log(`name, price: ${price[0]}, id:${index},  event:${e}`)
+         console.log(`name, price: ${price["cardmarket_price"]}, id:${index},  event:${e}`)
       const response = await fetch(`/.netlify/functions/functions/cart/add`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
