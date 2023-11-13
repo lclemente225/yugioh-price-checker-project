@@ -27,7 +27,7 @@ document.getElementById("content").innerHTML = test.country;
 const Shoplist = ({givenUserId}) => {
 const [cardList, setshopData] = React.useState([]);
 
-const { isLoading, error, data, refetch, onSuccess } = useQuery('Yugioh Cart Data', 
+const { isLoading, error, data, refetch } = useQuery('Yugioh Cart Data', 
       async () =>{
                 let response =  await fetch(`/.netlify/functions/functions/cart/list`);
                 let data = await response.json();   
@@ -50,9 +50,7 @@ if(error){
         </div>
         )
 }
-if(onSuccess){
-  console.log("successfully got cart list")
-}
+
 
 function ListItems() {
 
@@ -77,7 +75,7 @@ function ListItems() {
                 <li key={item.id} className='shop-list-item'>
                 <p className="card-listing-text">{item.card_name}</p>    
                 <p className="card-listing-text">Quantity: {item.quantity}</p>
-                <p className="card-listing-text">Total Price: {item.cardmarket_price}</p>
+                <p className="card-listing-text">CardMarket Price: {item.cardmarket_price}</p>
                     <button 
                     className='cartUpdateButton cartUpdateAdd'
                     onClick={(event) => { 
