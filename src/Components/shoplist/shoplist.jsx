@@ -1,5 +1,6 @@
 import React from 'react';
 import './shoplist.css';
+import PriceSelections from './price-selections';
 import { useQuery, QueryCache } from 'react-query';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrash } from '@fortawesome/free-solid-svg-icons'
@@ -30,7 +31,7 @@ const { isLoading, error, data, refetch } = useQuery('Yugioh Cart Data',
       async () =>{
                 let response =  await fetch(`/.netlify/functions/functions/cart/list`);
                 let data = await response.json();   
-                console.log("trying to load cart")
+                console.log("trying to load cart", data)
                 return data
           },{
             refetchOnWindowFocus: false
@@ -80,7 +81,7 @@ function ListItems() {
                     className='cartUpdateButton cartUpdateAdd'
                     onClick={(event) => { 
                                       addToCartinCart(event, item.card_name, item.cartId, givenUserId);
-                                      //setTimeout(refetch(["Yugioh Cart Data"]),1000) 
+                                      setTimeout(refetch(["Yugioh Cart Data"]),1000) 
                                       location.reload();
                                     }}>
                       +</button>
@@ -89,7 +90,7 @@ function ListItems() {
                     className='cartUpdateButton cartUpdateSubtract'
                     onClick={(event) => { 
                                       subtractFromCartinCart(event, item.cartId, givenUserId) 
-                                      //setTimeout(refetch(["Yugioh Cart Data"]),1000)
+                                      setTimeout(refetch(["Yugioh Cart Data"]),1000)
                                       location.reload();
                                       }}> 
                       - </button>
@@ -98,7 +99,7 @@ function ListItems() {
                     className='cartUpdateButton cartUpdateDelete'
                     onClick={(event) => {
                                       deleteFromCartinCart(event, item.card_name, item.cartId, givenUserId)
-                                      //setTimeout(refetch(["Yugioh Cart Data"]),1000)
+                                      setTimeout(refetch(["Yugioh Cart Data"]),1000)
                                       location.reload();
                                       }}> 
                         <FontAwesomeIcon icon={faTrash} />
@@ -124,6 +125,7 @@ function ListItems() {
             <a href="/" className='shop-list-link-home'>Go Home</a>     
         </div>
         <div id="shop-list-container" >
+            <PriceSelections />
             <ul>
             {isLoading ? <div>Loading...</div> : error ? <div>Error: {error}</div> : <ListItems />}
             </ul>
