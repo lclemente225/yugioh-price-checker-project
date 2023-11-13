@@ -86,12 +86,36 @@ function ListItems() {
                 <p className="card-listing-text">{item.card_name}</p>    
                 <p className="card-listing-text">Quantity: {item.quantity}</p>
                 <div className='card-listing-price-container'>
-                  <p className="card-listing-price">CardMarket Price: {pricesArray["cardmarket_price"]}</p>
-                  <p className="card-listing-price">Coolstuffinc Price: {pricesArray["coolstuffinc_price"]}</p>
-                  <p className="card-listing-price">Ebay Price: {pricesArray["ebay_price"]}</p>
-                  <p className="card-listing-price">Amazon Price: {pricesArray["amazon_price"]}</p>
-                  <p className="card-listing-price">Tcgplayer Price: {pricesArray["tcgplayer_price"]}</p>
-
+                  {
+                  selectedPrice.cardmarket_price &&
+                  <p className="card-listing-price">
+                    CardMarket Price: {pricesArray["cardmarket_price"]}
+                  </p>
+                  }
+                 {
+                  selectedPrice.coolstuffinc_price &&
+                  <p className="card-listing-price">
+                    Coolstuffinc Price: {pricesArray["coolstuffinc_price"]}
+                  </p>
+                  }
+                  {
+                    selectedPrice.ebay_price &&
+                  <p className="card-listing-price">
+                    Ebay Price: {pricesArray["ebay_price"]}
+                  </p>
+                  }
+                  {
+                    selectedPrice.amazon_price &&
+                  <p className="card-listing-price">
+                    Amazon Price: {pricesArray["amazon_price"]}
+                  </p>
+                  }
+                  {
+                    selectedPrice.tcgplayer_price &&
+                  <p className="card-listing-price">
+                    Tcgplayer Price: {pricesArray["tcgplayer_price"]}
+                  </p>
+                  }
                 </div>
                     <button 
                     className='cartUpdateButton cartUpdateAdd'
