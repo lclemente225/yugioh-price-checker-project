@@ -70,7 +70,7 @@ function ListItems() {
             ];
 
             pricesArray.sort((a, b) => a - b);
-            
+            console.log(pricesArray);
            //if(givenUserId === 0) localStorage.setItem("No User Shop List", JSON.stringify(shopListItems))
            
             if(givenUserId === item.userId){
