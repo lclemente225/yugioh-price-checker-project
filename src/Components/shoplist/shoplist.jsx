@@ -32,6 +32,7 @@ const { isLoading, error, data, refetch } = useQuery('Yugioh Cart Data',
                 let response =  await fetch(`/.netlify/functions/functions/cart/list`);
                 let data = await response.json();   
                 console.log("trying to load cart")
+                setshopData(data[0]);
                 return data
           },{
             refetchOnWindowFocus: false
@@ -54,7 +55,6 @@ if(error){
 
 function ListItems() {
 
-  setshopData(data[0]);
     //console.log("cardList: ",cardList)
     //console.log("data: ",data)
     if(cardList != undefined){
