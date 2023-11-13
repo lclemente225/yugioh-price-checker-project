@@ -64,7 +64,7 @@ export default function MainPage({LogIn, isLoggedIn, givenUserId}){
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({  
                                 "card_name": name, 
-                                "price":price["cardmarket_price"], 
+                                "price":price, 
                                 "quantity":"1",
                                 "cartId": `id${index}`,
                                 "userId": userId
