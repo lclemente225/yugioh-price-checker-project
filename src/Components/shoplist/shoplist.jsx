@@ -66,7 +66,7 @@ function ListItems() {
                 "card-name":item.card_name,
                 "quantity": item.quantity
             };
-
+            console.log("ITEMS", item)
            //if(givenUserId === 0) localStorage.setItem("No User Shop List", JSON.stringify(shopListItems))
            
             if(givenUserId === item.userId){
@@ -78,7 +78,7 @@ function ListItems() {
                     <button 
                     className='cartUpdateButton cartUpdateAdd'
                     onClick={(event) => { 
-                                      addToCartinCart(event, item.card_name, item.cardmarket_price, item.cartId, givenUserId);
+                                      addToCartinCart(event, item.card_name, item.price, item.cartId, givenUserId);
                                       setTimeout(refetch(["Yugioh Cart Data"]),1000) 
                                     }}>
                       +</button>
