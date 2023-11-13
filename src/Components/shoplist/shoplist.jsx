@@ -27,15 +27,7 @@ document.getElementById("content").innerHTML = test.country;
 const Shoplist = ({givenUserId}) => {
 const [cardList, setshopData] = React.useState([])
 const firstAPISite = process.env.REACT_APP_API_SITE_2;
-const queryCache = new QueryCache({
-  onSuccess: (data) => {
-    console.log("accessed query", data)
-  },
-  onSettled: (data, error) => {
-    if(error) console.log(error)
-    console.log("settled cache", data)
-  }
-})
+
 const { isLoading, error, data, refetch, onSuccess } = useQuery('Yugioh Cart Data', 
       async () =>{
                 let response =  await fetch(`/.netlify/functions/functions/cart/list`);
@@ -52,7 +44,7 @@ if(isLoading){
   return <div className='Loading-API-Text'>Loading...</div>
 }
 if(error){
-  console.log(error)
+  console.log("Unable to load cart", error)
   return (
         <div className='Loading-API-Text'>
           <h2> Something went wrong loading cart... </h2>
