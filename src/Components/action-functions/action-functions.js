@@ -5,6 +5,8 @@ export async function addToCartinCart(e, name, price, cartId, userId){
       method: 'PUT',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({  "card_name": name, 
+                              "cardmarket_price":price["cardmarket_price"], 
+                              "tcgplayer_price":price["tcgplayer_price"],
                               "quantity":"1",
                               "cartId": cartId,
                               "userId":userId
