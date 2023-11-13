@@ -70,18 +70,26 @@ router.get('/dude', (req, res) => {
  
          return res.json(updatedCartList);
      } else {
-         console.log("added card to list", req.body.card_name)
+         //console.log("added card to list", req.body.card_name)
          // If card doesn't exist, add it to cart list
          const addCartList = await req.db.query(
          `INSERT INTO yugioh_cart_list (
              card_name, 
              cardmarket_price,
+             tcgplayer_price,
+             amazon_price, 
+             coolstuffinc_price, 
+             ebay_price,
              quantity,
              cartId,
              userId
          ) VALUES (
              :card_name,
              :cardmarket_price,
+             :tcgplayer_price,
+             :amazon_price, 
+             :coolstuffinc_price, 
+             :ebay_price,
              :quantity,
              :cartId,
              :userId
@@ -90,6 +98,9 @@ router.get('/dude', (req, res) => {
              card_name: req.body.card_name,
              cardmarket_price: req.body.cardmarket_price,
              tcgplayer_price: req.body.tcgplayer_price,
+             amazon_price: req.body.amazon_price, 
+             coolstuffinc_price: req.body.coolstuffinc_price, 
+             ebay_price: req.body.ebay_price,
              quantity: req.body.quantity,
              cartId: req.body.cartId,
              userId: userIdFromClientSide

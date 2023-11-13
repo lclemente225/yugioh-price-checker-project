@@ -61,13 +61,15 @@ function ListItems() {
           
           console.log("ITEMS", item)
           //maybe sort?
-            let pricesArray = {
-                  amazon_price: item.amazon_price, 
-                  cardmarket_price: item.cardmarket_price, 
-                  coolstuffinc_price: item.coolstuffinc_price, 
-                  ebay_price: item.ebay_price,
-                  tcgplayer_price: item.tcgplayer_price
-            };
+            let pricesArray = [
+                  item.amazon_price, 
+                  item.cardmarket_price, 
+                  item.coolstuffinc_price, 
+                  item.ebay_price,
+                  item.tcgplayer_price
+            ];
+
+            pricesArray.sort((a, b) => a - b);
             
            //if(givenUserId === 0) localStorage.setItem("No User Shop List", JSON.stringify(shopListItems))
            
@@ -76,7 +78,7 @@ function ListItems() {
                 <li key={item.id} className='shop-list-item'>
                 <p className="card-listing-text">{item.card_name}</p>    
                 <p className="card-listing-text">Quantity: {item.quantity}</p>
-                <p className="card-listing-text">CardMarket Price: {item.cardmarket_price}</p>
+                <p className="card-listing-text">CardMarket Price: {pricesArray[0]}</p>
                     <button 
                     className='cartUpdateButton cartUpdateAdd'
                     onClick={(event) => { 

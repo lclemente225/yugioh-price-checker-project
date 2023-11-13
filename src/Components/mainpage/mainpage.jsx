@@ -65,7 +65,10 @@ export default function MainPage({LogIn, isLoggedIn, givenUserId}){
         body: JSON.stringify({  
                                 "card_name": name, 
                                 "cardmarket_price":price["cardmarket_price"], 
-                                "tcgplayer_price": 1,
+                                "tcgplayer_price": price["tcgplayer_price"],
+                                "amazon_price": price["amazon_price"], 
+                                "coolstuffinc_price": price["coolstuffinc_price"], 
+                                "ebay_price": price["ebay_price"],
                                 "quantity":"1",
                                 "cartId": `id${index}`,
                                 "userId": userId
