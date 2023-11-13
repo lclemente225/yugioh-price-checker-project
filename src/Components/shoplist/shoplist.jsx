@@ -61,16 +61,17 @@ function ListItems() {
           
           console.log("ITEMS", item)
           //maybe sort?
-            let pricesArray = [
-                  item.amazon_price, 
-                  item.cardmarket_price, 
-                  item.coolstuffinc_price, 
-                  item.ebay_price,
-                  item.tcgplayer_price
-            ];
+            let pricesArray = {
+                  amazon_price: item.amazon_price, 
+                  cardmarket_price: item.cardmarket_price, 
+                  coolstuff_inc_price: item.coolstuffinc_price, 
+                  ebay_price: item.ebay_price,
+                  tcgplayer_price: item.tcgplayer_price
+                };
 
             pricesArray.sort((a, b) => a - b);
-            console.log(pricesArray);
+            console.log("PRICES OF ", item.card_name, " ", pricesArray)
+            
            //if(givenUserId === 0) localStorage.setItem("No User Shop List", JSON.stringify(shopListItems))
            
             if(givenUserId === item.userId){
