@@ -80,7 +80,7 @@ function ListItems() {
                     <button 
                     className='cartUpdateButton cartUpdateAdd'
                     onClick={(event) => { 
-                                      addToCartinCart(event, item.card_name, pricesArray, item.cartId, givenUserId);
+                                      addToCartinCart(event, item.card_name, item.cartId, givenUserId);
                                       setTimeout(refetch(["Yugioh Cart Data"]),1000) 
                                     }}>
                       +</button>

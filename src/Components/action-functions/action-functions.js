@@ -1,13 +1,10 @@
 
 
-export async function addToCartinCart(e, name, price, cartId, userId){
+export async function addToCartinCart(e, name, cartId, userId){
     await fetch(`/.netlify/functions/functions/cart/add`, {
       method: 'PUT',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({  "card_name": name, 
-                              "cardmarket_price":price["cardmarket_price"], 
-                              "tcgplayer_price":price["tcgplayer_price"],
-                              "quantity":"1",
                               "cartId": cartId,
                               "userId":userId
                                  })
