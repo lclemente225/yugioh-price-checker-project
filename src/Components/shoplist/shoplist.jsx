@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './shoplist.css';
 import PriceSelections from './price-selections';
-import Placeholder from './placeholder';
+//import Placeholder from './placeholder';
 import { useQuery } from 'react-query';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrash, faArrowLeft, faArrowRight } from '@fortawesome/free-solid-svg-icons';
