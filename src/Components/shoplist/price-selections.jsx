@@ -1,7 +1,7 @@
 import React from 'react'
 
 
-const PriceSelections = ({selectedPrice, choosePriceSelection}) => {
+const PriceSelections = ({selectedPrice, choosePriceSelection, toggleShowPrices}) => {
 
   function selectAmazon(){
     choosePriceSelection({
@@ -50,7 +50,10 @@ const PriceSelections = ({selectedPrice, choosePriceSelection}) => {
   }
   return (
     <div className='price-list-container'>
-        What prices do you want to check out?
+        <span className='close-price-list' onClick={() => toggleShowPrices(false)}>
+          x
+        </span>
+        Choices
         <p  className={`${ selectedPrice.tcgplayer_price ? 'selected-price' : ''} price-selection`}
         onClick={() => selectTCG()}>
             TCG Player

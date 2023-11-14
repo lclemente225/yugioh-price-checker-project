@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import './shoplist.css';
 import PriceSelections from './price-selections';
+import Placeholder from './placeholder';
 import { useQuery } from 'react-query';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTrash } from '@fortawesome/free-solid-svg-icons'
+import { faTrash, faArrowLeft, faArrowRight } from '@fortawesome/free-solid-svg-icons';
 import { addToCartinCart, subtractFromCartinCart, deleteFromCartinCart } from '../action-functions/action-functions';
 
 /**
@@ -34,6 +35,7 @@ const Shoplist = ({givenUserId}) => {
       ebay_price: false,
       tcgplayer_price: false
     })
+    const [showPrices, toggleShowPrices] = useState(true);
 
     const { isLoading, error, data, refetch } = useQuery('Yugioh Cart Data', 
           async () =>{
@@ -46,7 +48,7 @@ const Shoplist = ({givenUserId}) => {
               },
               []);
           
-if(isLoading){
+/* if(isLoading){
   return <div className='Loading-API-Text'>Loading...</div>
 }
 if(error){
@@ -57,7 +59,7 @@ if(error){
           <a href="/"><p>Go Home</p></a>
         </div>
         )
-}
+} */
 
 
 function ListItems() {
@@ -157,19 +159,38 @@ function ListItems() {
 
   return (
     <div className='shop-list-whole-container'>
-      <div id="shop-list-demo">
-        Play around with adding, subtracting and deleting items
-      </div>
         <div className='shop-list-heading'>
             <h1>Your Shopping List</h1>
-            <a href="/" className='shop-list-link-home'>Go Home</a>     
+            <a href="/" className='shop-list-link-home'>Go Home</a>   
+            <div id="shop-list-demo">
+               Dev Note: Play around with adding, subtracting and deleting items
+            </div>  
         </div>
+     {
+        showPrices &&
+        <PriceSelections selectedPrice={selectedPrice} choosePriceSelection={choosePriceSelection} toggleShowPrices={toggleShowPrices} />
+        }
         <div id="shop-list-container" >
-            <PriceSelections selectedPrice={selectedPrice} choosePriceSelection={choosePriceSelection} />
+            <div className='toggle-prices'>
+              <span>
+                What prices do you want to check out?
+              </span>
+              <div className='toggle-arrow' onClick={() => toggleShowPrices((x) => !x)}>
+                {showPrices ? 'Close Choices' : 'Check out Choices' }
+              </div>
+            </div>
             <ul>
-            {isLoading ? <div>Loading...</div> : error ? <div>Error: {error}</div> : <ListItems />}
+            {isLoading ?  <div>Loading...</div> : 
+            error ? 
+            <Placeholder selectedPrice={selectedPrice} choosePriceSelection={choosePriceSelection}/>
+            ||
+            <div className='Loading-API-Text'>
+              <h2> Something went wrong loading cart... </h2>
+              <a href="/"><p>Go Home</p></a>
+            </div>  : 
+            <ListItems />}
             </ul>
-        </div>
+            </div>
 
     </div>
   )
