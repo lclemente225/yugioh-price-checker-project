@@ -50,7 +50,7 @@ const PriceSelections = ({selectedPrice, choosePriceSelection, toggleShowPrices}
   }
   return (
     <div className='price-list-container'>
-        <span className='close-price-list' onClick={() => toggleShowPrices(false)}>
+        <span className='close-price-list' onClick={() => toggleShowPrices(x => !x)}>
           x
         </span>
         Choices

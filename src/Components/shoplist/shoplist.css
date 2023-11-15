@@ -15,19 +15,21 @@
     gap: 1rem;
 }
 /* cart list section */
+.shop-list-wrapper{
+    display: flex;
+}
 #shop-list-container{
     padding-top: 20px;
-    width: 100%;
+    width: 50vw;
     height: 70vh; 
     background-color: grey;
-    overflow-y: auto;
-    position: relative;
 }
 #shop-list-container ul{
-    height:100%;
+    height: 90%;
     width: 100%;
     display: flex;
     flex-direction: column;
+    overflow-y: auto;
 }
 .shop-list-link-home{
     background-color: var(--primary-color);
@@ -56,43 +58,39 @@
     z-index: 100;
     font-size: 2rem;
     border: 2px solid black;
-    background-color: white;
+    background-color: rgb(255, 255, 255);
     height: 80px;
     width: max-content;
     padding: 1rem;
     text-align: center;
 }
 /* Price Selection */
-.price-list-container{
-    position: absolute;
-    z-index: 100;
-    left: 80%;
-    top: 45%;
-    width: 10%;
-    margin: 0;
-    
-    border: 2px solid black;
-    border-radius: 10px;
-    background-color: white;
-    padding: 1em;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
 .toggle-prices{
-    border: 2px solid black;
     z-index: 99;
-    background-color: white;
-    width: 20%;
-    position: absolute;
+    background-color: rgb(255, 255, 255);
+    width: 50vw;
+    height: auto;
     right: 10px;
-    padding: 15px 0;
+    padding: 15px 8px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     gap: 1em;
 
+}
+.price-list-container{
+    z-index: 100;
+    width: 70%;
+    margin: 0;
+    
+    border: 2px solid rgba(0,0,0,0.3);
+    border-radius: 10px;
+    background-color: white;
+    padding: 1em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 .toggle-arrow{
     background-color: rgba(0, 183, 255, 0.521);
@@ -147,18 +145,38 @@
         width: 30%;
     }
 }
-
-
 @media screen and (min-width: 651px) and (max-width: 950px) {
     #shop-list-demo{
         font-size: 1rem;
         height: max-content;
         padding: 1rem;
     }
+    .shop-list-wrapper{
+        display: flex;
+        flex-direction: column-reverse;
+        position: relative;
+        width: 100%;
+        height: 85vh;
+    }
+    #shop-list-container{
+        width: 100%;
+        padding: 0;
+    }
+    #shop-list-container ul{
+        height: 90%;
+        width: 100%;
+        padding: 0 10px;
+    } 
+    .toggle-prices{
+        width: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
     .price-list-container{
-        top: 40%;
-        right: 20%;
-        width: 70%;
+        font-size: 0.8rem;
+        width: 100%;
+        height: 100%;
     }
     .shop-list-heading h1{
         font-size: 1.7rem;
@@ -183,18 +201,36 @@
 
 @media screen and (max-width: 650px) {
     #shop-list-container{
-        height: 80vh;
+        height: 65vh;
+        width: 100%;
+        padding: 0;
+    }
+    #shop-list-container ul{
+        height: 80%;
+        padding: 0 10px;
+    }
+    .shop-list-wrapper{
+        display: flex;
+        flex-direction: column-reverse;
+        position: relative;
+        width: 100%;
     }
     #shop-list-demo{
         font-size: 0.8rem;
         padding: 10px 10px;
         height: max-content;
+        width: 100%;
+    }
+    .toggle-prices{
+        width: 100%;
     }
     .price-list-container{
-        top: 40%;
-        right: 5%;
-        width: 90%;
         font-size: 0.8rem;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
     }
     .shop-list-heading h1{
         font-size: 1rem;
@@ -202,7 +238,7 @@
     .shop-list-item{
         margin: 10px 0;
         padding: 20px 0;
-        width: 60%;
+        width: 100%;
         min-height: 200px;
         position: relative;
     }

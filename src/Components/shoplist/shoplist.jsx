@@ -35,7 +35,7 @@ const Shoplist = ({givenUserId}) => {
       ebay_price: false,
       tcgplayer_price: false
     })
-    const [showPrices, toggleShowPrices] = useState(true);
+    const [showPrices, toggleShowPrices] = useState(false);
 
     const { isLoading, error, data, refetch } = useQuery('Yugioh Cart Data', 
           async () =>{
@@ -48,7 +48,7 @@ const Shoplist = ({givenUserId}) => {
               },
               []);
           
-/* if(isLoading){
+if(isLoading){
   return <div className='Loading-API-Text'>Loading...</div>
 }
 if(error){
@@ -59,18 +59,15 @@ if(error){
           <a href="/"><p>Go Home</p></a>
         </div>
         )
-} */
+}
 
 
 function ListItems() {
     let cardList = data[0];
-    //console.log("cardList: ",cardList)
-    //console.log("data: ",data)
+    
     if(cardList != undefined){
         return cardList.map((item) => {
           
-          console.log("ITEMS", item)
-          //maybe sort?
             let pricesArray = {
                   amazon_price: item.amazon_price, 
                   cardmarket_price: item.cardmarket_price, 
@@ -166,31 +163,35 @@ function ListItems() {
                Dev Note: Play around with adding, subtracting and deleting items
             </div>  
         </div>
-     {
-        showPrices &&
-        <PriceSelections selectedPrice={selectedPrice} choosePriceSelection={choosePriceSelection} toggleShowPrices={toggleShowPrices} />
-        }
-        <div id="shop-list-container" >
+        <div className='shop-list-wrapper'>
+            <div id="shop-list-container">
+              <ul>
+              {isLoading ?  <div>Loading...</div> : 
+              error ? 
+              <Placeholder selectedPrice={selectedPrice} choosePriceSelection={choosePriceSelection}/>
+              ||
+              <div className='Loading-API-Text'>
+                <h2> Something went wrong loading cart... </h2>
+                <a href="/"><p>Go Home</p></a>
+              </div>  : 
+              <ListItems />}
+              </ul>
+            </div>
+
             <div className='toggle-prices'>
-              <span>
-                What prices do you want to check out?
-              </span>
-              <div className='toggle-arrow' onClick={() => toggleShowPrices((x) => !x)}>
-                {showPrices ? 'Close Choices' : 'Check out Choices' }
-              </div>
+                <span>
+                  What prices do you want to check out?
+                </span>
+                <div className='toggle-arrow' onClick={() =>  toggleShowPrices(x => !x)}>
+                  {showPrices ? 'Close Choices' : 'Check out Choices' }
+                </div>
+                {
+                  showPrices &&
+                  <PriceSelections selectedPrice={selectedPrice} choosePriceSelection={choosePriceSelection} toggleShowPrices={toggleShowPrices} />
+                }
             </div>
-            <ul>
-            {isLoading ?  <div>Loading...</div> : 
-            error ? 
-            <Placeholder selectedPrice={selectedPrice} choosePriceSelection={choosePriceSelection}/>
-            ||
-            <div className='Loading-API-Text'>
-              <h2> Something went wrong loading cart... </h2>
-              <a href="/"><p>Go Home</p></a>
-            </div>  : 
-            <ListItems />}
-            </ul>
-            </div>
+        </div>
+       
 
     </div>
   )
