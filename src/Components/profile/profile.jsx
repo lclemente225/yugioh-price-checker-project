@@ -178,9 +178,18 @@ const Profile = () => {
             {selectedProfileForm.profileInfo && <ProfileInfo userId={userId} getInfo={getInfo} UserInfo={UserInfo} setUserInfo={setUserInfo} />}
           
           <form className='profile-form' onSubmit={handleSubmit}>
-              {selectedProfileForm.editUser && <EditUser profileFormData={profileFormData} handleChange={handleChange}/>}
-              {selectedProfileForm.editEmail && <EditEmail profileFormData={profileFormData} handleChange={handleChange}/>}
-              {selectedProfileForm.editPassword && <EditPW profileFormData={profileFormData} handleChange={handleChange}/>}
+              {
+              selectedProfileForm.editUser && 
+              <EditUser profileFormData={profileFormData} handleChange={handleChange}/>
+              }
+              {
+              selectedProfileForm.editEmail && 
+              <EditEmail profileFormData={profileFormData} handleChange={handleChange}/>
+              }
+              {
+              selectedProfileForm.editPassword && 
+              <EditPW profileFormData={profileFormData} handleChange={handleChange}/>
+              }
               
             { !selectedProfileForm.profileInfo &&
               <button type="submit">
