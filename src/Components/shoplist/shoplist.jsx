@@ -4,7 +4,7 @@ import PriceSelections from './price-selections';
 //import Placeholder from './placeholder';
 import { useQuery } from 'react-query';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTrash, faArrowLeft, faArrowRight } from '@fortawesome/free-solid-svg-icons';
+import { faTrash } from '@fortawesome/free-solid-svg-icons';
 import { addToCartinCart, subtractFromCartinCart, deleteFromCartinCart } from '../action-functions/action-functions';
 
 /**
@@ -88,31 +88,31 @@ function ListItems() {
                   {
                   selectedPrice.cardmarket_price &&
                   <p className="card-listing-price">
-                    CardMarket Price: {pricesArray["cardmarket_price"]}
+                    CardMarket Price: ${pricesArray["cardmarket_price"]}
                   </p>
                   }
                  {
                   selectedPrice.coolstuffinc_price &&
                   <p className="card-listing-price">
-                    Coolstuffinc Price: {pricesArray["coolstuffinc_price"]}
+                    Coolstuffinc Price: ${pricesArray["coolstuffinc_price"]}
                   </p>
                   }
                   {
                     selectedPrice.ebay_price &&
                   <p className="card-listing-price">
-                    Ebay Price: {pricesArray["ebay_price"]}
+                    Ebay Price: ${pricesArray["ebay_price"]}
                   </p>
                   }
                   {
                     selectedPrice.amazon_price &&
                   <p className="card-listing-price">
-                    Amazon Price: {pricesArray["amazon_price"]}
+                    Amazon Price: ${pricesArray["amazon_price"]}
                   </p>
                   }
                   {
                     selectedPrice.tcgplayer_price &&
                   <p className="card-listing-price">
-                    Tcgplayer Price: {pricesArray["tcgplayer_price"]}
+                    Tcgplayer Price: ${pricesArray["tcgplayer_price"]}
                   </p>
                   }
                 </div>
