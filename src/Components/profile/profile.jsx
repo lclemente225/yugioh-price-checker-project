@@ -179,24 +179,26 @@ const Profile = () => {
           
           <form className='profile-form' onSubmit={handleSubmit}>
               {
-              selectedProfileForm.editUser && 
-              <EditUser profileFormData={profileFormData} handleChange={handleChange}/>
+                selectedProfileForm.editUser && 
+                <EditUser profileFormData={profileFormData} handleChange={handleChange}/>
               }
               {
-              selectedProfileForm.editEmail && 
-              <EditEmail profileFormData={profileFormData} handleChange={handleChange}/>
+                selectedProfileForm.editEmail && 
+                <EditEmail profileFormData={profileFormData} handleChange={handleChange}/>
               }
               {
-              selectedProfileForm.editPassword && 
-              <EditPW profileFormData={profileFormData} handleChange={handleChange}/>
+                selectedProfileForm.editPassword && 
+                <EditPW profileFormData={profileFormData} handleChange={handleChange}/>
               }
               
-            { !selectedProfileForm.profileInfo &&
+            { 
+              !selectedProfileForm.profileInfo &&
               <button type="submit">
-              {selectedProfileForm.editUser && 'Edit User'}
-              {selectedProfileForm.editEmail && 'Edit Email'}
-              {selectedProfileForm.editPassword && 'Change Password'}
-            </button>}
+                {selectedProfileForm.editUser && 'Edit User'}
+                {selectedProfileForm.editEmail && 'Edit Email'}
+                {selectedProfileForm.editPassword && 'Change Password'}
+              </button> 
+            }
           </form>
           {/* </Suspense> */}
         </div>
