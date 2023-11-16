@@ -1,6 +1,6 @@
 :root{
     --primary-color: #23B5D3;
-    --secondary-color: #A2AEBB;
+    --secondary-color: #698fa8;
     --tertiary-color: #75ABBC;
     --dark-text-color: #071013;
     --light-text-color: #DFE0E2;
@@ -70,7 +70,7 @@
 .below-search-text{
     color: white;
     text-shadow: 0 0 10px black;
-    filter: drop-shadow(2px 5px 1px black);
+    filter: drop-shadow(2px 0px 1px rgba(0, 0, 0, 0.432));
     font-weight: 500;
     font-size: 1.7rem;
     width: 90%;
@@ -150,7 +150,7 @@
     padding:20% 0;
     text-align: center;
     font-size: 100px;
-    background-color: grey;
+    background-color: #698fa8;
 }
   body::-webkit-scrollbar {
     width: 12px;               /* width of the entire scrollbar */
@@ -196,7 +196,7 @@
         transform: translateX(-200%);
       }
  }
- @media screen and (max-width: 1620px) {
+ @media screen and (max-width: 1680px) {
     .no-search-results{
         height: auto;
     }

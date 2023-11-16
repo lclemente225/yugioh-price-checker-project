@@ -22,14 +22,20 @@
     padding-top: 20px;
     width: 50vw;
     height: 70vh; 
-    background-color: grey;
+    background-color:  #698fa8;
 }
 #shop-list-container ul{
     height: 90%;
     width: 100%;
     display: flex;
     flex-direction: column;
-    overflow-y: auto;
+    overflow-y: scroll;
+
+}
+
+#shop-list-container ul::-webkit-scrollbar{
+    
+    color: black;
 }
 .shop-list-link-home{
     background-color: var(--primary-color);
@@ -44,12 +50,14 @@
     padding: 20px;
     width: 30vw;
     margin: 1rem;    
-    background-color: rgb(71, 224, 224);
-    border: 2px solid black;
-    box-shadow: 0 0 10px 1px black;
+    background-color: #c1eec8;
+    border: 2px solid #556490;
+    box-shadow: 0 0 8px 1px #556490;
 }
-.card-listing-text{
-    background-color: rgb(71, 224, 224);
+.card-listing-text,
+.card-listing-price{
+    background-color: transparent;
+    font-family: 'Nunito Sans', sans-serif;
 }
 .cartUpdateDelete{
     width: auto;                                  
@@ -58,7 +66,7 @@
     z-index: 100;
     font-size: 2rem;
     border: 2px solid black;
-    background-color: rgb(255, 255, 255);
+    background-color: #FFFFF0;
     height: 80px;
     width: max-content;
     padding: 1rem;
@@ -67,7 +75,7 @@
 /* Price Selection */
 .toggle-prices{
     z-index: 99;
-    background-color: rgb(255, 255, 255);
+    background-color: #F9F6EE;
     width: 50vw;
     height: auto;
     right: 10px;
@@ -86,7 +94,7 @@
     
     border: 2px solid rgba(0,0,0,0.3);
     border-radius: 10px;
-    background-color: white;
+    background-color: #FFFFF0;
     padding: 1em;
     display: flex;
     flex-direction: column;
@@ -243,7 +251,7 @@
         position: relative;
     }
     .card-listing-text,
-    .card-listing-price-container{
+    .card-listing-price{
         text-align: center;
     }
     .cartUpdateButton{
@@ -257,5 +265,40 @@
     }
     .cartUpdateSubtract{
         right: 60px
+    }
+}
+@media screen and (min-width: 1660px){
+    .shop-list-item{
+        display: grid;
+        position: relative;
+        grid-template-rows: [top-row]20% 20% [middle-row]20% 20% [bottom-row];
+        grid-template-columns: [left-column]1fr 20% [middle-column]15% 5% [middle-right-column]15% 5% [right-column]10%;
+    }
+    .cartUpdateButton{
+        grid-row: bottom-row;
+    }
+    .card-listing-name{
+        grid-column: left-column / 4;
+
+    }
+    .card-listing-quantity{
+        grid-row: top-row;
+        grid-column: middle-right-column / 8;
+    }
+    .card-listing-price-container{
+        grid-row: middle-row / bottom-row;
+        grid-column: middle-right-column / 8;
+    }
+    .cartUpdateAdd{
+        grid-column: middle-column / 5;
+        justify-self: end;
+    }
+    .cartUpdateSubtract{
+        grid-column: middle-right-column;
+        justify-self: center;
+    }
+    .cartUpdateDelete{
+        grid-column: right-column;
+
     }
 }

@@ -82,8 +82,8 @@ function ListItems() {
             if(givenUserId === item.userId){
               return (
                 <li key={item.id} className='shop-list-item'>
-                <p className="card-listing-text">{item.card_name}</p>    
-                <p className="card-listing-text">Quantity: {item.quantity}</p>
+                <p className="card-listing-text card-listing-name">{item.card_name}</p>    
+                <p className="card-listing-text card-listing quantity">Quantity: {item.quantity}</p>
                 <div className='card-listing-price-container'>
                   {
                   selectedPrice.cardmarket_price &&
