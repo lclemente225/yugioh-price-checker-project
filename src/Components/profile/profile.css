@@ -1,10 +1,4 @@
-:root{
-    --primary-color: #23B5D3;
-    --secondary-color: #A2AEBB;
-    --tertiary-color: #75ABBC;
-    --dark-text-color: #071013;
-    --light-text-color: #DFE0E2;
-}
+
 .profile-nav--top{
     height: 15vh;
     background-color: var(--primary-color);

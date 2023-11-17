@@ -8,7 +8,7 @@
     justify-content: space-between;
 }
 .navbar-brand h1{
-    font-size: 1.5rem;
+    font-size: 1.3rem;
     color: black;
 }
 .navbar-brand h1:hover{
@@ -19,16 +19,23 @@
     justify-content: space-around;
     width:300px;
 }
-.nav--top a, .navbar-profile, .navbar-brand h1, .nav--top p{
+.nav--top a, 
+.navbar-profile, 
+.navbar-brand h1, 
+.nav--top p{
+    font-family: 'VT323', monospace;
     font-family: 'Press Start 2P', cursive;
 }
-.navbar-login-links, a, .nav--top, .navbar{
+.navbar-login-links, 
+.navbar-button a, 
+.nav--top, 
+.navbar{
     background-color: var(--primary-color);
     font-size: 1rem;
 }
 #shopping-list-button{
     background-color: rgba(255, 255, 255, 0.719);
-    padding: 10px 20px;
+    padding: 5px 20px;
 }
 #shopping-list-button:hover{
     color: rgb(255, 230, 0);

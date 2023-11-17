@@ -19,10 +19,6 @@
     align-items: center;
     position: relative;
 }
-h1{
-    margin:0;
-    font-family: 'Press Start 2P', cursive;
-}
 .login-redirect-home{
     position: absolute;
     top: 20px;
