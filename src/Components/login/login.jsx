@@ -14,7 +14,7 @@ function Login({LogIn, isLoggedIn,givenUserId, setUserId}) {
       const response = await fetch("/.netlify/functions/functions/user/login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ "username": username, "password":password }),
+        body: JSON.stringify({ "username": username, "password": password }),
       });
       const loginData = await response.json();
 
@@ -28,12 +28,13 @@ function Login({LogIn, isLoggedIn,givenUserId, setUserId}) {
         localStorage.setItem("Login UserId", JSON.stringify(loginData.userId));
         document.cookie = `
         accessToken = ${JSON.stringify(loginData.accessToken)};
-        expires = 100
+        expires = 100;
         `;
         navigate('/');
         console.log("Login successful! Showing Login Data", 
          loginData.Login,
-         loginData.email
+         loginData.email,
+         document.cookie
          );
          
       } else {

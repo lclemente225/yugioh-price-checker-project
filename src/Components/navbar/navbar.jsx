@@ -6,6 +6,7 @@ export default function Navbar() {
     let loginStatus = JSON.parse(localStorage.getItem("Login Status"));
 
     function handleLogOut(){
+      console.log("logging out")
       localStorage.removeItem("Login Email");
       localStorage.removeItem("Login UserId");
       document.cookie = `
