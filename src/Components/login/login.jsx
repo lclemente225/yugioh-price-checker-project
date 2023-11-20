@@ -34,7 +34,7 @@ function Login({LogIn, isLoggedIn,givenUserId, setUserId}) {
         console.log("Login successful! Showing Login Data", 
          loginData.Login,
          loginData.email,
-         document.cookie
+         decodeURIComponent(document.cookie)
          );
          
       } else {
