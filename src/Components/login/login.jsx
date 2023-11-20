@@ -1,11 +1,13 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "./login.css";
+import { Cookies, useCookies } from "react-cookie";
 
 function Login({LogIn, isLoggedIn,givenUserId, setUserId}) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [loginError, setLoginError] = useState("");
+  const [cookies, setCookie, removeCookie] = useCookies(['cookie-name']);
   const navigate = useNavigate();
 
   async function handleLogin (e){
@@ -26,15 +28,18 @@ function Login({LogIn, isLoggedIn,givenUserId, setUserId}) {
         localStorage.setItem("Login Status", JSON.stringify(true));
         localStorage.setItem("Login Email", JSON.stringify(loginData.email));
         localStorage.setItem("Login UserId", JSON.stringify(loginData.userId));
-        document.cookie = `
-        accessToken = ${JSON.stringify(loginData.accessToken)};
-        expires = 10;
-        `;
+        setCookie("accessToken", JSON.stringify(loginData.accessToken), 
+        {
+          expires: 10,
+          path: '/'
+        });
         navigate('/');
+        let tokenRetrieve = get("accessToken")
         console.log("Login successful! Showing Login Data", 
          loginData.Login,
          loginData.email,
-         decodeURIComponent(document.cookie)
+         tokenRetrieve,
+         cookies["accessToken"]
          );
          
       } else {

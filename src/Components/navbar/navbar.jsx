@@ -1,7 +1,10 @@
 import "./navbar.css";
 import {Link, useNavigate} from "react-router-dom";
+import { useCookies } from "react-cookie";
 
 export default function Navbar() {
+  
+    const [cookies, setCookie, removeCookie] = useCookies(['cookie-name']);
     
     let loginStatus = JSON.parse(localStorage.getItem("Login Status"));
 
@@ -9,13 +12,9 @@ export default function Navbar() {
       console.log("logging out")
       localStorage.removeItem("Login Email");
       localStorage.removeItem("Login UserId");
-      document.cookie = `
-      accessToken = null;
-      expires = null;
-      path = /login;
-      `;
+      removeCookie("accessToken")
       localStorage.setItem("Login Status", false);
-      //useNavigate('/login');
+      useNavigate('/login');
     }
 
     function Logout(){
