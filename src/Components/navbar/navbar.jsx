@@ -12,7 +12,7 @@ export default function Navbar() {
       document.cookie = `
       accessToken = null;
       expires = null;
-      path = /;
+      path = /login;
       `;
       localStorage.setItem("Login Status", false);
       //useNavigate('/login');
