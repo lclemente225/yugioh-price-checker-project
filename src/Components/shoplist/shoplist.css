@@ -283,11 +283,11 @@
     }
     .card-listing-quantity{
         grid-row: top-row;
-        grid-column: middle-right-column / 9;
+        grid-column: 4 / 9;
     }
     .card-listing-price-container{
         grid-row: middle-row / bottom-row;
-        grid-column: middle-right-column / 8;
+        grid-column: 4 / 8;
     }
     .cartUpdateAdd{
         grid-column: middle-column / 5;

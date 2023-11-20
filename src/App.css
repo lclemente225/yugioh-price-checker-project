@@ -24,3 +24,8 @@ h1{
   margin:0;
   font-family: 'Press Start 2P', cursive;
 }
+.flex-center{ 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

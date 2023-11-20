@@ -86,6 +86,16 @@ function ListItems() {
                 <p className="card-listing-text card-listing quantity">Quantity: {item.quantity}</p>
                 <div className='card-listing-price-container'>
                   {
+                    !selectedPrice.cardmarket_price &&
+                    !selectedPrice.coolstuffinc_price &&
+                    !selectedPrice.ebay_price &&
+                    !selectedPrice.tcgplayer_price &&
+                    !selectedPrice.amazon_price &&
+                    <p className="card-listing-price">
+                      No Price Selected
+                    </p>
+                  }
+                  {
                   selectedPrice.cardmarket_price &&
                   <p className="card-listing-price">
                     CardMarket Price: ${pricesArray["cardmarket_price"]}

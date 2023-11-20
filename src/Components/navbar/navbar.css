@@ -23,7 +23,7 @@
 .navbar-profile, 
 .navbar-brand h1, 
 .nav--top p{
-    font-family: 'VT323', monospace;
+    /*font-family: 'VT323', monospace;*/
     font-family: 'Press Start 2P', cursive;
 }
 .navbar-login-links, 

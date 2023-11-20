@@ -1,0 +1,12 @@
+.no-find-text{
+    font-family: 'Press Start 2P', cursive;
+    font-size: 1.5em;
+    height: 100%;
+    text-align: left;
+}
+@media screen and (max-width: 1250px) {
+    .no-find-text{
+        font-size: 1em
+    }
+
+}

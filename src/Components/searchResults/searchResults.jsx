@@ -82,9 +82,9 @@ function FilterSearchCards(){
                   className='millenium-eye-image'/> 
             <div className='no-search-results'>
                   <h2>[Pegasus]</h2>
-                  <h1 key="NoFindText">
-                    Type in the search box to see my wares... Yugi Boy
-                  </h1>
+                  <h2 key="NoFindText" className="no-find-text flex-center">
+                    Type in the search box to see my wares...
+                  </h2>
             </div>
           
           
