@@ -28,7 +28,7 @@ function Login({LogIn, isLoggedIn,givenUserId, setUserId}) {
         localStorage.setItem("Login UserId", JSON.stringify(loginData.userId));
         document.cookie = `
         accessToken = ${JSON.stringify(loginData.accessToken)};
-        expires = 100;
+        expires = 10;
         `;
         navigate('/');
         console.log("Login successful! Showing Login Data", 
