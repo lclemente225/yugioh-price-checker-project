@@ -23,6 +23,9 @@ localStorage.setItem('myCountryInfo', JSON.stringify(myCountryInfo))
 let test = JSON.parse(localStorage.getItem("myCountryInfo"));
 // retrieving localStorage data in HTML
 document.getElementById("content").innerHTML = test.country;
+
+JWT TOKEN can be used to gatekeep this info
+server side block the get end point
  */
 
 
