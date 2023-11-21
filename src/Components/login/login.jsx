@@ -30,15 +30,14 @@ function Login({LogIn, isLoggedIn,givenUserId, setUserId}) {
         localStorage.setItem("Login UserId", JSON.stringify(loginData.userId));
         setCookie("accessToken", JSON.stringify(loginData.accessToken), 
         {
-          maxAge: 120,
+          maxAge: 10000,
           path: '/'
         });
         navigate('/');
-        console.log("Login successful! Showing Login Data", 
+       /*  console.log("Login successful! Showing Login Data", 
          loginData.Login,
-         loginData.email,
-         JSON.stringify(cookies)
-         );
+         loginData.email
+         ); */
          
       } else {
         setLoginError(loginData.message);

@@ -45,7 +45,10 @@ export default function MainPage({LogIn, isLoggedIn, givenUserId}){
         let response =  await fetch('https://db.ygoprodeck.com/api/v7/cardinfo.php');
         let data = await response.json();   
             return data
-            }, []);
+            },{
+              refetchOnWindowFocus:false
+            },
+             []);
 
   if(isLoading){
     return <div className='Loading-API-Text'>Loading...</div>
