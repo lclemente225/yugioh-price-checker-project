@@ -12,7 +12,7 @@ export default function Navbar() {
       console.log("logging out")
       localStorage.removeItem("Login Email");
       localStorage.removeItem("Login UserId");
-      removeCookie("accessToken");
+      removeCookie(["accessToken"]);
       localStorage.setItem("Login Status", false);
       useNavigate('/login');
     }
