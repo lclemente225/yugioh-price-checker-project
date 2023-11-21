@@ -19,6 +19,8 @@ export default function Navbar() {
 
     if(cookies.accessToken){
       console.log("THIS IS THE COOKIE", cookies.accessToken)
+    }else{
+      console.log("no cookie")
     }
 
     function Logout(){
