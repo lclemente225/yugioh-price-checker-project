@@ -37,7 +37,7 @@ function Login({LogIn, isLoggedIn,givenUserId, setUserId}) {
         console.log("Login successful! Showing Login Data", 
          loginData.Login,
          loginData.email,
-         JSON.parse(cookies)
+         JSON.stringify(cookies)
          );
          
       } else {
