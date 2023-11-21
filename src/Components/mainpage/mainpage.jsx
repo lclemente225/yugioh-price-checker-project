@@ -47,7 +47,6 @@ export default function MainPage({LogIn, isLoggedIn, givenUserId}){
             return data
             },{
               refetchOnWindowFocus: false,
-              
             },
              []);
 

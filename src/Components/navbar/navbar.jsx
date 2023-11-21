@@ -16,13 +16,13 @@ export default function Navbar() {
       removeCookie(["accessToken"]);
       useNavigate('/login');
     }
-
+/* 
     if(cookies.accessToken){
       console.log("THIS IS THE COOKIE", cookies.accessToken)
     }else{
       console.log("no cookie")
     }
-
+ */
     function Logout(){
     
       return (
