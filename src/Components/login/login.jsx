@@ -34,11 +34,9 @@ function Login({LogIn, isLoggedIn,givenUserId, setUserId}) {
           path: '/'
         });
         navigate('/');
-        let tokenRetrieve = get("accessToken")
         console.log("Login successful! Showing Login Data", 
          loginData.Login,
          loginData.email,
-         tokenRetrieve,
          cookies["accessToken"]
          );
          
