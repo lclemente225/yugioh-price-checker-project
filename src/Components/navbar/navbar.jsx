@@ -4,7 +4,7 @@ import { useCookies } from "react-cookie";
 
 export default function Navbar() {
   
-    const [removeCookie] = useCookies(['cookie-name']);
+    const [cookies, setCookie, removeCookie] = useCookies(['cookie-name']);
     
     let loginStatus = JSON.parse(localStorage.getItem("Login Status"));
 

@@ -7,7 +7,7 @@ function Login({LogIn, isLoggedIn,givenUserId, setUserId}) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [loginError, setLoginError] = useState("");
-  const [cookies, setCookie] = useCookies(['cookie-name']);
+  const [cookies, setCookie, removeCookie] = useCookies(['cookie-name']);
   const navigate = useNavigate();
 
   async function handleLogin (e){
