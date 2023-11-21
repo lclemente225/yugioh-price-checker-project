@@ -13,8 +13,9 @@ export default function Navbar() {
       localStorage.removeItem("Login Email");
       localStorage.removeItem("Login UserId");
       localStorage.setItem("Login Status", false);
-      removeCookie(["accessToken"]);
-      useNavigate('/login');
+      removeCookie("accessToken", {
+        path: '/login'
+      });
     }
 
     function Logout(){
