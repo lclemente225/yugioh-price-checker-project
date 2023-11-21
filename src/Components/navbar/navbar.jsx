@@ -18,7 +18,9 @@ JSON.stringify(cookies))
       useNavigate('/login');
     }
 
-    
+    if(cookies.accessToken){
+      console.log("THIS IS THE COOKIE", cookies.accessToken)
+    }
 
     function Logout(){
     
