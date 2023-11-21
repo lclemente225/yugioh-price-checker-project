@@ -46,7 +46,8 @@ export default function MainPage({LogIn, isLoggedIn, givenUserId}){
         let data = await response.json();   
             return data
             },{
-              refetchOnWindowFocus:false
+              refetchOnWindowFocus: false,
+              
             },
              []);
 

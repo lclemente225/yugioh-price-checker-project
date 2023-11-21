@@ -17,10 +17,10 @@ export default function Navbar() {
       useNavigate('/login');
     }
 
-   /*  if(cookies.accessToken){
+    if(cookies.accessToken){
       console.log("THIS IS THE COOKIE", cookies.accessToken)
     }
- */
+
     function Logout(){
     
       return (
