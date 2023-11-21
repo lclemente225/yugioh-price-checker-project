@@ -17,6 +17,8 @@ export default function Navbar() {
       useNavigate('/login');
     }
 
+    
+
     function Logout(){
     
       return (
