@@ -30,7 +30,7 @@ function Login({LogIn, isLoggedIn,givenUserId, setUserId}) {
         localStorage.setItem("Login UserId", JSON.stringify(loginData.userId));
         setCookie("accessToken", JSON.stringify(loginData.accessToken), 
         {
-          expires: 10,
+          maxAge: 120,
           path: '/'
         });
         navigate('/');
