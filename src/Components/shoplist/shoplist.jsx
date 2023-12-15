@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './shoplist.css';
 import PriceSelections from './price-selections';
-//import Placeholder from './placeholder';
+import Placeholder from './placeholder';
 import { useQuery } from 'react-query';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
@@ -50,7 +50,7 @@ const Shoplist = ({givenUserId}) => {
                 refetchOnWindowFocus: false
               },
               []);
-          
+/*           
 if(isLoading){
   return <div className='Loading-API-Text'>Loading...</div>
 }
@@ -63,7 +63,7 @@ if(error){
         </div>
         )
 }
-
+ */
 
 function ListItems() {
     let cardList = data[0];
@@ -171,10 +171,7 @@ function ListItems() {
     <div className='shop-list-whole-container'>
         <div className='shop-list-heading'>
             <h1>Your Shopping List</h1>
-            <a href="/" className='shop-list-link-home'>Go Home</a>   
-            <div id="shop-list-demo">
-               Dev Note: Play around with adding, subtracting and deleting items
-            </div>  
+            <a href="/" className='shop-list-link-home'>Go Home</a>  
         </div>
         <div className='shop-list-wrapper'>
             <div id="shop-list-container">

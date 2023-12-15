@@ -62,16 +62,6 @@
 .cartUpdateDelete{
     width: auto;                                  
 }
-#shop-list-demo{
-    z-index: 100;
-    font-size: 2rem;
-    border: 2px solid black;
-    background-color: #FFFFF0;
-    height: 80px;
-    width: max-content;
-    padding: 1rem;
-    text-align: center;
-}
 /* Price Selection */
 .toggle-prices{
     z-index: 99;
@@ -142,10 +132,6 @@
 
 
 @media screen and (min-width: 951px) and (max-width: 1600px) {
-    #shop-list-demo{
-        font-size: 1.5rem;
-        height: max-content;
-    }
     
     .price-list-container{
         top: 42%;
@@ -154,11 +140,6 @@
     }
 }
 @media screen and (min-width: 651px) and (max-width: 950px) {
-    #shop-list-demo{
-        font-size: 1rem;
-        height: max-content;
-        padding: 1rem;
-    }
     .shop-list-wrapper{
         display: flex;
         flex-direction: column-reverse;
@@ -221,12 +202,6 @@
         display: flex;
         flex-direction: column-reverse;
         position: relative;
-        width: 100%;
-    }
-    #shop-list-demo{
-        font-size: 0.8rem;
-        padding: 10px 10px;
-        height: max-content;
         width: 100%;
     }
     .toggle-prices{
