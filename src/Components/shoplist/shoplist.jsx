@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './shoplist.css';
 import PriceSelections from './price-selections';
-import Placeholder from './placeholder';
+//import Placeholder from './placeholder';
 import { useQuery } from 'react-query';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
@@ -50,7 +50,7 @@ const Shoplist = ({givenUserId}) => {
                 refetchOnWindowFocus: false
               },
               []);
-/*           
+          
 if(isLoading){
   return <div className='Loading-API-Text'>Loading...</div>
 }
@@ -63,7 +63,7 @@ if(error){
         </div>
         )
 }
- */
+
 
 function ListItems() {
     let cardList = data[0];
