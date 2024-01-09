@@ -83,18 +83,20 @@ export default function MainPage({LogIn, isLoggedIn, givenUserId}){
             toast.error('Failed to add item to cart')
             throw new Error('Failed to add item to cart');
           } else {
-
-              showCart(true)
-              performingAddingorSubtracting({
-                  action: "You just added",
-                  addCardName: name,
-                  quantity: 1
-                })
-
-              if(isCartShowing){
-                  toast.success(`${cardQuantityChangeResult.action} ${cardQuantityChangeResult.quantity} ${cardQuantityChangeResult.addCardName}`)
-                  showCart(false)
-              }
+              const addNotif = new Promise((resolve, reject) => {
+                showCart(true)
+                performingAddingorSubtracting({
+                    action: "You just added",
+                    addCardName: name,
+                    quantity: 1
+                  })
+              })
+              addNotif.then(() => {
+                  if(isCartShowing){
+                      toast.success(`${cardQuantityChangeResult.action} ${cardQuantityChangeResult.quantity} ${cardQuantityChangeResult.addCardName}`)
+                      showCart(false)
+                  }
+              })
           }
           
       }catch (error) {
@@ -130,7 +132,7 @@ export default function MainPage({LogIn, isLoggedIn, givenUserId}){
             toast.error(`${cardQuantityChangeResult.action} ${cardQuantityChangeResult.quantity} ${cardQuantityChangeResult.addCardName}`)
             throw new Error('Failed to reduce item from cart');
           }else{
-            
+
             showCart(true)
             performingAddingorSubtracting({
                 action: "You just subtracted",
