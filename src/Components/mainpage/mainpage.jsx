@@ -83,13 +83,18 @@ export default function MainPage({LogIn, isLoggedIn, givenUserId}){
             toast.error('Failed to add item to cart')
             throw new Error('Failed to add item to cart');
           } else {
+
+              showCart(true)
               performingAddingorSubtracting({
                   action: "You just added",
                   addCardName: name,
                   quantity: 1
                 })
 
-                toast.success(`${cardQuantityChangeResult.action} ${cardQuantityChangeResult.quantity} ${cardQuantityChangeResult.addCardName}`)
+              if(isCartShowing){
+                  toast.success(`${cardQuantityChangeResult.action} ${cardQuantityChangeResult.quantity} ${cardQuantityChangeResult.addCardName}`)
+                  showCart(false)
+              }
           }
           
       }catch (error) {
@@ -126,13 +131,18 @@ export default function MainPage({LogIn, isLoggedIn, givenUserId}){
             throw new Error('Failed to reduce item from cart');
           }else{
             
+            showCart(true)
             performingAddingorSubtracting({
                 action: "You just subtracted",
                 addCardName: name,
                 quantity: 1
               })
+
+            if(isCartShowing){
+              toast.success(`${cardQuantityChangeResult.action} ${cardQuantityChangeResult.quantity} ${cardQuantityChangeResult.addCardName}`)
+              showCart(false)
+            }
               
-            toast.success(`${cardQuantityChangeResult.action} ${cardQuantityChangeResult.quantity} ${cardQuantityChangeResult.addCardName}`)
           }
           
           
