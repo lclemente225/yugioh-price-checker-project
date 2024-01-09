@@ -84,12 +84,14 @@ export default function MainPage({LogIn, isLoggedIn, givenUserId}){
             throw new Error('Failed to add item to cart');
           } else {
               const addNotif = new Promise((resolve, reject) => {
-                showCart(true)
-                performingAddingorSubtracting({
-                    action: "You just added",
-                    addCardName: name,
-                    quantity: 1
-                  })
+                resolve(
+                  showCart(true),
+                  performingAddingorSubtracting({
+                      action: "You just added",
+                      addCardName: name,
+                      quantity: 1
+                    })
+                )
               })
               addNotif.then(() => {
                   if(isCartShowing){
