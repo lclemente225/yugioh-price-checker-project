@@ -82,16 +82,16 @@ export default function MainPage({LogIn, isLoggedIn, givenUserId}){
           if (!response.ok) {
             toast.error('Failed to add item to cart')
             throw new Error('Failed to add item to cart');
+          } else {
+              performingAddingorSubtracting({
+                  action: "You just added",
+                  addCardName: name,
+                  quantity: 1
+                })
+
+                toast.success(`${cardQuantityChangeResult.action} ${cardQuantityChangeResult.quantity} ${cardQuantityChangeResult.addCardName}`)
           }
-
-          performingAddingorSubtracting({
-              action: "You just added",
-              addCardName: name,
-              quantity: 1
-            })
-
-            toast.success(`${cardQuantityChangeResult.action} ${cardQuantityChangeResult.quantity} ${cardQuantityChangeResult.addCardName}`)
-        
+          
       }catch (error) {
           console.error(error);
         }
@@ -157,9 +157,9 @@ export default function MainPage({LogIn, isLoggedIn, givenUserId}){
   //after 15 min then delete the info of cart data WHERE userid = userid
  
   const cardListContainerStyle = {   
-                              height: "",
-                              background: searchTerm ? "" : 'url("/assets/city-bay-skyline.jpg")'
-                                  };
+      height: "",
+      background: searchTerm ? "" : 'url("/assets/city-bay-skyline.jpg")'
+  };
   if(window.innerWidth < 650){
     cardListContainerStyle.height = searchTerm ? '900px' : 'auto'
   }else if(window.innerWidth > 650 && window.innerWidth < 1240){
@@ -170,32 +170,6 @@ export default function MainPage({LogIn, isLoggedIn, givenUserId}){
 
     return (
         <div className='page-container'>
-        {/*   
-        <div style={{
-                backgroundColor: "var(--secondary-color)", 
-                overflow:'hidden',
-                whiteSpace: 'nowrap',
-                }}>
-              <div style={{
-                display: 'inline-block',
-                width:'45%',
-                margin: 0,
-                padding: '5px',
-                animation: 'marquee 20s linear infinite',
-                }}>
-              <span>Sorry, the cart isn't working at the moment. The API is at its limit and I am working on a backup plan.</span>
-              </div>
-              <div style={{
-                display: 'inline-block',
-                width: '45%',
-                marginLeft: '90%',
-                padding: '5px',
-                animation: 'marquee 20s linear infinite',
-                }}>
-              <span>Sorry, the cart isn't working at the moment. The API is at its limit and I am working on a backup plan.</span>
-              </div>
-          </div> 
-          */}
             <NavBar LogIn={LogIn} isLoggedIn={isLoggedIn}/>
             <div className="main--page-container">
                 <div className="main--page-search ">
@@ -241,10 +215,10 @@ export default function MainPage({LogIn, isLoggedIn, givenUserId}){
                       />}
             </div>
               {
-                isCartShowing && 
+                /* isCartShowing && 
                 <div className='add-or-sub-popup'>
                     {cardQuantityChangeResult.action} {cardQuantityChangeResult.quantity} {cardQuantityChangeResult.addCardName}
-                </div>
+                </div> */
               }
             <div id="homepage-footer">
               <HomepageFooter/>
