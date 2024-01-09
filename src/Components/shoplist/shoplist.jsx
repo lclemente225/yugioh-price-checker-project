@@ -39,7 +39,8 @@ const Shoplist = ({givenUserId}) => {
       tcgplayer_price: false
     })
     const [showPrices, toggleShowPrices] = useState(false);
-
+//take this api call and useContext the object keys 
+//utilize  data, isLoading and error in this page
     const { isLoading, error, data, refetch } = useQuery('Yugioh Cart Data', 
           async () =>{
                     let response =  await fetch(`/.netlify/functions/functions/cart/list`);

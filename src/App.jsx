@@ -8,6 +8,7 @@ import Register from './Components/register/register';
 import Profile from './Components/profile/profile';
 import NotFound from './NotFound';
 import { BrowserRouter as Router, Routes, Route} from 'react-router-dom';
+import { Toaster } from 'react-hot-toast';
 
 
 
@@ -69,7 +70,8 @@ function App() {
 
 
   return (      
-    <div className="App">  
+    <div className="App">
+    <Toaster position="top-center"/>  
      <QueryClientProvider client={queryClient}>
 
      <Router>

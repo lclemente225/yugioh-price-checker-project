@@ -1,6 +1,7 @@
 import NavBar from '../navbar/navbar';
 import { useState } from 'react';
 import { useQuery } from 'react-query';
+import { toast } from 'react-hot-toast';
 import "./mainpage.css";
 import Pagination from '../pagination/pagination';
 import { HomepageFooter } from './footer';
@@ -79,9 +80,9 @@ export default function MainPage({LogIn, isLoggedIn, givenUserId}){
               })
        
           if (!response.ok) {
+            toast.error('Failed to add item to cart')
             throw new Error('Failed to add item to cart');
           }
-          showCart(true);
 
           performingAddingorSubtracting({
               action: "You just added",
@@ -89,10 +90,7 @@ export default function MainPage({LogIn, isLoggedIn, givenUserId}){
               quantity: 1
             })
 
-          
-            setTimeout(() => {
-              showCart(false)
-            }, 1200);
+            toast.success(`${cardQuantityChangeResult.action} ${cardQuantityChangeResult.quantity} ${cardQuantityChangeResult.addCardName}`)
         
       }catch (error) {
           console.error(error);
@@ -117,8 +115,6 @@ export default function MainPage({LogIn, isLoggedIn, givenUserId}){
               })
         
           if (!response.ok) {
-            console.log("there's nothing to subtract")
-            showCart(true);
             
             performingAddingorSubtracting({
                 action: "Your cart has",
@@ -126,25 +122,17 @@ export default function MainPage({LogIn, isLoggedIn, givenUserId}){
                 quantity: 0
               })
 
-          setTimeout(() => {
-                showCart(false)
-              }, 1200);
+            toast.error(`${cardQuantityChangeResult.action} ${cardQuantityChangeResult.quantity} ${cardQuantityChangeResult.addCardName}`)
             throw new Error('Failed to reduce item from cart');
           }else{
-
-            showCart(true);
             
             performingAddingorSubtracting({
                 action: "You just subtracted",
                 addCardName: name,
                 quantity: 1
               })
-
-          setTimeout(() => {
-                showCart(false)
-              }, 1500);
-        
-            //console.log("successfully reduced quantity by 1")
+              
+            toast.success(`${cardQuantityChangeResult.action} ${cardQuantityChangeResult.quantity} ${cardQuantityChangeResult.addCardName}`)
           }
           
           
