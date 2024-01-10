@@ -60,6 +60,7 @@ export default function MainPage({LogIn, isLoggedIn, givenUserId}){
 
   
   function notification(action, name, quantity){
+    console.log("notification name: ", name)
 
     const notifInfo = {
       action,
