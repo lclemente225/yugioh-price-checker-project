@@ -78,6 +78,7 @@ export default function MainPage({LogIn, isLoggedIn, givenUserId}){
                                     "userId": userId
                                   })
         })
+        showCart(true)
        
           if (!response.ok) {
             toast.error('Failed to add item to cart')
@@ -85,7 +86,6 @@ export default function MainPage({LogIn, isLoggedIn, givenUserId}){
           } else {
               const addNotif = new Promise((resolve, reject) => {
                 console.log("promise!")
-                showCart(true)
                 resolve(
                   performingAddingorSubtracting({
                       action: "You just added",
