@@ -24,11 +24,6 @@ function App() {
 
 
  useEffect(() => {
-  /* function generateRandom10DigitNumber() {
-    const min = 1000000000; // Smallest 10-digit number
-    const max = 9999999999; // Largest 10-digit number
-    return Math.floor(Math.random() * (max - min + 1)) + min;
-  } */
   //how do i make it so that i save cart info in the local storage?
   //9/25/23 FIGURING IT OUT RIGHT NOW possibly gunns use usecontext hook
   setUserId(() => {
@@ -73,28 +68,27 @@ function App() {
     <div className="App">
     <Toaster position="top-center"/>  
      <QueryClientProvider client={queryClient}>
-
-     <Router>
-          <Routes>
-            <Route path='/' element={
-                                  <MainPage 
-                                        LogIn={LogIn} 
-                                        isLoggedIn={isLoggedIn} 
-                                        givenUserId={givenUserId}/>
-                                        }/>
-            <Route path='/shoppinglist' element={<ShopList givenUserId={givenUserId}/>}/>
-          
-            <Route path='/login' element={<Login 
-                                              LogIn={LogIn} 
-                                              isLoggedIn={isLoggedIn} 
-                                              givenUserId={givenUserId} 
-                                              setUserId={setUserId}/>
-                                              }/>
-            <Route path='/register' element={<Register />}/>
-            <Route path='/profile' element={<Profile />}/>
-            <Route component={<NotFound/>}/>
-          </Routes>
-      </Router>     
+        <Router>
+              <Routes>
+                <Route path='/' element={
+                                      <MainPage 
+                                            LogIn={LogIn} 
+                                            isLoggedIn={isLoggedIn} 
+                                            givenUserId={givenUserId}/>
+                                            }/>
+                <Route path='/shoppinglist' element={<ShopList givenUserId={givenUserId}/>}/>
+              
+                <Route path='/login' element={<Login 
+                                                  LogIn={LogIn} 
+                                                  isLoggedIn={isLoggedIn} 
+                                                  givenUserId={givenUserId} 
+                                                  setUserId={setUserId}/>
+                                                  }/>
+                <Route path='/register' element={<Register />}/>
+                <Route path='/profile' element={<Profile />}/>
+                <Route component={<NotFound/>}/>
+              </Routes>
+          </Router>     
       </QueryClientProvider>
     </div>
   )

@@ -62,30 +62,30 @@ export default function MainPage({LogIn, isLoggedIn, givenUserId}){
   async function addToCart(e, name, price, index, userId){
     e.preventDefault();
     try{
-         console.log(`name, price: ${price["cardmarket_price"]}, id:${index}`)
-      const response = await fetch(`/.netlify/functions/functions/cart/add`, {
-        method: 'PUT',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({  
-                                "card_name": name, 
-                                "cardmarket_price":price["cardmarket_price"], 
-                                "tcgplayer_price": price["tcgplayer_price"],
-                                "amazon_price": price["amazon_price"], 
-                                "coolstuffinc_price": price["coolstuffinc_price"], 
-                                "ebay_price": price["ebay_price"],
-                                "quantity":"1",
-                                "cartId": `id${index}`,
-                                "userId": userId
-                               })
-              })
+      
+        const response = await fetch(`/.netlify/functions/functions/cart/add`, {
+            method: 'PUT',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({  
+                                    "card_name": name, 
+                                    "cardmarket_price":price["cardmarket_price"], 
+                                    "tcgplayer_price": price["tcgplayer_price"],
+                                    "amazon_price": price["amazon_price"], 
+                                    "coolstuffinc_price": price["coolstuffinc_price"], 
+                                    "ebay_price": price["ebay_price"],
+                                    "quantity":"1",
+                                    "cartId": `id${index}`,
+                                    "userId": userId
+                                  })
+        })
        
           if (!response.ok) {
             toast.error('Failed to add item to cart')
             throw new Error('Failed to add item to cart');
           } else {
               const addNotif = new Promise((resolve, reject) => {
+                showCart(true)
                 resolve(
-                  showCart(true),
                   performingAddingorSubtracting({
                       action: "You just added",
                       addCardName: name,

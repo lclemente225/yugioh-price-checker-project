@@ -33,7 +33,6 @@ router.get('/dude', (req, res) => {
  router.put('/add', async (req, res) => {
      
      const userIdFromClientSide = req.body.userId;
-     console.log("USERID:", userIdFromClientSide)
  
      try {
      // Check if card already exists in cart list
@@ -49,11 +48,9 @@ router.get('/dude', (req, res) => {
             userId: userIdFromClientSide
          }
      );
-     console.log("TRYING TO ADD CARD TO CART", req.body.card_name, req.body.userId);
  
      if (existingCard[0][0] != undefined) {
          // If card already exists, update its quantity
-         console.log("updated quantity", req.body.card_name, req.body.cartId);
          const updatedCartList = await req.db.query(
          `UPDATE yugioh_cart_list 
          SET quantity = quantity + 1   
