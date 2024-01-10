@@ -27,7 +27,6 @@ export default function MainPage({LogIn, isLoggedIn, givenUserId}){
   const [currentSearchPage, setSearchCurrentPage] = useState(1);
   const [currentSearchPostsLength, setSearchPostLength] = useState(10);
   const [showSearchResultQuantity, changeSearchResultQuantity] = useState(0);
-  const [isCartShowing, showCart] = useState(false);
   const [cardQuantityChangeResult, performingAddingorSubtracting] = useState({
                                                                           action:"",
                                                                           addCardName:"",
