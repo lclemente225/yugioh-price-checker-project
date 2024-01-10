@@ -68,7 +68,7 @@ export default function MainPage({LogIn, isLoggedIn, givenUserId}){
       quantity
     }
 
-    toast.success(`${notifInfo.action} ${notifInfo.quantity} ${notifInfo.addCardName}`)
+    toast.success(`${notifInfo.action} ${notifInfo.quantity} ${notifInfo.name}`)
 
   }
 
