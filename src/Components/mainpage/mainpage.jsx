@@ -60,7 +60,6 @@ export default function MainPage({LogIn, isLoggedIn, givenUserId}){
 
   
   function notification(action, name, quantity){
-    console.log("notification name: ", name)
 
     const notifInfo = {
       action,
@@ -74,7 +73,6 @@ export default function MainPage({LogIn, isLoggedIn, givenUserId}){
 
   ///////////////////////////////////////////////////////////////
   async function addToCart(e, name, price, index, userId){
-    console.log("name",  name)
     e.preventDefault();
     try{
       
