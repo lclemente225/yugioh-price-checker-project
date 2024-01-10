@@ -73,6 +73,7 @@ export default function MainPage({LogIn, isLoggedIn, givenUserId}){
 
   ///////////////////////////////////////////////////////////////
   async function addToCart(e, name, price, index, userId){
+    console.log("name",  name)
     e.preventDefault();
     try{
       
@@ -96,7 +97,7 @@ export default function MainPage({LogIn, isLoggedIn, givenUserId}){
           if (!response.ok) {
             toast.error('Failed to add item to cart')
             throw new Error('Failed to add item to cart');
-          } else {
+          } else {   
             notification('You have added', name, 1)
           }
           
@@ -109,7 +110,7 @@ export default function MainPage({LogIn, isLoggedIn, givenUserId}){
 
 /////////////////////////////////////////////////////////////////
    async function subtractFromCart(e, index, userId, name) {
-    
+    console.log("name",  name)
     e.preventDefault();
     try{
       const response = await fetch(`/.netlify/functions/functions/cart/updateSubtractItem`, {
