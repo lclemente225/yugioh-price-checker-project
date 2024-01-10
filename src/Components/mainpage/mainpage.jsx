@@ -58,6 +58,19 @@ export default function MainPage({LogIn, isLoggedIn, givenUserId}){
     return <div>error error{error}</div>
   }; 
 
+  
+  function notification(action, name, quantity){
+
+    const notifInfo = {
+      action,
+      name, 
+      quantity
+    }
+
+    toast.success(`${notifInfo.action} ${notifInfo.quantity} ${notifInfo.addCardName}`)
+
+  }
+
   ///////////////////////////////////////////////////////////////
   async function addToCart(e, name, price, index, userId){
     e.preventDefault();
@@ -78,27 +91,13 @@ export default function MainPage({LogIn, isLoggedIn, givenUserId}){
                                     "userId": userId
                                   })
         })
+
        
           if (!response.ok) {
             toast.error('Failed to add item to cart')
             throw new Error('Failed to add item to cart');
           } else {
-              const addNotif = new Promise((resolve, reject) => {
-                console.log("promise!")
-                resolve(
-                  performingAddingorSubtracting({
-                      action: "You just added",
-                      addCardName: name,
-                      quantity: 1
-                    })
-                )
-              })
-              addNotif.then(() => {
-                console.log("toast!")
-                    console.log("toast ACTIVATE!")
-                      toast.success(`${cardQuantityChangeResult.action} ${cardQuantityChangeResult.quantity} ${cardQuantityChangeResult.addCardName}`)
-                      
-              })
+            notification('You have added', name, 1)
           }
           
       }catch (error) {
@@ -124,28 +123,10 @@ export default function MainPage({LogIn, isLoggedIn, givenUserId}){
               })
         
           if (!response.ok) {
-            
-            performingAddingorSubtracting({
-                action: "Your cart has",
-                addCardName: name,
-                quantity: 0
-              })
-
-            toast.error(`${cardQuantityChangeResult.action} ${cardQuantityChangeResult.quantity} ${cardQuantityChangeResult.addCardName}`)
+            notification('Unable to subtract: You have', name, 0)
             throw new Error('Failed to reduce item from cart');
           }else{
-
-            showCart(true)
-            performingAddingorSubtracting({
-                action: "You just subtracted",
-                addCardName: name,
-                quantity: 1
-              })
-
-            if(isCartShowing){
-              toast.success(`${cardQuantityChangeResult.action} ${cardQuantityChangeResult.quantity} ${cardQuantityChangeResult.addCardName}`)
-              showCart(false)
-            }
+            notification('You successfully subtracted', name, 1)
               
           }
           
