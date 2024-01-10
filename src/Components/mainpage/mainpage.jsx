@@ -78,7 +78,6 @@ export default function MainPage({LogIn, isLoggedIn, givenUserId}){
                                     "userId": userId
                                   })
         })
-        showCart(true)
        
           if (!response.ok) {
             toast.error('Failed to add item to cart')
@@ -96,11 +95,9 @@ export default function MainPage({LogIn, isLoggedIn, givenUserId}){
               })
               addNotif.then(() => {
                 console.log("toast!")
-                  if(isCartShowing){
                     console.log("toast ACTIVATE!")
                       toast.success(`${cardQuantityChangeResult.action} ${cardQuantityChangeResult.quantity} ${cardQuantityChangeResult.addCardName}`)
-                      showCart(false)
-                  }
+                      
               })
           }
           
