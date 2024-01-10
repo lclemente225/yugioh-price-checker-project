@@ -58,6 +58,9 @@ export default function MainPage({LogIn, isLoggedIn, givenUserId}){
     return <div>error error{error}</div>
   }; 
 
+  useEffect(() => {
+    console.log("changing state of showCart!")
+  }, [isCartShowing])
   ///////////////////////////////////////////////////////////////
   async function addToCart(e, name, price, index, userId){
     e.preventDefault();
