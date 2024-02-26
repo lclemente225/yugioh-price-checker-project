@@ -7,6 +7,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
 import { addToCartinCart, subtractFromCartinCart, deleteFromCartinCart } from '../action-functions/action-functions';
 
+import {CartContext} from '../cart-context/CartContext'
 /**
  * 
  SAVING AN OBJECT INTO LOCAL STORAGE

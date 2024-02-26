@@ -1,6 +1,5 @@
 import React, {useContext} from 'react';
 import { useQuery } from 'react-query';
-import {CartContext} from '../cart-context/CartContext'
 import './searchResults.css';
 
 export function SearchResults({
@@ -29,7 +28,6 @@ export function SearchResults({
   }; 
 
 
-const cartData = useContext(CartContext).data
 
 const dataArray = data['data'];
 
