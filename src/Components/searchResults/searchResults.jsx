@@ -30,7 +30,6 @@ export function SearchResults({
 
 
 const cartData = useContext(CartContext).data
-console.log("this is cart context in search results", cartData)
 
 const dataArray = data['data'];
 
