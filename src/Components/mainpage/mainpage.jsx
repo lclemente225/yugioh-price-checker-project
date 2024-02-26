@@ -40,7 +40,7 @@ export default function MainPage({LogIn, isLoggedIn, givenUserId}){
                                                               });
   
  
-const cartData = useContext(CartContext).data
+const cartData = useContext(CartContext)
 console.log("context in shoplist", cartData)
 
   //obtain data from yugioh api
