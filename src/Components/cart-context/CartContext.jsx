@@ -14,7 +14,7 @@ export const CartProvider = ({children}) => {
               }, []);
 
     if (isLoading) {
-        return <div>Loading...</div>;
+        return <div>Loading...</div>
     }
 
     // Check if there's an error
