@@ -9,7 +9,7 @@ import Profile from './Components/profile/profile';
 import NotFound from './NotFound';
 import { BrowserRouter as Router, Routes, Route} from 'react-router-dom';
 import { Toaster } from 'react-hot-toast';
-
+import { CartProvider } from './Components/cart-context/CartContext';
 
 
 const queryClient = new QueryClient();
@@ -67,29 +67,31 @@ function App() {
   return (      
     <div className="App">
     <Toaster position="top-center"/>  
-     <QueryClientProvider client={queryClient}>
-        <Router>
-              <Routes>
-                <Route path='/' element={
-                                      <MainPage 
-                                            LogIn={LogIn} 
-                                            isLoggedIn={isLoggedIn} 
-                                            givenUserId={givenUserId}/>
-                                            }/>
-                <Route path='/shoppinglist' element={<ShopList givenUserId={givenUserId}/>}/>
-              
-                <Route path='/login' element={<Login 
-                                                  LogIn={LogIn} 
-                                                  isLoggedIn={isLoggedIn} 
-                                                  givenUserId={givenUserId} 
-                                                  setUserId={setUserId}/>
-                                                  }/>
-                <Route path='/register' element={<Register />}/>
-                <Route path='/profile' element={<Profile />}/>
-                <Route component={<NotFound/>}/>
-              </Routes>
-          </Router>     
-      </QueryClientProvider>
+      <CartProvider value={data}>
+        <QueryClientProvider client={queryClient}>
+            <Router>
+                  <Routes>
+                    <Route path='/' element={
+                                          <MainPage 
+                                                LogIn={LogIn} 
+                                                isLoggedIn={isLoggedIn} 
+                                                givenUserId={givenUserId}/>
+                                                }/>
+                    <Route path='/shoppinglist' element={<ShopList givenUserId={givenUserId}/>}/>
+                  
+                    <Route path='/login' element={<Login 
+                                                      LogIn={LogIn} 
+                                                      isLoggedIn={isLoggedIn} 
+                                                      givenUserId={givenUserId} 
+                                                      setUserId={setUserId}/>
+                                                      }/>
+                    <Route path='/register' element={<Register />}/>
+                    <Route path='/profile' element={<Profile />}/>
+                    <Route component={<NotFound/>}/>
+                  </Routes>
+              </Router>     
+          </QueryClientProvider>
+      </CartProvider>
     </div>
   )
 }
