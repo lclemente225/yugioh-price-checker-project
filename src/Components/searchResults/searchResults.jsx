@@ -1,6 +1,9 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import { useQuery } from 'react-query';
+import {CardContext, CartContext} from '../cart-context/CartContext'
 import './searchResults.css';
+const cartData = useContext(CartContext).data
+console.log("this is cart context in search results", cartData)
 
 export function SearchResults({
                                 searchTerm, 
