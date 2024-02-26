@@ -2,8 +2,6 @@ import React, {useContext} from 'react';
 import { useQuery } from 'react-query';
 import {CartContext} from '../cart-context/CartContext'
 import './searchResults.css';
-const cartData = useContext(CartContext).data
-console.log("this is cart context in search results", cartData)
 
 export function SearchResults({
                                 searchTerm, 
@@ -29,6 +27,10 @@ export function SearchResults({
   if(error){
     return <div>error error{error}</div>
   }; 
+
+
+const cartData = useContext(CartContext).data
+console.log("this is cart context in search results", cartData)
 
 const dataArray = data['data'];
 
