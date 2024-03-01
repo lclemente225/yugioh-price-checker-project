@@ -11,12 +11,12 @@ import { BrowserRouter as Router, Routes, Route} from 'react-router-dom';
 import { Toaster } from 'react-hot-toast';
 import { CartProvider } from './Components/cart-context/CartContext';
 
+  const queryClient = new QueryClient();
 
 function App() {  
   const [isLoggedIn, LogIn] = useState(false);  
   const [givenUserId, setUserId] = useState("");
   const [doesJWTExist, JWTStatus] = useState(false);
-  const queryClient = new QueryClient();
 
   
   
@@ -67,8 +67,8 @@ function App() {
   return (      
     <div className="App">
     <Toaster position="top-center"/>  
-      <CartProvider>
-        <QueryClientProvider client={queryClient}>
+      <QueryClientProvider client={queryClient}>
+        <CartProvider>
             <Router>
                   <Routes>
                     <Route path='/' element={
@@ -89,9 +89,9 @@ function App() {
                     <Route path='/profile' element={<Profile />}/>
                     <Route component={<NotFound/>}/>
                   </Routes>
-              </Router>     
-          </QueryClientProvider>
-      </CartProvider>
+              </Router>    
+        </CartProvider> 
+      </QueryClientProvider>
     </div>
   )
 }
