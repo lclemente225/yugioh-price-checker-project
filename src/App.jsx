@@ -67,7 +67,7 @@ function App() {
   return (      
     <div className="App">
     <Toaster position="top-center"/>  
-      <CartProvider value={data}>
+      <CartProvider>
         <QueryClientProvider client={queryClient}>
             <Router>
                   <Routes>
