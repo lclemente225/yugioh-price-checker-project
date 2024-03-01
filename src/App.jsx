@@ -10,6 +10,7 @@ import NotFound from './NotFound';
 import { BrowserRouter as Router, Routes, Route} from 'react-router-dom';
 import { Toaster } from 'react-hot-toast';
 import { CartProvider } from './Components/cart-context/CartContext';
+import { Cookies, useCookies } from "react-cookie";
 
   const queryClient = new QueryClient();
 
@@ -17,6 +18,7 @@ function App() {
   const [isLoggedIn, LogIn] = useState(false);  
   const [givenUserId, setUserId] = useState("");
   const [doesJWTExist, JWTStatus] = useState(false);
+  const [cookies, setCookie, removeCookie] = useCookies(['cookie-name']);
 
   
   
@@ -34,11 +36,12 @@ function App() {
     }
   })
  },[isLoggedIn])
- 
- //console.log("USERID",givenUserId);
+ console.log("HERE ARE YOUR COOKIES", cookies)
 
 
   //honestly i dont know how to block routes with this token
+  //NOTE: 3/1/24 change obtaining token to cookie!
+  //ref -> login.jsx
   function handleAuthentication(e){
     e.preventDefault();
     const jwtAuth = fetch("/.netlify/functions/functions/checkAuth", {

@@ -128,7 +128,7 @@ router.get('/dude', (req, res) => {
      try{
      if(selectedCard[0].length === 0){
          console.log("none here")
-         return next();
+         return res.status(404).json({ message: 'Item not found' });
      }
      if (selectedCard[0][0].quantity === 1) {
      

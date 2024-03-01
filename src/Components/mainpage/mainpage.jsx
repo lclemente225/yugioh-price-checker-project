@@ -40,8 +40,6 @@ export default function MainPage({LogIn, isLoggedIn, givenUserId}){
                                                               });
   
  
-const cartData = useContext(CartContext)
-console.log("context in shoplist", cartData)
 
   //obtain data from yugioh api
   const { isLoading, error, data } = useQuery('Yugioh Data', 
@@ -74,7 +72,6 @@ console.log("context in shoplist", cartData)
 
   }
 
-  ///////////////////////////////////////////////////////////////
   async function addToCart(e, name, price, index, userId){
     e.preventDefault();
     try{
@@ -110,9 +107,8 @@ console.log("context in shoplist", cartData)
   }
         
 
-/////////////////////////////////////////////////////////////////
    async function subtractFromCart(e, index, userId, name) {
-    console.log("name",  name)
+    //console.log("name",  name)
     e.preventDefault();
     try{
       const response = await fetch(`/.netlify/functions/functions/cart/updateSubtractItem`, {

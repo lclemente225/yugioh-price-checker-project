@@ -25,6 +25,11 @@ function Login({LogIn, isLoggedIn,givenUserId, setUserId}) {
       if (response.ok) {
         //use local storage instead of prop to store values so that 
         //they won't be refreshed when page is refreshed
+        let loginClientData = {
+          "status":true,
+          "email": loginData.email,
+          "userID": loginData.userId
+        }
         localStorage.setItem("Login Status", JSON.stringify(true));
         localStorage.setItem("Login Email", JSON.stringify(loginData.email));
         localStorage.setItem("Login UserId", JSON.stringify(loginData.userId));
