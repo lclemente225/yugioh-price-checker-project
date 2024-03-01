@@ -12,12 +12,12 @@ import { Toaster } from 'react-hot-toast';
 import { CartProvider } from './Components/cart-context/CartContext';
 
 
-const queryClient = new QueryClient();
-
 function App() {  
   const [isLoggedIn, LogIn] = useState(false);  
   const [givenUserId, setUserId] = useState("");
   const [doesJWTExist, JWTStatus] = useState(false);
+  const queryClient = new QueryClient();
+
   
   
   let localStorageUserId = localStorage.getItem("Login UserId");
