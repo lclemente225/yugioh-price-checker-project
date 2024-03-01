@@ -36,7 +36,7 @@ function App() {
     }
   })
  },[isLoggedIn])
- console.log("HERE ARE YOUR COOKIES", cookies)
+ console.log("HERE ARE YOUR COOKIES", cookies,"This is the access tokenb: ", cookies.accessToken)
 
 
   //honestly i dont know how to block routes with this token
@@ -47,7 +47,7 @@ function App() {
     const jwtAuth = fetch("/.netlify/functions/functions/checkAuth", {
       method: 'GET', 
       headers:{
-        "access-token": localStorage.getItem("token")
+        "access-token": cookies.accessToken
       }
     })
 
