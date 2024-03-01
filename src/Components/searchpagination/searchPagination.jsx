@@ -32,7 +32,6 @@ export function Pagination ({
         if(pageSet > 1){
         changePageSet((num) => num - 1)
         setSearchCurrentPage((num) => num - 10)
-        console.log("SEARCH pageset",pageSet)
                }else return
     }
     function nextPageSet(e){
@@ -46,7 +45,7 @@ export function Pagination ({
     <div className='pagination-container'>
        
         <button className="pagination-button" onClick={(e) => prevPageSet(e)}>
-            {pageSet === 1 ? "No more" : "Last 10"}
+            {pageSet === 1 ? "0" : "Last 10"}
         </button>
 
         <div className='page-num-list'>
