@@ -10,7 +10,7 @@ import NotFound from './NotFound';
 import { BrowserRouter as Router, Routes, Route} from 'react-router-dom';
 import { Toaster } from 'react-hot-toast';
 import { CartProvider } from './Components/cart-context/CartContext';
-import { Cookies, useCookies } from "react-cookie";
+import { useCookies } from "react-cookie";
 
   const queryClient = new QueryClient();
 
@@ -19,15 +19,10 @@ function App() {
   const [givenUserId, setUserId] = useState("");
   const [doesJWTExist, JWTStatus] = useState(false);
   const [cookies, setCookie, removeCookie] = useCookies(['cookie-name']);
-
-  
   
   let localStorageUserId = localStorage.getItem("Login UserId");
 
-
  useEffect(() => {
-  //how do i make it so that i save cart info in the local storage?
-  //9/25/23 FIGURING IT OUT RIGHT NOW possibly gunns use usecontext hook
   setUserId(() => {
     if(localStorageUserId){
       return localStorageUserId
@@ -36,12 +31,8 @@ function App() {
     }
   })
  },[isLoggedIn])
- console.log("HERE ARE YOUR COOKIES", cookies,"This is the access tokenb: ", cookies.accessToken)
-
 
   //honestly i dont know how to block routes with this token
-  //NOTE: 3/1/24 change obtaining token to cookie!
-  //ref -> login.jsx
   function handleAuthentication(e){
     e.preventDefault();
     const jwtAuth = fetch("/.netlify/functions/functions/checkAuth", {

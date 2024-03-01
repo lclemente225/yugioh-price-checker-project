@@ -21,6 +21,7 @@ import { CartContext } from '../cart-context/CartContext';
         ['desc'], ['card_sets'], ['set_code'],['set_rarity'],['set_rarity_code'], ['set_price']
 
         */
+       //let cartData = CartContext()
 
 export default function MainPage({LogIn, isLoggedIn, givenUserId}){
   const [searchTerm, setSearchTerm] = useState("");
@@ -28,18 +29,6 @@ export default function MainPage({LogIn, isLoggedIn, givenUserId}){
   const [currentSearchPage, setSearchCurrentPage] = useState(1);
   const [currentSearchPostsLength, setSearchPostLength] = useState(10);
   const [showSearchResultQuantity, changeSearchResultQuantity] = useState(0);
-  const [cardQuantityChangeResult, performingAddingorSubtracting] = useState({
-                                                                          action:"",
-                                                                          addCardName:"",
-                                                                          quantity: 0
-                                                                        });
-  const [showCardListQuantity, updateCardListQuantity] = useState({
-                                                                cardName: "",
-                                                                cardId: "",
-                                                                cardQuantity: 0
-                                                              });
-  
- 
 
   //obtain data from yugioh api
   const { isLoading, error, data } = useQuery('Yugioh Data', 
@@ -61,15 +50,9 @@ export default function MainPage({LogIn, isLoggedIn, givenUserId}){
 
   
   function notification(action, name, quantity){
-
-    const notifInfo = {
-      action,
-      name, 
-      quantity
-    }
+    const notifInfo = { action, name,  quantity }
 
     toast.success(`${notifInfo.action} ${notifInfo.quantity} ${notifInfo.name}`)
-
   }
 
   async function addToCart(e, name, price, index, userId){
@@ -168,9 +151,10 @@ export default function MainPage({LogIn, isLoggedIn, givenUserId}){
             <div className="main--page-container">
                 <div className="main--page-search ">
                     <div className='main--page-search-form'>
+                      <label>Try(blue-eyes or dark magician...)</label>
                        <input className="search-input form-control me-2" type="search" 
                        onChange={filterCard} 
-                       placeholder="Use the Millenium Eye to find cards                            Try(blue-eyes or dark magician...)" 
+                       placeholder="Use the Millenium Eye to find cards" 
                        aria-label="Search" />
                     </div>
                     

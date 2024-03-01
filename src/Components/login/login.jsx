@@ -51,8 +51,6 @@ function Login({LogIn, isLoggedIn,givenUserId, setUserId}) {
       console.error("Error during login:", error);
     }
   };
-
-
  
   return (
     <div className="login-container">
