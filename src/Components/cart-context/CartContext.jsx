@@ -6,13 +6,13 @@ export const CartContext = createContext(null);
 export const CartProvider = ({children}) => {
     const [cart, setCart] = useState([]);
 
-    const {isLoading, error, data } = useQuery('Yugioh Cart Data', 
+    const {isLoading, error, isSuccess, data } = useQuery('Yugioh Cart Data', 
           async () =>{
                     let response =  await fetch(`/.netlify/functions/functions/cart/list`);
                     if (!response.ok) {
                         throw new Error('Failed to fetch data');
                     }
-                    setCart(response.json())
+                    return response.json()
               }, []);
 
     if (isLoading) {
@@ -23,6 +23,8 @@ export const CartProvider = ({children}) => {
     if (error) {
         return <div>Error: {error.message}</div>;
     }
+
+    if(isSuccess) setCart(data)
 
     return (
         <CartContext.Provider value={cart}>
