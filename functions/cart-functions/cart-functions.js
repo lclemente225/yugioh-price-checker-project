@@ -29,7 +29,7 @@ const lastModifiedMiddleware = (req, res, next) => {
      const ifModifiedSince = req.header('If-Modified-Since');
      if (ifModifiedSince && lastModified && new Date(ifModifiedSince) >= lastModified) {
          // Resource not modified since last request
-         return res.status(304).end();
+         return res.status(304).json(cartList).end();
      }
  
      return res.status(200).json(cartList)
@@ -136,16 +136,15 @@ const lastModifiedMiddleware = (req, res, next) => {
  
  //function to subtract 1 and delete when quantity is 0 
  router.put('/updateSubtractItem', lastModifiedMiddleware, async(req, res) => {
-     //if quantity is 0 then delete
-        const ifModifiedSince = req.header('If-Modified-Since');
-        if (ifModifiedSince && lastModified && new Date(ifModifiedSince) >= lastModified) {
-            // Resource not modified since last request
-            return res.status(304).end();
-        }
+    const ifModifiedSince = req.header('If-Modified-Since');
+    if (ifModifiedSince && lastModified && new Date(ifModifiedSince) >= lastModified) {
+        // Resource not modified since last request
+        return res.status(304).end();
+    }
      
      try{
 
-         if(selectedCard[0].length === 0){
+        if(selectedCard[0].length === 0){
             const userIdFromClientSide = req.body.userId;
             const selectedCard = await req.db.query(
             `SELECT id, quantity FROM yugioh_cart_list WHERE cartId = :cartId AND userId = :userId`,
@@ -157,6 +156,7 @@ const lastModifiedMiddleware = (req, res, next) => {
             return res.status(404).json({ message: 'Item not found' });
         }
 
+         //if quantity is 0 then delete
         if (selectedCard[0][0].quantity === 1) {
         
             await req.db.query(
@@ -168,7 +168,7 @@ const lastModifiedMiddleware = (req, res, next) => {
             });
         };
     
-        if(selectedCard[0] != undefined){
+        if(selectedCard[0]){
             console.log("subtracting 1 quantity",selectedCard[0][0].quantity)  
             await req.db.query(
                 `UPDATE yugioh_cart_list
