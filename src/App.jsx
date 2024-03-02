@@ -27,6 +27,7 @@ function App() {
     if(localStorageUserId){
       return localStorageUserId
     }else{
+      localStorage.setItem("Login UserId", "0")
       return `0`
     }
   })
