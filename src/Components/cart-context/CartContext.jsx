@@ -19,8 +19,7 @@ export const CartProvider = ({children}) => {
         return <div>Loading...</div>;
     }
 
-    // Check if there's an error
-    if (error) {
+    // Check if there's an errord
         return <div>Error: {error.message}</div>;
     }
 
