@@ -31,7 +31,7 @@ export async function subtractFromCartinCart(e, cartId, userId, refetch) {
               })
         .then(response => {
             if (!response.ok) {
-                throw new Error('Failed to reduce item from cart');
+                throw new Error('Failed to reduce item from cart', response.json());
             }else{
                 //console.log("successfully reduced quantity by 1")
                 //location.reload();
