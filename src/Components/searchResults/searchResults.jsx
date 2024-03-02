@@ -135,17 +135,6 @@ function FilterSearchCards(){
     const cardTypeofType = array.cardTypeofType;
     const cardPriceArray = array.cardPriceArray;
     let cardQuantity = 0;
-
-    cartData[0].forEach((value) => {
-      if(value.card_name === filteredCardName){
-        isCardInCart(true)
-        console.log(cartData)
-        cardQuantity = cartData.quantity
-        return
-      } else {
-        return
-      }
-    })
     
 
     return (
@@ -155,10 +144,16 @@ function FilterSearchCards(){
                       <p className='mainpage-card-list-text typeoftypetext reading-font'>
                           {cardTypeofType + " " + cardType}
                       </p>
-                        {cardInCart &&
-                      <p>
-                        Quantity: {cardQuantity}
-                      </p>
+                        { 
+                          cartData[0].forEach((value) => {
+                            if(value.card_name === filteredCardName){
+                                return (
+                                  <p>
+                                  Quantity: {value.quantity}
+                                </p>
+                                )
+                              }
+                          }) 
                         }
   
                       <p className='mainpage-card-list-text reading-font'>
