@@ -11,7 +11,6 @@ export const CartProvider = ({children}) => {
                     if (!response.ok) {
                         throw new Error('Failed to fetch data');
                     }
-                    console.log("trying to load cart context", response)
                     return response.json()
               }, []);
 
