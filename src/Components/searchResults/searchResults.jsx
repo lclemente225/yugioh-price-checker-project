@@ -31,8 +31,6 @@ export function SearchResults({
     return <div>error error{error}</div>
   }; 
 
-
-
 const dataArray = data['data'];
 
 //LASTPOSTINDEX = 1 * 10
@@ -136,12 +134,13 @@ function FilterSearchCards(){
     const cardType = array.cardType;
     const cardTypeofType = array.cardTypeofType;
     const cardPriceArray = array.cardPriceArray;
+    let cardQuantity = 0;
 
-    let cardQuantity = cartData[0].forEach((value) => {
+    cartData[0].forEach((value) => {
       if(value === filteredCardName){
         isCardInCart(true)
         console.log(cartData)
-        return cartData.quantity
+        cardQuantity = cartData.quantity
       } else {
         return
       }
