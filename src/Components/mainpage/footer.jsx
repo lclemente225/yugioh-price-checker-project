@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+//CSS IS IN MAINPAGE.CSS
 
 export const HomepageFooter = () => {
   return (
@@ -8,13 +9,15 @@ export const HomepageFooter = () => {
                 <h3>
                     Lawrence Clemente
                 </h3>
-                <p>
+                <h6>
                     San Jose, California
-                </p>
-                <p>
+                </h6>
+                <h6>
                     lawrenceclemente3@gmail.com
-                </p>
-                <Link to="https://www.linkedin.com/in/lawrence-clemente/" className='linkedin-logo footer-links'>
+                </h6>
+        </div>
+        <div>
+            <Link to="https://www.linkedin.com/in/lawrence-clemente/" className='linkedin-logo footer-links'>
                     <i className="fa-brands fa-linkedin"/>
                     <span>
                         Linkedin
@@ -30,12 +33,8 @@ export const HomepageFooter = () => {
                     <span>
                         My Portfolio
                     </span>
-                </Link>
+            </Link>
         </div>
-            <p className='created-by-react-footer'>
-                This project was created with <i className="fa-brands fa-react" /> React + 
-                <img src="/vite.svg" alt="vite logo" className='vite-logo-footer'/>Vite
-            </p>
     </>
   )
 }

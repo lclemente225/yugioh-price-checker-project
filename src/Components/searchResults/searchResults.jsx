@@ -137,20 +137,20 @@ function FilterSearchCards(){
     return (
             <>
             <div key={key} id={key} className={ `single-card-listing  active-card` }>
-                      <p className='list-card-name'>{filteredCardName}</p>
-                      <p className='mainpage-card-list-text typeoftypetext'>
+                      <p className='list-card-name reading-font'>{filteredCardName}</p>
+                      <p className='mainpage-card-list-text typeoftypetext reading-font'>
                           {cardTypeofType + " " + cardType}
                       </p>
   
-                      <p className='mainpage-card-list-text'>
+                      <p className='mainpage-card-list-text reading-font'>
                           TCG Player: {cardPriceArray["tcgplayer_price"] == 0.00 ? " Not Listed":`$${cardPriceArray["tcgplayer_price"]}`}
                         </p>
   
-                      <p className='mainpage-card-list-text'>
+                      <p className='mainpage-card-list-text reading-font'>
                           eBay: ${cardPriceArray["ebay_price"]}
                       </p>
   
-                      <p className='mainpage-card-list-text'>
+                      <p className='mainpage-card-list-text reading-font'>
                           Amazon: ${cardPriceArray["amazon_price"]}
                       </p>
   

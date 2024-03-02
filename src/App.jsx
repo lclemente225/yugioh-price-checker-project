@@ -62,7 +62,6 @@ function App() {
     <div className="App">
     <Toaster position="top-center"/>  
       <QueryClientProvider client={queryClient}>
-        <CartProvider>
             <Router>
                   <Routes>
                     <Route path='/' element={
@@ -84,7 +83,6 @@ function App() {
                     <Route component={<NotFound/>}/>
                   </Routes>
               </Router>    
-        </CartProvider> 
       </QueryClientProvider>
     </div>
   )

@@ -150,8 +150,8 @@ export default function MainPage({LogIn, isLoggedIn, givenUserId}){
             <NavBar LogIn={LogIn} isLoggedIn={isLoggedIn}/>
             <div className="main--page-container">
                 <div className="main--page-search ">
-                    <div className='main--page-search-form'>
-                      <label>Try(blue-eyes or dark magician...)</label>
+                    <div className='main--page-search-form reading-font'>
+                      <label className='reading-font'>Try(blue-eyes or dark magician...)</label>
                        <input className="search-input form-control me-2" type="search" 
                        onChange={filterCard} 
                        placeholder="Use the Millenium Eye to find cards" 
