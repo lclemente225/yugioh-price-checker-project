@@ -137,10 +137,11 @@ function FilterSearchCards(){
     let cardQuantity = 0;
 
     cartData[0].forEach((value) => {
-      if(value === filteredCardName){
+      if(value.card_name === filteredCardName){
         isCardInCart(true)
         console.log(cartData)
         cardQuantity = cartData.quantity
+        return
       } else {
         return
       }
