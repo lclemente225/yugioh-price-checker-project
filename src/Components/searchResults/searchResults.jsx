@@ -153,7 +153,7 @@ function FilterSearchCards(){
                       </p>
                         {cardInCart &&
                       <p>
-                        cardQuantity
+                        {cardQuantity}
                       </p>
                         }
   
