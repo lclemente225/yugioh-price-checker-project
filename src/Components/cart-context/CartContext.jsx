@@ -36,6 +36,7 @@ export const CartProvider = ({children}) => {
 
             if (response.status === 304) {
                 // Resource not modified, no need to update
+                console.log("no updates, cartcontext.jsx")
                 return;
             }
 
@@ -49,6 +50,7 @@ export const CartProvider = ({children}) => {
             // Update lastModified timestamp
             const lastModifiedHeader = response.headers.get('Last-Modified');
             if (lastModifiedHeader) {
+                console.log("updates cartcontext.jsx")
                 setLastModified(lastModifiedHeader);
             }
         } catch (error) {
