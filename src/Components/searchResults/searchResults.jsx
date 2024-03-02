@@ -16,14 +16,7 @@ export function SearchResults({
   const cartData = useContext(CartContext);
   const [cardInCart, isCardInCart] = useState(false);
   
-  let cardQuantity = cartData.forEach((value) => {
-    if(value === cardName){
-      isCardInCart(true)
-      return cartData.quantity
-    } else {
-      return
-    }
-  })
+ 
   const { isLoading, error, data } = useQuery('Yugioh Data', 
   async () =>{
         let response =  await fetch( 'https://db.ygoprodeck.com/api/v7/cardinfo.php');
@@ -143,6 +136,15 @@ function FilterSearchCards(){
     const cardType = array.cardType;
     const cardTypeofType = array.cardTypeofType;
     const cardPriceArray = array.cardPriceArray;
+
+    let cardQuantity = cartData.forEach((value) => {
+      if(value === filteredCardName){
+        isCardInCart(true)
+        return cartData.quantity
+      } else {
+        return
+      }
+    })
     
 
     return (
