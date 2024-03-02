@@ -1,4 +1,4 @@
-import React, {useContext} from 'react';
+import React, { useContext } from 'react';
 import { useQuery } from 'react-query';
 import './searchResults.css';
 
@@ -12,7 +12,17 @@ export function SearchResults({
                                 givenUserId,
                                 changeSearchResultQuantity
                               }) {
-    
+  const cartData = useContext(CartContext);
+  const [cardInCart, isCardInCart] = useState(false);
+  
+  let cardQuantity = cartData.forEach((value) => {
+    if(value === cardName){
+      isCardInCart(true)
+      return cartData.quantity
+    } else {
+      return
+    }
+  })
   const { isLoading, error, data } = useQuery('Yugioh Data', 
   async () =>{
         let response =  await fetch( 'https://db.ygoprodeck.com/api/v7/cardinfo.php');
@@ -141,6 +151,11 @@ function FilterSearchCards(){
                       <p className='mainpage-card-list-text typeoftypetext reading-font'>
                           {cardTypeofType + " " + cardType}
                       </p>
+                        {cardInCart &&
+                      <p>
+                        cardQuantity
+                      </p>
+                        }
   
                       <p className='mainpage-card-list-text reading-font'>
                           TCG Player: {cardPriceArray["tcgplayer_price"] == 0.00 ? " Not Listed":`$${cardPriceArray["tcgplayer_price"]}`}
