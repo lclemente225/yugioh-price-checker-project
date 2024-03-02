@@ -147,6 +147,7 @@ function FilterSearchCards(){
                         { 
                           cartData[0].forEach((value) => {
                             if(value.card_name === filteredCardName){
+                              console.log("search results test", value)
                                 return (
                                   <p>
                                   Quantity: {value.quantity}
