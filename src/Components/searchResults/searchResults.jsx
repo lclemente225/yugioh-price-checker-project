@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useState, useContext } from 'react';
 import { CartContext } from '../cart-context/CartContext';
 import { useQuery } from 'react-query';
 import './searchResults.css';
