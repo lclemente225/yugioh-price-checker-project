@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const db = require('../helper/db');
-
+let lastModified = null;
 
 router.use(db.mysqlConnection);
 
@@ -11,15 +11,28 @@ router.get('/dude', (req, res) => {
     return res.send("inner route is working")
 })
 
+// Middleware to handle Last-Modified header
+const lastModifiedMiddleware = (req, res, next) => {
+    // Set Last-Modified header
+    res.set('Last-Modified', lastModified ? lastModified.toUTCString() : '');
+    next();
+};
+
 
 // "/.netlify/functions/cart-functions/"
 
- router.get('/list', async (req, res) => {
+ router.get('/list', lastModifiedMiddleware,async (req, res) => {
      //this is the data that comes from react when clicking on the + button
      try{
      const cartList = await req.db.query(`SELECT * FROM yugioh_cart_list`);
-     return res.json(cartList)
-     
+
+     const ifModifiedSince = req.header('If-Modified-Since');
+     if (ifModifiedSince && lastModified && new Date(ifModifiedSince) >= lastModified) {
+         // Resource not modified since last request
+         return res.status(304).end();
+     }
+ 
+     return res.status(200).json(cartList)
  
      }catch(error){
      
@@ -30,41 +43,47 @@ router.get('/dude', (req, res) => {
  
  // when you click a button, then it will send a post request to the sql server
  //this function adds quantity if the card exists
- router.put('/add', async (req, res) => {
+ router.put('/add', lastModifiedMiddleware,async (req, res) => {
      
      const userIdFromClientSide = req.body.userId;
  
      try {
-     // Check if card already exists in cart list
-     const existingCard = await req.db.query(
-         `SELECT quantity FROM yugioh_cart_list 
-         WHERE 
-         card_name = :card_name AND 
-         cartId = :cartId AND 
-         userId = :userId`,
-         {
-            card_name: req.body.card_name,
-            cartId: req.body.cartId,
-            userId: userIdFromClientSide
-         }
-     );
- 
-     if (existingCard[0][0] != undefined) {
-         // If card already exists, update its quantity
-         const updatedCartList = await req.db.query(
-         `UPDATE yugioh_cart_list 
-         SET quantity = quantity + 1   
-         WHERE 
-         card_name = :card_name AND 
-         cartId = :cartId AND 
-         userId = :userId`,
-         {
-             card_name: req.body.card_name,
-             cartId: req.body.cartId,
-             userId: userIdFromClientSide
-         }
-         );
- 
+
+        const ifModifiedSince = req.header('If-Modified-Since');
+        if (ifModifiedSince && lastModified && new Date(ifModifiedSince) >= lastModified) {
+            // Resource not modified since last request
+            return res.status(304).end();
+        }
+        // Check if card already exists in cart list
+        const existingCard = await req.db.query(
+            `SELECT quantity FROM yugioh_cart_list 
+            WHERE 
+            card_name = :card_name AND 
+            cartId = :cartId AND 
+            userId = :userId`,
+            {
+                card_name: req.body.card_name,
+                cartId: req.body.cartId,
+                userId: userIdFromClientSide
+            }
+        );
+    
+        if (existingCard[0][0] != undefined) {
+            // If card already exists, update its quantity
+            const updatedCartList = await req.db.query(
+            `UPDATE yugioh_cart_list 
+            SET quantity = quantity + 1   
+            WHERE 
+            card_name = :card_name AND 
+            cartId = :cartId AND 
+            userId = :userId`,
+            {
+                card_name: req.body.card_name,
+                cartId: req.body.cartId,
+                userId: userIdFromClientSide
+            }
+            );
+    
          return res.json(updatedCartList);
      } else {
          //console.log("added card to list", req.body.card_name)
@@ -115,72 +134,85 @@ router.get('/dude', (req, res) => {
  
  
  //function to subtract 1 and delete when quantity is 0 
- router.put('/updateSubtractItem', async(req, res) => {
+ router.put('/updateSubtractItem', lastModifiedMiddleware, async(req, res) => {
      //if quantity is 0 then delete
-     const userIdFromClientSide = req.body.userId;
-     const selectedCard = await req.db.query(
-     `SELECT id, quantity FROM yugioh_cart_list WHERE cartId = :cartId AND userId = :userId`,
-     { 
-         cartId: req.body.cartId,
-         userId: userIdFromClientSide 
-     });
      
      try{
-     if(selectedCard[0].length === 0){
-         console.log("none here")
-         return res.status(404).json({ message: 'Item not found' });
-     }
-     if (selectedCard[0][0].quantity === 1) {
-     
-         await req.db.query(
-         `DELETE FROM yugioh_cart_list 
-         WHERE id = :id AND userId = :userId`,
-         {
-             id: selectedCard[0][0].id,
-             userId: userIdFromClientSide 
-         });
-     };
- 
-     if(selectedCard[0] != undefined){
-         console.log("subtracting 1 quantity",selectedCard[0][0].quantity)  
-         await req.db.query(
-             `UPDATE yugioh_cart_list
-             SET quantity = quantity - 1 
-             WHERE id = :id AND userId = :userId`, 
-             {
+        const ifModifiedSince = req.header('If-Modified-Since');
+        if (ifModifiedSince && lastModified && new Date(ifModifiedSince) >= lastModified) {
+            // Resource not modified since last request
+            return res.status(304).end();
+        }
+
+         if(selectedCard[0].length === 0){
+            const userIdFromClientSide = req.body.userId;
+            const selectedCard = await req.db.query(
+            `SELECT id, quantity FROM yugioh_cart_list WHERE cartId = :cartId AND userId = :userId`,
+            { 
+                cartId: req.body.cartId,
+                userId: userIdFromClientSide 
+            });
+            console.log("none here")
+            return res.status(404).json({ message: 'Item not found' });
+        }
+
+        if (selectedCard[0][0].quantity === 1) {
+        
+            await req.db.query(
+            `DELETE FROM yugioh_cart_list 
+            WHERE id = :id AND userId = :userId`,
+            {
                 id: selectedCard[0][0].id,
                 userId: userIdFromClientSide 
-             });
-     };
-     res.status(200).json({ message: 'Item updated successfully.' });
+            });
+        };
+    
+        if(selectedCard[0] != undefined){
+            console.log("subtracting 1 quantity",selectedCard[0][0].quantity)  
+            await req.db.query(
+                `UPDATE yugioh_cart_list
+                SET quantity = quantity - 1 
+                WHERE id = :id AND userId = :userId`, 
+                {
+                    id: selectedCard[0][0].id,
+                    userId: userIdFromClientSide 
+                });
+        };
+        return res.status(200).json({ message: 'Item updated successfully.' });
  }catch (error) { 
      console.error('put err did not subtract item', error)
  } 
      
  })
  
- router.delete('/deleteItem', async (req, res) => {
+ router.delete('/deleteItem', lastModifiedMiddleware, async (req, res) => {
      const userIdFromClientSide = req.body.userId;
      const cardName = req.body.card_name;
      //delete selected row
      //obtain id using name
      //get index of name and then get id from that 
-     const existingCard = await req.db.query( 
-         `SELECT id FROM yugioh_cart_list
-         WHERE card_name = :cardName AND cartId = :cartId AND userId = :userId`,
-         {
-            cardName: cardName,
-            cartId: req.body.cartId,
-            userId: userIdFromClientSide 
-         }
-     );
- 
-     if (existingCard[0].length === 0) {
-         return res.status(404).json({ message: 'Item not found' });
-     }
- 
-     console.log("deleting this one",existingCard[0])
      try {
+        const ifModifiedSince = req.header('If-Modified-Since');
+        if (ifModifiedSince && lastModified && new Date(ifModifiedSince) >= lastModified) {
+            // Resource not modified since last request
+            return res.status(304).end();
+        }
+
+         const existingCard = await req.db.query( 
+             `SELECT id FROM yugioh_cart_list
+             WHERE card_name = :cardName AND cartId = :cartId AND userId = :userId`,
+             {
+                cardName: cardName,
+                cartId: req.body.cartId,
+                userId: userIdFromClientSide 
+             }
+         );
+     
+         if (existingCard[0].length === 0) {
+             return res.status(404).json({ message: 'Item not found' });
+         }
+     
+         console.log("deleting this one",existingCard[0])
      
          const deleteCartListItem = await req.db.query(
              `DELETE FROM yugioh_cart_list 
