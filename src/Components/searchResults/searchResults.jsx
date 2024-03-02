@@ -15,7 +15,9 @@ export function SearchResults({
                               }) {
   const cartData = useContext(CartContext);
   const [cardInCart, isCardInCart] = useState(false);
-  
+  const userId = localStorage.getItem("Login UserId");
+  console.log("check searchResults.jsx userId", userId)
+
  
   const { isLoading, error, data } = useQuery('Yugioh Data', 
   async () =>{
@@ -134,7 +136,6 @@ function FilterSearchCards(){
     const cardType = array.cardType;
     const cardTypeofType = array.cardTypeofType;
     const cardPriceArray = array.cardPriceArray;
-    let cardQuantity = 0;
     
 
     return (
@@ -146,7 +147,7 @@ function FilterSearchCards(){
                       </p>
                         { 
                           cartData[0].map((value) => {
-                            if(value.card_name === filteredCardName){
+                            if(value.card_name === filteredCardName && value.id === userId){
                               console.log("search results test", value)
                                 return (
                                   <p>
