@@ -137,7 +137,7 @@ function FilterSearchCards(){
     const cardTypeofType = array.cardTypeofType;
     const cardPriceArray = array.cardPriceArray;
 
-    let cardQuantity = cartData.forEach((value) => {
+    let cardQuantity = cartData[0].forEach((value) => {
       if(value === filteredCardName){
         isCardInCart(true)
         console.log(cartData)
