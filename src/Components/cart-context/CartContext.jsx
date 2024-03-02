@@ -1,17 +1,18 @@
-import { createContext } from "react";
+import { useState, createContext } from "react";
 import { useQuery } from 'react-query';
 
 export const CartContext = createContext(null);
 
 export const CartProvider = ({children}) => {
+    const [cart, setCart] = useState([]);
 
-    const {isLoading, error, data} = useQuery('Yugioh Cart Data', 
+    const {isLoading, error, data } = useQuery('Yugioh Cart Data', 
           async () =>{
                     let response =  await fetch(`/.netlify/functions/functions/cart/list`);
                     if (!response.ok) {
                         throw new Error('Failed to fetch data');
                     }
-                    return response.json()
+                    setCart(response.json())
               }, []);
 
     if (isLoading) {
@@ -24,7 +25,7 @@ export const CartProvider = ({children}) => {
     }
 
     return (
-        <CartContext.Provider value={data}>
+        <CartContext.Provider value={cart}>
             {children}
         </CartContext.Provider>
     )
