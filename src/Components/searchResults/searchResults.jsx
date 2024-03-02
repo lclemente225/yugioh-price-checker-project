@@ -145,7 +145,7 @@ function FilterSearchCards(){
                           {cardTypeofType + " " + cardType}
                       </p>
                         { 
-                          cartData[0].forEach((value) => {
+                          cartData[0].map((value) => {
                             if(value.card_name === filteredCardName){
                               console.log("search results test", value)
                                 return (
@@ -154,6 +154,7 @@ function FilterSearchCards(){
                                 </p>
                                 )
                               }
+                              return null
                           }) 
                         }
   
