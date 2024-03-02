@@ -123,6 +123,7 @@ const lastModifiedMiddleware = (req, res, next) => {
          }
          );
  
+         lastModified = new Date();
          return res.json(addCartList);
      }
      } catch (err) {
@@ -134,8 +135,13 @@ const lastModifiedMiddleware = (req, res, next) => {
  
  
  //function to subtract 1 and delete when quantity is 0 
- router.put('/updateSubtractItem', async(req, res) => {
+ router.put('/updateSubtractItem', lastModifiedMiddleware, async(req, res) => {
      //if quantity is 0 then delete
+        const ifModifiedSince = req.header('If-Modified-Since');
+        if (ifModifiedSince && lastModified && new Date(ifModifiedSince) >= lastModified) {
+            // Resource not modified since last request
+            return res.status(304).end();
+        }
      
      try{
 
@@ -173,6 +179,8 @@ const lastModifiedMiddleware = (req, res, next) => {
                     userId: userIdFromClientSide 
                 });
         };
+        
+        lastModified = new Date();
         return res.status(200).json({ message: 'Item updated successfully.' });
  }catch (error) { 
      console.error('put err did not subtract item', error)
@@ -180,13 +188,18 @@ const lastModifiedMiddleware = (req, res, next) => {
      
  })
  
- router.delete('/deleteItem', async (req, res) => {
+ router.delete('/deleteItem', lastModifiedMiddleware, async (req, res) => {
      const userIdFromClientSide = req.body.userId;
      const cardName = req.body.card_name;
      //delete selected row
      //obtain id using name
      //get index of name and then get id from that 
      try {
+        const ifModifiedSince = req.header('If-Modified-Since');
+        if (ifModifiedSince && lastModified && new Date(ifModifiedSince) >= lastModified) {
+            // Resource not modified since last request
+            return res.status(304).end();
+        }
 
          const existingCard = await req.db.query( 
              `SELECT id FROM yugioh_cart_list
@@ -213,7 +226,8 @@ const lastModifiedMiddleware = (req, res, next) => {
              } 
          );
          
-         res.json({ message: 'Item deleted successfully', deletedItem: cardName })
+        lastModified = new Date();
+         res.status(200).json({ message: 'Item deleted successfully', deletedItem: cardName })
          } catch (err) {  
             console.log('did not delete', err)
             res.status(500).json({ message: 'Internal Server Error' }); 
