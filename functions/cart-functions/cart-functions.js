@@ -43,17 +43,11 @@ const lastModifiedMiddleware = (req, res, next) => {
  
  // when you click a button, then it will send a post request to the sql server
  //this function adds quantity if the card exists
- router.put('/add', lastModifiedMiddleware,async (req, res) => {
+ router.put('/add', async (req, res) => {
      
      const userIdFromClientSide = req.body.userId;
  
      try {
-
-        const ifModifiedSince = req.header('If-Modified-Since');
-        if (ifModifiedSince && lastModified && new Date(ifModifiedSince) >= lastModified) {
-            // Resource not modified since last request
-            return res.status(304).end();
-        }
         // Check if card already exists in cart list
         const existingCard = await req.db.query(
             `SELECT quantity FROM yugioh_cart_list 
@@ -135,13 +129,8 @@ const lastModifiedMiddleware = (req, res, next) => {
  
  
  //function to subtract 1 and delete when quantity is 0 
- router.put('/updateSubtractItem', lastModifiedMiddleware, async(req, res) => {
-    const ifModifiedSince = req.header('If-Modified-Since');
-    if (ifModifiedSince && lastModified && new Date(ifModifiedSince) >= lastModified) {
-        // Resource not modified since last request
-        return res.status(304).end();
-    }
-     
+ router.put('/updateSubtractItem', async(req, res) => {
+
      try{
 
         if(selectedCard[0].length === 0){
@@ -188,18 +177,13 @@ const lastModifiedMiddleware = (req, res, next) => {
      
  })
  
- router.delete('/deleteItem', lastModifiedMiddleware, async (req, res) => {
+ router.delete('/deleteItem', async (req, res) => {
      const userIdFromClientSide = req.body.userId;
      const cardName = req.body.card_name;
      //delete selected row
      //obtain id using name
      //get index of name and then get id from that 
      try {
-        const ifModifiedSince = req.header('If-Modified-Since');
-        if (ifModifiedSince && lastModified && new Date(ifModifiedSince) >= lastModified) {
-            // Resource not modified since last request
-            return res.status(304).end();
-        }
 
          const existingCard = await req.db.query( 
              `SELECT id FROM yugioh_cart_list
