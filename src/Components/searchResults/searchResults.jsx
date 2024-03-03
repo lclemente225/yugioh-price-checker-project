@@ -138,8 +138,8 @@ function FilterSearchCards(){
     
 
     return (
-            <>
-            <div key={key} id={key} className={ `single-card-listing  active-card` }>
+            
+            <div key={key} id={key} className={ `single-card-listing` }>
                       <p className='list-card-name reading-font'>{filteredCardName}</p>
                       <p className='mainpage-card-list-text typeoftypetext reading-font'>
                           {cardTypeofType + " " + cardType}
@@ -173,7 +173,7 @@ function FilterSearchCards(){
                           cartData[0].map((value) => {
                             if(value.card_name === filteredCardName && value.userId === userId){
                                 return (
-                                  <p className='red-text'>
+                                  <p className='red-text reading-font'>
                                   {value.quantity} in cart
                                 </p>
                                 )
@@ -182,7 +182,6 @@ function FilterSearchCards(){
                           }) 
                         }
               </div>
-            </>
     )
   })
 

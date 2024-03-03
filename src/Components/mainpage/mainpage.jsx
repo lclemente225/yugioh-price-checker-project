@@ -7,7 +7,7 @@ import Pagination from '../pagination/pagination';
 import { HomepageFooter } from './footer';
 import {SearchResults as SearchResults} from '../searchResults/searchResults';
 import {Pagination as SearchPagination} from '../searchpagination/searchPagination';
-
+import Placeholder from './Placeholder';
   /*
         ['id'], ['name'], ['type'],['race'], ['']
          ['card_prices']-> this is an array with 1 obj vv
@@ -33,7 +33,9 @@ export default function MainPage({LogIn, isLoggedIn, givenUserId}){
   const { isLoading, error, data } = useQuery('Yugioh Data', 
   async () =>{
         let response =  await fetch('https://db.ygoprodeck.com/api/v7/cardinfo.php');
-        let data = await response.json();   
+        let data = await response.json();  
+        
+  setSearchTerm("wea") 
             return data
             },{
               refetchOnWindowFocus: false,
@@ -50,7 +52,6 @@ export default function MainPage({LogIn, isLoggedIn, givenUserId}){
   
   function notification(action, name, quantity){
     const notifInfo = { action, name,  quantity }
-
     toast.success(`${notifInfo.action} ${notifInfo.quantity} ${notifInfo.name}`)
   }
 
@@ -157,9 +158,11 @@ export default function MainPage({LogIn, isLoggedIn, givenUserId}){
                        aria-label="Search" />
                     </div>
                     
-                  {searchTerm ? 
+                  {
+                  searchTerm ? 
                   <h4 className='below-search-text'>Your Search resulted in {showSearchResultQuantity} cards</h4>:
-                  <h4 className='below-search-text'>We have no pathetic cards</h4> }
+                  <h4 className='below-search-text'>We have no pathetic cards</h4> 
+                  }
                 </div>
                 <div className="card--list-container" style={cardListContainerStyle}>
                        
@@ -174,6 +177,9 @@ export default function MainPage({LogIn, isLoggedIn, givenUserId}){
                               givenUserId={givenUserId}
                               changeSearchResultQuantity={changeSearchResultQuantity}
                               /> 
+                              
+                               { 
+                                }
                 </div>
                 {
                   searchTerm ?
@@ -189,14 +195,9 @@ export default function MainPage({LogIn, isLoggedIn, givenUserId}){
                       postsPerPage={postsPerPage}
                       setCurrentPage={setCurrentPage}
                       currentPage={currentPage}                 
-                      />}
+                      />
+                }
             </div>
-              {
-                /* isCartShowing && 
-                <div className='add-or-sub-popup'>
-                    {cardQuantityChangeResult.action} {cardQuantityChangeResult.quantity} {cardQuantityChangeResult.addCardName}
-                </div> */
-              }
             <div id="homepage-footer">
               <HomepageFooter/>
             </div>

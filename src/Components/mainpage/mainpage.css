@@ -130,11 +130,9 @@
     background-color: var(--tertiary-color);
     box-shadow: 0 0 5px 2px black;
 }
-.inactive-card{
-    display: none;
-}
 .cartUpdateButton{
     width: 30px;
+    margin-bottom: 10px;
 }
 .cartUpdateSubtract{
     background-color: rgba(233, 48, 48, 0.856);
@@ -207,16 +205,17 @@
   @media screen and (min-width: 900px) and (max-width: 1240px) {
     .card--list-container{
         width: 100%;
-        height: 1000px;
+        height: 200px;
         padding: 30px 0 30px 20px;
         display: flex;
-        flex-direction: column; 
+        flex-direction: column;
+        align-items: center; 
         background-position-y: 0px !important;
     }
     .single-card-listing{
         position: relative;
         width: 97%;
-        height: 400px;
+        height: auto;
         display: flex;
         justify-content: space-between;
     }
@@ -234,7 +233,6 @@
   @media screen and (min-width: 650px) and (max-width: 900px) {
     .card--list-container{
         width: 100%;
-        height: 1000px;
         padding: 30px 0 30px 20px;
         display: flex;
         flex-direction: column; 
@@ -243,16 +241,6 @@
     .single-card-listing{
         position: relative;
         width: 97%;
-        height: 300px !important;
-        display: flex;
-        justify-content: space-between;
-    }
-    .list-card-name,
-    .mainpage-card-list-text{
-        border-right: 1px solid black;
-        height: 100%;
-        margin-right: 4px;
-        padding: 0 1px;
     }
     .millenium-eye-image{
         width: 40%;
@@ -295,10 +283,6 @@
     .single-card-listing{
         position: relative;
         width: 97%;
-        height: 300px;
-        display: flex;
-        justify-content: space-between;
-        
     }
     .cartUpdateButton{
         position: absolute;

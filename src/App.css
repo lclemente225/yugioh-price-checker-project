@@ -36,5 +36,7 @@ button{
 }
 
 .red-text {
-  color: red;
+  color: brown;
+  font-weight: 700;
+  font-size: 1.2rem;
 }
