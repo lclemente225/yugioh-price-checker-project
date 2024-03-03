@@ -58,6 +58,9 @@ export const CartProvider = ({children}) => {
         }
     };
 
+    //INSTEAD OF POLLING
+    //TRY THAT REFETCH APPROACH YOU HAVE
+    // look at action-functions.js refetch(["yugioh-cards"])
     useEffect(() => {
         fetchData();
     }, []);

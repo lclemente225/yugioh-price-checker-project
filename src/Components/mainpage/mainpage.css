@@ -103,13 +103,13 @@
 }
 .card--list-container{
     width: 100%;
-    height: 800px;
+    height: 900px;
     padding: 55px 0 15px 65px;
     display: grid;
     grid-template-columns: repeat(5, 2.5fr);
     grid-template-rows: repeat(2, 5fr);
     column-gap: 10px;
-    row-gap: 15px;
+    row-gap: 25px;
     background-color: var(--primary-color); 
     overflow-y: auto;  
     background-position-y: -210px !important;
@@ -121,7 +121,7 @@
 }
 .single-card-listing{
     width: 15vw;
-    height: 300px;
+    height: 350px;
     padding: 12px;
     font-weight: 600;
     color: var(--dark-text-color);
