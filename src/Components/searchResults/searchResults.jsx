@@ -146,7 +146,7 @@ function FilterSearchCards(){
                       </p>
   
                       <a className='mainpage-card-list-text reading-font' 
-                      href={`https://www.tcgplayer.com/search/yugioh/product?productLineName=yugioh&q=${filteredCardName}&view=grid`}>
+                      href={`https://www.tcgplayer.com/search/yugioh/product?productLineName=yugioh&q=${filteredCardName}+yugioh&view=grid`}>
                           TCG Player: {cardPriceArray["tcgplayer_price"] == 0.00 ? " Not Listed":`$${cardPriceArray["tcgplayer_price"]}`}
                         </a>
   
