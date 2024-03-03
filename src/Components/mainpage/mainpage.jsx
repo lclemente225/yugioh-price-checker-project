@@ -35,7 +35,6 @@ export default function MainPage({LogIn, isLoggedIn, givenUserId}){
         let response =  await fetch('https://db.ygoprodeck.com/api/v7/cardinfo.php');
         let data = await response.json();  
         
-  setSearchTerm("wea") 
             return data
             },{
               refetchOnWindowFocus: false,
