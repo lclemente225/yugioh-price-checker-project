@@ -143,7 +143,7 @@ export default function MainPage({LogIn, isLoggedIn, givenUserId}){
   }else if(window.innerWidth > 1240){
     cardListContainerStyle.height = searchTerm ? '800px' : '800px'
   }
-
+ 
     return (
         <div className='page-container'>
             <NavBar LogIn={LogIn} isLoggedIn={isLoggedIn}/>

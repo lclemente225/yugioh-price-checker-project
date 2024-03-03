@@ -5,27 +5,6 @@ export const CartContext = createContext(null);
 
 export const CartProvider = ({children}) => {
     const [cart, setCart] = useState([]);
-
-  /*   const {isLoading, error, isSuccess, data } = useQuery('Yugioh Cart Data', 
-          async () =>{
-                    let response =  await fetch(`/.netlify/functions/functions/cart/list`);
-                    if (!response.ok) {
-                        throw new Error('Failed to fetch data');
-                    }
-                    return response.json()
-              }, []);
-
-    if (isLoading) {
-        return <div>Loading...</div>;
-    }
-
-    // Check if there's an errord
-        return <div>Error: {error.message}</div>;
-    }
-
-    if(isSuccess) setCart(data) */
-    //////////////////////////////////////////////////
-
     const [lastModified, setLastModified] = useState(null);
 
     const fetchData = async () => {
@@ -50,7 +29,7 @@ export const CartProvider = ({children}) => {
             // Update lastModified timestamp
             const lastModifiedHeader = response.headers.get('Last-Modified');
             if (lastModifiedHeader) {
-                console.log("updates cartcontext.jsx", typeof lastModifiedHeader, "state of lastmodified", lastModified)
+                console.log("response cartcontext.jsx", response, "state of lastmodified", lastModified)
                 setLastModified(lastModifiedHeader);
             }
         } catch (error) {
