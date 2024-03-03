@@ -145,9 +145,10 @@ function FilterSearchCards(){
                           {cardTypeofType + " " + cardType}
                       </p>
   
-                      <p className='mainpage-card-list-text reading-font'>
+                      <a className='mainpage-card-list-text reading-font' 
+                      href={`https://www.tcgplayer.com/search/yugioh/product?productLineName=yugioh&q=${filteredCardName}&view=grid`}>
                           TCG Player: {cardPriceArray["tcgplayer_price"] == 0.00 ? " Not Listed":`$${cardPriceArray["tcgplayer_price"]}`}
-                        </p>
+                        </a>
   
                       <p className='mainpage-card-list-text reading-font'>
                           eBay: ${cardPriceArray["ebay_price"]}
