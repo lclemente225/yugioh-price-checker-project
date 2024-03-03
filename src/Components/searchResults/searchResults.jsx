@@ -146,15 +146,19 @@ function FilterSearchCards(){
                       </p>
   
                       <a className='mainpage-card-list-text reading-font' 
+                      target="_blank"
                       href={`https://www.tcgplayer.com/search/yugioh/product?productLineName=yugioh&q=${filteredCardName}+yugioh&view=grid`}>
                           TCG Player: {cardPriceArray["tcgplayer_price"] == 0.00 ? " Not Listed":`$${cardPriceArray["tcgplayer_price"]}`}
                         </a>
   
-                      <p className='mainpage-card-list-text reading-font'>
+                      <a className='mainpage-card-list-text reading-font'
+                      target="_blank"
+                      href={`https://www.ebay.com/sch/i.html?_from=R40&_nkw=${filteredCardName}+yugioh&_sacat=0`}>
                           eBay: ${cardPriceArray["ebay_price"]}
-                      </p>
+                      </a>
   
                       <a className='mainpage-card-list-text reading-font'
+                      target="_blank"
                       href={`https://www.amazon.com/s?k=${filteredCardName}+yugioh&ref=nb_sb_noss`}>
                           Amazon: ${cardPriceArray["amazon_price"]}
                       </a>
