@@ -122,7 +122,10 @@
 }
 a.mainpage-card-list-text{
     text-decoration: none;
-    color: grey;
+    color: purple;
+}
+a.mainpage-card-list-text:hover{
+    color: blue;
 }
 .single-card-listing{
     width: 15vw;
