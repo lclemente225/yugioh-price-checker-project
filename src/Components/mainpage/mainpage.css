@@ -215,7 +215,7 @@
     }
     .single-card-listing{
         width: 97%;
-        height: 200px;
+        height: 400px;
         display: flex;
         justify-content: space-between;
     }
@@ -241,7 +241,7 @@
     }
     .single-card-listing{
         width: 97%;
-        height: 200px;
+        height: 400px;
         display: flex;
         justify-content: space-between;
     }
@@ -293,7 +293,7 @@
     .single-card-listing{
         position: relative;
         width: 97%;
-        height: 200px;
+        height: 300px;
         display: flex;
         justify-content: space-between;
         
