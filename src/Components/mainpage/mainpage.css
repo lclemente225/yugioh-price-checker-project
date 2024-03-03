@@ -118,6 +118,7 @@
 }
 .mainpage-card-list-text{
     background-color: var(--tertiary-color);
+    display: inline-block;
 }
 .single-card-listing{
     width: 15vw;
