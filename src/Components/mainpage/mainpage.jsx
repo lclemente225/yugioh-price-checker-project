@@ -105,7 +105,7 @@ export default function MainPage({LogIn, isLoggedIn, givenUserId}){
         
           if (!response.ok) {
             notification('Unable to subtract: You have', name, 0)
-            throw new Error('Failed to reduce item from cart');
+            throw new Error('Failed to reduce item from cart', response.json());
           }else{
             notification('You successfully subtracted', name, 1)
               

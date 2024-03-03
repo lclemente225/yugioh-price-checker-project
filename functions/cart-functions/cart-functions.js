@@ -141,7 +141,7 @@ const lastModifiedMiddleware = (req, res, next) => {
                 cartId: req.body.cartId,
                 userId: userIdFromClientSide 
             });
-            console.log("none here")
+            
             return res.status(404).json({ message: 'Item not found' });
         }
 
