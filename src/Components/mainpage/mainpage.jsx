@@ -7,7 +7,7 @@ import Pagination from '../pagination/pagination';
 import { HomepageFooter } from './footer';
 import {SearchResults as SearchResults} from '../searchResults/searchResults';
 import {Pagination as SearchPagination} from '../searchpagination/searchPagination';
-import Placeholder from './Placeholder';
+
   /*
         ['id'], ['name'], ['type'],['race'], ['']
          ['card_prices']-> this is an array with 1 obj vv
