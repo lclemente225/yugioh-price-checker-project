@@ -120,6 +120,10 @@
     background-color: var(--tertiary-color);
     display: block;
 }
+a.mainpage-card-list-text{
+    text-decoration: none;
+    color: grey;
+}
 .single-card-listing{
     width: 15vw;
     height: 350px;
