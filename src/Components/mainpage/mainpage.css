@@ -243,7 +243,7 @@
     .single-card-listing{
         position: relative;
         width: 97%;
-        height: 400px;
+        height: 300px !important;
         display: flex;
         justify-content: space-between;
     }
