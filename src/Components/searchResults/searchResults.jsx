@@ -144,18 +144,6 @@ function FilterSearchCards(){
                       <p className='mainpage-card-list-text typeoftypetext reading-font'>
                           {cardTypeofType + " " + cardType}
                       </p>
-                        { 
-                          cartData[0].map((value) => {
-                            if(value.card_name === filteredCardName && value.userId === userId){
-                                return (
-                                  <p className='red-text'>
-                                  {value.quantity} in cart
-                                </p>
-                                )
-                              }
-                              return null
-                          }) 
-                        }
   
                       <p className='mainpage-card-list-text reading-font'>
                           TCG Player: {cardPriceArray["tcgplayer_price"] == 0.00 ? " Not Listed":`$${cardPriceArray["tcgplayer_price"]}`}
@@ -180,6 +168,19 @@ function FilterSearchCards(){
                         onClick={(event) => subtractFromCart(event, index, givenUserId, filteredCardName)}>
                           - 
                       </button>
+                      
+                      { 
+                          cartData[0].map((value) => {
+                            if(value.card_name === filteredCardName && value.userId === userId){
+                                return (
+                                  <p className='red-text'>
+                                  {value.quantity} in cart
+                                </p>
+                                )
+                              }
+                              return null
+                          }) 
+                        }
               </div>
             </>
     )
