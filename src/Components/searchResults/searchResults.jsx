@@ -154,9 +154,10 @@ function FilterSearchCards(){
                           eBay: ${cardPriceArray["ebay_price"]}
                       </p>
   
-                      <p className='mainpage-card-list-text reading-font'>
+                      <a className='mainpage-card-list-text reading-font'
+                      href={`https://www.amazon.com/s?k=${filteredCardName}&ref=nb_sb_noss`}>
                           Amazon: ${cardPriceArray["amazon_price"]}
-                      </p>
+                      </a>
   
                       <button 
                       className='cartUpdateButton cartUpdateAdd'
