@@ -50,7 +50,7 @@ export const CartProvider = ({children}) => {
             // Update lastModified timestamp
             const lastModifiedHeader = response.headers.get('Last-Modified');
             if (lastModifiedHeader) {
-                console.log("updates cartcontext.jsx")
+                console.log("updates cartcontext.jsx", lastModifiedHeader, "state of lastmodified", lastModified)
                 setLastModified(lastModifiedHeader);
             }
         } catch (error) {

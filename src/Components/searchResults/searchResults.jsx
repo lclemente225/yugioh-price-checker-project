@@ -148,7 +148,7 @@ function FilterSearchCards(){
                           cartData[0].map((value) => {
                             if(value.card_name === filteredCardName && value.userId === userId){
                                 return (
-                                  <p>
+                                  <p className='red-text'>
                                   {value.quantity} in cart
                                 </p>
                                 )
