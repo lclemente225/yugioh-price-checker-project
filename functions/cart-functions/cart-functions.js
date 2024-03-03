@@ -132,8 +132,6 @@ const lastModifiedMiddleware = (req, res, next) => {
  router.put('/updateSubtractItem', async(req, res) => {
 
      try{
-
-        if(selectedCard[0].length === 0){
             const userIdFromClientSide = req.body.userId;
             const selectedCard = await req.db.query(
             `SELECT id, quantity FROM yugioh_cart_list WHERE cartId = :cartId AND userId = :userId`,
@@ -141,6 +139,8 @@ const lastModifiedMiddleware = (req, res, next) => {
                 cartId: req.body.cartId,
                 userId: userIdFromClientSide 
             });
+
+        if(selectedCard[0].length === 0){
             
             return res.status(404).json({ message: 'Item not found' });
         }
