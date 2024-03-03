@@ -241,7 +241,7 @@
     }
     .single-card-listing{
         width: 97%;
-        height: 90px;
+        height: 200px;
         display: flex;
         justify-content: space-between;
     }
