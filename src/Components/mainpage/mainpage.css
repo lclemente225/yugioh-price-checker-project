@@ -214,6 +214,7 @@
         background-position-y: 0px !important;
     }
     .single-card-listing{
+        position: relative;
         width: 97%;
         height: 400px;
         display: flex;
@@ -240,6 +241,7 @@
         background-position-x: -300px !important;
     }
     .single-card-listing{
+        position: relative;
         width: 97%;
         height: 400px;
         display: flex;
