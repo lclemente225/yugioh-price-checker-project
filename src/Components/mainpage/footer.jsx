@@ -36,7 +36,7 @@ export const HomepageFooter = () => {
             </Link>
         </div>
         <span>
-            *Given Prices are an average of all sets 
+            *Prices may not be 100% accurate. Check the links for actual listings. 
         </span>
     </>
   )
