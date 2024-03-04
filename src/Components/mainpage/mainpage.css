@@ -144,7 +144,7 @@ a.mainpage-card-list-text:active{
 }
 .mutate-button-container {
     display: grid;
-    grid-template-columns: [left]80% [add]7% [subtract]7%;
+    grid-template-columns: [left]50% [add]40px[subtract]30px;
 }
 .cardUpdateButton{
     width: 30px;
@@ -154,6 +154,7 @@ a.mainpage-card-list-text:active{
     background-color: rgb(71, 172, 71);
 }
 .cardUpdateSubtract{
+    grid-column: subtract;
     background-color: rgba(233, 48, 48, 0.856);
 }
 .cardUpdateSubtract:active, .cartUpdateAdd:active{
@@ -243,6 +244,10 @@ a.mainpage-card-list-text:active{
         font-size: 1.6rem;
         width: 90%;
     }
+    .mutate-button-container {
+        width: max-content;
+        grid-template-columns: [left]100px [add]40px[subtract]30px;
+    }
 
   }
   @media screen and (min-width: 650px) and (max-width: 900px) {
@@ -267,6 +272,10 @@ a.mainpage-card-list-text:active{
     }
     .no-search-results h1{
         font-size: 12px;
+    }
+    .mutate-button-container {
+        width: 97%;
+        grid-template-columns: [left]90% [add]40px[subtract]30px;
     }
   }
   @media screen and (max-width: 650px) {

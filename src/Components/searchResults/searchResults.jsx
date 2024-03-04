@@ -158,7 +158,7 @@ function FilterSearchCards(){
                           Amazon: ${cardPriceArray["amazon_price"]}
                       </a>
 
-                      <div>
+                      <div className='mutate-button-container'>
                         { 
                             cartData[0].map((value) => {
                               if(value.card_name === filteredCardName && value.userId === userId){
