@@ -29,8 +29,8 @@ export const CartProvider = ({children}) => {
             // Update lastModified timestamp
             const lastModifiedHeader = response.headers.get('Last-Modified');
             if (lastModifiedHeader) {
-                console.log("response cartcontext.jsx", response, "state of lastmodified", lastModified)
                 setLastModified(lastModifiedHeader);
+                console.log("response cartcontext.jsx", response, "state of lastmodified", lastModified)
             }
         } catch (error) {
             console.error('Error while fetching data:', error);
