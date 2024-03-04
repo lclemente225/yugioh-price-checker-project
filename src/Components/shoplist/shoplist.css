@@ -60,6 +60,20 @@
     background-color: transparent;
     font-family: 'Nunito Sans', sans-serif;
 }
+.cardUpdateButton{
+    width: 30px;
+    margin-bottom: 10px;
+}
+.cartUpdateSubtract{
+    background-color: rgba(233, 48, 48, 0.856);
+    margin-left: 4px;
+}
+.cartUpdateSubtract:active, .cartUpdateAdd:active{
+    box-shadow: 0 0 3px;
+}
+.cartUpdateAdd{
+    background-color: rgb(71, 172, 71);
+}
 .cartUpdateDelete{
     width: auto;                                  
 }

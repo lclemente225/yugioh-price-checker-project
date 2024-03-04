@@ -159,18 +159,6 @@ function FilterSearchCards(){
                       </a>
 
                       <div>
-                        <button 
-                        className='cartUpdateButton cartUpdateAdd'
-                        onClick={(event) => addToCart(event, filteredCardName, cardPriceArray, index, givenUserId)}>
-                          +
-                        </button>
-    
-                        <button  
-                          className='cartUpdateButton cartUpdateSubtract'
-                          onClick={(event) => subtractFromCart(event, index, givenUserId, filteredCardName)}>
-                            - 
-                        </button>
-                        
                         { 
                             cartData[0].map((value) => {
                               if(value.card_name === filteredCardName && value.userId === userId){
@@ -183,6 +171,17 @@ function FilterSearchCards(){
                                 return null
                             }) 
                           }
+                        <button 
+                        className='cardUpdateButton cardUpdateAdd'
+                        onClick={(event) => addToCart(event, filteredCardName, cardPriceArray, index, givenUserId)}>
+                          +
+                        </button>
+    
+                        <button  
+                          className='cardUpdateButton cardUpdateSubtract'
+                          onClick={(event) => subtractFromCart(event, index, givenUserId, filteredCardName)}>
+                            - 
+                        </button>
                         </div>
               </div>
     )

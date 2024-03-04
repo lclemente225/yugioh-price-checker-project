@@ -142,19 +142,22 @@ a.mainpage-card-list-text:active{
     background-color: var(--tertiary-color);
     box-shadow: 0 0 5px 2px black;
 }
-.cartUpdateButton{
+.mutate-button-container {
+    display: grid;
+    grid-template-columns: [left]80% [add]7% [subtract]7%;
+}
+.cardUpdateButton{
     width: 30px;
-    margin-bottom: 10px;
 }
-.cartUpdateSubtract{
-    background-color: rgba(233, 48, 48, 0.856);
-    margin-left: 4px;
-}
-.cartUpdateSubtract:active, .cartUpdateAdd:active{
-    box-shadow: 0 0 3px;
-}
-.cartUpdateAdd{
+.cardUpdateAdd{
+    grid-column: add;
     background-color: rgb(71, 172, 71);
+}
+.cardUpdateSubtract{
+    background-color: rgba(233, 48, 48, 0.856);
+}
+.cardUpdateSubtract:active, .cartUpdateAdd:active{
+    box-shadow: 0 0 3px;
 }
 .Loading-API-Text{
     height:100vh;
@@ -296,7 +299,7 @@ a.mainpage-card-list-text:active{
         position: relative;
         width: 97%;
     }
-    .cartUpdateButton{
+    .cardUpdateButton{
         position: absolute;
         height: 25px;
         width: 50px;
@@ -305,10 +308,10 @@ a.mainpage-card-list-text:active{
         justify-content: center;
         bottom: 3px;
     }
-    .cartUpdateAdd{
-        right: 90px;
+    .cardUpdateAdd{
+        right: 70px;
     }
-    .cartUpdateSubtract{
+    .cardUpdateSubtract{
         right: 30px;
     }
     .millenium-eye-image{
