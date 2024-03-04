@@ -63,6 +63,14 @@
 .cartUpdateDelete{
     width: auto;                                  
 }
+.card-listing-link {
+    text-decoration: none;
+    display: block;
+    color: blue;
+}
+.card-listing-link:hover{
+    color: purple;
+}
 /* Price Selection */
 .toggle-prices{
     z-index: 99;

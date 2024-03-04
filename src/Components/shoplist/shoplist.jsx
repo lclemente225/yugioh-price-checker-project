@@ -104,7 +104,10 @@ function ListItems() {
                   selectedPrice.cardmarket_price &&
                   <p className="card-listing-price">
                     CardMarket Price: ${pricesArray["cardmarket_price"]}
-                    <a href={`https://www.cardmarket.com/en/YuGiOh/Products/Search?searchString=${item.card_name}`}>
+                    <a 
+                    className='card-listing-link'
+                    href={`https://www.cardmarket.com/en/YuGiOh/Products/Search?searchString=${item.card_name}`}
+                    >
                       Look at listings
                     </a>
                   </p>
@@ -114,7 +117,10 @@ function ListItems() {
                   <p className="card-listing-price">
                     Coolstuffinc Price: ${pricesArray["coolstuffinc_price"]}
                     <a 
-                      href={`https://www.coolstuffinc.com/main_search.php?pa=searchOnName&page=1&resultsPerPage=25&q=${item.card_name}%5C`}>
+                      className='card-listing-link'
+                      target='_blank'
+                      href={`https://www.coolstuffinc.com/main_search.php?pa=searchOnName&page=1&resultsPerPage=25&q=${item.card_name}%5C`}
+                      >
                       Look at listings
                     </a>
                   </p>
@@ -124,7 +130,10 @@ function ListItems() {
                   <p className="card-listing-price">
                     Ebay Price: ${pricesArray["ebay_price"]}
                     <a 
-                      href={`https://www.ebay.com/sch/i.html?_from=R40&_nkw=${item.card_name}+yugioh&_sacat=0`}>
+                      target='_blank'
+                      className='card-listing-link'
+                      href={`https://www.ebay.com/sch/i.html?_from=R40&_nkw=${item.card_name}+yugioh&_sacat=0`}
+                      >
                       Look at listings
                     </a>
                   </p>
@@ -134,7 +143,10 @@ function ListItems() {
                   <p className="card-listing-price" >
                     Amazon Price: ${pricesArray["amazon_price"]}
                     <a 
-                    href={`https://www.amazon.com/s?k=${item.card_name}+yugioh&ref=nb_sb_noss`}>
+                      target='_blank'
+                      className='card-listing-link'
+                      href={`https://www.amazon.com/s?k=${item.card_name}+yugioh&ref=nb_sb_noss`}
+                      >
                     Look at listings
                   </a>
                   </p>
@@ -143,9 +155,11 @@ function ListItems() {
                     selectedPrice.tcgplayer_price &&
                   <p className="card-listing-price">
                     Tcgplayer Price: ${pricesArray["tcgplayer_price"]}
-                      <a                   
-                      href={`https://www.tcgplayer.com/search/yugioh/product?productLineName=yugioh&q=${item.card_name}+yugioh&view=grid`}
-                      >
+                      <a         
+                        target='_blank'
+                        className='card-listing-link'          
+                        href={`https://www.tcgplayer.com/search/yugioh/product?productLineName=yugioh&q=${item.card_name}+yugioh&view=grid`}
+                        >
                         Look at listings
                       </a>
                   </p>
