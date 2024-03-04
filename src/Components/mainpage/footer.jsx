@@ -35,7 +35,7 @@ export const HomepageFooter = () => {
                     </span>
             </Link>
         </div>
-        <span>
+        <span style={{padding: '0 10px'}}>
             *Prices may not be 100% accurate. Check the links for actual listings. 
         </span>
     </>
