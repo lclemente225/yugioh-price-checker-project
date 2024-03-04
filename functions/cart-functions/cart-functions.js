@@ -218,4 +218,5 @@ const lastModifiedMiddleware = (req, res, next) => {
          } 
  })
 
+ router.use(lastModifiedMiddleware)
 export {router}
