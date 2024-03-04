@@ -104,30 +104,50 @@ function ListItems() {
                   selectedPrice.cardmarket_price &&
                   <p className="card-listing-price">
                     CardMarket Price: ${pricesArray["cardmarket_price"]}
+                    <a href={`https://www.cardmarket.com/en/YuGiOh/Products/Search?searchString=${item.card_name}`}>
+                      Look at listings
+                    </a>
                   </p>
                   }
                  {
                   selectedPrice.coolstuffinc_price &&
                   <p className="card-listing-price">
                     Coolstuffinc Price: ${pricesArray["coolstuffinc_price"]}
+                    <a 
+                      href={`https://www.coolstuffinc.com/main_search.php?pa=searchOnName&page=1&resultsPerPage=25&q=${item.card_name}%5C`}>
+                      Look at listings
+                    </a>
                   </p>
                   }
                   {
                     selectedPrice.ebay_price &&
                   <p className="card-listing-price">
                     Ebay Price: ${pricesArray["ebay_price"]}
+                    <a 
+                      href={`https://www.ebay.com/sch/i.html?_from=R40&_nkw=${item.card_name}+yugioh&_sacat=0`}>
+                      Look at listings
+                    </a>
                   </p>
                   }
                   {
                     selectedPrice.amazon_price &&
-                  <p className="card-listing-price">
+                  <p className="card-listing-price" >
                     Amazon Price: ${pricesArray["amazon_price"]}
+                    <a 
+                    href={`https://www.amazon.com/s?k=${item.card_name}+yugioh&ref=nb_sb_noss`}>
+                    Look at listings
+                  </a>
                   </p>
                   }
                   {
                     selectedPrice.tcgplayer_price &&
                   <p className="card-listing-price">
                     Tcgplayer Price: ${pricesArray["tcgplayer_price"]}
+                      <a                   
+                      href={`https://www.tcgplayer.com/search/yugioh/product?productLineName=yugioh&q=${item.card_name}+yugioh&view=grid`}
+                      >
+                        Look at listings
+                      </a>
                   </p>
                   }
                 </div>
