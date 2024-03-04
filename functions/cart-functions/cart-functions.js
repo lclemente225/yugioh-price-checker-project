@@ -18,7 +18,13 @@ const lastModifiedMiddleware = (req, res, next) => {
     next();
 };
 
-
+ 
+function setLastModified(req, res, next){
+    lastModified = Date.now();
+    res.set('Last-Modified', lastModified)
+    next();
+ }
+ 
 // "/.netlify/functions/cart-functions/"
 
  router.get('/list', lastModifiedMiddleware,async (req, res) => {
@@ -39,13 +45,6 @@ const lastModifiedMiddleware = (req, res, next) => {
      return res.status(500).send({ error: 'Failed to find yoru cart' });
      }
  }); 
- 
- function setLastModified(req, res, next){
-    lastModified = Date.now();
-    res.set('Last-Modified', lastModified)
-    next();
- }
- 
  // when you click a button, then it will send a post request to the sql server
  //this function adds quantity if the card exists
  router.put('/add', setLastModified, async (req, res) => {

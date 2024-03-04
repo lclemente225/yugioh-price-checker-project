@@ -46,7 +46,7 @@ const Shoplist = ({givenUserId}) => {
           async () =>{
                     let response =  await fetch(`/.netlify/functions/functions/cart/list`);
                     let data = await response.json();   
-                    console.log("trying to load cart", data)
+                    //console.log("trying to load cart", data)
                     return data
               },{
                 refetchOnWindowFocus: false

@@ -2,12 +2,12 @@ import NavBar from '../navbar/navbar';
 import { useState, useEffect } from 'react';
 import { useQuery } from 'react-query';
 import { toast } from 'react-hot-toast';
-import "./mainpage.css";
 import Pagination from '../pagination/pagination';
 import { HomepageFooter } from './footer';
+import "./mainpage.css";
 import {SearchResults as SearchResults} from '../searchResults/searchResults';
 import {Pagination as SearchPagination} from '../searchpagination/searchPagination';
-//import Placeholder from './Placeholder'
+//import Placeholder from './Placeholder';
 
   /*
         ['id'], ['name'], ['type'],['race'], ['']
@@ -179,6 +179,7 @@ export default function MainPage({LogIn, isLoggedIn, givenUserId}){
                               givenUserId={givenUserId}
                               changeSearchResultQuantity={changeSearchResultQuantity}
                               /> 
+                              {/* <Placeholder/> */}
                               
                 </div>
                 {
