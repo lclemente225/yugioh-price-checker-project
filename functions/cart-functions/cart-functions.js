@@ -41,6 +41,8 @@ const lastModifiedMiddleware = (req, res, next) => {
  }); 
  
  
+ lastModified = new Date().now();
+ 
  // when you click a button, then it will send a post request to the sql server
  //this function adds quantity if the card exists
  router.put('/add', async (req, res) => {
@@ -117,7 +119,6 @@ const lastModifiedMiddleware = (req, res, next) => {
          }
          );
  
-         lastModified = new Date().now();
          return res.json(addCartList);
      }
      } catch (err) {
