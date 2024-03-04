@@ -14,7 +14,7 @@ router.get('/dude', (req, res) => {
 // Middleware to handle Last-Modified header
 const lastModifiedMiddleware = (req, res, next) => {
     // Set Last-Modified header
-    res.set('Last-Modified', lastModified ? lastModified.toUTCString() : '');
+    res.set('If-Modified-Since', lastModified ? lastModified.toUTCString() : '');
     next();
 };
 
@@ -169,7 +169,6 @@ const lastModifiedMiddleware = (req, res, next) => {
                 });
         };
         
-        //lastModified = new Date().now();
         return res.status(200).json({ message: 'Item updated successfully.' });
  }catch (error) { 
     res.status(500).json({message:`something went wrong! Error: ${error}`})
@@ -210,7 +209,6 @@ const lastModifiedMiddleware = (req, res, next) => {
              } 
          );
          
-         //lastModified = new Date().now();
          res.status(200).json({ message: 'Item deleted successfully', deletedItem: cardName })
          } catch (err) {  
             console.log('did not delete', err)
