@@ -27,7 +27,7 @@ const lastModifiedMiddleware = (req, res, next) => {
      const cartList = await req.db.query(`SELECT * FROM yugioh_cart_list`);
 
      const ifModifiedSince = req.header('If-Modified-Since');
-     if (ifModifiedSince && lastModified && new Date(ifModifiedSince) <= lastModified) {
+     if (ifModifiedSince && lastModified && new Date(ifModifiedSince) >= lastModified) {
          // Resource not modified since last request
          return res.status(304).json(cartList).end();
      }
@@ -42,6 +42,7 @@ const lastModifiedMiddleware = (req, res, next) => {
  
  function setLastModified(req, res, next){
     lastModified = new Date();
+    res.set('Last-Modified', lastModified)
     next();
  }
  

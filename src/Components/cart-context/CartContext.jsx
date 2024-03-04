@@ -9,7 +9,9 @@ export const CartProvider = ({children}) => {
 
     const fetchData = async () => {
         try {
-            const response = await fetch(`/.netlify/functions/functions/cart/list`);
+            const response = await fetch(`/.netlify/functions/functions/cart/list`, {
+                headers: lastModified ? { 'If-Modified-Since': lastModified } : {}
+            });
 
             console.log("response in general cartcontext.jsx", response, "state of lastmodified", lastModified)
             if (response.status === 304) {
