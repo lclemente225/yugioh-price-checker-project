@@ -14,7 +14,7 @@ router.get('/dude', (req, res) => {
 // Middleware to handle Last-Modified header
 const lastModifiedMiddleware = (req, res, next) => {
     // Set Last-Modified header
-    res.set('If-Modified-Since', lastModified ? lastModified.toUTCString() : '');
+    res.set('If-Modified-Since', lastModified ? lastModified : '');
     next();
 };
 
