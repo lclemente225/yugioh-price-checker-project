@@ -27,7 +27,7 @@ const lastModifiedMiddleware = (req, res, next) => {
      const cartList = await req.db.query(`SELECT * FROM yugioh_cart_list`);
 
      const ifModifiedSince = req.header('If-Modified-Since');
-     if (ifModifiedSince && lastModified && new Date(ifModifiedSince) >= lastModified) {
+     if (ifModifiedSince && lastModified && new Date(ifModifiedSince) <= lastModified) {
          // Resource not modified since last request
          return res.status(304).json(cartList).end();
      }
@@ -117,7 +117,7 @@ const lastModifiedMiddleware = (req, res, next) => {
          }
          );
  
-         lastModified = new Date();
+         lastModified = new Date().now();
          return res.json(addCartList);
      }
      } catch (err) {
@@ -169,7 +169,7 @@ const lastModifiedMiddleware = (req, res, next) => {
                 });
         };
         
-        lastModified = new Date();
+        lastModified = new Date().now();
         return res.status(200).json({ message: 'Item updated successfully.' });
  }catch (error) { 
     res.status(500).json({message:`something went wrong! Error: ${error}`})
@@ -210,7 +210,7 @@ const lastModifiedMiddleware = (req, res, next) => {
              } 
          );
          
-        lastModified = new Date();
+        lastModified = new Date().now();
          res.status(200).json({ message: 'Item deleted successfully', deletedItem: cardName })
          } catch (err) {  
             console.log('did not delete', err)
