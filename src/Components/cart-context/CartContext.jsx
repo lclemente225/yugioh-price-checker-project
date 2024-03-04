@@ -33,7 +33,7 @@ export const CartProvider = ({children}) => {
                 setLastModified(lastModifiedHeader);
             }
         } catch (error) {
-            console.error('Error while fetching data:', error);
+            console.error('Error while fetching data:', error, response);
         }
     };
 
