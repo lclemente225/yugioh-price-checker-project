@@ -123,6 +123,7 @@
 a.mainpage-card-list-text{
     text-decoration: none;
     color: blue;
+    width: max-content;
 }
 a.mainpage-card-list-text:hover{
     color: aqua;
