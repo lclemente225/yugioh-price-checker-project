@@ -13,6 +13,7 @@ export const CartProvider = ({children}) => {
                 headers: lastModified ? { 'If-Modified-Since': lastModified } : {}
             });
 
+            console.log("response in general cartcontext.jsx", response, "state of lastmodified", lastModified)
             if (response.status === 304) {
                 // Resource not modified, no need to update
                 console.log("no updates, cartcontext.jsx")
@@ -30,7 +31,6 @@ export const CartProvider = ({children}) => {
             const lastModifiedHeader = response.headers.get('Last-Modified');
             if (lastModifiedHeader) {
                 setLastModified(lastModifiedHeader);
-                console.log("response cartcontext.jsx", response, "state of lastmodified", lastModified)
             }
         } catch (error) {
             console.error('Error while fetching data:', error);
