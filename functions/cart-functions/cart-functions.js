@@ -40,12 +40,14 @@ const lastModifiedMiddleware = (req, res, next) => {
      }
  }); 
  
- 
- lastModified = new Date().now();
+ function setLastModified(req, res, next){
+    lastModified = new Date();
+    next();
+ }
  
  // when you click a button, then it will send a post request to the sql server
  //this function adds quantity if the card exists
- router.put('/add', async (req, res) => {
+ router.put('/add', setLastModified,async (req, res) => {
      
      const userIdFromClientSide = req.body.userId;
  
@@ -130,7 +132,7 @@ const lastModifiedMiddleware = (req, res, next) => {
  
  
  //function to subtract 1 and delete when quantity is 0 
- router.put('/updateSubtractItem', async(req, res) => {
+ router.put('/updateSubtractItem', setLastModified,async(req, res) => {
 
      try{
             const userIdFromClientSide = req.body.userId;
@@ -177,7 +179,7 @@ const lastModifiedMiddleware = (req, res, next) => {
      
  })
  
- router.delete('/deleteItem', async (req, res) => {
+ router.delete('/deleteItem',setLastModified, async (req, res) => {
      const userIdFromClientSide = req.body.userId;
      const cardName = req.body.card_name;
      //delete selected row
