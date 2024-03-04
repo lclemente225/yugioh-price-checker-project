@@ -41,14 +41,14 @@ const lastModifiedMiddleware = (req, res, next) => {
  }); 
  
  function setLastModified(req, res, next){
-    lastModified = new Date();
+    lastModified = Date.now();
     res.set('Last-Modified', lastModified)
     next();
  }
  
  // when you click a button, then it will send a post request to the sql server
  //this function adds quantity if the card exists
- router.put('/add', setLastModified,async (req, res) => {
+ router.put('/add', setLastModified, async (req, res) => {
      
      const userIdFromClientSide = req.body.userId;
  
