@@ -7,6 +7,7 @@ import Pagination from '../pagination/pagination';
 import { HomepageFooter } from './footer';
 import {SearchResults as SearchResults} from '../searchResults/searchResults';
 import {Pagination as SearchPagination} from '../searchpagination/searchPagination';
+//import Placeholder from './Placeholder'
 
   /*
         ['id'], ['name'], ['type'],['race'], ['']
@@ -28,6 +29,7 @@ export default function MainPage({LogIn, isLoggedIn, givenUserId}){
   const [currentSearchPage, setSearchCurrentPage] = useState(1);
   const [currentSearchPostsLength, setSearchPostLength] = useState(10);
   const [showSearchResultQuantity, changeSearchResultQuantity] = useState(0);
+  
 
   //obtain data from yugioh api
   const { isLoading, error, data } = useQuery('Yugioh Data', 
@@ -35,6 +37,7 @@ export default function MainPage({LogIn, isLoggedIn, givenUserId}){
         let response =  await fetch('https://db.ygoprodeck.com/api/v7/cardinfo.php');
         let data = await response.json();  
         
+        setSearchTerm("wow")
             return data
             },{
               refetchOnWindowFocus: false,
@@ -177,8 +180,6 @@ export default function MainPage({LogIn, isLoggedIn, givenUserId}){
                               changeSearchResultQuantity={changeSearchResultQuantity}
                               /> 
                               
-                               { 
-                                }
                 </div>
                 {
                   searchTerm ?

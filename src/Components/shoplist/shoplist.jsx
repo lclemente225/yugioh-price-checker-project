@@ -107,7 +107,7 @@ function ListItems() {
                     <a 
                     className='card-listing-link'
                     href={`https://www.cardmarket.com/en/YuGiOh/Products/Search?searchString=${item.card_name}`}
-                    target='_blank'
+                    target='_blank' 
                     >
                       Look at listings
                     </a>

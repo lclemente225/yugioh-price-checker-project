@@ -14,7 +14,6 @@ export function SearchResults({
                                 changeSearchResultQuantity
                               }) {
   const cartData = useContext(CartContext);
-  const [cardInCart, isCardInCart] = useState(false);
   const userId = localStorage.getItem("Login UserId");
 
  
@@ -91,9 +90,6 @@ function FilterSearchCards(){
                     Type in the search box to see my wares...
                   </h2>
             </div>
-          
-          
-         
           </>
         )
       }
@@ -114,11 +110,10 @@ function FilterSearchCards(){
     //currentPosts contains cards that are in the slice
     //render the length of currentposts to render only its content
     const currentPosts = filteredArray.slice(searchFirstPostIndex,searchLastPostIndex)
+
     function changeSearchNumber(){
-          
       setSearchPostLength(() => filteredArray.length)
       changeSearchResultQuantity(() => filteredArray.length)
-      
     }
     setTimeout(changeSearchNumber, 800)
 
@@ -162,36 +157,36 @@ function FilterSearchCards(){
                       href={`https://www.amazon.com/s?k=${filteredCardName}+yugioh&ref=nb_sb_noss`}>
                           Amazon: ${cardPriceArray["amazon_price"]}
                       </a>
-  
-                      <button 
-                      className='cartUpdateButton cartUpdateAdd'
-                      onClick={(event) => addToCart(event, filteredCardName, cardPriceArray, index, givenUserId)}>
-                        +
-                      </button>
-  
-                      <button  
-                        className='cartUpdateButton cartUpdateSubtract'
-                        onClick={(event) => subtractFromCart(event, index, givenUserId, filteredCardName)}>
-                          - 
-                      </button>
-                      
-                      { 
-                          cartData[0].map((value) => {
-                            if(value.card_name === filteredCardName && value.userId === userId){
-                                return (
-                                  <p className='red-text reading-font'>
-                                  {value.quantity} in cart
-                                </p>
-                                )
-                              }
-                              return null
-                          }) 
-                        }
+
+                      <div>
+                        <button 
+                        className='cartUpdateButton cartUpdateAdd'
+                        onClick={(event) => addToCart(event, filteredCardName, cardPriceArray, index, givenUserId)}>
+                          +
+                        </button>
+    
+                        <button  
+                          className='cartUpdateButton cartUpdateSubtract'
+                          onClick={(event) => subtractFromCart(event, index, givenUserId, filteredCardName)}>
+                            - 
+                        </button>
+                        
+                        { 
+                            cartData[0].map((value) => {
+                              if(value.card_name === filteredCardName && value.userId === userId){
+                                  return (
+                                    <p className='red-text reading-font'>
+                                    {value.quantity} in cart
+                                  </p>
+                                  )
+                                }
+                                return null
+                            }) 
+                          }
+                        </div>
               </div>
     )
   })
-
-
 }
 
 
