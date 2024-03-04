@@ -63,17 +63,15 @@ function App() {
     <div className="App">
     <Toaster position="top-center"/>  
       <QueryClientProvider client={queryClient}>
+        <CartProvider>
             <Router>
                   <Routes>
-                    <CartProvider>
                     <Route path='/' element={
                                           <MainPage 
                                                 LogIn={LogIn} 
                                                 isLoggedIn={isLoggedIn} 
                                                 givenUserId={givenUserId}/>
                                                 }/>
-                                                
-                    </CartProvider> 
                     <Route path='/shoppinglist' element={<ShopList givenUserId={givenUserId}/>}/>
                   
                     <Route path='/login' element={<Login 
@@ -87,6 +85,7 @@ function App() {
                     <Route component={<NotFound/>}/>
                   </Routes>
               </Router>    
+        </CartProvider> 
       </QueryClientProvider>
     </div>
   )
