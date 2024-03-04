@@ -310,7 +310,7 @@ a.mainpage-card-list-text:active{
     }
     .cardUpdateButton{
         position: absolute;
-        height: 25px;
+        height: 50px;
         width: 50px;
         display: flex;
         align-items: center;
