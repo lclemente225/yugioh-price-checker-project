@@ -128,6 +128,9 @@ a.mainpage-card-list-text{
 a.mainpage-card-list-text:hover{
     color: aqua;
 }
+a.mainpage-card-list-text:active{
+    color: blue;
+}
 .single-card-listing{
     width: 15vw;
     height: 350px;
