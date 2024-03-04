@@ -13,7 +13,7 @@ export const CartProvider = ({children}) => {
                 headers: lastModified ? { 'If-Modified-Since': lastModified } : {}
             });
 
-            //console.log("response in general cartcontext.jsx", response, "state of lastmodified", lastModified)
+            console.log("response in general cartcontext.jsx", response, "state of lastmodified", lastModified)
             if (response.status === 304) {
                 // Resource not modified, no need to update
                 console.log("no updates, cartcontext.jsx")
