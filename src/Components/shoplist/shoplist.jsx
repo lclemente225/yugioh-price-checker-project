@@ -6,8 +6,8 @@ import { useQuery } from 'react-query';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
 import { addToCartinCart, subtractFromCartinCart, deleteFromCartinCart } from '../action-functions/action-functions';
+import { HomepageFooter } from '../mainpage/footer';
 
-import {CartContext} from '../cart-context/CartContext'
 /**
  * 
  SAVING AN OBJECT INTO LOCAL STORAGE
@@ -238,7 +238,7 @@ function ListItems() {
                 }
             </div>
         </div>
-       
+       <HomepageFooter/>
 
     </div>
   )
