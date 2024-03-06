@@ -238,8 +238,9 @@ function ListItems() {
                 }
             </div>
         </div>
+        <div className="homepage-footer">
        <HomepageFooter/>
-
+       </div>
     </div>
   )
 }

@@ -199,7 +199,7 @@ export default function MainPage({LogIn, isLoggedIn, givenUserId}){
                       />
                 }
             </div>
-            <div id="homepage-footer">
+            <div className="homepage-footer">
               <HomepageFooter/>
             </div>
         </div>
