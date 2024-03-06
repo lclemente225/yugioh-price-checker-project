@@ -216,6 +216,7 @@ a.mainpage-card-list-text:active{
         position: static;
     }
     .homepage-footer{
+        height: 300px;
         flex-direction: column;
     }
  }
