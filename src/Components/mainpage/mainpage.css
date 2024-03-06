@@ -128,6 +128,7 @@ a.mainpage-card-list-text:active{
     box-shadow: 0 0 5px 2px black;
 }
 .mutate-button-container {
+    width: 100%;
     border: 2px solid red;
     position: absolute;
     bottom: 10px;
