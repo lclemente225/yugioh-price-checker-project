@@ -235,7 +235,7 @@ a.mainpage-card-list-text:active{
         width: 90%;
     }
     .mutate-button-container {
-        position: relative;
+        position: static;
         width: max-content;
         grid-template-columns: [left]100px [add]40px[subtract]30px;
     }
