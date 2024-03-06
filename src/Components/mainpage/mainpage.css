@@ -3,22 +3,6 @@
     position: relative;
 }
 
-.add-or-sub-popup{
-    position: fixed;
-    top: 100px;
-    right: 10px;
-    width: 200px;
-    height: 200px;
-    background-color: var(--tertiary-color);
-    border-radius: 30px;
-    border: 2px solid black;
-    box-shadow: 0 0 10px black;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 0 15px;
-}
-
 .main--page-container{
     width: 100%;
     display: flex;
@@ -132,6 +116,7 @@ a.mainpage-card-list-text:active{
     color: blue;
 }
 .single-card-listing{
+    position: relative;
     width: 15vw;
     height: 350px;
     padding: 12px;
@@ -143,6 +128,8 @@ a.mainpage-card-list-text:active{
     box-shadow: 0 0 5px 2px black;
 }
 .mutate-button-container {
+    position: absolute;
+    bottom: 10px;
     display: grid;
     grid-template-columns: [left]50% [add]40px[subtract]30px;
 }
@@ -245,6 +232,7 @@ a.mainpage-card-list-text:active{
         width: 90%;
     }
     .mutate-button-container {
+        position: relative;
         width: max-content;
         grid-template-columns: [left]100px [add]40px[subtract]30px;
     }
