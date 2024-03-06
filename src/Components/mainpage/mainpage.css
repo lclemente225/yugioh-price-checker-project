@@ -128,9 +128,10 @@ a.mainpage-card-list-text:active{
     box-shadow: 0 0 5px 2px black;
 }
 .mutate-button-container {
+    border: 2px solid red;
     position: absolute;
     bottom: 10px;
-    right: 5%;
+    right: 10%;
     display: grid;
     grid-template-columns: [left]50% [add]40px[subtract]30px;
 }
