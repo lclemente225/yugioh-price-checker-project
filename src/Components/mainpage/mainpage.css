@@ -324,7 +324,7 @@ a.mainpage-card-list-text:active{
     .millenium-eye-image{
         width: 90%;
     }
-    #homepage-footer{
+    .homepage-footer{
         flex-direction: column;
     }
   }
