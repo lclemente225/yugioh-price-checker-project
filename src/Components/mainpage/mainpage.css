@@ -130,7 +130,7 @@ a.mainpage-card-list-text:active{
 .mutate-button-container {
     position: absolute;
     bottom: 10px;
-    right: 20px;
+    right: 5%;
     display: grid;
     grid-template-columns: [left]50% [add]40px[subtract]30px;
 }
