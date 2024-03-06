@@ -132,12 +132,13 @@ a.mainpage-card-list-text:active{
     border: 2px solid red;
     position: absolute;
     bottom: 10px;
-    right: 10%;
+    right: 15%;
     display: grid;
     grid-template-columns: [left]50% [add]40px[subtract]30px;
 }
 .mutate-button-container:has(p.red-text) {
     width: max-content;
+    right: 10%;
 }
 .cardUpdateButton{
     width: 30px;
