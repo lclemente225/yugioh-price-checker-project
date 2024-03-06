@@ -35,7 +35,7 @@ export const HomepageFooter = () => {
                     </span>
             </Link>
         </div>
-        <div style={{padding: '0 10px'}}>
+        <div style={{padding: '0 10px', display: 'flex', flexDirection: 'column'}}>
             <span>
                 *Prices may not be 100% accurate. Check the links for actual listings. 
             </span>
