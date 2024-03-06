@@ -152,7 +152,24 @@
     color: white;
     background-color: rgba(0,0,0, 0.5);
 }
-
+#homepage-footer{
+    height: 250px;
+    background-color: var(--tertiary-color);
+    color: var(--footer-color);
+    display: flex; 
+    justify-content: space-around;
+    align-items: center;
+    }
+ .footer-links{
+     margin-right: 10px;
+     background-color: var(--tertiary-color);
+ }
+ .footer-links>i{
+     margin-right: 2px;
+ }
+ .footer-links:hover{
+     color: white;
+ }
 
 @media screen and (min-width: 951px) and (max-width: 1600px) {
     
@@ -263,6 +280,9 @@
     }
     .cartUpdateSubtract{
         right: 60px
+    }
+    #homepage-footer{
+        flex-direction: column;
     }
 }
 @media screen and (min-width: 1660px){
