@@ -143,24 +143,33 @@ function FilterSearchCards(){
                       <a className='mainpage-card-list-text reading-font' 
                       target="_blank"
                       href={`https://www.tcgplayer.com/search/yugioh/product?productLineName=yugioh&q=${filteredCardName}+yugioh&view=grid`}>
-                          TCG Player: {cardPriceArray["tcgplayer_price"] == 0.00 ? " Not Listed":`$${cardPriceArray["tcgplayer_price"]}`}
+                          TCG Player: {cardPriceArray["tcgplayer_price"] == 0.00 ? 
+                          " Not Listed, double-check site listings here"
+                          :
+                          `$${cardPriceArray["tcgplayer_price"]}`}
                         </a>
   
                       <a className='mainpage-card-list-text reading-font'
                       target="_blank"
                       href={`https://www.ebay.com/sch/i.html?_from=R40&_nkw=${filteredCardName}+yugioh&_sacat=0`}>
-                          eBay: ${cardPriceArray["ebay_price"]}
+                          eBay: {cardPriceArray["ebay_price"] == 0.00 ? 
+                          " Not Listed, double-check site listings here"
+                          :
+                          `$${cardPriceArray["ebay_price"]}`}
                       </a>
   
                       <a className='mainpage-card-list-text reading-font'
                       target="_blank"
                       href={`https://www.amazon.com/s?k=${filteredCardName}+yugioh&ref=nb_sb_noss`}>
-                          Amazon: ${cardPriceArray["amazon_price"]}
+                          Amazon: {cardPriceArray["amazon_price"] == 0.00 ? 
+                          " Not Listed, double-check site listings here"
+                          :
+                          `$${cardPriceArray["amazon_price"]}`}
                       </a>
 
                       <div className='mutate-button-container'>
                         { 
-                            cartData[0].map((value) => {
+                              cartData[0].map((value) => {
                               if(value.card_name === filteredCardName && value.userId === userId){
                                   return (
                                     <p className='red-text reading-font'>
