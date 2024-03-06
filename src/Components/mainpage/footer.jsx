@@ -38,6 +38,9 @@ export const HomepageFooter = () => {
         <span style={{padding: '0 10px'}}>
             *Prices may not be 100% accurate. Check the links for actual listings. 
         </span>
+        <span>
+            Thank you to the YugiOh! API provided by <a href="https://ygoprodeck.com/api-guide/">YGOPRODECK</a>
+        </span>
     </>
   )
 }
