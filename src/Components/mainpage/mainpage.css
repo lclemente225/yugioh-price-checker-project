@@ -211,6 +211,11 @@ a.mainpage-card-list-text:active{
         background-position-y: 0px !important;
     }
  }
+ @media (max-width: 1240px) {
+    .mutate-button-container {
+        position: static;
+    }
+ }
   @media screen and (min-width: 900px) and (max-width: 1240px) {
     .card--list-container{
         width: 100%;
@@ -238,7 +243,6 @@ a.mainpage-card-list-text:active{
         width: 90%;
     }
     .mutate-button-container {
-        position: static;
         width: max-content;
         grid-template-columns: [left]100px [add]40px[subtract]30px;
     }
