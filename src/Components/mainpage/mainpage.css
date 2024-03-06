@@ -215,6 +215,9 @@ a.mainpage-card-list-text:active{
     .mutate-button-container {
         position: static;
     }
+    .homepage-footer{
+        flex-direction: column;
+    }
  }
   @media screen and (min-width: 900px) and (max-width: 1240px) {
     .card--list-container{
@@ -323,8 +326,5 @@ a.mainpage-card-list-text:active{
     }
     .millenium-eye-image{
         width: 90%;
-    }
-    .homepage-footer{
-        flex-direction: column;
     }
   }
