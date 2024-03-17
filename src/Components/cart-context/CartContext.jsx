@@ -1,5 +1,4 @@
 import { useState,useEffect, createContext } from "react";
-import { useQuery } from 'react-query';
 
 export const CartContext = createContext(null);
 
