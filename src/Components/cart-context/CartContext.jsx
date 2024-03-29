@@ -4,7 +4,6 @@ export const CartContext = createContext(null);
 
 export const CartProvider = ({children}) => {
     const [cart, setCart] = useState([]);
-    const [lastModified, setLastModified] = useState(null);
 
     const fetchData = async () => {
         try {
