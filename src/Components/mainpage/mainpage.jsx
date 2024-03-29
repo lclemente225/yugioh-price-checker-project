@@ -37,7 +37,6 @@ export default function MainPage({LogIn, isLoggedIn, givenUserId}){
         let response =  await fetch('https://db.ygoprodeck.com/api/v7/cardinfo.php');
         let data = await response.json();  
         
-        //setSearchTerm("wow")
             return data
             },{
               refetchOnWindowFocus: false,
@@ -86,7 +85,7 @@ export default function MainPage({LogIn, isLoggedIn, givenUserId}){
           }
           
       }catch (error) {
-          console.error(error);
+          console.error("special error:", error);
         }
      
   }
@@ -116,7 +115,7 @@ export default function MainPage({LogIn, isLoggedIn, givenUserId}){
           
           
     }catch(error){
-      console.error(error)
+      console.error("special error: ", error)
     }
     
   }
