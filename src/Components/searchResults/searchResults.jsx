@@ -184,7 +184,7 @@ function FilterSearchCards(){
                         className='cardUpdateButton cardUpdateAdd'
                         onClick={async (event) => {
                           await addToCart(event, filteredCardName, cardPriceArray, index, givenUserId)
-                          setTimeout(() => fetchData(), 500)
+                          setTimeout(fetchData, 500)
                           }}>
                           +
                         </button>
@@ -193,7 +193,7 @@ function FilterSearchCards(){
                           className='cardUpdateButton cardUpdateSubtract'
                           onClick={async (event) => {
                             await subtractFromCart(event, index, givenUserId, filteredCardName)
-                            setTimeout(() => fetchData(), 500)
+                            setTimeout(fetchData, 500)
                             }}>
                             - 
                         </button>
