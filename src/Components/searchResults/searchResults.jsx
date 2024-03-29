@@ -13,7 +13,7 @@ export function SearchResults({
                                 givenUserId,
                                 changeSearchResultQuantity
                               }) {
-  const cartData = useContext(CartContext);
+  const {cart, fetchData} = useContext(CartContext);
   const userId = localStorage.getItem("Login UserId");
 
  
@@ -169,7 +169,7 @@ function FilterSearchCards(){
 
                       <div className='mutate-button-container'>
                         { 
-                              cartData[0].map((value) => {
+                              cart[0].map((value) => {
                               if(value.card_name === filteredCardName && value.userId === userId){
                                   return (
                                     <p className='red-text reading-font'>
@@ -182,13 +182,19 @@ function FilterSearchCards(){
                           }
                         <button 
                         className='cardUpdateButton cardUpdateAdd'
-                        onClick={(event) => addToCart(event, filteredCardName, cardPriceArray, index, givenUserId)}>
+                        onClick={(event) => {
+                          addToCart(event, filteredCardName, cardPriceArray, index, givenUserId)
+                          fetchData();
+                          }}>
                           +
                         </button>
     
                         <button  
                           className='cardUpdateButton cardUpdateSubtract'
-                          onClick={(event) => subtractFromCart(event, index, givenUserId, filteredCardName)}>
+                          onClick={(event) => {
+                            subtractFromCart(event, index, givenUserId, filteredCardName)
+                            fetchData()
+                            }}>
                             - 
                         </button>
                         </div>

@@ -1,43 +1,22 @@
 const express = require('express');
 const router = express.Router();
 const db = require('../helper/db');
-let lastModified = null;
 
 router.use(db.mysqlConnection);
-
 
 router.get('/dude', (req, res) => {
     console.log("works")
     return res.send("inner route is working")
 })
 
-// Middleware to handle Last-Modified header
-const lastModifiedMiddleware = (req, res, next) => {
-    // Set Last-Modified header
-    res.set('If-Modified-Since', lastModified ? lastModified : '');
-    next();
-};
-
- 
-function setLastModified(req, res, next){
-    lastModified = Date.now();
-    res.set('Last-Modified', lastModified)
-    next();
- }
  
 // "/.netlify/functions/cart-functions/"
 
- router.get('/list', lastModifiedMiddleware,async (req, res) => {
+ router.get('/list',async (req, res) => {
      //this is the data that comes from react when clicking on the + button
      try{
      const cartList = await req.db.query(`SELECT * FROM yugioh_cart_list`);
 
-     const ifModifiedSince = req.header('If-Modified-Since');
-     if (ifModifiedSince && lastModified && new Date(ifModifiedSince) <= lastModified) {
-         // Resource not modified since last request
-         return res.status(304).json(cartList).end();
-     }
- 
      return res.status(200).json(cartList)
  
      }catch(error){
@@ -47,7 +26,7 @@ function setLastModified(req, res, next){
  }); 
  // when you click a button, then it will send a post request to the sql server
  //this function adds quantity if the card exists
- router.put('/add', setLastModified, async (req, res) => {
+ router.put('/add', async (req, res) => {
      
      const userIdFromClientSide = req.body.userId;
  
@@ -132,7 +111,7 @@ function setLastModified(req, res, next){
  
  
  //function to subtract 1 and delete when quantity is 0 
- router.put('/updateSubtractItem', setLastModified,async(req, res) => {
+ router.put('/updateSubtractItem', async(req, res) => {
 
      try{
             const userIdFromClientSide = req.body.userId;
@@ -179,7 +158,7 @@ function setLastModified(req, res, next){
      
  })
  
- router.delete('/deleteItem',setLastModified, async (req, res) => {
+ router.delete('/deleteItem', async (req, res) => {
      const userIdFromClientSide = req.body.userId;
      const cardName = req.body.card_name;
      //delete selected row
@@ -219,5 +198,4 @@ function setLastModified(req, res, next){
          } 
  })
 
- router.use(lastModifiedMiddleware)
 export {router}
