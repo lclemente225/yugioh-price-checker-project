@@ -21,7 +21,7 @@ function ProfileNavbar(){
 }
 
 const Profile = () => {
-  
+  const [profileOptionShow, profileOptionShowToggle] = useState(false)
   const userId = JSON.parse(localStorage.getItem("Login UserId"));
   const [selectedProfileForm, selectProfileForm] = useState({
     editEmail: false,
@@ -142,14 +142,17 @@ const Profile = () => {
     <div>
         <ProfileNavbar/>
         {deleteAccountConfirm && <DeleteConfirm toggleDeleteAccountConfirm={toggleDeleteAccountConfirm} profileFormData={profileFormData} handleChange={handleChange}/>}
-        <div className="profile-body">
+        <div className='profile-body'>
           <div className='profile-welcome-title'>
               <h1>Hello {UserInfo.username}</h1>
           </div>
           <div className='profile-title'>
               <h1 style={{fontSize: "1.3rem"}}>Profile Settings</h1>
           </div>
-          <div className='profile-navigation'>
+          <div className='profile-options' onClick={() => profileOptionShowToggle(x => !x)}>
+           {profileOptionShow ? 'Hide Profile Options' : 'Show Profile Options' }
+          </div>
+          <div className={`profile-navigation ${profileOptionShow && 'option-show'}`}>
               <div onClick={() => selectProfileForm(() => ({profileInfo: true, editEmail: false, editUser: false, editPassword: false}))}
                 className={`${selectedProfileForm.profileInfo && 'selectedProfile'} profile-selection`}>
                   <h3>Your Information</h3>
