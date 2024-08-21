@@ -127,7 +127,9 @@ export default function MainPage({LogIn, isLoggedIn, givenUserId}){
     
   function filterCard(e){
       //console.log("filtering",e.target.value.toLowerCase())
-      setSearchTerm(e.target.value);
+      let searchValue = e.target.value;
+      let cleanSearchValue = searchValue.replace(/-/g, ' ');
+      setSearchTerm(cleanSearchValue);
   }   
   //add a function that checks for a user id and a jwt authorization
   //if authorized then obtain info from  the table WHERE userid = userid
