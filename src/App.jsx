@@ -11,8 +11,13 @@ import { BrowserRouter as Router, Routes, Route} from 'react-router-dom';
 import { Toaster } from 'react-hot-toast';
 import { CartProvider } from './Components/cart-context/CartContext';
 import { useCookies } from "react-cookie";
+import ProtectedRoute from './protected-route/protectedRoute';
+import { isAuthenticated } from './protected-route/authfn';
 
-  const queryClient = new QueryClient();
+
+
+
+const queryClient = new QueryClient();
 
 function App() {  
   const [isLoggedIn, LogIn] = useState(false);  

@@ -1,4 +1,4 @@
-import { lazy } from "react";
+/* import { lazy } from "react";
 
 export default function LazyLoad (path, namedExport) {
     try{
@@ -15,4 +15,4 @@ export default function LazyLoad (path, namedExport) {
     }catch(error){
         console.log("didn't lazy load correctly", error)
     }
-};
+}; */
