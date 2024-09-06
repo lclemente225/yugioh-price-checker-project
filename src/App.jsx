@@ -76,7 +76,7 @@ function App() {
                                                 isLoggedIn={isLoggedIn} 
                                                 givenUserId={givenUserId}/>
                                                 }/>
-                    <Route path='/shoppinglist' element={<ShopList givenUserId={givenUserId}/>}/>
+                    <Route path='/shoppinglist' element={<ShopList/>}/>
                   
                     <Route path='/login' element={<Login 
                                                       LogIn={LogIn} 

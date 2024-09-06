@@ -1,28 +1,17 @@
 import "./navbar.css";
 import {Link, useNavigate} from "react-router-dom";
-import { useCookies } from "react-cookie";
 import useAccessToken from "../../protected-route/authfn";
 
 export default function Navbar() {
-    const {removeAccessToken} = useAccessToken()
+    const {removeAccessToken, accessTokenObj} = useAccessToken()
     
-    let loginStatus = JSON.parse(localStorage.getItem("Login Status"));
+    let loginStatus = accessTokenObj.status;
 
     function handleLogOut(){
-      console.log("logging out")
-      localStorage.removeItem("Login Email");
-      localStorage.removeItem("Login UserId");
-      localStorage.setItem("Login Status", false);
       removeAccessToken();
       useNavigate('/login');
     }
-/* 
-    if(cookies.accessToken){
-      console.log("THIS IS THE COOKIE", cookies.accessToken)
-    }else{
-      console.log("no cookie")
-    }
- */
+
     function Logout(){
     
       return (
@@ -72,7 +61,7 @@ export default function Navbar() {
     <div className="nav--top">
       <nav className="navbar navbar-nav-scroll">         
           <div className="navbar-login-links">
-              {loginStatus ? <Logout/> : <LoginLinks/>}
+              {loginStatus === "user" ? <Logout/> : <LoginLinks/>}
           </div>
 
           <a className="navbar-brand" href="/">

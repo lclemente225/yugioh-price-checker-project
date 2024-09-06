@@ -42,7 +42,8 @@ const Shoplist = () => {
     })
     const [showPrices, toggleShowPrices] = useState(false);
     const {accessTokenObj} = useAccessToken();
-    // const givenUserId = accessTokenObj.userID;
+    console.log("shoplist token", accessTokenObj)
+    const givenUserId = accessTokenObj.userID;
 
   //take this api call and useContext the object keys 
   //utilize  data, isLoading and error in this page

@@ -10,9 +10,10 @@ const useAccessToken = () => {
   const removeAccessToken = () => {
     removeCookie(['accessToken']);
   };
+  console.log("cookies", cookies)
 
   return {
-    accessTokenObj: cookies.accessToken,
+    accessTokenObj: cookies.accessToken || {userID:'0'},
     setAccessToken,
     removeAccessToken,
   };
