@@ -1,5 +1,4 @@
 import './App.css';
-import { useState, useEffect } from 'react';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import MainPage from './Components/mainpage/mainpage';
 import ShopList from './Components/shoplist/shoplist';
