@@ -5,11 +5,17 @@ import {router as profileFunctions} from "./profile-functions/profile-functions"
 const serverless = require('serverless-http');
 const express = require('express');
 const bodyParser = require('body-parser');
+const cors = require('cors')
 const app = express();
 
 
 const router = express.Router();
-
+const corsOptions = {
+    origin: 'https://ygo-pricechecker.netlify.app/',
+    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+    credentials: true
+  };
+app.use(cors(corsOptions))
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use('/.netlify/functions/functions', router); 

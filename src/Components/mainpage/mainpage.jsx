@@ -29,7 +29,6 @@ export default function MainPage(){
   const [currentSearchPage, setSearchCurrentPage] = useState(1);
   const [currentSearchPostsLength, setSearchPostLength] = useState(10);
   const [showSearchResultQuantity, changeSearchResultQuantity] = useState(0);
-  
 
   //obtain data from yugioh api
   const { isLoading, error, data } = useQuery('Yugioh Data', 
