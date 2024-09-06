@@ -1,6 +1,7 @@
 import React, { useState, useContext } from 'react';
 import { CartContext } from '../cart-context/CartContext';
 import { useQuery } from 'react-query';
+import useAccessToken from '../../protected-route/authfn';
 import './searchResults.css';
 
 export function SearchResults({
@@ -10,12 +11,12 @@ export function SearchResults({
                                 currentSearchPage, 
                                 addToCart,
                                 subtractFromCart,
-                                givenUserId,
                                 changeSearchResultQuantity
                               }) {
   const {cart, fetchData} = useContext(CartContext);
   const userId = localStorage.getItem("Login UserId");
-
+  const {accessTokenObj} = useAccessToken();
+  const givenUserId = accessTokenObj.userId;
  
   const { isLoading, error, data } = useQuery('Yugioh Data', 
   async () =>{
@@ -170,7 +171,8 @@ function FilterSearchCards(){
                       <div className='mutate-button-container'>
                         { 
                               cart[0].map((value) => {
-                              if(value.card_name === filteredCardName && value.userId === userId){
+                                console.log(value.userId, userId)
+                              if(value.card_name === filteredCardName && JSON.stringify(value.userId)=== userId){
                                   return (
                                     <p className='red-text reading-font'>
                                     {value.quantity} in cart
