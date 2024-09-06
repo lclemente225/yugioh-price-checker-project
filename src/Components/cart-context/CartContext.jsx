@@ -27,7 +27,7 @@ export const CartProvider = ({children}) => {
     useEffect(() => {
         fetchData();
     }, []);
-    console.log(cart)
+    
     return (
         <CartContext.Provider value={{cart, fetchData}}>
             {children}
