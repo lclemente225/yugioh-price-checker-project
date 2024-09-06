@@ -23,7 +23,7 @@ import {Pagination as SearchPagination} from '../searchpagination/searchPaginati
         */
        //let cartData = CartContext()
 
-export default function MainPage({LogIn, isLoggedIn}){
+export default function MainPage(){
   const [searchTerm, setSearchTerm] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
   const [currentSearchPage, setSearchCurrentPage] = useState(1);
@@ -150,7 +150,7 @@ export default function MainPage({LogIn, isLoggedIn}){
  
     return (
         <div className='page-container'>
-            <NavBar LogIn={LogIn} isLoggedIn={isLoggedIn}/>
+            <NavBar />
             <div className="main--page-container">
                 <div className="main--page-search ">
                     <div className='main--page-search-form reading-font'>

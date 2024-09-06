@@ -3,7 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import useAccessToken from "../../protected-route/authfn";
 import "./login.css";
 
-function Login({LogIn, isLoggedIn}) {
+function Login() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [loginError, setLoginError] = useState("");

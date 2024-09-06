@@ -11,13 +11,9 @@ import { BrowserRouter as Router, Routes, Route} from 'react-router-dom';
 import { Toaster } from 'react-hot-toast';
 import { CartProvider } from './Components/cart-context/CartContext';
 
-
-
-
 const queryClient = new QueryClient();
 
 function App() {  
-  const [isLoggedIn, LogIn] = useState(false);  
 
   return (      
     <div className="App">
@@ -26,20 +22,11 @@ function App() {
         <CartProvider>
             <Router>
                   <Routes>
-                    <Route path='/' element={
-                                          <MainPage 
-                                                LogIn={LogIn} 
-                                                isLoggedIn={isLoggedIn} />
-                                                }/>
+                    <Route path='/' element={<MainPage/>}/>
                     <Route path='/shoppinglist' element={<ShopList/>}/>
-                  
-                    <Route path='/login' element={<Login 
-                                                      LogIn={LogIn} 
-                                                      isLoggedIn={isLoggedIn}
-                                                      />
-                                                      }/>
-                    <Route path='/register' element={<Register />}/>
-                    <Route path='/profile' element={<Profile />}/>
+                    <Route path='/login' element={<Login/>}/>
+                    <Route path='/register' element={<Register/>}/>
+                    <Route path='/profile' element={<Profile/>}/>
                     <Route component={<NotFound/>}/>
                   </Routes>
               </Router>    
