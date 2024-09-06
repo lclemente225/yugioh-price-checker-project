@@ -30,6 +30,12 @@
     margin-left: .7rem;
     background-color: rgb(238, 238, 219);
 }
+
+.register-error {
+    color: red;
+    margin: 0;
+    padding: 5px;
+}
 @media screen and (max-width: 600px) {
     .register-form{
         width: 100%;

@@ -10,9 +10,6 @@ import NotFound from './NotFound';
 import { BrowserRouter as Router, Routes, Route} from 'react-router-dom';
 import { Toaster } from 'react-hot-toast';
 import { CartProvider } from './Components/cart-context/CartContext';
-import { useCookies } from "react-cookie";
-import ProtectedRoute from './protected-route/protectedRoute';
-import { isAuthenticated } from './protected-route/authfn';
 
 
 
@@ -23,7 +20,6 @@ function App() {
   const [isLoggedIn, LogIn] = useState(false);  
   const [givenUserId, setUserId] = useState("");
   const [doesJWTExist, JWTStatus] = useState(false);
-  const [cookies, setCookie, removeCookie] = useCookies(['cookie-name']);
   
   let localStorageUserId = localStorage.getItem("Login UserId");
 
@@ -38,18 +34,18 @@ function App() {
   })
  },[isLoggedIn])
 
-  //honestly i dont know how to block routes with this token
+/*   //honestly i dont know how to block routes with this token
   function handleAuthentication(e){
     e.preventDefault();
     const jwtAuth = fetch("/.netlify/functions/functions/checkAuth", {
       method: 'GET', 
-      headers:{
+      headers:{ 
         "access-token": cookies.accessToken
       }
     })
 
     jwtAuth.then(res => {
-      //console.log("Token is here AUTHENTICATION TOKEN",res.headers.access-token)
+      console.log("Token is here AUTHENTICATION TOKEN",res.headers.access-token)
       let token = res.headers.access-token;
       if(token){
         return JWTStatus(true);
@@ -62,7 +58,10 @@ function App() {
     })
     .catch(err => console.log("unable to retrieve jwt", err))
   }
-
+ */
+  useEffect(() => {
+    
+  },[])
 
   return (      
     <div className="App">
@@ -81,9 +80,8 @@ function App() {
                   
                     <Route path='/login' element={<Login 
                                                       LogIn={LogIn} 
-                                                      isLoggedIn={isLoggedIn} 
-                                                      givenUserId={givenUserId} 
-                                                      setUserId={setUserId}/>
+                                                      isLoggedIn={isLoggedIn}
+                                                      />
                                                       }/>
                     <Route path='/register' element={<Register />}/>
                     <Route path='/profile' element={<Profile />}/>

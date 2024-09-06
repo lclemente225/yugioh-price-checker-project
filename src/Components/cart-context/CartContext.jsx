@@ -8,7 +8,7 @@ export const CartProvider = ({children}) => {
     const fetchData = async () => {
         try {
             const response = await fetch(`/.netlify/functions/functions/cart/list`);
-
+            
             if (!response.ok) {
                 throw new Error('Failed to fetch data', response);
             }
@@ -27,7 +27,7 @@ export const CartProvider = ({children}) => {
     useEffect(() => {
         fetchData();
     }, []);
-
+    console.log(cart)
     return (
         <CartContext.Provider value={{cart, fetchData}}>
             {children}

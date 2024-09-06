@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const db = require('../helper/db');
+const {cookieParse} = require('../helper/cookieParse')
 
 router.use(db.mysqlConnection);
 
@@ -9,27 +10,32 @@ router.get('/dude', (req, res) => {
     return res.send("inner route is working")
 })
 
- 
+
 // "/.netlify/functions/cart-functions/"
 
  router.get('/list',async (req, res) => {
      //this is the data that comes from react when clicking on the + button
-     try{
-     const cartList = await req.db.query(`SELECT * FROM yugioh_cart_list`);
+    //  console.log("check headers", req.headers.cookie)
+    let userID = cookieParse(req.headers.cookie).userID || '0';
+    
+    try{
+    const cartList = await req.db.query(`SELECT * FROM yugioh_cart_list 
+    WHERE userId = :userID`,{userID});
+    
+    return res.status(200).json(cartList)
 
-     return res.status(200).json(cartList)
- 
-     }catch(error){
-     
-     return res.status(500).send({ error: 'Failed to find yoru cart' });
-     }
+    }catch(error){
+    
+    return res.status(500).send({ error: 'Failed to find yoru cart' });
+    }
  }); 
  // when you click a button, then it will send a post request to the sql server
  //this function adds quantity if the card exists
  router.put('/add', async (req, res) => {
      
-     const userIdFromClientSide = req.body.userId;
- 
+    const parsedCookie = cookieParse(req.headers.cookie)
+    const userIdFromClientSide = parsedCookie.userID;
+    
      try {
         // Check if card already exists in cart list
         const existingCard = await req.db.query(
@@ -114,7 +120,9 @@ router.get('/dude', (req, res) => {
  router.put('/updateSubtractItem', async(req, res) => {
 
      try{
-            const userIdFromClientSide = req.body.userId;
+            const parsedCookie = cookieParse(req.headers.cookie)
+            const userIdFromClientSide = parsedCookie.userID;
+            
             const selectedCard = await req.db.query(
             `SELECT id, quantity FROM yugioh_cart_list WHERE cartId = :cartId AND userId = :userId`,
             { 
@@ -140,7 +148,7 @@ router.get('/dude', (req, res) => {
         };
     
         if(selectedCard[0]){
-            console.log("subtracting 1 quantity",selectedCard[0][0].quantity)  
+            //console.log("subtracting 1 quantity",selectedCard[0][0].quantity)  
             await req.db.query(
                 `UPDATE yugioh_cart_list
                 SET quantity = quantity - 1 
@@ -159,7 +167,8 @@ router.get('/dude', (req, res) => {
  })
  
  router.delete('/deleteItem', async (req, res) => {
-     const userIdFromClientSide = req.body.userId;
+    const parsedCookie = cookieParse(req.headers.cookie)
+    const userIdFromClientSide = parsedCookie.userID;
      const cardName = req.body.card_name;
      //delete selected row
      //obtain id using name
@@ -180,7 +189,7 @@ router.get('/dude', (req, res) => {
              return res.status(404).json({ message: 'Item not found' });
          }
      
-         console.log("deleting this one",existingCard[0])
+        //  console.log("deleting this one",existingCard[0])
      
          const deleteCartListItem = await req.db.query(
              `DELETE FROM yugioh_cart_list 

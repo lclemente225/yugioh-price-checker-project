@@ -1,5 +1,3 @@
-
-
 export async function addToCartinCart(e, name, cartId, userId, refetch){
     await fetch(`/.netlify/functions/functions/cart/add`, {
       method: 'PUT',

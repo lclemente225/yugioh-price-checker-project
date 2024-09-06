@@ -7,6 +7,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
 import { addToCartinCart, subtractFromCartinCart, deleteFromCartinCart } from '../action-functions/action-functions';
 import { HomepageFooter } from '../mainpage/footer';
+import useAccessToken from '../../protected-route/authfn';
 
 /**
  * 
@@ -30,7 +31,7 @@ server side block the get end point
  */
 
 
-const Shoplist = ({givenUserId}) => {
+const Shoplist = () => {
 
     const [selectedPrice, choosePriceSelection] = useState({
       amazon_price: false, 
@@ -40,33 +41,36 @@ const Shoplist = ({givenUserId}) => {
       tcgplayer_price: false
     })
     const [showPrices, toggleShowPrices] = useState(false);
-//take this api call and useContext the object keys 
-//utilize  data, isLoading and error in this page
-    const { isLoading, error, data, refetch } = useQuery('Yugioh Cart Data', 
-          async () =>{
-                    let response =  await fetch(`/.netlify/functions/functions/cart/list`);
-                    let data = await response.json();   
-                    //console.log("trying to load cart", data)
-                    return data
-              },{
-                refetchOnWindowFocus: false
-              },
-              []);
-          
-if(isLoading){
-  return <div className='Loading-API-Text'>Loading...</div>
-}
-if(error){
-  console.log("Unable to load cart", error)
-  return (
-        <div className='Loading-API-Text'>
-          <h2> Something went wrong loading cart... </h2>
-          <a href="/"><p>Go Home</p></a>
-        </div>
-        )
-}
+    const {accessTokenObj} = useAccessToken();
+    // const givenUserId = accessTokenObj.userID;
 
+  //take this api call and useContext the object keys 
+  //utilize  data, isLoading and error in this page
+      const { isLoading, error, data, refetch } = useQuery('Yugioh Cart Data', 
+            async () =>{
+                      let response =  await fetch(`/.netlify/functions/functions/cart/list`);
+                      let data = await response.json();   
+                      //console.log("trying to load cart", data)
+                      return data
+                },{
+                  refetchOnWindowFocus: false
+                },
+                []);
+            
+  if(isLoading){
+    return <div className='Loading-API-Text'>Loading...</div>
+  }
+  if(error){
+    console.log("Unable to load cart", error)
+    return (
+          <div className='Loading-API-Text'>
+            <h2> Something went wrong loading cart... </h2>
+            <a href="/"><p>Go Home</p></a>
+          </div>
+          )
+  }
 
+  
 function ListItems() {
     let cardList = data[0];
     
@@ -80,10 +84,7 @@ function ListItems() {
                   ebay_price: item.ebay_price,
                   tcgplayer_price: item.tcgplayer_price
                 };
-
             
-           //if(givenUserId === 0) localStorage.setItem("No User Shop List", JSON.stringify(shopListItems))
-           
             if(givenUserId === item.userId){
               return (
                 <li key={item.id} className='shop-list-item'>

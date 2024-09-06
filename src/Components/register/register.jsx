@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import {Link} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import "./register.css";
 import { useQuery } from 'react-query';
 
@@ -8,12 +8,12 @@ function Register() {
   const [email, setEmail] = useState("");
   const [checkEmail, setCheckEmail] = useState("");
   const [password, setPassword] = useState("");
-
+  const [registerError, setRegisterError] = useState({status: false, message: ""});
+  const navigate = useNavigate()
 
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    confirmEmail();
     
     const userData = { 
                     "username":username, 
@@ -28,21 +28,40 @@ function Register() {
     })
       .then((response) => response.json())
       .then((data) => {
-        console.log("Registered successfully:", data);
+        if(data.status === 401){
+          console.log("error", data)
+          setRegisterError({
+            status: true,
+            message: data.message
+          })
+          return
+        } else {
+          setRegisterError({
+            status: true,
+            message: data.message
+          })
+          //can put a email verification here
+          navigate('/login');
+        }
         // Handle any success cases, such as redirecting to a login page
       })
       .catch((error) => {
+        setRegisterError({
+          status: true,
+          message: error
+        })
         console.error("Error in Registering:", error);
         // Handle any error cases
       });
   };
  
-  function confirmEmail(){
-    console.log("CHECKING EMAIL")
-    if(checkEmail === email){
-      console.log("email checks out")
+  function confirmEmail(emailInput){
+    if(email === emailInput || checkEmail === emailInput){
+      setRegisterError({status: false, message: ""})
+      return true
     } else {
-      alert("Bro check your email")
+      setRegisterError({status: true, message: "emails do not match"})
+      return false
     }
   }
 
@@ -50,7 +69,7 @@ function Register() {
     <div className="container-fluid register-container">
         <div className="login-redirect-home">
           <Link to="/">
-            <p>Home</p>
+            <p>Home</p> 
           </Link>
         </div>
         <h1 className="form-company-name">
@@ -59,7 +78,8 @@ function Register() {
         <h1 className="form-company-name">
         Register
       </h1>
-    <form onSubmit={handleSubmit} className="register-form">
+    <form onSubmit={handleSubmit} className="register-form">          
+    {registerError.status && <span className="register-error">{registerError.message} </span>}
       <div className="register-form-container">
           <label>
             Username:
@@ -70,12 +90,16 @@ function Register() {
               required
             />
           </label>
+
           <label>
             Email: 
             <input
               type="email"
               value={email}
-              onChange={(event) => setEmail(event.target.value)}
+              onChange={(event) => { 
+                setEmail(event.target.value)
+                confirmEmail(event.target.value)
+              }}
               required
             />
           </label>
@@ -84,7 +108,10 @@ function Register() {
             <input
               type="email"
               value={checkEmail}
-              onChange={(event) => setCheckEmail(event.target.value)}
+              onChange={(event) => {
+                setCheckEmail(event.target.value)
+                confirmEmail(event.target.value)
+              }}
               required
             />
           </label>

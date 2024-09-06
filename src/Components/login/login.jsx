@@ -1,14 +1,14 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import useAccessToken from "../../protected-route/authfn";
 import "./login.css";
-import { Cookies, useCookies } from "react-cookie";
 
-function Login({LogIn, isLoggedIn,givenUserId, setUserId}) {
+function Login({LogIn, isLoggedIn}) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [loginError, setLoginError] = useState("");
-  const [cookies, setCookie, removeCookie] = useCookies(['cookie-name']);
   const navigate = useNavigate();
+  const {setAccessToken} = useAccessToken()
 
   async function handleLogin (e){
       e.preventDefault();
@@ -26,18 +26,16 @@ function Login({LogIn, isLoggedIn,givenUserId, setUserId}) {
         //use local storage instead of prop to store values so that 
         //they won't be refreshed when page is refreshed
         let loginClientData = {
-          "status":true,
+          "status": "user",
           "email": loginData.email,
-          "userID": loginData.userId
+          "userID": loginData.userId,
+          "token": loginData.accessToken
         }
+        
         localStorage.setItem("Login Status", JSON.stringify(true));
         localStorage.setItem("Login Email", JSON.stringify(loginData.email));
         localStorage.setItem("Login UserId", JSON.stringify(loginData.userId));
-        setCookie("accessToken", JSON.stringify(loginData.accessToken), 
-        {
-          maxAge: 10000,
-          path: '/'
-        });
+        setAccessToken(JSON.stringify(loginClientData));
         navigate('/');
        /*  console.log("Login successful! Showing Login Data", 
          loginData.Login,

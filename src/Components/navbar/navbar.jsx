@@ -1,10 +1,10 @@
 import "./navbar.css";
 import {Link, useNavigate} from "react-router-dom";
 import { useCookies } from "react-cookie";
+import useAccessToken from "../../protected-route/authfn";
 
 export default function Navbar() {
-  
-    const [cookies, setCookie, removeCookie] = useCookies(['cookie-name']);
+    const {removeAccessToken} = useAccessToken()
     
     let loginStatus = JSON.parse(localStorage.getItem("Login Status"));
 
@@ -13,7 +13,7 @@ export default function Navbar() {
       localStorage.removeItem("Login Email");
       localStorage.removeItem("Login UserId");
       localStorage.setItem("Login Status", false);
-      removeCookie(["accessToken"]);
+      removeAccessToken();
       useNavigate('/login');
     }
 /* 

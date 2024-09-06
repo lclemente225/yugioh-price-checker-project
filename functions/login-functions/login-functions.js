@@ -20,45 +20,56 @@ router.post('/register', async (req, res) => {
       );
 
     let userIdInfo = await req.db.query(
-      `SELECT userId FROM yugioh_price_checker_users`
+      `SELECT username FROM yugioh_price_checker_users`
       )
-      console.log(userIdInfo)
-      
+    function checkUserName(){
+      let verifiedUsernames = []
+      userIdInfo[0].map((obj) => {
+        if(obj.username === req.body.username){
+          verifiedUsernames.push(1)
+        }
+      })
+      if (verifiedUsernames.length === 1){
+        return true 
+      }
+      return false
+  }
+  const verifyDuplicateUsername = checkUserName()
+    if(verifyDuplicateUsername){
+      return res.status(401).json({status: 401, message: "username or email is already in use"})
+    }
 
     let hashedPassword = await bcrypt.hash(req.body.password, salt);
 
-    console.log(`REGISTERING 
+   /*  console.log(`REGISTERING 
     email:${req.body.email} 
     username:${req.body.username} 
     password:${req.body.password}
     hashed pass: ${hashedPassword}
-    userID:${uuidv4()}`)
+    userID:${uuidv4()}`) */
 
     try {
-    if(checkEmail[0][0] != undefined){
-        return console.error("email is already in use")
-    }else if(checkEmail[0][0] != "" && req.body.password && req.body.username){
     
-        const registration = await req.db.query(
-          `INSERT INTO yugioh_price_checker_users
-          (email, username, password, userId)
-          VALUES( :email, :username, :password, :userId)`,
-          {
-              email: req.body.email,
-              username: req.body.username,
-              password: hashedPassword,
-              userId: uuidv4()
-          }
-        )
-          console.log("successfully registered new user")   
-
-    }else{
-        res.status(500).json({ error: 'Failed to register' });
-        return console.error("please enter an email")
-    };
+      if(checkEmail[0][0] != undefined){
+          return res.status(401).json({status: 401, message: "username or email is already in use"})
+      }else if(checkEmail[0][0] != "" && req.body.password && req.body.username){
       
+          const registration = await req.db.query(
+            `INSERT INTO yugioh_price_checker_users
+            (email, username, password, userId)
+            VALUES( :email, :username, :password, :userId)`,
+            {
+                email: req.body.email,
+                username: req.body.username,
+                password: hashedPassword,
+                userId: uuidv4()
+            }
+          )
+          return res.status(200).json({status:200, message:"successfully registered"})
+      }
+        
     }catch(err){
-        res.status(500).json({ error: 'Failed to register' });
+        res.json({status: 401, error: 'Failed to register' });
     }
 });
 
