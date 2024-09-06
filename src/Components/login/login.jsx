@@ -28,7 +28,7 @@ function Login({LogIn, isLoggedIn}) {
           "token": loginData.accessToken
         }
         
-        setAccessToken(JSON.stringify(loginClientData));
+        setAccessToken(loginClientData);
         navigate('/');
          
       } else {

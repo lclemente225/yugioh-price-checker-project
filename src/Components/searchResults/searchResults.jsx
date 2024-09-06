@@ -171,8 +171,7 @@ function FilterSearchCards(){
                       <div className='mutate-button-container'>
                         { 
                               cart[0].map((value) => {
-                                console.log(value.userId, userId)
-                              if(value.card_name === filteredCardName && JSON.stringify(value.userId)=== userId){
+                              if(value.card_name === filteredCardName && JSON.stringify(value.userId) === userId){
                                   return (
                                     <p className='red-text reading-font'>
                                     {value.quantity} in cart

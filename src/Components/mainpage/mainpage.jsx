@@ -23,7 +23,7 @@ import {Pagination as SearchPagination} from '../searchpagination/searchPaginati
         */
        //let cartData = CartContext()
 
-export default function MainPage({LogIn, isLoggedIn, givenUserId}){
+export default function MainPage({LogIn, isLoggedIn}){
   const [searchTerm, setSearchTerm] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
   const [currentSearchPage, setSearchCurrentPage] = useState(1);
@@ -177,7 +177,6 @@ export default function MainPage({LogIn, isLoggedIn, givenUserId}){
                               searchPostsPerPage={searchPostsPerPage}
                               addToCart={addToCart}
                               subtractFromCart={subtractFromCart}
-                              givenUserId={givenUserId}
                               changeSearchResultQuantity={changeSearchResultQuantity}
                               /> 
                               {/* <Placeholder/> */}

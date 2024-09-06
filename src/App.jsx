@@ -18,50 +18,6 @@ const queryClient = new QueryClient();
 
 function App() {  
   const [isLoggedIn, LogIn] = useState(false);  
-  const [givenUserId, setUserId] = useState("");
-  const [doesJWTExist, JWTStatus] = useState(false);
-  
-  let localStorageUserId = localStorage.getItem("Login UserId");
-
- useEffect(() => {
-  setUserId(() => {
-    if(localStorageUserId){
-      return localStorageUserId
-    }else{
-      localStorage.setItem("Login UserId", "0")
-      return `0`
-    }
-  })
- },[isLoggedIn])
-
-/*   //honestly i dont know how to block routes with this token
-  function handleAuthentication(e){
-    e.preventDefault();
-    const jwtAuth = fetch("/.netlify/functions/functions/checkAuth", {
-      method: 'GET', 
-      headers:{ 
-        "access-token": cookies.accessToken
-      }
-    })
-
-    jwtAuth.then(res => {
-      console.log("Token is here AUTHENTICATION TOKEN",res.headers.access-token)
-      let token = res.headers.access-token;
-      if(token){
-        return JWTStatus(true);
-      }else{
-        return JWTStatus(false)
-      }
-      //if token exists
-      //make an obj prop that has auth token or user
-      //send prop to protected routes
-    })
-    .catch(err => console.log("unable to retrieve jwt", err))
-  }
- */
-  useEffect(() => {
-    
-  },[])
 
   return (      
     <div className="App">
@@ -73,8 +29,7 @@ function App() {
                     <Route path='/' element={
                                           <MainPage 
                                                 LogIn={LogIn} 
-                                                isLoggedIn={isLoggedIn} 
-                                                givenUserId={givenUserId}/>
+                                                isLoggedIn={isLoggedIn} />
                                                 }/>
                     <Route path='/shoppinglist' element={<ShopList/>}/>
                   
