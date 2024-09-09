@@ -31,7 +31,7 @@ export default function MainPage(){
   const [showSearchResultQuantity, changeSearchResultQuantity] = useState(0);
 
   //obtain data from yugioh api
-  const { isLoading, error, data } = useQuery('Yugioh Data', 
+  const { isLoading, error } = useQuery('Yugioh Data', 
   async () =>{
         let response =  await fetch('https://db.ygoprodeck.com/api/v7/cardinfo.php');
         let data = await response.json();  
